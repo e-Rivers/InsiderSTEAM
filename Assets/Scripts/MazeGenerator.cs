@@ -8,8 +8,6 @@ public class MazeGenerator : MonoBehaviour {
     private int mazeColumns = 20;
     public GameObject cellPrefab;
 
-    private int centerSize = 2;
-
     // Dictionary to hold and locate all cells in maze.
     private Dictionary<Vector2, Cell> allCells = new Dictionary<Vector2, Cell>();
     // List to hold unvisited cells.
@@ -31,11 +29,7 @@ public class MazeGenerator : MonoBehaviour {
 
     private GameObject mazeParent;
 
-    private void Start() {
-        GenerateMaze();
-    }
-
-    private void GenerateMaze() {
+    public void GenerateMaze() {
         if (mazeParent != null) DeleteMaze();
         CreateLayout();
     }

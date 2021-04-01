@@ -18,7 +18,7 @@ public class ScienceCanvasOperations : MonoBehaviour {
 
     // This method will remove the initial banner
     public void removeBanner() {
-        initialBanner.active = false;
+        initialBanner.SetActive(false);
     }
 
 }
