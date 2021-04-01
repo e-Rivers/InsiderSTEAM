@@ -12,12 +12,14 @@ public class MoveCharMaze : MonoBehaviour {
 	}
 
 	void Update() {
-		// Horizontal move detection
-        	float moveHorizontal = Input.GetAxis("Horizontal");
-	        rigidBody.velocity = new Vector2(moveHorizontal*speedX, rigidBody.velocity.y);
-        	// Vertical move detection
-	        float moveVertically = Input.GetAxis("Vertical");
-       		rigidBody.velocity = new Vector2(rigidBody.velocity.x, moveVertically*speedY);
+		if(ScienceGameLogic.roundType%2==0) {
+			// Horizontal move detection
+        		float moveHorizontal = Input.GetAxis("Horizontal");
+		        rigidBody.velocity = new Vector2(moveHorizontal*speedX, rigidBody.velocity.y);
+	        	// Vertical move detection
+		        float moveVertically = Input.GetAxis("Vertical");
+       			rigidBody.velocity = new Vector2(rigidBody.velocity.x, moveVertically*speedY);
+		}
     	}
 }
 
