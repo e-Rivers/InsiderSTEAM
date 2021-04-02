@@ -10,9 +10,10 @@ public class ScienceGameLogic : MonoBehaviour {
     private int timeCount = 20;
     public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover;
     public Text timeText, roundText, askText;
-    public InputField endsBannerAnswer;
+    public InputField endsBannerAnswer, sidebarAnswer;
     private Dictionary<string, string> riddleDict = new Dictionary<string, string>();    
     private bool isAskTime = false;
+    private Coroutine subTime;
 
     // Loads all riddles and problems
     void Start() {
@@ -30,6 +31,7 @@ public class ScienceGameLogic : MonoBehaviour {
     void Update() {
         // Checks if the user clicked to remove the banner to start the game
         if(!initBanner.activeSelf && roundType == 0) {
+            subTime = StartCoroutine(reduceTimer());
             mazeGenesys.GetComponent<MazeGenerator>().GenerateMaze();
             player.SetActive(true);
             roundType++;
@@ -41,6 +43,7 @@ public class ScienceGameLogic : MonoBehaviour {
     
         // Checks if the player is out of the labyrinth borders
         if(player.transform.position.x >= 4.5 || player.transform.position.x <= -4.5 || player.transform.position.y >= 4.5 || player.transform.position.y <= -4.5) {
+            StopCoroutine(subTime);
             mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
             mazeCover.SetActive(false);
             player.SetActive(false);
@@ -52,9 +55,6 @@ public class ScienceGameLogic : MonoBehaviour {
     private void roundTypeMEM() {
         if(timeCount >= 0) {
             timeText.text = "Tiempo: " + timeCount;
-            int lastTime = System.DateTime.Now.Second;
-            while(System.DateTime.Now.Second == lastTime);
-            timeCount -= 1;
         } else { 
             timeCount = 20;
             roundType++;
@@ -66,9 +66,6 @@ public class ScienceGameLogic : MonoBehaviour {
         if(!isAskTime && timeCount >= 0) {
             mazeCover.SetActive(true);
             timeText.text = "Tiempo: " + timeCount;
-            int lastTime = System.DateTime.Now.Second;
-            while(System.DateTime.Now.Second == lastTime);
-            timeCount -= 1;
         } else {
             isAskTime = true;
             timeCount = 5;
@@ -82,9 +79,6 @@ public class ScienceGameLogic : MonoBehaviour {
     private void askRiddleOrProblem() {
         if(timeCount >= 0) {
            timeText.text = "Tiempo: " + timeCount;
-            int lastTime = System.DateTime.Now.Second;
-            while(System.DateTime.Now.Second == lastTime);
-            timeCount -= 1;
         } else {
             askText.text = "";
             mazeCover.SetActive(false);
@@ -96,6 +90,14 @@ public class ScienceGameLogic : MonoBehaviour {
             roundText.text = "Ronda: " + (roundType-int.Parse(prevRound[1]));
             timeCount = 20;            
             isAskTime = false;
+        }
+    }
+
+    // Method to update substract one to the timer
+    IEnumerator reduceTimer() {
+        while(true) {
+            yield return new WaitForSeconds(1);
+            timeCount--; 
         }
     }
 }

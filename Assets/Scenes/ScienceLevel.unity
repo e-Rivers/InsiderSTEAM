@@ -1094,7 +1094,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 4284b481033fdcb329cce0a1be69b325, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2014,6 +2014,7 @@ MonoBehaviour:
   roundText: {fileID: 663428837}
   askText: {fileID: 575795658}
   endsBannerAnswer: {fileID: 588626363}
+  sidebarAnswer: {fileID: 1470914797}
 --- !u!1 &999539913
 GameObject:
   m_ObjectHideFlags: 0
