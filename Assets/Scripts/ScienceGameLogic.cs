@@ -2,16 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class ScienceGameLogic : MonoBehaviour {
 
     public static int roundType = 0; //(odd is labyrinth crossing & even is answering)
     private int timeCount = 20;
-    public GameObject player, mazeGenesys, initBanner, mazeCover;
-    public Text timeText;
+    public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover;
+    public Text timeText, roundText, askText;
+    public InputField endsBannerAnswer;
+    private Dictionary<string, string> riddleDict = new Dictionary<string, string>();    
+    private bool isAskTime = false;
 
-    // Start is called before the first frame update
+    // Loads all riddles and problems
     void Start() {
+        riddleDict.Add("Un oso camina 5 km al sur, 5 km al oeste y 5 km al norte. ¿De qué color es el oso?", "BLANCO");
+        riddleDict.Add("¿Cuántos animales tengo en casa sabiendo que todos son perros menos dos, todos son gatos menos dos, y que todos son loros menos dos?", "3");
+        riddleDict.Add("Si 5 máquinas hacen 5 artículos en 5 minutos, ¿cuántos minutos dedicarán 100 máquinas en hacer 100 artículos?", "5");
+        riddleDict.Add("Un león muerto de hambre, ¿de qué se alimenta?", "NADA");
+        riddleDict.Add("Este banco está ocupado por un padre y por un hijo: El padre se llama Juan y el hijo ya te lo he dicho.", "ESTEBAN");
+        riddleDict.Add("Si me tienes, quieres compartirme; si me compartes, no me tienes. ¿Qué soy?", "SECRETO");
+        riddleDict.Add("Ponme de lado y todo soy, córtame por la mitad y no soy nada. ¿Qué soy?", "8");
+        riddleDict.Add("¿Qué animal tiene los pies en la cabeza?", "PIOJO");
     }
 
     // Update is called once per frame
@@ -24,7 +36,15 @@ public class ScienceGameLogic : MonoBehaviour {
         } else if(roundType%2 != 0) {
             roundTypeMEM();
         } else if(roundType != 0 && roundType%2 == 0) {
-            roundTypeACT();
+            if(!isAskTime) { roundTypeACT(); } else { askRiddleOrProblem(); }
+        }
+    
+        // Checks if the player is out of the labyrinth borders
+        if(player.transform.position.x >= 4.5 || player.transform.position.x <= -4.5 || player.transform.position.y >= 4.5 || player.transform.position.y <= -4.5) {
+            mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
+            mazeCover.SetActive(false);
+            player.SetActive(false);
+            endsBanner.SetActive(true);
         }
     }
 
@@ -43,18 +63,39 @@ public class ScienceGameLogic : MonoBehaviour {
 
     // Method that implements the labyrinth crossing time
     private void roundTypeACT() {
-        if(timeCount >= 0) {
+        if(!isAskTime && timeCount >= 0) {
             mazeCover.SetActive(true);
             timeText.text = "Tiempo: " + timeCount;
             int lastTime = System.DateTime.Now.Second;
             while(System.DateTime.Now.Second == lastTime);
             timeCount -= 1;
         } else {
+            isAskTime = true;
+            timeCount = 5;
+            int randomSelection = Random.Range(0, riddleDict.Keys.Count);
+            string randomRiddle = riddleDict.Keys.ElementAt(randomSelection);
+            askText.text = randomRiddle;
+        }
+    }
+    
+    // Method that implements the logic to ask questions and validate the answer
+    private void askRiddleOrProblem() {
+        if(timeCount >= 0) {
+           timeText.text = "Tiempo: " + timeCount;
+            int lastTime = System.DateTime.Now.Second;
+            while(System.DateTime.Now.Second == lastTime);
+            timeCount -= 1;
+        } else {
+            askText.text = "";
             mazeCover.SetActive(false);
             mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
-            mazeGenesys.GetComponent<MazeGenerator>().GenerateMaze();
-            timeCount = 20;
+            mazeGenesys.GetComponent<MazeGenerator>().GenerateMaze();                
+            // Calculates the current round
             roundType++;
+            string[] prevRound = roundText.text.Split(' ');
+            roundText.text = "Ronda: " + (roundType-int.Parse(prevRound[1]));
+            timeCount = 20;            
+            isAskTime = false;
         }
     }
 }
