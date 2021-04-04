@@ -12,12 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Credits.unity
     guid: 5426515a70c1c2d4483ace9113f77ed1
   - enabled: 0
-    path: Assets/Scenes/LoadScreen.unity
-    guid: 58a1167b261c69977a05727b78e9468c
-  - enabled: 0
     path: Assets/Scenes/MainWorld.unity
     guid: 5d97fc9c46a983dee853f85c02940957
   - enabled: 1
     path: Assets/Scenes/ScienceLevel.unity
     guid: b1d30a34111e41a8680cf943cb8f1109
+  - enabled: 1
+    path: Assets/Scenes/LoadScreen.unity
+    guid: 58a1167b261c69977a05727b78e9468c
   m_configObjects: {}

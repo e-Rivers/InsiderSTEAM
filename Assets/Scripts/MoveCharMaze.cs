@@ -12,17 +12,12 @@ public class MoveCharMaze : MonoBehaviour {
 	}
 
 	void Update() {
-		if(ScienceGameLogic.roundType%2==0) {
+		if(ScienceGameplay.roundType%2==0 && !ScienceGameplay.isAskTime) {
 			// Horizontal movement
 	        	rigidBody.velocity = new Vector2(Input.GetAxis("Horizontal")*speedX, rigidBody.velocity.y);
 			// Vertical move detection
 	        	rigidBody.velocity = new Vector2(rigidBody.velocity.x, Input.GetAxis("Vertical")*speedY);
-
 		}
     	}
-
-	private void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log("COLLISION DETECTED!");
-	}
 }
 

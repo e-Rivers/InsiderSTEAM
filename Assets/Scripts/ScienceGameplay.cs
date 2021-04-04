@@ -2,18 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Linq;
 
-public class ScienceGameLogic : MonoBehaviour {
+public class ScienceGameplay : MonoBehaviour {
 
+    // Attibutes that aren't used in other classes but their values are obtained publicly
+    public InputField regInput, endInput, endsBannerAnswer, sidebarAnswer;
+    public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover, finishPanel;
+    public Text timeText, roundText, askText, sciText, finishTitle, finishText;
+    // Attributes that are used in other classes (MoveCharacter.cs)
+    public static bool isAskTime = false;
     public static int roundType = 0; //(odd is labyrinth crossing & even is answering)
-    private int timeCount = 20;
-    public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover;
-    public Text timeText, roundText, askText, sciText;
-    public InputField endsBannerAnswer, sidebarAnswer;
-    private Dictionary<string, string> riddleDict = new Dictionary<string, string>();    
-    private bool isAskTime = false, labyCrossed = false;
+    // Internal attributes
+    private Dictionary<string, string> riddleDict = new Dictionary<string, string>();
+    private bool labyCrossed = false;
     private Coroutine subTime;
+    private int timeCount = 40;
+    private string sidebarAns = "", endingAns = "";
 
     // Loads all riddles and problems
     void Start() {
@@ -43,7 +49,7 @@ public class ScienceGameLogic : MonoBehaviour {
             }
         }
         // Checks if the player has escaped the labyrinth
-        verifyEscapeAndEnding(); 
+        verifyEscapeAndEnding();
     }
 
     // Method that implements the memorizing time
@@ -51,7 +57,7 @@ public class ScienceGameLogic : MonoBehaviour {
         if(timeCount >= 0) {
             timeText.text = "Tiempo: " + timeCount;
             sciText.text = "Veamos que tanto puedes memorizar del laberinto...";
-        } else { 
+        } else {
             timeCount = 20;
             roundType++;
         }
@@ -65,36 +71,39 @@ public class ScienceGameLogic : MonoBehaviour {
             sciText.text = "Este es el momento... crúzalo con lo que recuerdes...";
         } else {
             isAskTime = true;
-            timeCount = 10;
+            timeCount = 60;
             int randomSelection = Random.Range(0, riddleDict.Keys.Count);
             string randomRiddle = riddleDict.Keys.ElementAt(randomSelection);
             askText.text = randomRiddle;
             sciText.text = "Si quieres pasar de ronda... contesta mi pregunta...";
         }
     }
-    
+
     // Method that implements the logic to ask questions and validate the answer
     private void askRiddleOrProblem() {
         if(timeCount >= 0) {
             timeText.text = "Tiempo: " + timeCount;
-            if(ScienceCanvasOperations.sidebarAns == riddleDict[askText.text]) {
+            if(sidebarAns == riddleDict[askText.text]) {
                 askText.text = "";
+                sidebarAnswer.text = "";
+                sidebarAns = "";
                 mazeCover.SetActive(false);
                 mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
-                mazeGenesys.GetComponent<MazeGenerator>().GenerateMaze();                
+                mazeGenesys.GetComponent<MazeGenerator>().GenerateMaze();
                 // Calculates the current round
                 roundType++;
                 string[] prevRound = roundText.text.Split(' ');
                 roundText.text = "Ronda: " + (roundType-int.Parse(prevRound[1]));
-                timeCount = 20;            
-                isAskTime = false;           
-            } else {
-                if(ScienceCanvasOperations.sidebarAns != "") {
-                    sciText.text = "INCORRECTO! Intenta de nuevo... si es que te alcanza el tiempo...";
-                }
+                timeCount = 40;
+                isAskTime = false;
+            } else if(sidebarAns != "") {
+                sciText.text = "INCORRECTO! Intenta de nuevo... si es que te alcanza el tiempo...";
             }
         } else {
-            Debug.Log("PERDISTE FRACASADO!");
+            StopCoroutine(subTime);
+            finishTitle.text = "DERROTA";
+            finishText.text = "No lograste escapar del laberinto, pero no te rindas, entrena tu mente, piensa creativamente y verás como irás mejorando hasta que por fin la victoria sea tuya.";
+            finishPanel.SetActive(true);
         }
     }
 
@@ -102,7 +111,7 @@ public class ScienceGameLogic : MonoBehaviour {
     IEnumerator reduceTimer() {
         while(true) {
             yield return new WaitForSeconds(1);
-            timeCount--; 
+            timeCount--;
         }
     }
 
@@ -113,6 +122,7 @@ public class ScienceGameLogic : MonoBehaviour {
             if(!labyCrossed) {
                 timeCount = 60;
                 labyCrossed = true;
+                sciText.text = ". . .";
             }
             timeText.text = "Tiempo: " + timeCount;
             mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
@@ -120,26 +130,38 @@ public class ScienceGameLogic : MonoBehaviour {
             player.SetActive(false);
             endsBanner.SetActive(true);
             if(timeCount > 0) {
-                if(ScienceCanvasOperations.endingAns == "1") {
+                if(endingAns == "1") {
                     StopCoroutine(subTime);
-                    Debug.Log("LO HICISTE BIEN, GANADOR!");
+                    finishTitle.text = "VICTORIA";
+                    finishText.text = "Tu memoria y habilidad mental son ADMIRABLES!! Haz conseguido vencer a los más grandes científicos y los has liberado! Siéntete orgulloso, no cualquiera logra superar esto.";
+                    finishPanel.SetActive(true);
                 }
             } else {
                 StopCoroutine(subTime);
-                Debug.Log("PERDISTE!");
+                finishTitle.text = "DERROTA";
+                finishText.text = "Muy bien jugado, lograste llegar lejos, sin embargo, esta vez has sido derrotado, enorgullécete y vuelve a intentarlo... más fuerte, más rápido y más inteligente.";
+                finishPanel.SetActive(true);
             }
         }
-    }  
+    }
+
+    // This method will remove the initial banner
+    public void removeBanner() {
+        initBanner.SetActive(false);
+    }
+
+    // Method to capture user input in every round
+    public void captureRegInput() {
+        sidebarAns = regInput.text.Replace("\n", "").Replace("\r", "").Replace(" ","").ToUpper();
+    }
+
+    // Method to capture user input at the end of the game
+    public void captureEndInput() {
+        endingAns = endInput.text.Replace("\n", "").Replace("\r", "").Replace(" ","").ToUpper();
+    }
+
+    // Method to return to main world
+    public void returnToWorld() {
+        SceneManager.LoadScene("LoadScreen");
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
