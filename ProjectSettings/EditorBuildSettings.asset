@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SCIENCE/ScienceLevel.unity
     guid: b1d30a34111e41a8680cf943cb8f1109
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GENERAL/LoadScreen.unity
     guid: 58a1167b261c69977a05727b78e9468c
   m_configObjects: {}
