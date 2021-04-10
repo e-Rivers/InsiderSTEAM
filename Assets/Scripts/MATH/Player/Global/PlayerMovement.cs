@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private float bouncingForce;            // Gets the current bouncingTile's launch force
     private float hitTimer;            // Timer to avoid double bouncingTile impulse
     private float xMovement;                // Gets horizontal input values
+    private bool isGrabbed = false;
     private bool reGrab = true;             // Lets player grab ceiling tiles again
     
     // Start function
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         xMovement = 0.0f;
         // Player values
         isGrounded = false;
+        isGrabbed = false;
         canDoubleJump = false;
         canGrab = false;
         disableXInput = true;
@@ -70,26 +72,28 @@ public class PlayerMovement : MonoBehaviour
 
         // Animate left movement
         if (xMovement < 0) {
-            anim.SetBool("IsGoingRight", false);
-            anim.SetBool("IsGoingLeft", true);
-            anim.SetBool("IsIdle", false);
+            anim.SetBool("IsRunning", true);
+            GetComponent<SpriteRenderer>().flipX = true;
         }
+
         // Animate right movement
         if (xMovement > 0) {
-            anim.SetBool("IsGoingRight", true);
-            anim.SetBool("IsGoingLeft", false);
-            anim.SetBool("IsIdle", false);
+            anim.SetBool("IsRunning", true);
+            GetComponent<SpriteRenderer>().flipX = false;
         }
+
         // Animate if idle
         if (xMovement == 0) {
-            anim.SetBool("IsGoingRight", false);
-            anim.SetBool("IsGoingLeft", false);
-            anim.SetBool("IsIdle", true);
+            anim.SetBool("IsRunning", false);
         }
-        // Animate bouncing movement
-        if (!isGrounded) {
-            anim.ResetTrigger("Jump");
-            anim.SetTrigger("Glide");
+
+        // Animate if grabbing
+        if (isGrabbed)
+        {
+            anim.SetBool("IsGrabbed", true);
+        } else
+        {
+            anim.SetBool("IsGrabbed", false);
         }
 
         // Avoid double impulse by adding a bouncing retrigger delay
@@ -124,6 +128,8 @@ public class PlayerMovement : MonoBehaviour
         // Grab tile
         if (Input.GetKeyDown(KeyCode.E) && canGrab && inputEnabled)
         {
+            // Set player animation
+            isGrabbed = true;
             // If player is grabbing tile
             if (grabbedTile != null)
             {
@@ -184,6 +190,8 @@ public class PlayerMovement : MonoBehaviour
             // Reset ceilingTile animation parameter
             ceilingAnimator.ResetTrigger("isTouched");
             ceilingAnimator.SetTrigger("isNotTouched");
+            // Reset player animation
+            isGrabbed = false;
         } else
         {
             grabbedTile = null;
