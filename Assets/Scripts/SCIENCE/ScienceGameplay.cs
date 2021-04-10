@@ -56,7 +56,7 @@ public class ScienceGameplay : MonoBehaviour {
     private void roundTypeMEM() {
         if(timeCount >= 0) {
             timeText.text = "Tiempo: " + timeCount;
-            sciText.text = "Veamos que tanto puedes memorizar del laberinto...";
+            sciText.text = "Memoriza el laberinto, porque al terminar el tiempo, deberás cruzarlo...";
         } else {
             timeCount = 20;
             roundType++;
@@ -68,14 +68,14 @@ public class ScienceGameplay : MonoBehaviour {
         if(!isAskTime && timeCount >= 0) {
             mazeCover.SetActive(true);
             timeText.text = "Tiempo: " + timeCount;
-            sciText.text = "Este es el momento... crúzalo con lo que recuerdes...";
+            sciText.text = "Ahora sí, usa las flechas o WASD para moverte y cruzarlo con lo que recuerdes...";
         } else {
             isAskTime = true;
             timeCount = 60;
             int randomSelection = Random.Range(0, riddleDict.Keys.Count);
             string randomRiddle = riddleDict.Keys.ElementAt(randomSelection);
             askText.text = randomRiddle;
-            sciText.text = "Si quieres pasar de ronda... contesta mi pregunta...";
+            sciText.text = "TIEMPO!! No escapaste en esta ronda; para pasar a la que sigue, respone mi pregunta...";
         }
     }
 
