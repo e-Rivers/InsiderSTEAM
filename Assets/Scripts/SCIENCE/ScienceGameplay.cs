@@ -68,14 +68,14 @@ public class ScienceGameplay : MonoBehaviour {
         if(!isAskTime && timeCount >= 0) {
             mazeCover.SetActive(true);
             timeText.text = "Tiempo: " + timeCount;
-            sciText.text = "Ahora sí, usa las flechas o WASD para moverte y cruzarlo con lo que recuerdes...";
+            sciText.text = "Ahora sí, usa las flechas o WASD cruzarlo con lo que recuerdes...";
         } else {
             isAskTime = true;
             timeCount = 60;
             int randomSelection = Random.Range(0, riddleDict.Keys.Count);
             string randomRiddle = riddleDict.Keys.ElementAt(randomSelection);
             askText.text = randomRiddle;
-            sciText.text = "TIEMPO!! No escapaste en esta ronda; para pasar a la que sigue, respone mi pregunta...";
+            sciText.text = "TIEMPO!! No escapas aún; para pasar de ronda, responde mi pregunta...";
         }
     }
 
