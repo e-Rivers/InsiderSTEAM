@@ -5079,9 +5079,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Para vencer a la maldad que yace dentro de Mileva, deber\xE1s resolver
-    correctamente 5 de sus problemas matem\xE1ticos.\n\nPulsa 'E' para agarrarte
-    de las plataformas superiores, 'W' para dar un doble salto, y 'Espacio' para
-    disparar."
+    por lo menos 3 de sus problemas matem\xE1ticos.\n\nPulsa 'E' para agarrarte de
+    las plataformas superiores, 'W' para dar un doble salto, y 'Espacio' para disparar."
 --- !u!222 &410148601
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21459,7 +21458,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 9
   m_Sprite: {fileID: 21300000, guid: d529c7ed47aa2a64eb2232e10985006c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -23454,6 +23453,10 @@ PrefabInstance:
     - target: {fileID: 998779921395951527, guid: 24927eebe305ccc42993c5a258ce148b, type: 3}
       propertyPath: m_Name
       value: GlobalObserver
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450481469779189850, guid: 24927eebe305ccc42993c5a258ce148b, type: 3}
+      propertyPath: correctThreshold
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8128480977563729610, guid: 24927eebe305ccc42993c5a258ce148b, type: 3}
       propertyPath: endingCanvas

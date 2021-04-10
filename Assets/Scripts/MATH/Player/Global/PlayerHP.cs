@@ -51,11 +51,6 @@ public class PlayerHP : MonoBehaviour
             Heal(2);
             grabbedHealingTiles = 0;
         }
-        // Checks if game has ended
-        if (AnswerCounter.instance.correctAnswers >= AnswerCounter.instance.correctThreshold)
-        {
-            Kill();
-        }
     }
 
     // Check enemy collisions

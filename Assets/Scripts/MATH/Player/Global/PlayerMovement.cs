@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerAim playerAim;            // References playerAim script
     private Animator ceilingAnimator;       // References the current ceilingTile's Animator
     private TileMover currClgBhvr;          // References the current tile's tileMover script
+    private GameObject playerFace;
     private float bouncingForce;            // Gets the current bouncingTile's launch force
     private float hitTimer;            // Timer to avoid double bouncingTile impulse
     private float xMovement;                // Gets horizontal input values
@@ -39,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         hpSystem = GetComponent<PlayerHP>();
         playerAim = GetComponent<PlayerAim>();
+        playerFace = transform.GetChild(1).gameObject;
         // Assign values to required components
         anim.SetBool("IsIdle", true);
         xMovement = 0.0f;
@@ -74,16 +76,21 @@ public class PlayerMovement : MonoBehaviour
         if (xMovement < 0) {
             anim.SetBool("IsRunning", true);
             GetComponent<SpriteRenderer>().flipX = true;
+            playerFace.GetComponent<Animator>().SetBool("IsRunning", true);
+            playerFace.GetComponent<SpriteRenderer>().flipX = true;
         }
 
         // Animate right movement
         if (xMovement > 0) {
             anim.SetBool("IsRunning", true);
             GetComponent<SpriteRenderer>().flipX = false;
+            playerFace.GetComponent<Animator>().SetBool("IsRunning", true);
+            playerFace.GetComponent<SpriteRenderer>().flipX = false;
         }
 
         // Animate if idle
         if (xMovement == 0) {
+            playerFace.GetComponent<Animator>().SetBool("IsRunning", false);
             anim.SetBool("IsRunning", false);
         }
 

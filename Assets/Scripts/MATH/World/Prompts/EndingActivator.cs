@@ -27,18 +27,16 @@ public class EndingActivator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Check if game is won
-        if (AnswerCounter.instance.correctAnswers >= AnswerCounter.instance.correctThreshold)
-        {
-            SetCanvas(true);
-        } else
-        {
-            canvas.enabled = false;
-        }
-        // Check if game is lost
+        // Check if player is out of lives
         if (PlayerHP.instance.lives <= 0)
         {
-            SetCanvas(false);
+            if (AnswerCounter.instance.correctAnswers >= AnswerCounter.instance.correctThreshold)
+            {
+                SetCanvas(true);
+            } else
+            {
+                SetCanvas(false);
+            }
         } else
         {
             canvas.enabled = false;
@@ -48,6 +46,7 @@ public class EndingActivator : MonoBehaviour
     // Adjust text
     void SetCanvas(bool won)
     {
+        Debug.Log("Ended with " + AnswerCounter.instance.correctAnswers + " correct answers. (Won: " + won + ")");
         // Activate canvas containing victory info
         canvas.enabled = true;
         // Activate background

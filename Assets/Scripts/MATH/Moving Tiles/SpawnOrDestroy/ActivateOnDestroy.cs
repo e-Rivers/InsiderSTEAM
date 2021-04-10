@@ -10,6 +10,9 @@ public class ActivateOnDestroy : MonoBehaviour
     // Activate player's horizontal input
     private void OnDestroy()
     {
-        player.GetComponent<PlayerMovement>().inputEnabled = true;
+        if (player != null)
+        {
+            player.GetComponent<PlayerMovement>().inputEnabled = true;
+        }
     }
 }

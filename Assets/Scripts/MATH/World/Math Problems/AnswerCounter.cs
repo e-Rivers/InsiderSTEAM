@@ -8,7 +8,7 @@ public class AnswerCounter : MonoBehaviour
     public static AnswerCounter instance;
     // Public attributes
     public int correctAnswers;
-    public int correctThreshold = 3;
+    public int correctThreshold = 1;
 
     // Start is called before the first frame update
     void Start()
