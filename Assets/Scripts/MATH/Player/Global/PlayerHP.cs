@@ -107,7 +107,7 @@ public class PlayerHP : MonoBehaviour
         }
         if (collision.CompareTag("CeilingKiller"))
         {
-            if (!PlayerMovement.instance.disableXInput)
+            if (!MathPlayerMovement.instance.disableXInput)
             {
                 lives = 0;
                 Kill();
