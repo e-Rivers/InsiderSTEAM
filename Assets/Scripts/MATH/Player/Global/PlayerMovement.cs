@@ -236,7 +236,9 @@ public class PlayerMovement : MonoBehaviour
                     anim.ResetTrigger("Glide");
                     anim.SetTrigger("Jump");
                     bouncingTile.GetComponent<TileMover>().jumpedOnce = true;
+                    
                 }
+                PlayerSounds.instance.PlatformSound(bouncingTileMover.identifier);
             }
         }
         // Check if collision is an enemy

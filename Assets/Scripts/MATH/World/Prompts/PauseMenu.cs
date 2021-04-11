@@ -43,6 +43,7 @@ public class PauseMenu : MonoBehaviour
         // Set UI
         sprite.enabled = true;
         canvas.enabled = true;
+        MusicPlayer.instance.SetLowPass(true);
     }
 
     // Disable pause screen
@@ -53,5 +54,6 @@ public class PauseMenu : MonoBehaviour
         // Set UI
         sprite.enabled = false;
         canvas.enabled = false;
+        MusicPlayer.instance.SetLowPass(false);
     }
 }

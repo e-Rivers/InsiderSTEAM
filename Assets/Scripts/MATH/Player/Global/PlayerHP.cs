@@ -124,6 +124,7 @@ public class PlayerHP : MonoBehaviour
         }
         lives -= damage;
         hs.DrawHearts(lives, maxLives);
+        PlayerSounds.instance.PlayDamage();
     }
     
     // Heal player
@@ -141,6 +142,10 @@ public class PlayerHP : MonoBehaviour
     public void Kill()
     {
         GameObject explosionInstance = Instantiate(explosion, transform.position, Quaternion.identity);
+        PlayerSounds.instance.PlayDeath();
+        // Announce that the game is over
+        AnnouncerVoice.instance.audioSource.clip = AnnouncerVoice.instance.voices[1];
+        AnnouncerVoice.instance.audioSource.PlayDelayed(0.5f);
         Destroy(gameObject);
     }
 

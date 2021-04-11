@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -6683475612491489515}
   - component: {fileID: 666581177671652415}
   - component: {fileID: -6830396015976800115}
+  - component: {fileID: 4642647692058034709}
   m_Layer: 11
   m_Name: Fireballer
   m_TagString: Enemy
@@ -177,8 +178,7 @@ MonoBehaviour:
   shootCount: 0
   shootTrigger: 3
   canShoot: 0
-  fireball: {fileID: 1080026449920572337, guid: 6e338923c897ac84997c5191afdb96b3,
-    type: 3}
+  fireball: {fileID: 1080026449920572337, guid: 6e338923c897ac84997c5191afdb96b3, type: 3}
 --- !u!114 &-6830396015976800115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,11 +191,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8456357a6f6b6ef41a144f5cf759d35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 4080049740420463573, guid: e20af0c853bfbba4a8ec39b58c6eaa79,
-    type: 3}
-  damageExplosion: {fileID: 7791021252100021820, guid: 57318090409bcd94ca51bff3b725d371,
-    type: 3}
-  observer: {fileID: 998779921395951527, guid: 24927eebe305ccc42993c5a258ce148b, type: 3}
+  explosion: {fileID: 4080049740420463573, guid: e20af0c853bfbba4a8ec39b58c6eaa79, type: 3}
+  damageExplosion: {fileID: 7791021252100021820, guid: 57318090409bcd94ca51bff3b725d371, type: 3}
   hp: 5
   score: 300
   isDead: 0
+--- !u!114 &4642647692058034709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6195524254533578216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d860e88cbbe131d4aaac6c68fe582ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundSourceGameObject: {fileID: 0}
+  deathSounds:
+  - {fileID: 8300000, guid: 9b74bfba0623fa040be00c4747a9d8aa, type: 3}
+  - {fileID: 8300000, guid: fed3ba15df07fde419395b670ea5e467, type: 3}
+  damageSounds:
+  - {fileID: 8300000, guid: 5fcf41ea2468c8d4eae68685a43385ac, type: 3}
+  - {fileID: 8300000, guid: c7f7572a21d3c5c4792afcd6dad869c2, type: 3}

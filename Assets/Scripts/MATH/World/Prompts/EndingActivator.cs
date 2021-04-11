@@ -72,6 +72,8 @@ public class EndingActivator : MonoBehaviour
         HUDDisplayManager.instance.DisableHUD();
         // Enable scene reloading
         RetryOnClick.instance.canReload = true;
+        // End music
+        MusicPlayer.instance.EndSong();
         // Make slow-mo effect
         Time.timeScale = 0.4f;
     }

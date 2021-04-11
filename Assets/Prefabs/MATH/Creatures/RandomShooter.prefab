@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8356454851601661370}
   - component: {fileID: 4070764110826042954}
   - component: {fileID: 2720711535836197397}
+  - component: {fileID: 7425147105864209014}
   m_Layer: 0
   m_Name: RandomShooter
   m_TagString: Enemy
@@ -160,8 +161,7 @@ MonoBehaviour:
   shootCount: 0
   shootTrigger: 1
   canShoot: 0
-  fireball: {fileID: 4911070366001170300, guid: 31d9ee1dbad178b41a0b7b0548f161de,
-    type: 3}
+  fireball: {fileID: 4911070366001170300, guid: 31d9ee1dbad178b41a0b7b0548f161de, type: 3}
 --- !u!114 &2720711535836197397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,11 +174,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8456357a6f6b6ef41a144f5cf759d35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 4080049740420463573, guid: e20af0c853bfbba4a8ec39b58c6eaa79,
-    type: 3}
-  damageExplosion: {fileID: 7791021252100021820, guid: 57318090409bcd94ca51bff3b725d371,
-    type: 3}
-  observer: {fileID: 998779921395951527, guid: 24927eebe305ccc42993c5a258ce148b, type: 3}
+  explosion: {fileID: 4080049740420463573, guid: e20af0c853bfbba4a8ec39b58c6eaa79, type: 3}
+  damageExplosion: {fileID: 7791021252100021820, guid: 57318090409bcd94ca51bff3b725d371, type: 3}
   hp: 1
   score: 100
   isDead: 0
+--- !u!114 &7425147105864209014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4423621901645662958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d860e88cbbe131d4aaac6c68fe582ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundSourceGameObject: {fileID: 0}
+  deathSounds:
+  - {fileID: 8300000, guid: fa061ba07967b514a9d04dda8ae831c1, type: 3}
+  - {fileID: 8300000, guid: 22c554956bb33ae42a76a0edb4e4404e, type: 3}
+  - {fileID: 8300000, guid: 4b16a5d1ef00c15428b2f7f11c751948, type: 3}
+  damageSounds:
+  - {fileID: 8300000, guid: 5fcf41ea2468c8d4eae68685a43385ac, type: 3}
+  - {fileID: 8300000, guid: c7f7572a21d3c5c4792afcd6dad869c2, type: 3}

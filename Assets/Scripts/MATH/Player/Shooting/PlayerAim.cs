@@ -123,6 +123,7 @@ public class PlayerAim : MonoBehaviour
             ammoSystem.DrawShells(currAmmo, maxAmmo);
             fireTimer = 0.0f;
         }
+        PlayerSounds.instance.PlayShotSound();
     }
 
     public void Reload()

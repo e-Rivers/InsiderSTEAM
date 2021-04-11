@@ -14,6 +14,13 @@ public class EnemyDeath : MonoBehaviour
     private float vulnerableTime = 0.1f;
     private float vulnerableTimer = 0.1f;
     private bool isInvulnerable = false;
+    private EnemySound soundPlayer;
+
+    // Start is called before first frame update
+    private void Start()
+    {
+        soundPlayer = GetComponent<EnemySound>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -53,6 +60,8 @@ public class EnemyDeath : MonoBehaviour
                 // Animate bullet touching enemy
                 var explosionInstance = Instantiate(damageExplosion, collision.transform.localPosition, transform.localRotation);
                 explosionInstance.transform.parent = transform;
+                // Play damage sound
+                soundPlayer.PlayDamage();
             }
         }
         // If enemy collides with big platform projectile
@@ -88,6 +97,8 @@ public class EnemyDeath : MonoBehaviour
             }
             // Destroy object
             Destroy(gameObject);
+            // Play sound
+            soundPlayer.PlayDeath();
         }
     }
 }

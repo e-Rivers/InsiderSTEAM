@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1322132205819981584}
   - component: {fileID: 4017791835266655}
   - component: {fileID: 3164498101305258581}
+  - component: {fileID: 7840468380795980594}
   m_Layer: 0
   m_Name: Bolt
   m_TagString: Projectile
@@ -154,10 +155,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d4162546d4561b468f35f41fa0fc9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyedExplosion: {fileID: 782314577647201764, guid: 2f2b96aa9f5abdb42a696f6b2f8975f1,
-    type: 3}
-  onContactExplosion: {fileID: 7791021252100021820, guid: 57318090409bcd94ca51bff3b725d371,
-    type: 3}
+  destroyedExplosion: {fileID: 782314577647201764, guid: 2f2b96aa9f5abdb42a696f6b2f8975f1, type: 3}
+  onContactExplosion: {fileID: 7791021252100021820, guid: 57318090409bcd94ca51bff3b725d371, type: 3}
   speed: 30
   direction: -1
   identifier: 1
+--- !u!114 &7840468380795980594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4911070366001170300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c94d7d109b3f4ed4baa68a012a22f15e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 5acedf906e0ab1647b99f9e0a560ab60, type: 3}

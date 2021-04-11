@@ -35,6 +35,9 @@ public class IntroTimeStopper : MonoBehaviour
     {
         // Stop time scale
         Time.timeScale = 0.0f;
+        // Play song
+        MusicPlayer.instance.SetLowPass(true);
+        MusicPlayer.instance.PlaySong();
     }
 
     // Restart time
@@ -48,5 +51,9 @@ public class IntroTimeStopper : MonoBehaviour
         // Enable HUD
         HUDDisplayManager.instance.EnableHUD();
         PauseMenu.instance.canPause = true;
+        // Announce round start
+        AnnouncerVoice.instance.PlayRoundStart();
+        // Disable low pass
+        MusicPlayer.instance.SetLowPass(false);
     }
 }

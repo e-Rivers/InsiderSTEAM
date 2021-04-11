@@ -47,6 +47,8 @@ public class ProblemManager : MonoBehaviour
         remainingTime = timePerProblem;
         // Display on UI
         ProblemText.instance.SetProblemText(problems[currProblem]);
+        // Play answering phase beginning sound
+        AnswerSoundPlayer.instance.Play("appear");
     }
 
     // Call if player is correct
@@ -66,6 +68,8 @@ public class ProblemManager : MonoBehaviour
         hasToAnswer = false;
         // Let player score again
         ScoreSystem.instance.canScore = true;
+        // Play correct answer sound
+        AnswerSoundPlayer.instance.Play("correct");
     }
 
     // Call if player is incorrect
@@ -83,6 +87,8 @@ public class ProblemManager : MonoBehaviour
         hasToAnswer = false;
         // Don't let player score
         ScoreSystem.instance.canScore = false;
+        // Play incorrect answer sound
+        AnswerSoundPlayer.instance.Play("incorrect");
     }
 
     // Receive answer

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3223975201754689692}
   - component: {fileID: 4358949419384807654}
   - component: {fileID: -7757849868741940070}
+  - component: {fileID: -6750370845495791179}
   m_Layer: 11
   m_Name: Bullet
   m_TagString: PlayerBullet
@@ -164,7 +165,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4af7b6af14c23418b51c08d8b948aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 7791021252100021820, guid: 57318090409bcd94ca51bff3b725d371,
-    type: 3}
+  explosion: {fileID: 7791021252100021820, guid: 57318090409bcd94ca51bff3b725d371, type: 3}
   speed: 25
   hasPower: 1
+--- !u!114 &-6750370845495791179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4875196712555242939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c94d7d109b3f4ed4baa68a012a22f15e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 5acedf906e0ab1647b99f9e0a560ab60, type: 3}
