@@ -5,6 +5,7 @@ public class ReloadText : MonoBehaviour
 {
     // Private attributes
     private static Text text;
+    private static bool canPlaySound = true;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,12 @@ public class ReloadText : MonoBehaviour
     public static void DisplayReload()
     {
         text.text = "PULSA \'R\' PARA RECARGAR";
+        if (canPlaySound)
+        {
+            PlayerSounds.instance.PlayReloadPrompt();
+            canPlaySound = false;
+        }
+
     }
 
     // Empty textbox
@@ -25,6 +32,7 @@ public class ReloadText : MonoBehaviour
         if (text.isActiveAndEnabled)
         {
             text.text = "";
+            canPlaySound = true;
         }
     }
 }

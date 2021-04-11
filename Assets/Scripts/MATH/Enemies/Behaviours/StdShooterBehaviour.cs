@@ -11,15 +11,18 @@ public class StdShooterBehaviour : MonoBehaviour
     public Transform gunPoint;
     public GameObject rightFire;
     public GameObject leftFire;
+    public AudioClip[] enemySounds;
+    public AudioClip shootSound;
 
     // Private components
     private EnemyDeath behaviour;
     private Rigidbody2D rb2d;
     private float currXSpeed;
     private float currYSpeed;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Variable assignment
         currXSpeed = xSpeed;
@@ -27,8 +30,16 @@ public class StdShooterBehaviour : MonoBehaviour
         // Get components
         rb2d = GetComponent<Rigidbody2D>();
         behaviour = GetComponent<EnemyDeath>();
+        audioSource = GameObject.Find("MediumEnemySoundSource").GetComponent<AudioSource>();
         // Assign initial velocity
         rb2d.velocity = new Vector2(currXSpeed, currYSpeed);
+        // Play sound
+        if (EnemyControl.instance.mediumEnemies == 0)
+        {
+            audioSource.clip = enemySounds[Random.Range(0, enemySounds.Length)];
+            audioSource.Play();
+        }
+        EnemyControl.instance.mediumEnemies++;
     }
 
     // Update is called once per frame
@@ -52,6 +63,8 @@ public class StdShooterBehaviour : MonoBehaviour
 
         if (collision.name == "CeilingDestroyer")
         {
+            EnemyControl.instance.mediumEnemies--;
+            audioSource.Stop();
             Destroy(this.gameObject);
         }
     }
@@ -93,6 +106,10 @@ public class StdShooterBehaviour : MonoBehaviour
             var rightProjectile = Instantiate(leftFire, gunPoint.position, leftFire.transform.localRotation);
             leftProjectile.transform.parent = transform.parent;
             rightProjectile.transform.parent = transform.parent;
+            if (EnemyControl.instance.canTriggerSounds)
+            {
+                audioSource.PlayOneShot(shootSound);
+            }
         }
     }
 }

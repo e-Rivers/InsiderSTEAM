@@ -10,16 +10,31 @@ public class EnemyDeath : MonoBehaviour
     public int hp;
     public int score = 150;
     public bool isDead = false;
+    public string enemyType;
     // Non-adjustable variables
     private float vulnerableTime = 0.1f;
     private float vulnerableTimer = 0.1f;
     private bool isInvulnerable = false;
+    private AudioSource audioSource;
     private EnemySound soundPlayer;
 
     // Start is called before first frame update
     private void Start()
     {
         soundPlayer = GetComponent<EnemySound>();
+        // Set AudioSource according to enemy type
+        switch (enemyType)
+        {
+            case "small":
+                audioSource = GameObject.Find("SmallEnemySoundSource").GetComponent<AudioSource>();
+                break;
+            case "medium":
+                audioSource = GameObject.Find("MediumEnemySoundSource").GetComponent<AudioSource>();
+                break;
+            case "big":
+                audioSource = GameObject.Find("BigEnemySoundSource").GetComponent<AudioSource>();
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -95,10 +110,25 @@ public class EnemyDeath : MonoBehaviour
                 }
                 KillsText.kills++;
             }
-            // Destroy object
-            Destroy(gameObject);
+            // Update enemy count
+            switch (enemyType)
+            {
+                case "small":
+                    EnemyControl.instance.smallEnemies--;
+                    break;
+                case "medium":
+                    EnemyControl.instance.mediumEnemies--;
+                    break;
+                case "big":
+                    EnemyControl.instance.bigEnemies--;
+                    break;
+            }
             // Play sound
             soundPlayer.PlayDeath();
+            // Stop existing sound
+            audioSource.Stop();
+            // Destroy object
+            Destroy(gameObject);
         }
     }
 }

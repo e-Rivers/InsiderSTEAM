@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSounds : MonoBehaviour
@@ -10,7 +8,12 @@ public class PlayerSounds : MonoBehaviour
     public AudioClip[] shootingSounds;
     public AudioClip[] damageSounds;
     public AudioClip[] platformSounds;
+    public AudioClip[] grabbingSounds;
     public AudioClip[] deathSounds;
+    public AudioClip[] jumpingSounds;
+    public AudioClip healSound;
+    public AudioClip reloadPromptSound;
+    public AudioClip reloadSound;
 
     // Start is called before first frame update
     private void Start()
@@ -25,9 +28,15 @@ public class PlayerSounds : MonoBehaviour
     }
 
     // Play shooting sounds
-    public void PlayShotSound()
+    public void PlayShotSound(int currBullets)
     {
-        soundPlayer.PlayOneShot(shootingSounds[Random.Range(0, shootingSounds.Length)]);
+        if (currBullets > 5)
+        {
+            soundPlayer.PlayOneShot(shootingSounds[Random.Range(0, shootingSounds.Length - 1)]);
+        } else
+        {
+            soundPlayer.PlayOneShot(shootingSounds[shootingSounds.Length - 1]);
+        }
     }
 
     // Play damage sounds
@@ -41,4 +50,38 @@ public class PlayerSounds : MonoBehaviour
     {
         soundPlayer.PlayOneShot(deathSounds[Random.Range(0, deathSounds.Length)]);
     }
+
+    // Play healing sound
+    public void PlayHeal()
+    {
+        soundPlayer.PlayOneShot(healSound);
+    }
+
+    // Play jumping sounds
+    public void PlayJump()
+    {
+        soundPlayer.PlayOneShot(jumpingSounds[Random.Range(0, 2)]);
+    }
+
+    // Play grabbing sounds
+    public void PlayGrab(int platformIdentifier)
+    {
+        switch (platformIdentifier)
+        {
+            
+        }
+    }
+
+    // Play reload prompt sound
+    public void PlayReloadPrompt()
+    {
+        soundPlayer.PlayOneShot(reloadPromptSound);
+    }
+
+    // Play reload sound
+    public void PlayReload()
+    {
+        soundPlayer.PlayOneShot(reloadSound);
+    }
+
 }

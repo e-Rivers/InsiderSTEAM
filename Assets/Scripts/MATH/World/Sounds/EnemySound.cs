@@ -20,11 +20,17 @@ public class EnemySound : MonoBehaviour
 
     public void PlayDeath()
     {
-        soundSource.PlayOneShot(deathSounds[Random.Range(0, deathSounds.Length)]);
+        if (EnemyControl.instance.canTriggerSounds)
+        {
+            soundSource.PlayOneShot(deathSounds[Random.Range(0, deathSounds.Length)]);
+        }
     }
 
     public void PlayDamage()
     {
-        soundSource.PlayOneShot(damageSounds[Random.Range(0, damageSounds.Length)]);
+        if (EnemyControl.instance.canTriggerSounds)
+        {
+            soundSource.PlayOneShot(damageSounds[Random.Range(0, damageSounds.Length)]);
+        }
     }
 }
