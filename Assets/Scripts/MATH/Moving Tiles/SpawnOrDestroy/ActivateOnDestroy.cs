@@ -12,7 +12,7 @@ public class ActivateOnDestroy : MonoBehaviour
     {
         if (player != null)
         {
-            player.GetComponent<PlayerMovement>().inputEnabled = true;
+            player.GetComponent<MathPlayerMovement>().inputEnabled = true;
         }
     }
 }
