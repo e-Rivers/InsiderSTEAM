@@ -6,19 +6,25 @@ public class ChargedBullet : MonoBehaviour
 {
     // Public attributes
     public GameObject explosion;
+    public AudioClip[] creationSounds;
+    public AudioClip destructionSound;
     public float speed = 5.0f;
 
     // Private attributes
     private Rigidbody2D rb2d;
     private Vector3 expOffset;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Set components
         rb2d = GetComponent<Rigidbody2D>();
+        audioSource = GameObject.Find("MainSoundSource").GetComponent<AudioSource>();
         // Set initial values
-        expOffset = new Vector3(0f, -3.2f, 0f);
+        expOffset = new Vector3(0f, -3.5f, 0f);
+        // Creation sound
+        audioSource.PlayOneShot(creationSounds[Random.Range(0, creationSounds.Length)]);
     }
 
     // Update is called once per frame
@@ -50,6 +56,7 @@ public class ChargedBullet : MonoBehaviour
     {
         GameObject expInst = Instantiate(explosion, transform.localPosition + expOffset, Quaternion.identity);
         expInst.transform.parent = transform.parent;
+        audioSource.PlayOneShot(destructionSound);
         Destroy(gameObject);
     }
 }

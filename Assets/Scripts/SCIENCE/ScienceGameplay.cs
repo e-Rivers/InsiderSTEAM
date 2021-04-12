@@ -68,7 +68,7 @@ public class ScienceGameplay : MonoBehaviour {
         if(!isAskTime && timeCount >= 0) {
             mazeCover.SetActive(true);
             timeText.text = "Tiempo: " + timeCount;
-            sciText.text = "Ahora sí, usa las flechas o WASD cruzarlo con lo que recuerdes...";
+            sciText.text = "Ahora sí, usa las flechas o WASD para cruzarlo con lo que recuerdes...";
         } else {
             isAskTime = true;
             timeCount = 60;

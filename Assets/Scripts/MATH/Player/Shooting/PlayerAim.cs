@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAim : MonoBehaviour
@@ -123,13 +121,14 @@ public class PlayerAim : MonoBehaviour
             ammoSystem.DrawShells(currAmmo, maxAmmo);
             fireTimer = 0.0f;
         }
-        PlayerSounds.instance.PlayShotSound();
+        PlayerSounds.instance.PlayShotSound(currAmmo);
     }
 
     public void Reload()
     {
         currAmmo = maxAmmo;
         ammoSystem.DrawShells(currAmmo, maxAmmo);
+        PlayerSounds.instance.PlayReload();
         canShoot = true;
     }
 }

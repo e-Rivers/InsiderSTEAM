@@ -136,6 +136,7 @@ public class PlayerHP : MonoBehaviour
         }
         lives += hp;
         hs.DrawHearts(lives, maxLives);
+        PlayerSounds.instance.PlayHeal();
     }
 
     // Kill player

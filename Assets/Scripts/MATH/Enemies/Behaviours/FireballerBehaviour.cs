@@ -8,20 +8,46 @@ public class FireballerBehaviour : MonoBehaviour
     public float ySpeed = 2f;
     public int shootCount = 0;
     public int shootTrigger = 3;
+    public string enemyType;
     public bool canShoot = false;
     public GameObject fireball;
+    public AudioClip[] enemySounds;
+    public AudioClip shootSound;
 
     private Rigidbody2D rb2d;
     private EnemyDeath behaviour;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Initialize components
         rb2d = GetComponent<Rigidbody2D>();
         behaviour = GetComponent<EnemyDeath>();
         // Initialize up and down movement
         _ = StartCoroutine(nameof(SwitchVerticalMovement));
+        // Play sound
+        switch (enemyType)
+        {
+            case "small":
+                audioSource = GameObject.Find("SmallEnemySoundSource").GetComponent<AudioSource>();
+                if (EnemyControl.instance.smallEnemies == 0)
+                {
+                    audioSource.clip = enemySounds[Random.Range(0, enemySounds.Length)];
+                    audioSource.Play();
+                }
+                EnemyControl.instance.smallEnemies++;
+                break;
+            case "big":
+                audioSource = GameObject.Find("BigEnemySoundSource").GetComponent<AudioSource>();
+                if (EnemyControl.instance.bigEnemies == 0)
+                {
+                    audioSource.clip = enemySounds[Random.Range(0, enemySounds.Length)];
+                    audioSource.Play();
+                }
+                EnemyControl.instance.bigEnemies++;
+                break;
+        }
     }
 
     // Check enemy status
@@ -40,6 +66,10 @@ public class FireballerBehaviour : MonoBehaviour
         {
             var projectile = Instantiate(fireball, transform.position, fireball.transform.localRotation);
             projectile.transform.parent = transform.parent;
+            if (EnemyControl.instance.canTriggerSounds)
+            {
+                audioSource.PlayOneShot(shootSound);
+            }
         }
         shootCount++;
     }
@@ -54,6 +84,16 @@ public class FireballerBehaviour : MonoBehaviour
 
         if (coll.gameObject.name == "CeilingDestroyer")
         {
+            switch (enemyType)
+            {
+                case "small":
+                    EnemyControl.instance.smallEnemies--;
+                    break;
+                case "big":
+                    EnemyControl.instance.bigEnemies--;
+                    break;
+            }
+            audioSource.Stop();
             Destroy(this.gameObject);
         }
     }

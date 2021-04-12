@@ -119,6 +119,7 @@ public class MathPlayerMovement : MonoBehaviour
                 rb2d.velocity = new Vector3(0f, 0f, 0f);
                 rb2d.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
                 canDoubleJump = false;
+                PlayerSounds.instance.PlayJump();
             }
         }
         // Set grabbing variables

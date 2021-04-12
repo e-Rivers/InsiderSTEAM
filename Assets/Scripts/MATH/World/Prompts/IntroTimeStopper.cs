@@ -14,6 +14,7 @@ public class IntroTimeStopper : MonoBehaviour
     // Private attributes
     private GameObject child;
     private SpriteRenderer sprite;
+    private bool playedSoundOnce;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,8 @@ public class IntroTimeStopper : MonoBehaviour
         // Get sprite renderer
         child = transform.parent.GetChild(1).gameObject;
         sprite = child.GetComponent<SpriteRenderer>();
+        // Reset variables
+        playedSoundOnce = false;
         // Set timescale to zero
         StopTime();
     }
@@ -38,6 +41,8 @@ public class IntroTimeStopper : MonoBehaviour
         // Play song
         MusicPlayer.instance.SetLowPass(true);
         MusicPlayer.instance.PlaySong();
+        // Set enemy sounds triggers off
+        EnemyControl.instance.canTriggerSounds = false;
     }
 
     // Restart time
@@ -52,8 +57,14 @@ public class IntroTimeStopper : MonoBehaviour
         HUDDisplayManager.instance.EnableHUD();
         PauseMenu.instance.canPause = true;
         // Announce round start
-        AnnouncerVoice.instance.PlayRoundStart();
+        if (!playedSoundOnce)
+        {
+            AnnouncerVoice.instance.PlayRoundStart();
+            playedSoundOnce = true;
+        }
         // Disable low pass
         MusicPlayer.instance.SetLowPass(false);
+        // Set enemy sounds triggers on
+        EnemyControl.instance.canTriggerSounds = true;
     }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 998779921395951523}
   - component: {fileID: 8128480977563729610}
   - component: {fileID: 4450481469779189850}
+  - component: {fileID: 1088083268069058325}
   m_Layer: 0
   m_Name: GlobalObserver
   m_TagString: Observer
@@ -104,6 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endingCanvas: {fileID: 0}
+  bigEnemySource: {fileID: 0}
+  mediumEnemySource: {fileID: 0}
+  smallEnemySource: {fileID: 0}
 --- !u!114 &4450481469779189850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,3 +121,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   correctAnswers: 0
+  correctThreshold: 1
+--- !u!114 &1088083268069058325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998779921395951527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19f583d7a8702148b144be3e3e052cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smallEnemies: 0
+  mediumEnemies: 0
+  bigEnemies: 0
+  canTriggerSounds: 0

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
 
-    public GameObject menu,credits;
+    public GameObject menu,profile,credits;
 
     // Start is called before the first frame update
     void Start() {
@@ -27,8 +27,16 @@ public class MenuManager : MonoBehaviour {
     // Open Menu
     public void displayMenu() {
 	credits.SetActive(false);
+	profile.SetActive(false);
 	menu.SetActive(true);
     }
+
+    // Open Profile
+    public void displayProfile() {
+	menu.SetActive(false);
+	profile.SetActive(true);
+    }
+
 }
 
 

@@ -5,6 +5,9 @@ public class EndingActivator : MonoBehaviour
 {
     // Public attributes
     public GameObject endingCanvas;
+    public GameObject bigEnemySource;
+    public GameObject mediumEnemySource;
+    public GameObject smallEnemySource;
 
     // Private attributes
     private Canvas canvas;
@@ -22,6 +25,10 @@ public class EndingActivator : MonoBehaviour
         bg = endingCanvas.transform.GetChild(1).GetComponent<SpriteRenderer>();
         // Set component values
         bg.enabled = false;
+        // Reset sound FX
+        bigEnemySource.GetComponent<AudioLowPassFilter>().enabled = false;
+        mediumEnemySource.GetComponent<AudioLowPassFilter>().enabled = false;
+        smallEnemySource.GetComponent<AudioLowPassFilter>().enabled = false;
     }
 
     // Update is called once per frame
@@ -74,6 +81,11 @@ public class EndingActivator : MonoBehaviour
         RetryOnClick.instance.canReload = true;
         // End music
         MusicPlayer.instance.EndSong();
+        // Set enemy sounds triggers off
+        EnemyControl.instance.canTriggerSounds = false;
+        bigEnemySource.GetComponent<AudioLowPassFilter>().enabled = true;
+        mediumEnemySource.GetComponent<AudioLowPassFilter>().enabled = true;
+        smallEnemySource.GetComponent<AudioLowPassFilter>().enabled = true;
         // Make slow-mo effect
         Time.timeScale = 0.4f;
     }
