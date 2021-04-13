@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class IntroTimeStopper : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class IntroTimeStopper : MonoBehaviour
     {
         // Self reference
         instance = this;
+        QualitySettings.vSyncCount = 2;
+        // Add scenes to SceneManager
+        Debug.Log(SceneManager.sceneCountInBuildSettings + " scenes in build.");
         // Button reference
         Button btn = startButton.GetComponent<Button>();
         btn.onClick.AddListener(RestartTime);

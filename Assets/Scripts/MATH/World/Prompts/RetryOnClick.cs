@@ -9,7 +9,6 @@ public class RetryOnClick : MonoBehaviour
     // Public attributes
     public bool canReload;
     // Private attributes
-    private Scene scn;
     private Button btn;
 
     // Start is called before the first frame update
@@ -17,7 +16,6 @@ public class RetryOnClick : MonoBehaviour
     {
         // Set public reference
         instance = this;
-        scn = SceneManager.GetSceneByBuildIndex(1);
         // Set components
         btn = GetComponent<Button>();
         btn.onClick.AddListener(ReloadScene);
@@ -30,9 +28,9 @@ public class RetryOnClick : MonoBehaviour
     {
         if (canReload)
         {
-            for (int i = 0; i < SceneManager.sceneCount; i++)
+            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
             {
-                Debug.Log("Escena " + i + ": " + SceneManager.GetSceneAt(i).name);
+                Debug.Log(SceneManager.GetSceneByBuildIndex(i).name);
             }
             canReload = false;
         }
