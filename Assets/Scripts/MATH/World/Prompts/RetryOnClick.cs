@@ -17,9 +17,9 @@ public class RetryOnClick : MonoBehaviour
     {
         // Set public reference
         instance = this;
+        scn = SceneManager.GetSceneByBuildIndex(1);
         // Set components
         btn = GetComponent<Button>();
-        scn = SceneManager.GetActiveScene();
         btn.onClick.AddListener(ReloadScene);
         // Set values
         canReload = false;
@@ -30,8 +30,10 @@ public class RetryOnClick : MonoBehaviour
     {
         if (canReload)
         {
-            Debug.Log("Decided to reload from ");
-            SceneManager.LoadScene(scn.name);
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                Debug.Log("Escena " + i + ": " + SceneManager.GetSceneAt(i).name);
+            }
             canReload = false;
         }
     }

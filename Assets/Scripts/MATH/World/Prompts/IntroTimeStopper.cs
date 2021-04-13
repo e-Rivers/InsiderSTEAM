@@ -15,6 +15,7 @@ public class IntroTimeStopper : MonoBehaviour
     private GameObject child;
     private SpriteRenderer sprite;
     private bool playedSoundOnce;
+    private bool stoppedOnce;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,7 @@ public class IntroTimeStopper : MonoBehaviour
         MusicPlayer.instance.SetLowPass(true);
         MusicPlayer.instance.PlaySong();
         // Set enemy sounds triggers off
+        Debug.Log(EnemyControl.instance.enabled);
         EnemyControl.instance.canTriggerSounds = false;
     }
 
