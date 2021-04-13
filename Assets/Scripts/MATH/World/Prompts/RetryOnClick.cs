@@ -17,7 +17,6 @@ public class RetryOnClick : MonoBehaviour
     {
         // Set public reference
         instance = this;
-        scn = SceneManager.GetSceneByBuildIndex(1);
         // Set components
         btn = GetComponent<Button>();
         btn.onClick.AddListener(ReloadScene);
@@ -30,6 +29,8 @@ public class RetryOnClick : MonoBehaviour
     {
         if (canReload)
         {
+            scn = SceneManager.GetSceneByPath("Assets/Scenes/MATH/LoadScreen.unity");
+            Debug.Log(scn.name);
             for (int i = 0; i < SceneManager.sceneCount; i++)
             {
                 Debug.Log("Escena " + i + ": " + SceneManager.GetSceneAt(i).name);

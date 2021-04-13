@@ -22,6 +22,7 @@ public class IntroTimeStopper : MonoBehaviour
     {
         // Self reference
         instance = this;
+        QualitySettings.vSyncCount = 2;
         // Button reference
         Button btn = startButton.GetComponent<Button>();
         btn.onClick.AddListener(RestartTime);

@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class LoadingSceneManager : MonoBehaviour
 {
     // Public attributes
-    public int buildIndex = 3;
     public float loadTime = 2.0f;
 
     // Private attributes
@@ -14,7 +13,8 @@ public class LoadingSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scn = SceneManager.GetSceneByBuildIndex(buildIndex);
+        scn = SceneManager.GetSceneByPath("Assets/Scenes/MATH/MathRealm.unity");
+        Debug.Log(scn.name);
         timer = 0.0f;
     }
 
