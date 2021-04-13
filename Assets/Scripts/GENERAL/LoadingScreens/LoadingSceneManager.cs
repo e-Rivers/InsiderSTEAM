@@ -26,7 +26,7 @@ public class LoadingSceneManager : MonoBehaviour
             timer += Time.deltaTime;
         } else
         {
-            SceneManager.LoadScene(scn.name);
+            timer = 0.0f;
         }
     }
 }
