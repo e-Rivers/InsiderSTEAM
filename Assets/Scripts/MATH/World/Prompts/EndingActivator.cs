@@ -53,7 +53,6 @@ public class EndingActivator : MonoBehaviour
     // Adjust text
     void SetCanvas(bool won)
     {
-        Debug.Log("Ended with " + AnswerCounter.instance.correctAnswers + " correct answers. (Won: " + won + ")");
         // Activate canvas containing victory info
         canvas.enabled = true;
         // Activate background
