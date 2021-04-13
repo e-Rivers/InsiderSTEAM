@@ -690,7 +690,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1287.66, y: -721.91}
+  m_AnchoredPosition: {x: -1279.92, y: -721.91}
   m_SizeDelta: {x: 89.0538, y: 37.1517}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2110654775
@@ -726,7 +726,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'TIP:'
+  m_Text: TIP
 --- !u!222 &2110654776
 CanvasRenderer:
   m_ObjectHideFlags: 0
