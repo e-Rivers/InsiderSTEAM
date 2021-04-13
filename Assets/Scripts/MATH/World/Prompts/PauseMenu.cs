@@ -44,6 +44,9 @@ public class PauseMenu : MonoBehaviour
         sprite.enabled = true;
         canvas.enabled = true;
         MusicPlayer.instance.SetLowPass(true);
+        GameObject.Find("BigEnemySoundSource").GetComponent<AudioLowPassFilter>().enabled = true;
+        GameObject.Find("MediumEnemySoundSource").GetComponent<AudioLowPassFilter>().enabled = true;
+        GameObject.Find("SmallEnemySoundSource").GetComponent<AudioLowPassFilter>().enabled = true;
     }
 
     // Disable pause screen
@@ -55,5 +58,8 @@ public class PauseMenu : MonoBehaviour
         sprite.enabled = false;
         canvas.enabled = false;
         MusicPlayer.instance.SetLowPass(false);
+        GameObject.Find("BigEnemySoundSource").GetComponent<AudioLowPassFilter>().enabled = false;
+        GameObject.Find("MediumEnemySoundSource").GetComponent<AudioLowPassFilter>().enabled = false;
+        GameObject.Find("SmallEnemySoundSource").GetComponent<AudioLowPassFilter>().enabled = false;
     }
 }

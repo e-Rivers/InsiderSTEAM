@@ -12,6 +12,8 @@ public class MusicPlayer : MonoBehaviour
     // Private attributes
     private AudioLowPassFilter lowPass;
     private AudioReverbFilter reverbFilter;
+    private float currVolume;
+    private bool reachedVolume = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +25,20 @@ public class MusicPlayer : MonoBehaviour
         // Set component values
         lowPass.enabled = true;
         reverbFilter.enabled = false;
+        currVolume = audioSource.volume;
+        audioSource.volume = 0;
     }
+
+    // Update is called on every frame update
+    private void Update()
+    {
+        // Increase volume softly
+        if (audioSource.volume < currVolume)
+        {
+            audioSource.volume += Time.deltaTime * 0.5f;
+        }
+    }
+
 
     // Play a song
     public void PlaySong()
