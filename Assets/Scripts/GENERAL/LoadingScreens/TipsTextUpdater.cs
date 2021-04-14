@@ -23,12 +23,12 @@ public class TipsTextUpdater : MonoBehaviour
         color = text.color;
         tips = new Dictionary<string, string[]>()
         {
-            {"math", new string[] { "¡Los colores de cada plataforma indican propiedades diferentes! Por ejemplo: Las plataformas naranjas sólo te permitirán saltar sobre ellas una vez.",
-                                    "¿Sabías que cada vez que te cuelgues de 3 plataformas verdes, tu personaje obtendrá 2 vidas más?",
-                                    "¡Ten cuidado con disparar demasiado! Si estás cerca de derrotar a 10 enemigos, correrás el riesgo de disparar a una respuesta equivocada cuando aparezca un problema matemático.",
-                                    "¡Las plataformas azul-obscuro te protegen! Si te agarras de una, ésta lanzará un gran proyectil que destruye a todo enemigo a su paso.",
-                                    "Agarrarte de plataformas superiores puede traerte diferentes ventajas según su color.",
-                                    "Aunque saltar de una plataforma roja te da una gran altura, no podrás hacer un doble salto hasta saltar sobre otra plataforma."
+            {"math", new string[] { "ï¿½Los colores de cada plataforma indican propiedades diferentes! Por ejemplo: Las plataformas naranjas sï¿½lo te permitirï¿½n saltar sobre ellas una vez.",
+                                    "ï¿½Sabï¿½as que cada vez que te cuelgues de 3 plataformas verdes, tu personaje obtendrï¿½ 2 vidas mï¿½s?",
+                                    "ï¿½Ten cuidado con disparar demasiado! Si estï¿½s cerca de derrotar a 10 enemigos, correrï¿½s el riesgo de disparar a una respuesta equivocada cuando aparezca un problema matemï¿½tico.",
+                                    "ï¿½Las plataformas azul-obscuro te protegen! Si te agarras de una, ï¿½sta lanzarï¿½ un gran proyectil que destruye a todo enemigo a su paso.",
+                                    "Agarrarte de plataformas superiores puede traerte diferentes ventajas segï¿½n su color.",
+                                    "Aunque saltar de una plataforma roja te da una gran altura, no podrï¿½s hacer un doble salto hasta saltar sobre otra plataforma."
                                   } 
             }
         };
@@ -45,7 +45,6 @@ public class TipsTextUpdater : MonoBehaviour
         } else
         {
             tipTimer += Time.deltaTime;
-            Debug.Log("Time elapsed: " + tipTimer);
         }
     }
 

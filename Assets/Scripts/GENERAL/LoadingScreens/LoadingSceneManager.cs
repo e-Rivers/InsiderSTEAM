@@ -13,7 +13,7 @@ public class LoadingSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scn = SceneManager.GetSceneByName("MathRealm");
+        scn = SceneManager.GetSceneByBuildIndex(2);
         Debug.Log(scn.name);
         timer = 0.0f;
     }

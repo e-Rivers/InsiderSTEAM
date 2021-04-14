@@ -17,7 +17,6 @@ public class LoadingTextUpdate : MonoBehaviour
         changeTime = 0.2f;
         timer = 0.0f;
         letters = new string[] { "C", "A", "R", "G", "A", "N", "D", "O", ".", ".", ".", "."};
-        Debug.Log(letters);
         counter = 0;
     }
 
