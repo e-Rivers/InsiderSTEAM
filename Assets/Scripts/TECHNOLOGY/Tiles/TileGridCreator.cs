@@ -49,7 +49,6 @@ public class TileGridCreator : MonoBehaviour
                     tileMatrix[j, i] = tileInstance;
                     tileInstance.transform.parent = transform;
                     // Fill TileManager jagged array
-                    Debug.Log(TileManager.instance);
                     TileManager.instance.matrix[i, j] = 0;
                 }
             }
