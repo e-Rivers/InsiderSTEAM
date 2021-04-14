@@ -13,6 +13,7 @@ public class TechPlayerMovement : MonoBehaviour
 
     // Private attributes
     private int playerY;
+    private int yLimit, xLimit;
     private float tapTime = 0.15f;
     private float timer;
 
@@ -23,8 +24,10 @@ public class TechPlayerMovement : MonoBehaviour
         instance = this;
         // Set attributes
         x = 0;
-        playerY = 9;
         y = 0;
+        playerY = 14;
+        xLimit = 15;
+        yLimit = 15;
         timer = 0;
     }
 
@@ -33,7 +36,7 @@ public class TechPlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
-            if (x < 9)
+            if (x < xLimit - 1)
             {
                 if (timer <= 0)
                 {
@@ -64,7 +67,7 @@ public class TechPlayerMovement : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
-            if (playerY < 9)
+            if (playerY < yLimit - 1)
             {
                 if (timer <= 0)
                 {

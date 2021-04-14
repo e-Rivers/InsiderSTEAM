@@ -11,8 +11,8 @@ public class TileGridCreator : MonoBehaviour
 
     // Private attributes
     private Vector3 currPos;
-    private int columns = 10;
-    private int rows = 10;
+    private int columns = 15;
+    private int rows = 15;
     private float initX, initY;
     private float spacing = 1.0f;
 
@@ -22,7 +22,7 @@ public class TileGridCreator : MonoBehaviour
         // Set initial static reference
         instance = this;
         // Set matrix
-        tileMatrix = new GameObject[10,10];
+        tileMatrix = new GameObject[rows, columns];
         // Set initial position for first prefab
         initX = 0.5f;
         initY = 1.5f;
