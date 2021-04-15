@@ -42,6 +42,7 @@ public class LoadingSceneManager : MonoBehaviour
         }
         // If charge time is completed
         if (canContinue) {
+            LoadingTextUpdate.instance.stop = true;
             if (textTimer < 1.0f) {
                 textTimer += Time.deltaTime;
             } else {
