@@ -11,6 +11,7 @@ public class ScienceGameplay : MonoBehaviour {
     public InputField regInput, endInput, endsBannerAnswer, sidebarAnswer;
     public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover, finishPanel;
     public Text timeText, roundText, askText, sciText, finishTitle, finishText;
+    public AudioSource normalMusic, askingMusic;
     // Attributes that are used in other classes (MoveCharacter.cs)
     public static bool isAskTime = false;
     public static int roundType = 0; //(odd is labyrinth crossing & even is answering)
@@ -18,13 +19,16 @@ public class ScienceGameplay : MonoBehaviour {
     private Dictionary<string, string> riddleDict = new Dictionary<string, string>();
     private bool labyCrossed = false;
     private Coroutine subTime;
-    private int timeCount = 40;
+    private int timeCount = 30;
     private string sidebarAns = "", endingAns = "";
 
     // Loads all riddles and problems
     void Start() {
-        riddleDict.Add("Un oso camina 5 km al sur, 5 km al oeste y 5 km al norte. ¿De qué color es el oso?", "BLANCO");
+	riddleDict.Add("Son 28 caballeros de espaldas negras y lisas; delante, todo agujeros, por dominar se dan prisa.", "DOMINO");
+        riddleDict.Add("Soy de madera, tengo un arco y no flecha.", "VIOLIN");
+	riddleDict.Add("Un oso camina 5 km al sur, 5 km al oeste y 5 km al norte. ¿De qué color es el oso?", "BLANCO");
         riddleDict.Add("¿Cuántos animales tengo en casa sabiendo que todos son perros menos dos, todos son gatos menos dos, y que todos son loros menos dos?", "3");
+	riddleDict.Add("Dos abanicos que danzan todo el día sin parar; y cuando por fin te duermas quietecitos quedarán. Al caer tus deseos cumplirán.", "PESTAÑAS");
         riddleDict.Add("Si 5 máquinas hacen 5 artículos en 5 minutos, ¿cuántos minutos dedicarán 100 máquinas en hacer 100 artículos?", "5");
         riddleDict.Add("Un león muerto de hambre, ¿de qué se alimenta?", "NADA");
         riddleDict.Add("Este banco está ocupado por un padre y por un hijo: El padre se llama Juan y el hijo ya te lo he dicho.", "ESTEBAN");
@@ -42,6 +46,7 @@ public class ScienceGameplay : MonoBehaviour {
                 mazeGenesys.GetComponent<MazeGenerator>().GenerateMaze();
                 player.SetActive(true);
                 roundType++;
+		normalMusic.Play();
             } else if(roundType%2 != 0) {
                 roundTypeMEM();
             } else if(roundType != 0 && roundType%2 == 0) {
@@ -76,6 +81,7 @@ public class ScienceGameplay : MonoBehaviour {
             string randomRiddle = riddleDict.Keys.ElementAt(randomSelection);
             askText.text = randomRiddle;
             sciText.text = "TIEMPO!! No escapas aún; para pasar de ronda, responde mi pregunta...";
+	    askingMusic.Play();
         }
     }
 
@@ -94,12 +100,15 @@ public class ScienceGameplay : MonoBehaviour {
                 roundType++;
                 string[] prevRound = roundText.text.Split(' ');
                 roundText.text = "Ronda: " + (roundType-int.Parse(prevRound[1]));
-                timeCount = 40;
+                timeCount = 30;
                 isAskTime = false;
+		askingMusic.Stop();
+		normalMusic.Play();
             } else if(sidebarAns != "") {
                 sciText.text = "INCORRECTO! Intenta de nuevo... si es que te alcanza el tiempo...";
             }
         } else {
+	    askingMusic.Stop();
             StopCoroutine(subTime);
             finishTitle.text = "DERROTA";
             finishText.text = "No lograste escapar del laberinto, pero no te rindas, entrena tu mente, piensa creativamente y verás como irás mejorando hasta que por fin la victoria sea tuya.";
@@ -123,6 +132,8 @@ public class ScienceGameplay : MonoBehaviour {
                 timeCount = 60;
                 labyCrossed = true;
                 sciText.text = ". . .";
+		normalMusic.Stop();
+		askingMusic.Play();
             }
             timeText.text = "Tiempo: " + timeCount;
             mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
@@ -131,12 +142,14 @@ public class ScienceGameplay : MonoBehaviour {
             endsBanner.SetActive(true);
             if(timeCount > 0) {
                 if(endingAns == "1") {
+		    askingMusic.Stop();
                     StopCoroutine(subTime);
                     finishTitle.text = "VICTORIA";
                     finishText.text = "Tu memoria y habilidad mental son ADMIRABLES!! Haz conseguido vencer a los más grandes científicos y los has liberado! Siéntete orgulloso, no cualquiera logra superar esto.";
                     finishPanel.SetActive(true);
                 }
             } else {
+		askingMusic.Stop();
                 StopCoroutine(subTime);
                 finishTitle.text = "DERROTA";
                 finishText.text = "Muy bien jugado, lograste llegar lejos, sin embargo, esta vez has sido derrotado, enorgullécete y vuelve a intentarlo... más fuerte, más rápido y más inteligente.";
