@@ -43,6 +43,15 @@ public class MenuManager : MonoBehaviour {
 	menu.SetActive(false);
 	playgame.SetActive(true);
     }
+
+
+    // Methods to change to the correspoding level (World)
+    public void GotoScience() { SceneManager.LoadScene("ScienceLevel"); }
+    public void GotoTechnology() { SceneManager.LoadScene("TechRealm"); }
+    public void GotoEngineering() { SceneManager.LoadScene("TechRealm"); }
+    public void GotoArts() { SceneManager.LoadScene("ArtRealm"); }
+    public void GotoMathematics() { SceneManager.LoadScene("MathRealm"); }
+
 }
 
 
