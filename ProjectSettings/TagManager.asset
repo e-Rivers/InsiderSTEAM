@@ -3,7 +3,26 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Wall
+  - StillPlatform
+  - LowerTileStopper
+  - CeilingDestroyer
+  - UpperTileStopper
+  - UpperDisplayStopper
+  - GroundDestroyer
+  - ForcefulKiller
+  - LowerDisplayStopper
+  - Ground
+  - CeilingKiller
+  - Bouncepad
+  - Ceiling
+  - KillerPlatform
+  - AnswerTile
+  - Observer
+  - PlayerBullet
+  - Projectile
   layers:
   - Default
   - TransparentFX

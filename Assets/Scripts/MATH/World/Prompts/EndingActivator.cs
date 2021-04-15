@@ -65,13 +65,13 @@ public class EndingActivator : MonoBehaviour
             // Remove enemies and projectiles from scene
             ForcefulKiller.instance.Enable();
             // Set title text
-            titleText.text = "¡GANASTE!";
+            titleText.text = "Â¡GANASTE!";
         } else
         {
-            titleText.text = "¡PERDISTE!";
+            titleText.text = "Â¡PERDISTE!";
         }
         // Display score
-        finalScore.text = "Puntuación final: " + ScoreText.scoreValue.ToString() + " pts";
+        finalScore.text = "PuntuaciÃ³n final: " + ScoreText.scoreValue.ToString() + " pts";
         // Avoid scoring off-game
         ScoreSystem.instance.canScore = false;
         // Disable HUD

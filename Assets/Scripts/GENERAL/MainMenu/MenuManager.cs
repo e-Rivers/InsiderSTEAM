@@ -6,11 +6,12 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
 
+    public static MenuManager instance;
     public GameObject menu,profile,credits,playgame;
 
     // Start is called before the first frame update
     void Start() {
-        
+        instance = this;
     }
 
     // Update is called once per frame
@@ -50,6 +51,13 @@ public class MenuManager : MonoBehaviour {
     public void GotoTechnology() { SceneManager.LoadScene("TechRealm"); }
     public void GotoEngineering() { SceneManager.LoadScene("TechRealm"); }
     public void GotoArts() { SceneManager.LoadScene("ArtRealm"); }
+    public void GoToLoadScreen(string realm) {
+        switch (realm) {
+            case "math":
+                SceneManager.LoadScene("MathLoadScreen");
+                break;
+        }
+    }
     public void GotoMathematics() { SceneManager.LoadScene("MathRealm"); }
 
 }

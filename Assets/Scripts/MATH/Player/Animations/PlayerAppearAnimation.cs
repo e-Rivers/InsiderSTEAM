@@ -7,11 +7,10 @@ public class PlayerAppearAnimation : MonoBehaviour
     // Public self reference
     public static PlayerAppearAnimation instance;
     // Public attributes
-
+    public bool canGrow = true;
     // Private attributes
     private float limit;
     private float rate;
-    private bool canGrow = true;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +18,9 @@ public class PlayerAppearAnimation : MonoBehaviour
         // Set self reference
         instance = this;
         // Set growing x limit
-        limit = transform.localScale.x;
+        limit = 0.6f;
         // Set growth rate
-        canGrow = true;
+        canGrow = false;
         rate = limit / 20;
         // Set scale to 0, 0, 1
         transform.localScale = new Vector3(0f, 0f, 1f);
@@ -34,7 +33,7 @@ public class PlayerAppearAnimation : MonoBehaviour
         {
             if (transform.localScale.x < limit)
             {
-                transform.localScale += new Vector3(rate, rate, 0f) * Time.deltaTime * 80.0f;
+                transform.localScale += new Vector3(rate, rate, 0f);
             }
             else
             {
