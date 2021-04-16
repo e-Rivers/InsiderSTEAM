@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 public class LoadingSceneManager : MonoBehaviour
 {
     // Public attributes
-    public float loadTime = 6.0f;
+    public float loadTime = 5.0f;
+    public Text continueText;
+    public Image scienceBack, techBack, engineBack, artsBack, mathsBack, menuBack;
 
     // Private attributes
-    private Text continueText;
-    private Scene scn;
     private float timer;
     private float textTimer;
     private int textCounter;
@@ -18,8 +18,23 @@ public class LoadingSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+	// Selects the background
+	switch(MenuManager.sceneToLoad) {
+	    case "ScienceLevel":
+		scienceBack.gameObject.SetActive(true); break;
+	    case "TechRealm":
+		techBack.gameObject.SetActive(true); break;
+	    case "EngineRealm":
+		engineBack.gameObject.SetActive(true); break;
+	    case "ArtRealm":
+		artsBack.gameObject.SetActive(true); break;
+	    case "MathRealm":
+		mathsBack.gameObject.SetActive(true); break;
+	    case "MainMenu":
+		menuBack.gameObject.SetActive(true); break;
+	}
+
         // Set components
-        continueText = GameObject.Find("Canvas").transform.GetChild(4).GetComponent<Text>();
         continueText.text = "";
         // Set values
         timer = 0.0f;
@@ -58,7 +73,7 @@ public class LoadingSceneManager : MonoBehaviour
         // Check user input
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (canContinue) {
-                MenuManager.instance.GotoMathematics();
+                SceneManager.LoadScene(MenuManager.sceneToLoad);
             }
         }
     }

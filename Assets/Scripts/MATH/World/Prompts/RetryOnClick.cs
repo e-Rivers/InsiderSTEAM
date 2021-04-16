@@ -28,7 +28,7 @@ public class RetryOnClick : MonoBehaviour
     {
         if (canReload)
         {
-            MenuManager.instance.GoToLoadScreen("math");
+            SceneManager.LoadScene(MenuManager.sceneToLoad);
             canReload = false;
         }
     }
