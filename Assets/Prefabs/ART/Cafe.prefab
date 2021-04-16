@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35dbf6252df2bf742bf158f2bf705754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  identifier: rybrb
+  identifier: ryb
 --- !u!114 &3069254423215963174
 MonoBehaviour:
   m_ObjectHideFlags: 0

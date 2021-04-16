@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35dbf6252df2bf742bf158f2bf705754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  identifier: nrby
+  identifier: nw
 --- !u!114 &4420274597120311117
 MonoBehaviour:
   m_ObjectHideFlags: 0

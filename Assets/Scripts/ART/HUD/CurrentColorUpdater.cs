@@ -44,6 +44,7 @@ public class CurrentColorUpdater: MonoBehaviour
         } else {
             rect.localScale = new Vector3 (1f, 1, 1);
         }
+        Debug.Log(currentColor.name);
     }
 
     private Color MakeDarker(Color color) {
