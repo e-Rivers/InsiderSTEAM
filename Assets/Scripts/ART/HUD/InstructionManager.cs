@@ -8,12 +8,13 @@ public class InstructionManager : MonoBehaviour
     // Public attributes
     public static InstructionManager instance;
     public Sprite[] paintings;
+    public Sprite currPainting;
     public GameObject[] instructions;
     public static int level = 0;
+    public bool win = false;
 
     // Private attributes
     private static List<int> levels = new List<int>();
-    private Sprite currPainting;
     private bool isFirst;
 
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class InstructionManager : MonoBehaviour
         instance = this;
         // Set isFirst variable
         isFirst = true;
+        win = false;
         // Get a random new level number
         int rndLevel = Random.Range(0, 7);
         // If list of levels has less than 5 elements
