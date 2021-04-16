@@ -69,7 +69,7 @@ public class InstructionManager : MonoBehaviour
                     instructions = new GameObject[] {ColorSystem.instance.colorsDict["yrb"], ColorSystem.instance.colorsDict["y"], ColorSystem.instance.colorsDict["nw"]};
                     break;
                 case 4:
-                    instructions = new GameObject[] {ColorSystem.instance.colorsDict["r"], ColorSystem.instance.colorsDict["yr"], ColorSystem.instance.colorsDict["b"]};
+                    instructions = new GameObject[] {ColorSystem.instance.colorsDict["r"], ColorSystem.instance.colorsDict["yr"], ColorSystem.instance.colorsDict["n"]};
                     break;
                 case 5:
                     instructions = new GameObject[] {ColorSystem.instance.colorsDict["by"], ColorSystem.instance.colorsDict["nw"], ColorSystem.instance.colorsDict["yr"]};
