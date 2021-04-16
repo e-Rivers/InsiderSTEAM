@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class TipsTextUpdater : MonoBehaviour
 {
-    // Public attributes
-    public string realm;
 
     // Private attributes
     private Text text;
@@ -23,7 +21,7 @@ public class TipsTextUpdater : MonoBehaviour
         color = text.color;
         tips = new Dictionary<string, string[]>()
         {
-            {"math", new string[] { "�Los colores de cada plataforma indican propiedades diferentes! Por ejemplo: Las plataformas naranjas s�lo te permitir�n saltar sobre ellas una vez.",
+            {"MathRealm", new string[] { "�Los colores de cada plataforma indican propiedades diferentes! Por ejemplo: Las plataformas naranjas s�lo te permitir�n saltar sobre ellas una vez.",
                                     "�Sab�as que cada vez que te cuelgues de 3 plataformas verdes, tu personaje obtendr� 2 vidas m�s?",
                                     "�Ten cuidado con disparar demasiado! Si est�s cerca de derrotar a 10 enemigos, correr�s el riesgo de disparar a una respuesta equivocada cuando aparezca un problema matem�tico.",
                                     "�Las plataformas azul-obscuro te protegen! Si te agarras de una, �sta lanzar� un gran proyectil que destruye a todo enemigo a su paso.",
@@ -32,7 +30,7 @@ public class TipsTextUpdater : MonoBehaviour
                                   } 
             }
         };
-        SetNewTip(realm);
+        SetNewTip(MenuManager.sceneToLoad);
     }
 
     // Update is called once per frame
@@ -40,7 +38,7 @@ public class TipsTextUpdater : MonoBehaviour
     {
         if (tipTimer >= tipSwitchTime)
         {
-            SetNewTip(realm);
+            SetNewTip(MenuManager.sceneToLoad);
             tipTimer = 0.0f;
         } else
         {

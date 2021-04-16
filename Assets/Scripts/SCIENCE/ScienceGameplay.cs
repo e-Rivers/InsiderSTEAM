@@ -175,6 +175,7 @@ public class ScienceGameplay : MonoBehaviour {
 
     // Method to return to main world
     public void returnToWorld() {
-        SceneManager.LoadScene("LoadScreen");
+	MenuManager.sceneToLoad = "MainMenu";
+        SceneManager.LoadScene("LoadingScene");
     }
 }
