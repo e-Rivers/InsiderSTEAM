@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadTime: 2
-  continueText: {fileID: 0}
+  continueText: {fileID: 948888396}
   scienceBack: {fileID: 0}
   techBack: {fileID: 0}
   engineBack: {fileID: 0}
