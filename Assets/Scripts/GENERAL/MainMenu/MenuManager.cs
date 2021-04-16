@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
 
-    public GameObject menu,profile,credits,nova,load;
+    public static string sceneToLoad;
+    public GameObject menu,profile,credits,playgame;
 
     // Start is called before the first frame update
     void Start() {
-        
     }
 
     // Update is called once per frame
@@ -26,8 +26,7 @@ public class MenuManager : MonoBehaviour {
     
     // Open Menu
     public void displayMenu() {
-	nova.SetActive(false);
-	load.SetActive(false);
+	playgame.SetActive(false);
 	credits.SetActive(false);
 	profile.SetActive(false);
 	menu.SetActive(true);
@@ -39,17 +38,21 @@ public class MenuManager : MonoBehaviour {
 	profile.SetActive(true);
     }
 
-    // Open New Game
-    public void displayNovaGame() {
+    // Open Play
+    public void displayPlayGame() {
 	menu.SetActive(false);
-	nova.SetActive(true);
+	playgame.SetActive(true);
     }
 
-    // Open Load Game
-    public void displayLoadGame() {
-	menu.SetActive(false);
-	load.SetActive(true);
-    }
+    // Method to go to the loading screen
+    public void GoToLoadScreen() { SceneManager.LoadScene("LoadingScene"); }
+
+    // Methods to change to the correspoding level (World)
+    public void GotoScience() { sceneToLoad = "ScienceLevel";  GoToLoadScreen(); }
+    public void GotoTechnology() { sceneToLoad = "TechRealm";  GoToLoadScreen(); }
+    public void GotoEngineering() { sceneToLoad = "EngineRealm";  GoToLoadScreen(); }
+    public void GotoArts() { sceneToLoad = "ArtRealm";  GoToLoadScreen(); }
+    public void GotoMathematics() { sceneToLoad = "MathRealm"; GoToLoadScreen(); }
 
 }
 

@@ -63,15 +63,6 @@ public class PlayerSounds : MonoBehaviour
         soundPlayer.PlayOneShot(jumpingSounds[Random.Range(0, 2)]);
     }
 
-    // Play grabbing sounds
-    public void PlayGrab(int platformIdentifier)
-    {
-        switch (platformIdentifier)
-        {
-            
-        }
-    }
-
     // Play reload prompt sound
     public void PlayReloadPrompt()
     {

@@ -72,5 +72,7 @@ public class IntroTimeStopper : MonoBehaviour
         MusicPlayer.instance.SetLowPass(false);
         // Set enemy sounds triggers on
         EnemyControl.instance.canTriggerSounds = true;
+        // Let player grow
+        PlayerAppearAnimation.instance.canGrow = true;
     }
 }

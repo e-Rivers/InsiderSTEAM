@@ -28,10 +28,7 @@ public class RetryOnClick : MonoBehaviour
     {
         if (canReload)
         {
-            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
-            {
-                Debug.Log(SceneManager.GetSceneByBuildIndex(i).name);
-            }
+            SceneManager.LoadScene(MenuManager.sceneToLoad);
             canReload = false;
         }
     }
