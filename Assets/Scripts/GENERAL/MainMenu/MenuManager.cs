@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        sceneToLoad = "MathRealm";
     }
 
     // Update is called once per frame
