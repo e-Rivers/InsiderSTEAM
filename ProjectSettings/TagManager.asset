@@ -6,6 +6,28 @@ TagManager:
   tags:
   - Color
   - ArtCanvas
+<<<<<<< Updated upstream
+=======
+  - Enemy
+  - Wall
+  - StillPlatform
+  - LowerTileStopper
+  - CeilingDestroyer
+  - UpperTileStopper
+  - UpperDisplayStopper
+  - GroundDestroyer
+  - ForcefulKiller
+  - LowerDisplayStopper
+  - Ground
+  - CeilingKiller
+  - Bouncepad
+  - Ceiling
+  - KillerPlatform
+  - AnswerTile
+  - Observer
+  - PlayerBullet
+  - Projectile
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
