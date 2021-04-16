@@ -23,6 +23,7 @@ TagManager:
   - Observer
   - PlayerBullet
   - Projectile
+  - Color
   layers:
   - Default
   - TransparentFX
