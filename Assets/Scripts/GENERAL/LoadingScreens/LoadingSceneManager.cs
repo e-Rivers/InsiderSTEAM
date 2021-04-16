@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 public class LoadingSceneManager : MonoBehaviour
 {
     // Public attributes
-    public float loadTime = 6.0f;
+    public float loadTime = 5.0f;
+    public Text continueText;
 
     // Private attributes
-    private Text continueText;
     private Scene scn;
     private float timer;
     private float textTimer;
@@ -19,7 +19,6 @@ public class LoadingSceneManager : MonoBehaviour
     void Start()
     {
         // Set components
-        continueText = GameObject.Find("Canvas").transform.GetChild(4).GetComponent<Text>();
         continueText.text = "";
         // Set values
         timer = 0.0f;
