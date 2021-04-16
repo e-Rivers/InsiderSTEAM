@@ -32,30 +32,19 @@ public class ColorSystem : MonoBehaviour
                 {"bbr", colors[8]},         //Blue-Violet
                 {"brb", colors[8]},         //Blue-Violet
                 {"rbb", colors[8]},         //Blue-Violet
-                {"yrbbr", colors[9]},       //Brown
-                {"yrbrb", colors[9]},       //Brown
-                {"yrrbb", colors[9]},       //Brown
-                {"rybbr", colors[9]},       //Brown
-                {"rybrb", colors[9]},       //Brown
-                {"ryrbb", colors[9]},       //Brown
-                {"byr", colors[10]},        //White
-                {"bry", colors[10]},        //White
-                {"ybr", colors[10]},        //White
-                {"rby", colors[10]},        //White
-                {"ryb", colors[10]},         //White           
-                {"nbyr", colors[11]},
-                {"nbry", colors[11]},
-                {"nybr", colors[11]},
-                {"nrby", colors[11]},
-                {"nryb", colors[11]},
-                {"byrn", colors[11]},
-                {"bryn", colors[11]},
-                {"ybrn", colors[11]},
-                {"rbyn", colors[11]},
-                {"rybn", colors[11]}
+                {"yrb", colors[9]},       //Brown
+                {"ybr", colors[9]},       //Brown
+                {"bry", colors[9]},       //Brown
+                {"byr", colors[9]},       //Brown
+                {"rby", colors[9]},       //Brown
+                {"ryb", colors[9]},       //Brown
+                {"w", colors[10]},        //White
+                {"nw", colors[11]},       
+                {"wn", colors[11]}
             };
             // Set black as default color
             currentSearch = "";
+            currentColor = colorsDict[currentSearch];
         }
 
         // Update is called on every frame update
@@ -63,7 +52,6 @@ public class ColorSystem : MonoBehaviour
         {
             if (colorsDict.ContainsKey(currentSearch)) {
                 currentColor = colorsDict[currentSearch];
-                Debug.Log(colorsDict[currentSearch].gameObject.name);
             } else {
                 currentSearch = "";
             }
