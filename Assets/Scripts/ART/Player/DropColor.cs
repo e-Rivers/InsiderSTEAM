@@ -10,25 +10,36 @@ public class DropColor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            if (canPlaceDrop) {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (canPlaceDrop)
+            {
                 ArtCanvasCollector.instance.TryAddColor(ColorSystem.instance.currentColor.GetComponent<ColorBehaviour>().identifier);
                 canPlaceDrop = false;
             }
         }
     }
 
-    private void OnTriggerStay2D(Collider2D coll) {
-        if (coll.CompareTag("ArtCanvas")) {
+    private void OnTriggerStay2D(Collider2D coll)
+    {
+        if (coll.CompareTag("ArtCanvas"))
+        {
             canPlaceDrop = true;
         }
     }
 
+    private void OnTriggerExit2D(Collider2D coll)
+    {
+        if (coll.CompareTag("ArtCanvas"))
+        {
+            canPlaceDrop = false;
+        }
+    }
 
 }
