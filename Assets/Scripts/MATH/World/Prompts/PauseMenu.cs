@@ -7,10 +7,10 @@ public class PauseMenu : MonoBehaviour
 {
     // Public self reference
     public static PauseMenu instance;
+    public Image bg;
     public bool canPause;
     // Private attributes
     private Canvas canvas;
-    private SpriteRenderer sprite;
 
     // Start is called before the first frame update
     void Start()
@@ -19,10 +19,8 @@ public class PauseMenu : MonoBehaviour
         instance = this;
         // Set private components
         canvas = GetComponent<Canvas>();
-        sprite = canvas.transform.GetChild(0).GetComponent<SpriteRenderer>();
         // Set values
         canPause = false;
-        sprite.enabled = false;
         canvas.enabled = false;
     }
 
@@ -41,8 +39,8 @@ public class PauseMenu : MonoBehaviour
         // Set time scale
         Time.timeScale = 0f;
         // Set UI
-        sprite.enabled = true;
         canvas.enabled = true;
+        bg.enabled = true;
         MusicPlayer.instance.SetLowPass(true);
         GameObject.Find("BigEnemySoundSource").GetComponent<AudioLowPassFilter>().enabled = true;
         GameObject.Find("MediumEnemySoundSource").GetComponent<AudioLowPassFilter>().enabled = true;
@@ -55,7 +53,7 @@ public class PauseMenu : MonoBehaviour
         // Set time scale
         Time.timeScale = 1.0f;
         // Set UI
-        sprite.enabled = false;
+        bg.enabled = false;
         canvas.enabled = false;
         MusicPlayer.instance.SetLowPass(false);
         GameObject.Find("BigEnemySoundSource").GetComponent<AudioLowPassFilter>().enabled = false;

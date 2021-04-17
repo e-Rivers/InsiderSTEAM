@@ -8,23 +8,18 @@ public class RetryOnClick : MonoBehaviour
     public static RetryOnClick instance;
     // Public attributes
     public bool canReload;
-    // Private attributes
-    private Button btn;
 
     // Start is called before the first frame update
     void Start()
     {
         // Set public reference
         instance = this;
-        // Set components
-        btn = GetComponent<Button>();
-        btn.onClick.AddListener(ReloadScene);
         // Set values
         canReload = false;
     }
 
     // Reloads scene
-    void ReloadScene()
+    public void ReloadScene()
     {
         if (canReload)
         {
@@ -32,5 +27,5 @@ public class RetryOnClick : MonoBehaviour
             canReload = false;
         }
     }
-    
+
 }
