@@ -7,12 +7,14 @@ public class PaintingDisplayer : MonoBehaviour
 {
     // Public attributes
     public GameObject bg;
+    public Button button;
     // Private attributes
     private Image bgImg;
     private Image image;
     private RectTransform rect;
     private float xSizeLimit;
     private float ySizeLimit;
+    private float buttonTimer;
     private bool shaker;
     // Start is called before the first frame update
     void Start()
@@ -26,9 +28,13 @@ public class PaintingDisplayer : MonoBehaviour
         // Set private variables
         xSizeLimit = transform.localScale.x;
         ySizeLimit = transform.localScale.y;
+        buttonTimer = 0.0f;
         shaker = true;
         // Set painting size
         transform.localScale = new Vector3(0f, 0f, 1f);
+        // Set button visibility
+        button.GetComponent<Image>().enabled = false;
+        button.transform.GetChild(0).gameObject.GetComponent<Text>().enabled = false;
     }
 
     // Update is called once per frame
@@ -84,6 +90,16 @@ public class PaintingDisplayer : MonoBehaviour
                     else
                     {
                         PaintingInfo.instance.SetInfo(InstructionManager.instance.level);
+                        if (buttonTimer < 4.0f)
+                        {
+                            buttonTimer += Time.deltaTime;
+                        }
+                        else
+                        {
+                            button.GetComponent<Image>().enabled = true;
+                            button.transform.GetChild(0).gameObject.GetComponent<Text>().enabled = true;
+                            buttonTimer = 0.0f;
+                        }
                     }
                 }
             }
