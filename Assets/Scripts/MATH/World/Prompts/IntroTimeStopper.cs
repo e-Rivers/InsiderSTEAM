@@ -8,10 +8,12 @@ public class IntroTimeStopper : MonoBehaviour
 {
     // Public self reference
     public static IntroTimeStopper instance;
-    // Public attributes
-    public GameObject startButton;
-    public GameObject canvas;
-
+    // Private attributes
+    private SpriteRenderer bg;
+    private Text welcomeText;
+    private Text introText;
+    private GameObject introContainer;
+    private Button startButton;
     // Private attributes
     private GameObject child;
     private SpriteRenderer sprite;
@@ -24,14 +26,10 @@ public class IntroTimeStopper : MonoBehaviour
         // Self reference
         instance = this;
         QualitySettings.vSyncCount = 2;
-        // Add scenes to SceneManager
-        Debug.Log(SceneManager.sceneCountInBuildSettings + " scenes in build.");
-        // Button reference
-        Button btn = startButton.GetComponent<Button>();
-        btn.onClick.AddListener(RestartTime);
-        // Get sprite renderer
-        child = transform.parent.GetChild(1).gameObject;
-        sprite = child.GetComponent<SpriteRenderer>();
+        // Get components
+        bg = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+        welcomeText = transform.GetChild(1).gameObject.GetComponent<Text>();
+        introText = transform.GetChild(2).gameObject.GetComponent<Text>();
         // Reset variables
         playedSoundOnce = false;
         // Set timescale to zero
@@ -43,11 +41,14 @@ public class IntroTimeStopper : MonoBehaviour
     {
         // Stop time scale
         Time.timeScale = 0.0f;
+        // Set visual elements on
+        bg.enabled = true;
+        welcomeText.enabled = true;
+        introText.enabled = true;
         // Play song
         MusicPlayer.instance.SetLowPass(true);
         MusicPlayer.instance.PlaySong();
         // Set enemy sounds triggers off
-        Debug.Log(EnemyControl.instance.enabled);
         EnemyControl.instance.canTriggerSounds = false;
     }
 
@@ -56,9 +57,8 @@ public class IntroTimeStopper : MonoBehaviour
     {
         // Set time scale to normal
         Time.timeScale = 1.0f;
-        // Disable canvas
-        canvas.GetComponent<Canvas>().enabled = false;
-        sprite.enabled = false;
+        // Set background off
+        bg.enabled = false;
         // Enable HUD
         HUDDisplayManager.instance.EnableHUD();
         PauseMenu.instance.canPause = true;

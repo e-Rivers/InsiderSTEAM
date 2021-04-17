@@ -12,9 +12,6 @@ public class InstructionManager : MonoBehaviour
     public GameObject[] instructions;
     public int level = 0;
     public bool win = false;
-
-    // Private attributes
-    private List<int> levels = new List<int>();
     private bool isFirst;
 
     // Start is called before the first frame update
@@ -25,49 +22,22 @@ public class InstructionManager : MonoBehaviour
         // Set isFirst variable
         isFirst = true;
         win = false;
-        // Get a random new level number
-        int rndLevel = Random.Range(0, 7);
-        // If list of levels has less than 5 elements
-        if (levels.Count < 7)
-        {
-            // Repeat
-            while (true)
-            {
-                // If picked level number has already been picked before
-                if (levels.Contains(rndLevel))
-                {
-                    // Set a new level number
-                    rndLevel = Random.Range(0, 7);
-                    // Otherwise, add to level numbers List and set level
-                }
-                else
-                {
-                    level = rndLevel;
-                    levels.Add(rndLevel);
-                    break;
-                }
-            }
-            // Otherwise, clear list and set new random level
-        }
-        else
-        {
-            levels.Clear();
-            level = rndLevel;
-            levels.Add(rndLevel);
-        }
-        // Get current painting
-        currPainting = paintings[level];
-        // Set children as active
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            transform.GetChild(i).gameObject.SetActive(true);
-        }
     }
 
     void Update()
     {
         if (isFirst)
         {
+            // Set level
+            int level = LevelManager.level;
+            Debug.Log("InstructionManager level: " + level);
+            // Get current painting
+            currPainting = paintings[level];
+            // Set children as active
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
             // Get current instructions
             switch (level)
             {
