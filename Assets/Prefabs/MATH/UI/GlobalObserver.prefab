@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 998779921395951524}
   - component: {fileID: 998779921395951523}
   - component: {fileID: 1088083268069058325}
-  - component: {fileID: 8128480977563729610}
   - component: {fileID: 4450481469779189850}
+  - component: {fileID: 8344619219424135669}
   m_Layer: 0
   m_Name: GlobalObserver
   m_TagString: Observer
@@ -108,7 +108,21 @@ MonoBehaviour:
   mediumEnemies: 0
   bigEnemies: 0
   canTriggerSounds: 0
---- !u!114 &8128480977563729610
+--- !u!114 &4450481469779189850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998779921395951527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3309c30e2cd8737448c47017662baa12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  correctAnswers: 0
+  correctThreshold: 1
+--- !u!114 &8344619219424135669
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,17 +138,3 @@ MonoBehaviour:
   bigEnemySource: {fileID: 0}
   mediumEnemySource: {fileID: 0}
   smallEnemySource: {fileID: 0}
---- !u!114 &4450481469779189850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 998779921395951527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3309c30e2cd8737448c47017662baa12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  correctAnswers: 0
-  correctThreshold: 1

@@ -11,18 +11,15 @@ public class EndingActivator : MonoBehaviour
 
     // Private attributes
     private Canvas canvas;
-    private Text titleText;
-    private Text finalScore;
-    private SpriteRenderer bg;
+    [SerializeField] Text titleText;
+    [SerializeField] Text finalScore;
+    [SerializeField] Image bg;
 
     // Start is called before first frame update
     private void Start()
     {
         // Get components
         canvas = endingCanvas.GetComponent<Canvas>();
-        titleText = endingCanvas.transform.GetChild(3).GetComponent<Text>();
-        finalScore = endingCanvas.transform.GetChild(4).GetComponent<Text>();
-        bg = endingCanvas.transform.GetChild(1).GetComponent<SpriteRenderer>();
         // Set component values
         bg.enabled = false;
         // Reset sound FX
@@ -40,11 +37,13 @@ public class EndingActivator : MonoBehaviour
             if (AnswerCounter.instance.correctAnswers >= AnswerCounter.instance.correctThreshold)
             {
                 SetCanvas(true);
-            } else
+            }
+            else
             {
                 SetCanvas(false);
             }
-        } else
+        }
+        else
         {
             canvas.enabled = false;
         }
@@ -66,7 +65,8 @@ public class EndingActivator : MonoBehaviour
             ForcefulKiller.instance.Enable();
             // Set title text
             titleText.text = "¡GANASTE!";
-        } else
+        }
+        else
         {
             titleText.text = "¡PERDISTE!";
         }

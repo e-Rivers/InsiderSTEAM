@@ -13,7 +13,6 @@ public class MusicPlayer : MonoBehaviour
     private AudioLowPassFilter lowPass;
     private AudioReverbFilter reverbFilter;
     private float currVolume;
-    private bool reachedVolume = false;
 
     // Start is called before the first frame update
     void Start()

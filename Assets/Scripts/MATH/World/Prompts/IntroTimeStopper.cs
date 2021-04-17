@@ -9,31 +9,34 @@ public class IntroTimeStopper : MonoBehaviour
     // Public self reference
     public static IntroTimeStopper instance;
     // Private attributes
-    private SpriteRenderer bg;
-    private Text welcomeText;
-    private Text introText;
-    private GameObject introContainer;
-    private Button startButton;
-    // Private attributes
-    private GameObject child;
-    private SpriteRenderer sprite;
+    [SerializeField] Image bg;
+    private Canvas canvas;
     private bool playedSoundOnce;
     private bool stoppedOnce;
+    private bool firstTime;
 
     // Start is called before the first frame update
     void Start()
     {
         // Self reference
         instance = this;
+        firstTime = true;
+        // Set frame rate to 30 fps
         QualitySettings.vSyncCount = 2;
-        // Get components
-        bg = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
-        welcomeText = transform.GetChild(1).gameObject.GetComponent<Text>();
-        introText = transform.GetChild(2).gameObject.GetComponent<Text>();
         // Reset variables
         playedSoundOnce = false;
-        // Set timescale to zero
-        StopTime();
+        // Set components
+        canvas = GetComponent<Canvas>();
+    }
+
+    void Update()
+    {
+        if (firstTime)
+        {
+            // Set timescale to zero
+            StopTime();
+            firstTime = false;
+        }
     }
 
     // Call to stop time
@@ -43,8 +46,7 @@ public class IntroTimeStopper : MonoBehaviour
         Time.timeScale = 0.0f;
         // Set visual elements on
         bg.enabled = true;
-        welcomeText.enabled = true;
-        introText.enabled = true;
+        canvas.enabled = true;
         // Play song
         MusicPlayer.instance.SetLowPass(true);
         MusicPlayer.instance.PlaySong();
@@ -59,6 +61,7 @@ public class IntroTimeStopper : MonoBehaviour
         Time.timeScale = 1.0f;
         // Set background off
         bg.enabled = false;
+        canvas.enabled = false;
         // Enable HUD
         HUDDisplayManager.instance.EnableHUD();
         PauseMenu.instance.canPause = true;
