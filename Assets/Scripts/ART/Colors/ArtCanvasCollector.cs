@@ -13,15 +13,22 @@ public class ArtCanvasCollector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Set self reference
         instance = this;
     }
 
     // Try to add color
-    public void TryAddColor(string color) {
-        if (!colors.Contains(color)) {
-            for (int i = 0; i < InstructionManager.instance.instructions.Length; i++) {
-                if (color == InstructionManager.instance.instructions[i].GetComponent<ColorBehaviour>().identifier) {
-                    Debug.Log("Dropped color ID: " + color + ". Instruction color ID: " + InstructionManager.instance.instructions[i].GetComponent<ColorBehaviour>().identifier);
+    public void TryAddColor(string color)
+    {
+        // If attempted color hasn't been already added
+        if (!colors.Contains(color))
+        {
+            // Iterate through every current needed color
+            for (int i = 0; i < InstructionManager.instance.instructions.Length; i++)
+            {
+                // If the attempted color's identifier is equal to one of the needed color's identifier
+                if (color == InstructionManager.instance.instructions[i].GetComponent<ColorBehaviour>().identifier)
+                {
                     // Add color to list
                     colors.Add(color);
                     // Create random position
@@ -32,15 +39,17 @@ public class ArtCanvasCollector : MonoBehaviour
                     GameObject splashInstance = Instantiate(splash, randomPos, Quaternion.identity);
                     splashInstance.GetComponent<SpriteRenderer>().color = ColorSystem.instance.colorsDict[color].GetComponent<SpriteRenderer>().color;
                     splashInstance.transform.parent = transform;
+                    // Remove needed color from needed colors list
+                    InstructionManager.instance.transform.GetChild(i).gameObject.SetActive(false);
                     // Reset player's color
                     ColorSystem.instance.currentSearch = "";
                     // Check if player wins
-                    if (colors.Count == InstructionManager.instance.instructions.Length) {
-                        Debug.Log("Win!");
+                    if (colors.Count == InstructionManager.instance.instructions.Length)
+                    {
                         InstructionManager.instance.win = true;
                     }
                 }
-            } 
+            }
         }
     }
 }

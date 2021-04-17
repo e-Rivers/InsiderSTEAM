@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraShake : MonoBehaviour
+public class ArtCameraShake : MonoBehaviour
 {
+    public static ArtCameraShake instance;
     private Transform tf;
     private Vector3 tfPos;
     private float shakeLength;
@@ -14,6 +15,7 @@ public class CameraShake : MonoBehaviour
     void Start()
     {
         // Get components
+        instance = this;
         tf = GetComponent<Transform>();
         // Set component values
         tfPos = tf.localPosition;
