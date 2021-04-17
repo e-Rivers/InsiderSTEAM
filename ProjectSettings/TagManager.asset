@@ -24,6 +24,9 @@ TagManager:
   - PlayerBullet
   - Projectile
   - Color
+  - Portal
+  - IconSwitcher
+  - LeftPortal
   layers:
   - Default
   - TransparentFX
