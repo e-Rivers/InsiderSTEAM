@@ -98,6 +98,14 @@ public class PaintingDisplayer : MonoBehaviour
                         {
                             button.GetComponent<Image>().enabled = true;
                             button.transform.GetChild(0).gameObject.GetComponent<Text>().enabled = true;
+                            if (LevelManager.levelsPlayed < 3)
+                            {
+                                button.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Siguiente";
+                            }
+                            else
+                            {
+                                button.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Completar";
+                            }
                             buttonTimer = 0.0f;
                         }
                     }
