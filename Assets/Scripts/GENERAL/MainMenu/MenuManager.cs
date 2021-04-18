@@ -9,12 +9,50 @@ public class MenuManager : MonoBehaviour
     public static string nextScene;
     public static MenuManager instance;
     public GameObject menu, profile, credits, playgame;
+    
+    public Image science,tech,engine,arts,maths;
+    private int currentChar = 0;
+    private bool transition = true;
+    private Coroutine changeMenuChar;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        instance = this;
+    void Start() {
+	    instance = this;
         nextScene = "MathRealm";
+		changeMenuChar = StartCoroutine(changeCharacter());
+    }
+
+    // Update is called once per frame
+    void Update() {
+	 	switch(currentChar) {
+			case 0:
+			makeTransition(maths, science);	
+			break;
+			case 1:
+			makeTransition(science, tech); 
+			break;
+			case 2:
+			makeTransition(tech, engine);
+			break;
+			case 3:
+			makeTransition(engine, arts);
+			break;
+			case 4:
+			makeTransition(arts, maths);
+			break;
+		}
+    }
+
+    // Method to make the transition of the characters
+    private void makeTransition(Image toQuit, Image toShow) {
+		toQuit.gameObject.SetActive(false);
+		toShow.gameObject.SetActive(true);
+		if(transition) {
+			toShow.canvasRenderer.SetAlpha(0);
+			toShow.CrossFadeAlpha(1,1,false);
+			transition = false;
+		}
+
     }
 
     // Open Credits
@@ -50,6 +88,7 @@ public class MenuManager : MonoBehaviour
     // Method to go to the loading screen
     public void EnterScene()
     {
+		StopCoroutine(changeMenuChar);
         SceneManager.LoadScene("LoadingScene");
     }
 
@@ -60,6 +99,15 @@ public class MenuManager : MonoBehaviour
     public void GotoArt() { nextScene = "ArtLevel"; EnterScene(); }
     public void GotoEngineering() { nextScene = "ArtLevel"; EnterScene(); }
 
+    // Coroutine to change the current displayed character
+    private IEnumerator changeCharacter() {
+		while(true) {	
+			yield return new WaitForSeconds(5);
+			if(currentChar == 4) { currentChar = 0; }
+			else { currentChar++; }
+			transition = true;	
+		}
+    }
 }
 
 
