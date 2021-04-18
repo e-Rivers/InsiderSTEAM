@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class ColumnChecker : MonoBehaviour
 {
     // Public attributes
+    public static ColumnChecker instance;
     public Transform child;
     public Text[] texts;
 
@@ -14,6 +15,7 @@ public class ColumnChecker : MonoBehaviour
     void Start()
     {
         // Initialize components
+        instance = this;
         texts = new Text[15];
         child = transform.GetChild(0);
         for (int i = 0; i < 15; i++)

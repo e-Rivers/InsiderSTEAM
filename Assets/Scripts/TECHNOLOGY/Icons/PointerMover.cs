@@ -11,7 +11,7 @@ public class PointerMover : MonoBehaviour
     private float switchYVelocityTimer;
     private float switchXVelocityTimer;
     // Start is called before the first frame update
-    void Start ()
+    void Start()
     {
         xSpeed = Random.Range(-8.6f, 9.0f);
         ySpeed = Random.Range(-8.0f, 8.0f);
@@ -22,45 +22,58 @@ public class PointerMover : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
 
-        if (timer < switchYVelocityTimer) {
+        if (timer < switchYVelocityTimer)
+        {
             timer += Time.deltaTime;
-        } else {
+        }
+        else
+        {
             SwitchY();
             switchYVelocityTimer = Random.Range(0.15f, 2.0f);
             timer = 0.0f;
         }
-        if (xTimer < switchXVelocityTimer) {
+        if (xTimer < switchXVelocityTimer)
+        {
             xTimer += Time.deltaTime;
-        } else {
+        }
+        else
+        {
             SwitchX();
             switchXVelocityTimer = Random.Range(0.5f, 5.0f);
             xTimer = 0.0f;
         }
-        if (transform.position.y >= 7.0f) {
+        if (transform.position.y >= 7.0f)
+        {
             SwitchY("down");
         }
-        if (transform.position.y <= -19.0f) {
+        if (transform.position.y <= -20.0f)
+        {
             SwitchY("up");
         }
         transform.position += new Vector3(xSpeed, ySpeed, 0) * Time.deltaTime;
     }
- 
+
     // Check for collision to switch velocity
-    private void OnTriggerEnter2D (Collider2D coll) {
-        if (coll.CompareTag("Portal")) {
+    private void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.CompareTag("Portal"))
+        {
             SwitchX("left");
         }
-        if (coll.CompareTag("LeftPortal")) {
+        if (coll.CompareTag("LeftPortal"))
+        {
             SwitchX("right");
         }
     }
 
     // Function to switch Y velocity
-    private void SwitchY(string dir="opp") {
-        switch (dir) {
+    private void SwitchY(string dir = "opp")
+    {
+        switch (dir)
+        {
             case "opp":
                 ySpeed *= -1.0f;
                 break;
@@ -74,8 +87,10 @@ public class PointerMover : MonoBehaviour
     }
 
     // Function to switch X velocity
-    private void SwitchX(string dir="opp") {
-        switch (dir) {
+    private void SwitchX(string dir = "opp")
+    {
+        switch (dir)
+        {
             case "opp":
                 xSpeed *= Random.Range(-2.5f, -0.9f);
                 break;
