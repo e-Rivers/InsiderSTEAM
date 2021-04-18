@@ -89,7 +89,7 @@ public class PaintingDisplayer : MonoBehaviour
                     }
                     else
                     {
-                        PaintingInfo.instance.SetInfo(InstructionManager.instance.level);
+                        PaintingInfo.instance.SetInfo(LevelManager.level);
                         if (buttonTimer < 4.0f)
                         {
                             buttonTimer += Time.deltaTime;
