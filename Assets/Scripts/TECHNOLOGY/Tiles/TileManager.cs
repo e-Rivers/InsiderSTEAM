@@ -146,12 +146,6 @@ public class TileManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     // Update matrix
     public void SetValueAt(int i, int j, int val)
     {

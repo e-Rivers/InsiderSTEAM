@@ -21,6 +21,7 @@ public class DropColor : MonoBehaviour
             if (canPlaceDrop)
             {
                 ArtCanvasCollector.instance.TryAddColor(ColorSystem.instance.currentColor.GetComponent<ColorBehaviour>().identifier);
+                ArtScoreSystem.instance.AddPoints(ArtCanvasCollector.instance.correct);
                 canPlaceDrop = false;
             }
         }

@@ -7,6 +7,7 @@ public class ArtCanvasCollector : MonoBehaviour
     // Public attributes
     public static ArtCanvasCollector instance;
     public GameObject splash;
+    public bool correct;
     // Private attributes
     private List<string> colors = new List<string>();
 
@@ -15,11 +16,14 @@ public class ArtCanvasCollector : MonoBehaviour
     {
         // Set self reference
         instance = this;
+        correct = false;
     }
 
     // Try to add color
     public void TryAddColor(string color)
     {
+        // Set flag
+        correct = false;
         // If attempted color hasn't been already added
         if (!colors.Contains(color))
         {
@@ -31,6 +35,8 @@ public class ArtCanvasCollector : MonoBehaviour
                 {
                     // Add color to list
                     colors.Add(color);
+                    // Set current color as correct
+                    correct = true;
                     // Create random position
                     float randomX = Random.Range(6.15f, 8.5f);
                     float randomY = Random.Range(-1.13f, -2.23f);

@@ -20,7 +20,6 @@ public class LevelManager : MonoBehaviour
         // Set button listener
         getNextLevel(false);
         levelsPlayed++;
-        Debug.Log("Game: " + levelsPlayed + ", Level: " + level);
     }
 
     public void getNextLevel(bool reload = true)
@@ -60,8 +59,15 @@ public class LevelManager : MonoBehaviour
         {
             levelsPlayed = 0;
             levels.Clear();
-            MenuManager.nextScene = "MainMenu";
-            MenuManager.instance.EnterScene();
+            PaintingDisplayer.instance.DisableCanvas();
+            ArtEndingScreen.instance.SetEndingScreen();
         }
     }
+
+    public void SendToMainMenu()
+    {
+        MenuManager.nextScene = "MainMenu";
+        MenuManager.instance.EnterScene();
+    }
+
 }

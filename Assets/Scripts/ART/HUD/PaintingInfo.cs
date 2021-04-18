@@ -7,9 +7,8 @@ public class PaintingInfo : MonoBehaviour
 {
     // Public attributes
     public static PaintingInfo instance;
-    // Private attributes
-    private Text titleText;
-    private Text descText;
+    public Text titleText;
+    public Text descText;
     public Dictionary<int, string> paintingsTitles = new Dictionary<int, string>()
     {
         {0, "La Creación de las Aves"},
