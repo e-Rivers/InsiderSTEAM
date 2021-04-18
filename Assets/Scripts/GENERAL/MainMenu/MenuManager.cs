@@ -6,20 +6,15 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-
-    public static string sceneToLoad;
+    public static string nextScene;
+    public static MenuManager instance;
     public GameObject menu, profile, credits, playgame;
 
     // Start is called before the first frame update
     void Start()
     {
-        sceneToLoad = "MathRealm";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        instance = this;
+        nextScene = "MathRealm";
     }
 
     // Open Credits
@@ -53,14 +48,17 @@ public class MenuManager : MonoBehaviour
     }
 
     // Method to go to the loading screen
-    public void GoToLoadScreen() { SceneManager.LoadScene("LoadingScene"); }
+    public void EnterScene()
+    {
+        SceneManager.LoadScene("LoadingScene");
+    }
 
     // Methods to change to the correspoding level (World)
-    public void GotoScience() { sceneToLoad = "ScienceLevel"; GoToLoadScreen(); }
-    public void GotoTechnology() { sceneToLoad = "TechRealm"; GoToLoadScreen(); }
-    public void GotoEngineering() { sceneToLoad = "EngineRealm"; GoToLoadScreen(); }
-    public void GotoArts() { sceneToLoad = "ArtRealm"; GoToLoadScreen(); }
-    public void GotoMathematics() { sceneToLoad = "MathRealm"; GoToLoadScreen(); }
+    public void GotoScience() { nextScene = "ScienceLevel"; EnterScene(); }
+    public void GotoMath() { nextScene = "MathLevel"; EnterScene(); }
+    public void GotoTech() { nextScene = "TechLevel"; EnterScene(); }
+    public void GotoArt() { nextScene = "ArtLevel"; EnterScene(); }
+    public void GotoEngineering() { nextScene = "ArtLevel"; EnterScene(); }
 
 }
 

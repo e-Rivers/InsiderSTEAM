@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
-public class ScienceGameplay : MonoBehaviour {
+public class ScienceGameplay : MonoBehaviour
+{
 
     // Attibutes that aren't used in other classes but their values are obtained publicly
     public InputField regInput, endInput, endsBannerAnswer, sidebarAnswer;
@@ -23,12 +24,13 @@ public class ScienceGameplay : MonoBehaviour {
     private string sidebarAns = "", endingAns = "";
 
     // Loads all riddles and problems
-    void Start() {
-	riddleDict.Add("Son 28 caballeros de espaldas negras y lisas; delante, todo agujeros, por dominar se dan prisa.", "DOMINO");
+    void Start()
+    {
+        riddleDict.Add("Son 28 caballeros de espaldas negras y lisas; delante, todo agujeros, por dominar se dan prisa.", "DOMINO");
         riddleDict.Add("Soy de madera, tengo un arco y no flecha.", "VIOLIN");
-	riddleDict.Add("Un oso camina 5 km al sur, 5 km al oeste y 5 km al norte. ¿De qué color es el oso?", "BLANCO");
+        riddleDict.Add("Un oso camina 5 km al sur, 5 km al oeste y 5 km al norte. ¿De qué color es el oso?", "BLANCO");
         riddleDict.Add("¿Cuántos animales tengo en casa sabiendo que todos son perros menos dos, todos son gatos menos dos, y que todos son loros menos dos?", "3");
-	riddleDict.Add("Dos abanicos que danzan todo el día sin parar; y cuando por fin te duermas quietecitos quedarán. Al caer tus deseos cumplirán.", "PESTAÑAS");
+        riddleDict.Add("Dos abanicos que danzan todo el día sin parar; y cuando por fin te duermas quietecitos quedarán. Al caer tus deseos cumplirán.", "PESTAÑAS");
         riddleDict.Add("Si 5 máquinas hacen 5 artículos en 5 minutos, ¿cuántos minutos dedicarán 100 máquinas en hacer 100 artículos?", "5");
         riddleDict.Add("Un león muerto de hambre, ¿de qué se alimenta?", "NADA");
         riddleDict.Add("Este banco está ocupado por un padre y por un hijo: El padre se llama Juan y el hijo ya te lo he dicho.", "ESTEBAN");
@@ -38,19 +40,26 @@ public class ScienceGameplay : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
-        if(!labyCrossed) {
+    void Update()
+    {
+        if (!labyCrossed)
+        {
             // Checks if the user clicked to remove the banner to start the game
-            if(!initBanner.activeSelf && roundType == 0) {
+            if (!initBanner.activeSelf && roundType == 0)
+            {
                 subTime = StartCoroutine(reduceTimer());
                 mazeGenesys.GetComponent<MazeGenerator>().GenerateMaze();
                 player.SetActive(true);
                 roundType++;
-		normalMusic.Play();
-            } else if(roundType%2 != 0) {
+                normalMusic.Play();
+            }
+            else if (roundType % 2 != 0)
+            {
                 roundTypeMEM();
-            } else if(roundType != 0 && roundType%2 == 0) {
-                if(!isAskTime) { roundTypeACT(); } else { askRiddleOrProblem(); }
+            }
+            else if (roundType != 0 && roundType % 2 == 0)
+            {
+                if (!isAskTime) { roundTypeACT(); } else { askRiddleOrProblem(); }
             }
         }
         // Checks if the player has escaped the labyrinth
@@ -58,38 +67,49 @@ public class ScienceGameplay : MonoBehaviour {
     }
 
     // Method that implements the memorizing time
-    private void roundTypeMEM() {
-        if(timeCount >= 0) {
+    private void roundTypeMEM()
+    {
+        if (timeCount >= 0)
+        {
             timeText.text = "Tiempo: " + timeCount;
             sciText.text = "Memoriza el laberinto, porque al terminar el tiempo, deberás cruzarlo...";
-        } else {
+        }
+        else
+        {
             timeCount = 20;
             roundType++;
         }
     }
 
     // Method that implements the labyrinth crossing time
-    private void roundTypeACT() {
-        if(!isAskTime && timeCount >= 0) {
+    private void roundTypeACT()
+    {
+        if (!isAskTime && timeCount >= 0)
+        {
             mazeCover.SetActive(true);
             timeText.text = "Tiempo: " + timeCount;
             sciText.text = "Ahora sí, usa las flechas o WASD para cruzarlo con lo que recuerdes...";
-        } else {
+        }
+        else
+        {
             isAskTime = true;
             timeCount = 60;
             int randomSelection = Random.Range(0, riddleDict.Keys.Count);
             string randomRiddle = riddleDict.Keys.ElementAt(randomSelection);
             askText.text = randomRiddle;
             sciText.text = "TIEMPO!! No escapas aún; para pasar de ronda, responde mi pregunta...";
-	    askingMusic.Play();
+            askingMusic.Play();
         }
     }
 
     // Method that implements the logic to ask questions and validate the answer
-    private void askRiddleOrProblem() {
-        if(timeCount >= 0) {
+    private void askRiddleOrProblem()
+    {
+        if (timeCount >= 0)
+        {
             timeText.text = "Tiempo: " + timeCount;
-            if(sidebarAns == riddleDict[askText.text]) {
+            if (sidebarAns == riddleDict[askText.text])
+            {
                 askText.text = "";
                 sidebarAnswer.text = "";
                 sidebarAns = "";
@@ -99,16 +119,20 @@ public class ScienceGameplay : MonoBehaviour {
                 // Calculates the current round
                 roundType++;
                 string[] prevRound = roundText.text.Split(' ');
-                roundText.text = "Ronda: " + (roundType-int.Parse(prevRound[1]));
+                roundText.text = "Ronda: " + (roundType - int.Parse(prevRound[1]));
                 timeCount = 30;
                 isAskTime = false;
-		askingMusic.Stop();
-		normalMusic.Play();
-            } else if(sidebarAns != "") {
+                askingMusic.Stop();
+                normalMusic.Play();
+            }
+            else if (sidebarAns != "")
+            {
                 sciText.text = "INCORRECTO! Intenta de nuevo... si es que te alcanza el tiempo...";
             }
-        } else {
-	    askingMusic.Stop();
+        }
+        else
+        {
+            askingMusic.Stop();
             StopCoroutine(subTime);
             finishTitle.text = "DERROTA";
             finishText.text = "No lograste escapar del laberinto, pero no te rindas, entrena tu mente, piensa creativamente y verás como irás mejorando hasta que por fin la victoria sea tuya.";
@@ -117,39 +141,48 @@ public class ScienceGameplay : MonoBehaviour {
     }
 
     // Method to update substract one to the timer
-    IEnumerator reduceTimer() {
-        while(true) {
+    IEnumerator reduceTimer()
+    {
+        while (true)
+        {
             yield return new WaitForSeconds(1);
             timeCount--;
         }
     }
 
     // Method to verify if the player escaped and to ask for the last question
-    private void verifyEscapeAndEnding() {
-         // Checks if the player is out of the labyrinth borders
-        if(player.transform.position.x >= 4.5 || player.transform.position.x <= -4.5 || player.transform.position.y >= 4.5 || player.transform.position.y <= -4.5) {
-            if(!labyCrossed) {
+    private void verifyEscapeAndEnding()
+    {
+        // Checks if the player is out of the labyrinth borders
+        if (player.transform.position.x >= 4.5 || player.transform.position.x <= -4.5 || player.transform.position.y >= 4.5 || player.transform.position.y <= -4.5)
+        {
+            if (!labyCrossed)
+            {
                 timeCount = 60;
                 labyCrossed = true;
                 sciText.text = ". . .";
-		normalMusic.Stop();
-		askingMusic.Play();
+                normalMusic.Stop();
+                askingMusic.Play();
             }
             timeText.text = "Tiempo: " + timeCount;
             mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
             mazeCover.SetActive(false);
             player.SetActive(false);
             endsBanner.SetActive(true);
-            if(timeCount > 0) {
-                if(endingAns == "1") {
-		    askingMusic.Stop();
+            if (timeCount > 0)
+            {
+                if (endingAns == "1")
+                {
+                    askingMusic.Stop();
                     StopCoroutine(subTime);
                     finishTitle.text = "VICTORIA";
                     finishText.text = "Tu memoria y habilidad mental son ADMIRABLES!! Haz conseguido vencer a los más grandes científicos y los has liberado! Siéntete orgulloso, no cualquiera logra superar esto.";
                     finishPanel.SetActive(true);
                 }
-            } else {
-		askingMusic.Stop();
+            }
+            else
+            {
+                askingMusic.Stop();
                 StopCoroutine(subTime);
                 finishTitle.text = "DERROTA";
                 finishText.text = "Muy bien jugado, lograste llegar lejos, sin embargo, esta vez has sido derrotado, enorgullécete y vuelve a intentarlo... más fuerte, más rápido y más inteligente.";
@@ -159,23 +192,27 @@ public class ScienceGameplay : MonoBehaviour {
     }
 
     // This method will remove the initial banner
-    public void removeBanner() {
+    public void removeBanner()
+    {
         initBanner.SetActive(false);
     }
 
     // Method to capture user input in every round
-    public void captureRegInput() {
-        sidebarAns = regInput.text.Replace("\n", "").Replace("\r", "").Replace(" ","").ToUpper();
+    public void captureRegInput()
+    {
+        sidebarAns = regInput.text.Replace("\n", "").Replace("\r", "").Replace(" ", "").ToUpper();
     }
 
     // Method to capture user input at the end of the game
-    public void captureEndInput() {
-        endingAns = endInput.text.Replace("\n", "").Replace("\r", "").Replace(" ","").ToUpper();
+    public void captureEndInput()
+    {
+        endingAns = endInput.text.Replace("\n", "").Replace("\r", "").Replace(" ", "").ToUpper();
     }
 
     // Method to return to main world
-    public void returnToWorld() {
-	MenuManager.sceneToLoad = "MainMenu";
+    public void returnToWorld()
+    {
+        MenuManager.nextScene = "MainMenu";
         SceneManager.LoadScene("LoadingScene");
     }
 }

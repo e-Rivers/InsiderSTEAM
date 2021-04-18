@@ -21,6 +21,8 @@ public class IntroTimeStopper : MonoBehaviour
         // Self reference
         instance = this;
         firstTime = true;
+        // Set scene to send after level ends
+        MenuManager.nextScene = "MathRealm";
         // Set frame rate to 30 fps
         QualitySettings.vSyncCount = 2;
         // Reset variables
@@ -75,7 +77,5 @@ public class IntroTimeStopper : MonoBehaviour
         MusicPlayer.instance.SetLowPass(false);
         // Set enemy sounds triggers on
         EnemyControl.instance.canTriggerSounds = true;
-        // Let player grow
-        PlayerAppearAnimation.instance.canGrow = true;
     }
 }

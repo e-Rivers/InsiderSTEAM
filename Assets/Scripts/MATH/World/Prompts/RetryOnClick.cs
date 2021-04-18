@@ -23,9 +23,14 @@ public class RetryOnClick : MonoBehaviour
     {
         if (canReload)
         {
-            SceneManager.LoadScene(MenuManager.sceneToLoad);
             canReload = false;
+            MenuManager.instance.GotoMath();
         }
     }
-
+    // Goes to main menu
+    public void LoadMainMenu()
+    {
+        MenuManager.nextScene = "MainMenu";
+        MenuManager.instance.EnterScene();
+    }
 }

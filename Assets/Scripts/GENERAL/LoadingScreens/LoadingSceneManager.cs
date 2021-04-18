@@ -33,20 +33,28 @@ public class LoadingSceneManager : MonoBehaviour
         if (timer < loadTime)
         {
             timer += Time.deltaTime;
-        } else
+        }
+        else
         {
             timer = 0.0f;
             canContinue = true;
         }
         // If charge time is completed
-        if (canContinue) {
+        if (canContinue)
+        {
             LoadingTextUpdate.instance.stop = true;
-            if (textTimer < 1.0f) {
+            if (textTimer < 1.0f)
+            {
                 textTimer += Time.deltaTime;
-            } else {
-                if (textCounter % 2 == 0) {
+            }
+            else
+            {
+                if (textCounter % 2 == 0)
+                {
                     continueText.text = "PRESIONA 'ESPACIO' PARA CONTINUAR";
-                } else {
+                }
+                else
+                {
                     continueText.text = "";
                 }
                 textCounter++;
@@ -54,9 +62,11 @@ public class LoadingSceneManager : MonoBehaviour
             }
         }
         // Check user input
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            if (canContinue) {
-                SceneManager.LoadScene(MenuManager.sceneToLoad);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (canContinue)
+            {
+                SceneManager.LoadScene(MenuManager.nextScene);
             }
         }
     }

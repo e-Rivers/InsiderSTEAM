@@ -21,16 +21,16 @@ public class TipsTextUpdater : MonoBehaviour
         color = text.color;
         tips = new Dictionary<string, string[]>()
         {
-            {"MathRealm", new string[] { "�Los colores de cada plataforma indican propiedades diferentes! Por ejemplo: Las plataformas naranjas s�lo te permitir�n saltar sobre ellas una vez.",
+            {"MathLevel", new string[] { "�Los colores de cada plataforma indican propiedades diferentes! Por ejemplo: Las plataformas naranjas s�lo te permitir�n saltar sobre ellas una vez.",
                                     "�Sab�as que cada vez que te cuelgues de 3 plataformas verdes, tu personaje obtendr� 2 vidas m�s?",
                                     "�Ten cuidado con disparar demasiado! Si est�s cerca de derrotar a 10 enemigos, correr�s el riesgo de disparar a una respuesta equivocada cuando aparezca un problema matem�tico.",
                                     "�Las plataformas azul-obscuro te protegen! Si te agarras de una, �sta lanzar� un gran proyectil que destruye a todo enemigo a su paso.",
                                     "Agarrarte de plataformas superiores puede traerte diferentes ventajas seg�n su color.",
                                     "Aunque saltar de una plataforma roja te da una gran altura, no podr�s hacer un doble salto hasta saltar sobre otra plataforma."
-                                  } 
+                                  }
             }
         };
-        SetNewTip(MenuManager.sceneToLoad);
+        SetNewTip(MenuManager.nextScene);
     }
 
     // Update is called once per frame
@@ -38,9 +38,10 @@ public class TipsTextUpdater : MonoBehaviour
     {
         if (tipTimer >= tipSwitchTime)
         {
-            SetNewTip(MenuManager.sceneToLoad);
+            SetNewTip(MenuManager.nextScene);
             tipTimer = 0.0f;
-        } else
+        }
+        else
         {
             tipTimer += Time.deltaTime;
         }
@@ -60,7 +61,8 @@ public class TipsTextUpdater : MonoBehaviour
                 // Change the current index
                 index = Random.Range(0, tips[currRealm].Length);
             }
-        } else
+        }
+        else
         {
             // Empty usedTips List if it has the same number of elements as the string arrays from the tips dictionary
             usedTips.Clear();

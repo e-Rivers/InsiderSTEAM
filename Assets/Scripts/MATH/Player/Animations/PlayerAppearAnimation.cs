@@ -20,7 +20,6 @@ public class PlayerAppearAnimation : MonoBehaviour
         // Set growing x limit
         limit = 0.6f;
         // Set growth rate
-        canGrow = false;
         rate = limit / 20;
         // Set scale to 0, 0, 1
         transform.localScale = new Vector3(0f, 0f, 1f);
@@ -33,7 +32,7 @@ public class PlayerAppearAnimation : MonoBehaviour
         {
             if (transform.localScale.x < limit)
             {
-                transform.localScale += new Vector3(rate, rate, 0f);
+                transform.localScale += 20f * Time.deltaTime * new Vector3(rate, rate, 0f);
             }
             else
             {
