@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class RowChecker : MonoBehaviour
 {
     // Public attributes
+    public static RowChecker instance;
     public Transform child;
     public Text[] texts;
 
@@ -16,6 +17,7 @@ public class RowChecker : MonoBehaviour
     void Start()
     {
         // Initialize components
+        instance = this;
         texts = new Text[15];
         child = transform.GetChild(0);
         for (int i = 0; i < 15; i++)
@@ -27,7 +29,7 @@ public class RowChecker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (isFirstTime)
+        if (isFirstTime)
         {
             int[][] matrix = TileManager.instance.winnerMatrix;
             int counter = 0;
@@ -51,7 +53,8 @@ public class RowChecker : MonoBehaviour
                                 result += counter + " ";
                                 counter = 0;
                             }
-                        } else
+                        }
+                        else
                         {
                             result += counter + " ";
                         }

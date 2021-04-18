@@ -59,8 +59,11 @@ public class LevelManager : MonoBehaviour
         {
             levelsPlayed = 0;
             levels.Clear();
-            PaintingDisplayer.instance.DisableCanvas();
-            ArtEndingScreen.instance.SetEndingScreen();
+            if (SceneManager.GetActiveScene().name.Equals("ArtLevel"))
+            {
+                PaintingDisplayer.instance.DisableCanvas();
+                ArtEndingScreen.instance.SetEndingScreen();
+            }
         }
     }
 
