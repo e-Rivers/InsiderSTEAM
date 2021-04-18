@@ -10,7 +10,6 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
     public static int level;
     public static int levelsPlayed;
-    public static bool ended = false;
 
     // Private attributes
     private static List<int> levels = new List<int>();
@@ -20,6 +19,8 @@ public class LevelManager : MonoBehaviour
     {
         // Set button listener
         getNextLevel(false);
+        levelsPlayed++;
+        Debug.Log("Game: " + levelsPlayed + ", Level: " + level);
     }
 
     public void getNextLevel(bool reload = true)
@@ -50,24 +51,17 @@ public class LevelManager : MonoBehaviour
                     }
                 }
             }
+            if (reload)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
         else
         {
-            endGame();
-        }
-        if (reload)
-        {
-            levelsPlayed++;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            levelsPlayed = 0;
+            levels.Clear();
+            MenuManager.nextScene = "MainMenu";
+            MenuManager.instance.EnterScene();
         }
     }
-
-    public void endGame()
-    {
-        Debug.Log("Ended game");
-        levels.Clear();
-        levelsPlayed = 0;
-        ended = true;
-    }
-
 }

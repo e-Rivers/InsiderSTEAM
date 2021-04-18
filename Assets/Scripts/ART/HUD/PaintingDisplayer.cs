@@ -89,7 +89,7 @@ public class PaintingDisplayer : MonoBehaviour
                     }
                     else
                     {
-                        PaintingInfo.instance.SetInfo(InstructionManager.instance.level);
+                        PaintingInfo.instance.SetInfo(LevelManager.level);
                         if (buttonTimer < 4.0f)
                         {
                             buttonTimer += Time.deltaTime;
@@ -98,6 +98,14 @@ public class PaintingDisplayer : MonoBehaviour
                         {
                             button.GetComponent<Image>().enabled = true;
                             button.transform.GetChild(0).gameObject.GetComponent<Text>().enabled = true;
+                            if (LevelManager.levelsPlayed < 3)
+                            {
+                                button.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Siguiente";
+                            }
+                            else
+                            {
+                                button.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Completar";
+                            }
                             buttonTimer = 0.0f;
                         }
                     }
