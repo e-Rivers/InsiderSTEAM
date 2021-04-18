@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
     public static int level;
     public static int levelsPlayed;
+    public static bool ended = false;
 
     // Private attributes
     private static List<int> levels = new List<int>();
@@ -66,6 +67,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Ended game");
         levels.Clear();
         levelsPlayed = 0;
+        ended = true;
     }
 
 }

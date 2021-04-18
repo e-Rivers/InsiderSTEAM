@@ -56,7 +56,6 @@ public class ColumnChecker : MonoBehaviour
                         }
                     }
                 }
-                Debug.Log("result = " + result);
                 texts[i].text = result;
                 result = "";
                 counter = 0;
