@@ -103,7 +103,7 @@ public class ScienceGameplay : MonoBehaviour
             int randomSelection = Random.Range(0, riddleDict.Keys.Count);
             string randomRiddle = riddleDict.Keys.ElementAt(randomSelection);
             askText.text = randomRiddle;
-            sciText.text = "TIEMPO!! No escapas aún; para pasar de ronda, responde mi pregunta...";
+            sciText.text = "Algunos accesos se bloquearon, para abrirlos resuelve el acertijo...";
             askingMusic.Play();
         }
     }
@@ -133,7 +133,7 @@ public class ScienceGameplay : MonoBehaviour
             }
             else if (sidebarAns != "")
             {
-                sciText.text = "INCORRECTO! Intenta de nuevo... si es que te alcanza el tiempo...";
+                sciText.text = "INCORRECTO! Intenta de nuevo... Se nos acaba el tiempo!!";
             }
         }
         else
@@ -141,7 +141,7 @@ public class ScienceGameplay : MonoBehaviour
             askingMusic.Stop();
             StopCoroutine(subTime);
             finishTitle.text = "DERROTA";
-            finishText.text = "No lograste escapar del laberinto, pero no te rindas, entrena tu mente, piensa creativamente y verás como irás mejorando hasta que por fin la victoria sea tuya.";
+            finishText.text = "No lograste desactivar el reactor, pero no te rindas, entrena tu mente, piensa creativamente y verás como irás mejorando hasta que por fin la victoria sea tuya.";
             finishPanel.SetActive(true);
         }
     }
@@ -181,10 +181,10 @@ public class ScienceGameplay : MonoBehaviour
     private IEnumerator alarmScreenEffect() {
 	while(true) {
 	    alarmLight.canvasRenderer.SetAlpha(0);
-	    alarmLight.CrossFadeAlpha(0.7f,1,false);
-	    yield return new WaitForSeconds(1);
-	    alarmLight.CrossFadeAlpha(0,1,false);
-	    yield return new WaitForSeconds(1);
+	    alarmLight.CrossFadeAlpha(0.7f,0.5f,false);
+	    yield return new WaitForSeconds(0.5f);
+	    alarmLight.CrossFadeAlpha(0,0.5f,false);
+	    yield return new WaitForSeconds(0.5f);
 	}
     } 
 
@@ -215,7 +215,7 @@ public class ScienceGameplay : MonoBehaviour
                     askingMusic.Stop();
                     StopCoroutine(subTime);
                     finishTitle.text = "VICTORIA";
-                    finishText.text = "Tu memoria y habilidad mental son ADMIRABLES!! Haz conseguido vencer a los más grandes científicos y los has liberado! Siéntete orgulloso, no cualquiera logra superar esto.";
+                    finishText.text = "Tu memoria y habilidad mental son ADMIRABLES!! Haz conseguido salvar la nave y a sus científicos! Siéntete orgulloso, no cualquiera logra superar esto.";
                     finishPanel.SetActive(true);
                 }
             }
