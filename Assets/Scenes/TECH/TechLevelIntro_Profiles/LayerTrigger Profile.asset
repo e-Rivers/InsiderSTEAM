@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: PostProcessing Profile
+  m_Name: LayerTrigger Profile
   m_EditorClassIdentifier: 
   settings:
-  - {fileID: 631570987130943873}
---- !u!114 &631570987130943873
+  - {fileID: 9029059246018726450}
+--- !u!114 &9029059246018726450
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -35,8 +35,8 @@ MonoBehaviour:
     value: {fileID: 0}
     defaultState: 1
   intensity:
-    overrideState: 1
-    value: 0.65
+    overrideState: 0
+    value: 0
   fastMode:
     overrideState: 0
     value: 0
