@@ -49,6 +49,7 @@ public class ScienceGameplay : MonoBehaviour
             // Checks if the user clicked to remove the banner to start the game
             if (!initBanner.activeSelf && roundType == 0)
             {
+		alarmLight.gameObject.SetActive(false);
 		StopCoroutine(alarmEffect);
 		startingAlarm.Stop();
                 subTime = StartCoroutine(reduceTimer());
