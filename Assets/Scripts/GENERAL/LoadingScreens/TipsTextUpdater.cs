@@ -30,20 +30,26 @@ public class TipsTextUpdater : MonoBehaviour
                                   }
             }
         };
-        SetNewTip(MenuManager.nextScene);
+        if (tips.ContainsKey(MenuManager.nextScene))
+        {
+            SetNewTip(MenuManager.nextScene);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (tipTimer >= tipSwitchTime)
+        if (tips.ContainsKey(MenuManager.nextScene))
         {
-            SetNewTip(MenuManager.nextScene);
-            tipTimer = 0.0f;
-        }
-        else
-        {
-            tipTimer += Time.deltaTime;
+            if (tipTimer >= tipSwitchTime)
+            {
+                SetNewTip(MenuManager.nextScene);
+                tipTimer = 0.0f;
+            }
+            else
+            {
+                tipTimer += Time.deltaTime;
+            }
         }
     }
 

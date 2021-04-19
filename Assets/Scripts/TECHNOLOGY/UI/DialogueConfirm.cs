@@ -23,6 +23,7 @@ public class DialogueConfirm : MonoBehaviour
 
     public void ConfirmDialogue()
     {
+        Debug.Log("Clicked " + clicks + " times!");
         if (clicks < 6)
         {
             dialogue.text = dialogues[clicks];
@@ -30,8 +31,8 @@ public class DialogueConfirm : MonoBehaviour
         }
         else
         {
-            MenuManager.nextScene = "TechRealm";
-            MenuManager.instance.EnterScene();
+            MenuManager.nextScene = "TechLevel";
+            MenuManager.instance.EnterScene(false);
         }
     }
 }

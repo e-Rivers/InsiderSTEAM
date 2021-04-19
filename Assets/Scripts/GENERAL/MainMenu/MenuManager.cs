@@ -93,10 +93,17 @@ public class MenuManager : MonoBehaviour
     }
 
     // Method to go to the loading screen
-    public void EnterScene()
+    public void EnterScene(bool load = true)
     {
         StopCoroutine(changeMenuChar);
-        SceneManager.LoadScene("LoadingScene");
+        if (load)
+        {
+            SceneManager.LoadScene("LoadingScene");
+        }
+        else
+        {
+            SceneManager.LoadScene(nextScene);
+        }
     }
 
     // Methods to change to the correspoding level (World)
