@@ -10,7 +10,6 @@ public class TileManager : MonoBehaviour
     public int currentLevel = 0;
     public int[][] winnerMatrix;
     public int[][] matrix;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -170,6 +169,11 @@ public class TileManager : MonoBehaviour
                 Debug.Log(matrix[i][j] + ", " + winnerMatrix[i][j] + "at x: " + i + " and y: " + j);
                 if (matrix[i][j] != winnerMatrix[i][j])
                 {
+                    if (TechScoreSystem.mistakes < 3)
+                    {
+                        TechScoreSystem.mistakes++;
+                    }
+                    ArtCameraShake.instance.ShakeCamera(0.3f, 0.3f);
                     return false;
                 }
             }

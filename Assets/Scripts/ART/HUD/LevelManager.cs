@@ -11,12 +11,16 @@ public class LevelManager : MonoBehaviour
     public static int level;
     public static int levelsPlayed;
 
+    public int maxLevels = 3;
+
     // Private attributes
     private static List<int> levels = new List<int>();
 
     // Start is called before the first frame update
     void Start()
     {
+        // Set self reference
+        instance = this;
         // Set button listener
         getNextLevel(false);
         levelsPlayed++;
@@ -25,7 +29,7 @@ public class LevelManager : MonoBehaviour
     public void getNextLevel(bool reload = true)
     {
         // Do only if number of played levels are less than 3
-        if (levelsPlayed < 3)
+        if (levelsPlayed < maxLevels)
         {
             // Get a random new level number
             int rndLevel = Random.Range(0, 7);
@@ -69,6 +73,9 @@ public class LevelManager : MonoBehaviour
 
     public void SendToMainMenu()
     {
+        levelsPlayed = 0;
+        level = 0;
+        levels.Clear();
         MenuManager.nextScene = "MainMenu";
         MenuManager.instance.EnterScene();
     }
