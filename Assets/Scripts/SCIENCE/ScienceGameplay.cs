@@ -10,9 +10,9 @@ public class ScienceGameplay : MonoBehaviour
 
     // Attibutes that aren't used in other classes but their values are obtained publicly
     public InputField regInput, endInput, endsBannerAnswer, sidebarAnswer;
-    public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover, finishPanel;
+    public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover, finishPanel, short1, short2, short3;
     public Text timeText, roundText, askText, sciText, finishTitle, finishText;
-    public AudioSource normalMusic, askingMusic, startingAlarm;
+    public AudioSource normalMusic, askingMusic, startingAlarm, collapseAudio;
     public Image alarmLight;
     // Attributes that are used in other classes (MoveCharacter.cs)
     public static bool isAskTime = false;
@@ -20,14 +20,14 @@ public class ScienceGameplay : MonoBehaviour
     // Internal attributes
     private Dictionary<string, string> riddleDict = new Dictionary<string, string>();
     private bool labyCrossed = false;
-    private Coroutine subTime, alarmEffect;
+    private Coroutine subTime, alarmEffect, shortEffect;
     private int timeCount = 30;
     private string sidebarAns = "", endingAns = "";
 
     // Loads all riddles and problems
     void Start()
     {
-	alarmEffect = StartCoroutine(alarmScreenEffect());
+	alarmEffect = StartCoroutine(alarmScreenEffect());	
         riddleDict.Add("Son 28 caballeros de espaldas negras y lisas; delante, todo agujeros, por dominar se dan prisa.", "DOMINO");
         riddleDict.Add("Soy de madera, tengo un arco y no flecha.", "VIOLIN");
         riddleDict.Add("Un oso camina 5 km al sur, 5 km al oeste y 5 km al norte. ¿De qué color es el oso?", "BLANCO");
@@ -49,6 +49,7 @@ public class ScienceGameplay : MonoBehaviour
             // Checks if the user clicked to remove the banner to start the game
             if (!initBanner.activeSelf && roundType == 0)
             {
+		shortEffect = StartCoroutine(shortCircuitEffect());
 		alarmLight.gameObject.SetActive(false);
 		StopCoroutine(alarmEffect);
 		startingAlarm.Stop();
@@ -155,11 +156,33 @@ public class ScienceGameplay : MonoBehaviour
         }
     }
 
+    // Coroutine to display the short-circuit effects
+    private IEnumerator shortCircuitEffect() {
+	while(true) {
+	    int randomEffect = (int) Random.Range(0f, 10f);
+	    switch(randomEffect) {
+		case 2:
+		    short1.SetActive(true); break;
+		case 4:
+		    short2.SetActive(true); break;
+		case 6:
+		    short3.SetActive(true); break;
+		case 8:
+		    collapseAudio.Play(); break;
+	    }
+	    yield return new WaitForSeconds(3);
+	    short1.SetActive(false);
+	    short2.SetActive(false);
+	    short3.SetActive(false);
+	}
+    }
+
+    // Coroutine to display the alarm effect
     private IEnumerator alarmScreenEffect() {
 	while(true) {
 	    alarmLight.canvasRenderer.SetAlpha(0);
 	    alarmLight.CrossFadeAlpha(0.7f,1,false);
-	    yield return new WaitForSeconds(2);
+	    yield return new WaitForSeconds(1);
 	    alarmLight.CrossFadeAlpha(0,1,false);
 	    yield return new WaitForSeconds(1);
 	}
@@ -173,6 +196,7 @@ public class ScienceGameplay : MonoBehaviour
         {
             if (!labyCrossed)
             {
+		StopCoroutine(shortEffect);
                 timeCount = 60;
                 labyCrossed = true;
                 sciText.text = ". . .";
