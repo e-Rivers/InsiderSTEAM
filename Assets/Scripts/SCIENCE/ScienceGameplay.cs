@@ -12,20 +12,22 @@ public class ScienceGameplay : MonoBehaviour
     public InputField regInput, endInput, endsBannerAnswer, sidebarAnswer;
     public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover, finishPanel;
     public Text timeText, roundText, askText, sciText, finishTitle, finishText;
-    public AudioSource normalMusic, askingMusic;
+    public AudioSource normalMusic, askingMusic, startingAlarm;
+    public Image alarmLight;
     // Attributes that are used in other classes (MoveCharacter.cs)
     public static bool isAskTime = false;
     public static int roundType = 0; //(odd is labyrinth crossing & even is answering)
     // Internal attributes
     private Dictionary<string, string> riddleDict = new Dictionary<string, string>();
     private bool labyCrossed = false;
-    private Coroutine subTime;
+    private Coroutine subTime, alarmEffect;
     private int timeCount = 30;
     private string sidebarAns = "", endingAns = "";
 
     // Loads all riddles and problems
     void Start()
     {
+	alarmEffect = StartCoroutine(alarmScreenEffect());
         riddleDict.Add("Son 28 caballeros de espaldas negras y lisas; delante, todo agujeros, por dominar se dan prisa.", "DOMINO");
         riddleDict.Add("Soy de madera, tengo un arco y no flecha.", "VIOLIN");
         riddleDict.Add("Un oso camina 5 km al sur, 5 km al oeste y 5 km al norte. ¿De qué color es el oso?", "BLANCO");
@@ -47,6 +49,8 @@ public class ScienceGameplay : MonoBehaviour
             // Checks if the user clicked to remove the banner to start the game
             if (!initBanner.activeSelf && roundType == 0)
             {
+		StopCoroutine(alarmEffect);
+		startingAlarm.Stop();
                 subTime = StartCoroutine(reduceTimer());
                 mazeGenesys.GetComponent<MazeGenerator>().GenerateMaze();
                 player.SetActive(true);
@@ -141,7 +145,7 @@ public class ScienceGameplay : MonoBehaviour
     }
 
     // Method to update substract one to the timer
-    IEnumerator reduceTimer()
+    private IEnumerator reduceTimer()
     {
         while (true)
         {
@@ -149,6 +153,16 @@ public class ScienceGameplay : MonoBehaviour
             timeCount--;
         }
     }
+
+    private IEnumerator alarmScreenEffect() {
+	while(true) {
+	    alarmLight.canvasRenderer.SetAlpha(0);
+	    alarmLight.CrossFadeAlpha(0.7f,1,false);
+	    yield return new WaitForSeconds(2);
+	    alarmLight.CrossFadeAlpha(0,1,false);
+	    yield return new WaitForSeconds(1);
+	}
+    } 
 
     // Method to verify if the player escaped and to ask for the last question
     private void verifyEscapeAndEnding()
