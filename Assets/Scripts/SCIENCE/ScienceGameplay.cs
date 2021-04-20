@@ -10,7 +10,7 @@ public class ScienceGameplay : MonoBehaviour
 
     // Attibutes that aren't used in other classes but their values are obtained publicly
     public InputField regInput, endInput, endsBannerAnswer, sidebarAnswer;
-    public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover, finishPanel, short1, short2, short3;
+    public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover, finishPanel, short1, short2, short3, holoIDLE, holoFAIL;
     public Text timeText, roundText, askText, sciText, finishTitle, finishText;
     public AudioSource normalMusic, askingMusic, startingAlarm, collapseAudio;
     public Image alarmLight;
@@ -49,6 +49,7 @@ public class ScienceGameplay : MonoBehaviour
             // Checks if the user clicked to remove the banner to start the game
             if (!initBanner.activeSelf && roundType == 0)
             {
+		holoIDLE.SetActive(true);
 		shortEffect = StartCoroutine(shortCircuitEffect());
 		alarmLight.gameObject.SetActive(false);
 		StopCoroutine(alarmEffect);
@@ -84,6 +85,8 @@ public class ScienceGameplay : MonoBehaviour
         {
             timeCount = 20;
             roundType++;
+	    holoIDLE.SetActive(false);
+	    holoFAIL.SetActive(true);
         }
     }
 
@@ -130,6 +133,8 @@ public class ScienceGameplay : MonoBehaviour
                 isAskTime = false;
                 askingMusic.Stop();
                 normalMusic.Play();
+		holoFAIL.SetActive(false);
+		holoIDLE.SetActive(true);
             }
             else if (sidebarAns != "")
             {
