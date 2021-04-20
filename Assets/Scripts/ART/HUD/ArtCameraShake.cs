@@ -9,7 +9,6 @@ public class ArtCameraShake : MonoBehaviour
     private Vector3 tfPos;
     private float shakeLength;
     private float shakeMagntitude;
-    private float damp;
 
     // Start is called before the first frame update
     void Start()
@@ -22,28 +21,26 @@ public class ArtCameraShake : MonoBehaviour
         // Set script values
         shakeLength = 0.0f;
         shakeMagntitude = 0.7f;
-        damp = 1.0f;
     }
 
-    // Update is called once per frame
-    private void FixedUpdate()
-    {
-        if (shakeLength > 0.0f)
-        {
-            tf.localPosition = tfPos + Random.insideUnitSphere * shakeMagntitude;
-            shakeLength -= Time.fixedDeltaTime * damp;
-        }
-        else
-        {
-            shakeLength = 0.0f;
-            tf.localPosition = tfPos;
-        }
-    }
-
-    // Call to shake camera
+    // Call to adjust coroutine variables
     public void ShakeCamera(float magnitude = 0.7f, float length = 0.5f)
     {
         shakeMagntitude = magnitude;
         shakeLength = length;
+        StartCoroutine("Shake");
+    }
+
+    // Shake camera
+    IEnumerator Shake()
+    {
+        while (shakeLength > 0)
+        {
+            shakeLength -= 0.1f;
+            tf.localPosition = tfPos + Random.insideUnitSphere * shakeMagntitude;
+            yield return new WaitForSeconds(0.1f);
+        }
+        shakeLength = 0f;
+        tf.localPosition = tfPos;
     }
 }

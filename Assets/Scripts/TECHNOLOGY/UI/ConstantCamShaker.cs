@@ -7,29 +7,31 @@ public class ConstantCamShaker : MonoBehaviour
     // Private attributes
     private bool keepShaking;
     private float shakeTime;
-    private float timer;
+    private int counter = 0;
     // Start is called before the first frame update
     void Start()
     {
         keepShaking = true;
         shakeTime = 0.5f;
-        timer = 0.5f;
     }
-
     // Update is called once per frame
     void Update()
     {
-        if (keepShaking)
+        if (counter == 0)
         {
-            if (timer < shakeTime)
-            {
-                timer += Time.deltaTime;
-            }
-            else
-            {
-                ArtCameraShake.instance.ShakeCamera(0.05f, shakeTime);
-                timer = 0f;
-            }
+            StartCoroutine("ShakeCam");
+            counter++;
+        }
+    }
+
+
+    // Shake camera constantly
+    IEnumerator ShakeCam()
+    {
+        while (keepShaking)
+        {
+            ArtCameraShake.instance.ShakeCamera(0.05f, shakeTime);
+            yield return new WaitForSeconds(shakeTime);
         }
     }
 }
