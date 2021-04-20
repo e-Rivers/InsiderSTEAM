@@ -12,7 +12,7 @@ public class ScienceGameplay : MonoBehaviour
     public InputField regInput, endInput, endsBannerAnswer, sidebarAnswer;
     public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover, finishPanel, short1, short2, short3, holoIDLE, holoFAIL;
     public Text timeText, roundText, askText, sciText, finishTitle, finishText;
-    public AudioSource normalMusic, askingMusic, startingAlarm, collapseAudio;
+    public AudioSource normalMusic, askingMusic, startingAlarm, collapseAudio, circuitAudio;
     public Image alarmLight;
     // Attributes that are used in other classes (MoveCharacter.cs)
     public static bool isAskTime = false;
@@ -167,15 +167,21 @@ public class ScienceGameplay : MonoBehaviour
 	    int randomEffect = (int) Random.Range(0f, 10f);
 	    switch(randomEffect) {
 		case 2:
-		    short1.SetActive(true); break;
+		    short1.SetActive(true); 
+		    circuitAudio.Play();
+		    break;
 		case 4:
-		    short2.SetActive(true); break;
+		    short2.SetActive(true); 
+		    circuitAudio.Play();
+		    break;
 		case 6:
-		    short3.SetActive(true); break;
+		    short3.SetActive(true); 
+		    circuitAudio.Play();
+		    break;
 		case 8:
 		    collapseAudio.Play(); break;
 	    }
-	    yield return new WaitForSeconds(3);
+	    yield return new WaitForSeconds(5);
 	    short1.SetActive(false);
 	    short2.SetActive(false);
 	    short3.SetActive(false);
