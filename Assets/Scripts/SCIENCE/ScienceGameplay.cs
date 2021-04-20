@@ -10,7 +10,7 @@ public class ScienceGameplay : MonoBehaviour
 
     // Attibutes that aren't used in other classes but their values are obtained publicly
     public InputField regInput, endInput, endsBannerAnswer, sidebarAnswer;
-    public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover, finishPanel, short1, short2, short3, holoIDLE, holoFAIL;
+    public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover, finishPanel, short1, short2, short3, holoIDLE, holoFAIL, pauseScreen;
     public Text timeText, roundText, askText, sciText, finishTitle, finishText;
     public AudioSource normalMusic, askingMusic, startingAlarm, collapseAudio, circuitAudio;
     public Image alarmLight;
@@ -69,6 +69,8 @@ public class ScienceGameplay : MonoBehaviour
                 if (!isAskTime) { roundTypeACT(); } else { askRiddleOrProblem(); }
             }
         }
+	// Detects if the user paused the game
+	if(Input.GetKeyDown(KeyCode.Escape)) pauseGame();
         // Checks if the player has escaped the labyrinth
         verifyEscapeAndEnding();
     }
@@ -267,4 +269,40 @@ public class ScienceGameplay : MonoBehaviour
         MenuManager.nextScene = "MainMenu";
         SceneManager.LoadScene("LoadingScene");
     }
+
+    // Method to play again
+    public void playAgain() {
+	MenuManager.nextScene = "ScienceLevel";
+	SceneManager.LoadScene(MenuManager.nextScene);
+    }
+
+    // Method to pause the game
+    private void pauseGame() {
+	pauseScreen.SetActive(true);
+	Time.timeScale = 0;
+    }
+
+    // Method to resume game
+    public void resumeGame() {
+	pauseScreen.SetActive(false);
+	Time.timeScale = 1;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
