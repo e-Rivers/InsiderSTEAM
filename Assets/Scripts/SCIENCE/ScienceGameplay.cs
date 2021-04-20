@@ -179,7 +179,9 @@ public class ScienceGameplay : MonoBehaviour
 		    circuitAudio.Play();
 		    break;
 		case 8:
-		    collapseAudio.Play(); break;
+		    collapseAudio.Play(); 
+		    ArtCameraShake.instance.ShakeCamera();
+		    break;
 	    }
 	    yield return new WaitForSeconds(5);
 	    short1.SetActive(false);
