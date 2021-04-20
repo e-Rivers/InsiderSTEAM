@@ -18,6 +18,7 @@ public class IntroTimeStopper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(Time.timeScale);
         // Self reference
         instance = this;
         firstTime = true;
@@ -44,8 +45,6 @@ public class IntroTimeStopper : MonoBehaviour
     // Call to stop time
     public void StopTime()
     {
-        // Stop time scale
-        Time.timeScale = 0.0f;
         // Set visual elements on
         bg.enabled = true;
         canvas.enabled = true;

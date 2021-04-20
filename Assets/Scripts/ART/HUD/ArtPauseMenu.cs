@@ -43,7 +43,8 @@ public class ArtPauseMenu : MonoBehaviour
     public void Retry()
     {
         paused = false;
-        LevelManager.instance.getNextLevel(true, false);
+        LevelManager.addLevel = false;
+        LevelManager.instance.getNextLevel();
     }
 
     // Enable/disable background

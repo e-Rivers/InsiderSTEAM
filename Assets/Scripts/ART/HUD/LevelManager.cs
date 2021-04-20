@@ -23,23 +23,26 @@ public class LevelManager : MonoBehaviour
         // Set self reference
         instance = this;
         // Set button listener
-        getNextLevel(false);
+        if (levelsPlayed == 0)
+        {
+            getNextLevel(false);
+        }
         if (addLevel)
         {
             levelsPlayed++;
         }
     }
 
-    public void getNextLevel(bool reload = true, bool add = true)
+    public void getNextLevel(bool reload = true)
     {
-        // Check if user is retrying or completing a level
-        addLevel = add;
+        // Reset timescale
+        Time.timeScale = 1.0f;
         // Do only if number of played levels are less than 3
         if (levelsPlayed < maxLevels)
         {
-            if (add)
+            if (addLevel)
             {
-                Debug.Log("Choosing level randomly: " + add + " in game: " + LevelManager.levelsPlayed);
+                Debug.Log("Choosing level randomly: " + addLevel + " in game: " + LevelManager.levelsPlayed);
                 // Get a random new level number
                 int rndLevel = Random.Range(0, 7);
                 // If list of levels has less than 5 elements
@@ -87,6 +90,7 @@ public class LevelManager : MonoBehaviour
         level = 0;
         levels.Clear();
         addLevel = true;
+        Time.timeScale = 1.0f;
         MenuManager.nextScene = "MainMenu";
         MenuManager.instance.EnterScene();
     }

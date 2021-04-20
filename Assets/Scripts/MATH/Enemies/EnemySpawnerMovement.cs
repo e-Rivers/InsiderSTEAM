@@ -22,9 +22,13 @@ public class EnemySpawnerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "UpperLimit" || collision.gameObject.name == "LowerLimit")
+        if (collision.gameObject.name == "UpperLimit")
         {
-            speed *= -1;
+            speed = -30;
+        }
+        if (collision.gameObject.name == "LowerLimit")
+        {
+            speed = 30;
         }
     }
 }
