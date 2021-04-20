@@ -19,7 +19,6 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         instance = this;
-        nextScene = "MathRealm";
         changeMenuChar = StartCoroutine(changeCharacter());
     }
 
@@ -104,6 +103,7 @@ public class MenuManager : MonoBehaviour
         {
             SceneManager.LoadScene(nextScene);
         }
+        Debug.Log("Going to " + MenuManager.nextScene);
     }
 
     // Methods to change to the correspoding level (World)

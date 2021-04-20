@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1432584598307915025}
   - component: {fileID: 1340443407292931089}
   - component: {fileID: -9147497773824052280}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Amarillo
   m_TagString: Color
   m_Icon: {fileID: 0}

@@ -21,12 +21,12 @@ public class AmmoSystem : MonoBehaviour
             if (i + 1 <= currShells)
             {
                 GameObject heart = Instantiate(fullAmmoPrefab, transform.position, Quaternion.identity);
-                heart.transform.parent = transform;
+                heart.transform.SetParent(transform);
             }
             else
             {
                 GameObject heart = Instantiate(emptyAmmoPrefab, transform.position, Quaternion.identity);
-                heart.transform.parent = transform;
+                heart.transform.SetParent(transform);
             }
         }
     }

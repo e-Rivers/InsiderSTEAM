@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7063680485721943072}
   - component: {fileID: 7168778212266472736}
   - component: {fileID: 8136637685210815225}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Sin Color
   m_TagString: Color
   m_Icon: {fileID: 0}

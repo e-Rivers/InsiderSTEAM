@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2100369805492878756}
   - component: {fileID: 2043971237809005732}
   - component: {fileID: 292923802645944138}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Azul
   m_TagString: Color
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2280645506147335094}
   - component: {fileID: 2210858948773425219}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: ColorSplash
   m_TagString: Untagged
   m_Icon: {fileID: 0}

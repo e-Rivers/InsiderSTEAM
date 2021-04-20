@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4749072733600783404}
   - component: {fileID: 4653272065093649708}
   - component: {fileID: 5193769137561825377}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Blanco
   m_TagString: Color
   m_Icon: {fileID: 0}

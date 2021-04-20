@@ -9,6 +9,7 @@ public class PaintingDisplayer : MonoBehaviour
     public static PaintingDisplayer instance;
     public GameObject bg;
     public Button button;
+    public bool canPause;
     // Private attributes
     [SerializeField] Text scoreText;
     [SerializeField] Image multiplier;
@@ -37,6 +38,7 @@ public class PaintingDisplayer : MonoBehaviour
         buttonTimer = 0.0f;
         shaker = true;
         btnState = false;
+        canPause = true;
         // Set painting size
         transform.localScale = new Vector3(0f, 0f, 1f);
         // Set button visibility
@@ -50,6 +52,8 @@ public class PaintingDisplayer : MonoBehaviour
         // If player has won
         if (InstructionManager.instance.win)
         {
+            // Avoid pausing
+            canPause = false;
             // Disable player movement
             PlayerMovement.instance.disableInput = true;
             // Disable score display
