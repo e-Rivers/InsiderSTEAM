@@ -535,7 +535,7 @@ RectTransform:
   - {fileID: 280975272}
   - {fileID: 138408465}
   m_Father: {fileID: 1535472195}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -662,8 +662,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 923120811}
   m_HandleRect: {fileID: 923120810}
   m_Direction: 2
-  m_Value: 0.98421055
-  m_Size: 0.2962963
+  m_Value: 0.988
+  m_Size: 0.24242425
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1613,7 +1613,7 @@ RectTransform:
   - {fileID: 2140308062}
   - {fileID: 428581303}
   m_Father: {fileID: 1535472195}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3065,7 +3065,7 @@ RectTransform:
   - {fileID: 1501346669}
   - {fileID: 588626362}
   m_Father: {fileID: 1535472195}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3388,7 +3388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: -140}
+  m_AnchoredPosition: {x: -250, y: -175}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &588626363
@@ -4295,7 +4295,7 @@ RectTransform:
   - {fileID: 694976838}
   - {fileID: 362453579}
   m_Father: {fileID: 1535472195}
-  m_RootOrder: 10
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5344,7 +5344,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1535472195}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5498,8 +5498,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -460}
-  m_SizeDelta: {x: 850, y: 1350}
+  m_AnchoredPosition: {x: 0, y: -610}
+  m_SizeDelta: {x: 850, y: 1650}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1287049465
 MonoBehaviour:
@@ -5542,10 +5542,12 @@ MonoBehaviour:
     colapsando, hay m\xFAltiples derrumbes, cortos circuitos y apagones, los cuales
     complicar\xE1n tu intento por cruzar el laberinto. Sigue las indicaciones de
     nuestro holograma de emergencia para poder desactivar el reactor y evitar la
-    destrucci\xF3n de nuestra nave. Debo advertirte que durante los apagones es posible
-    que el holograma tambi\xE9n falle, sin embargo, a\xFAn te dar\xE1 indicaciones
-    b\xE1sicas pero la mayor parte tendr\xE1s que usar tu ingenio, agilidad mental,
-    pero sobretodo: tu memoria..."
+    destrucci\xF3n de nuestra nave. Debo advertirte que el sistema para desactivar
+    el reactor ha sufrido da\xF1os por lo que no te indicar\xE1 si tu respuesta es
+    incorrecta, simplemente se desactivar\xE1 cuando des la correcta. Adem\xE1s,
+    durante los apagones es posible que el holograma tambi\xE9n falle, sin embargo,
+    a\xFAn te dar\xE1 indicaciones b\xE1sicas pero la mayor parte del tiempo tendr\xE1s
+    que usar tu ingenio, agilidad mental, pero sobretodo: tu memoria..."
 --- !u!222 &1287049466
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5666,8 +5668,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 200}
-  m_SizeDelta: {x: 655, y: 130}
+  m_AnchoredPosition: {x: 0, y: 190}
+  m_SizeDelta: {x: 850, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1422720721
 MonoBehaviour:
@@ -5702,7 +5704,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '- NO TAN RAPIDO -'
+  m_Text: '- SISTEMA DE APAGADO -'
 --- !u!222 &1422720722
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5965,7 +5967,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: -140}
+  m_AnchoredPosition: {x: 150, y: -175}
   m_SizeDelta: {x: 500, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1501346670
@@ -6093,7 +6095,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6286,12 +6288,12 @@ RectTransform:
   - {fileID: 327256161}
   - {fileID: 1470914796}
   - {fileID: 532046118}
+  - {fileID: 864731054}
   - {fileID: 1169090649}
   - {fileID: 318430238}
   - {fileID: 534508969}
   - {fileID: 2091794064}
   - {fileID: 174621803}
-  - {fileID: 864731054}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6374,7 +6376,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -40}
   m_SizeDelta: {x: 875, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1541023787
@@ -6410,10 +6412,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Lograste escapar del laberinto... pero no creiste que seria tan facil
-    o si? Ultima pregunta, esta vez no te dire si es incorrecta, tu sabras cuando
-    sea correcta: Si un objeto imparable choca con un objeto inamovible... cuantos
-    objetos hay?'
+  m_Text: "Has escapado del laberinto y llegado al panel de control, para desactivar
+    el reactor, responde la siguiente paradoja: Si un objeto imparable choca con
+    un objeto inamovible... cu\xE1ntos objetos hay?"
 --- !u!222 &1541023788
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8054,7 +8055,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -8289,7 +8290,7 @@ RectTransform:
   - {fileID: 512886638}
   - {fileID: 272520465}
   m_Father: {fileID: 1535472195}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
