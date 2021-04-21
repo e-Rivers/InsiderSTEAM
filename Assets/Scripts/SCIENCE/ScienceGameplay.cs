@@ -20,8 +20,8 @@ public class ScienceGameplay : MonoBehaviour
     // Internal attributes
     private Dictionary<string, string> riddleDict = new Dictionary<string, string>();
     private bool labyCrossed = false;
-    private Coroutine subTime, alarmEffect, shortEffect;
-    private int timeCount = 30;
+    private Coroutine subTime, alarmEffect, shortEffect, askSequence;
+    private int timeCount = 30, questionType, correctSeqAns;
     private string sidebarAns = "", endingAns = "", curSound, effect;
 
     // Loads all riddles and problems
@@ -106,10 +106,16 @@ public class ScienceGameplay : MonoBehaviour
         {
             isAskTime = true;
             timeCount = 60;
-            int randomSelection = Random.Range(0, riddleDict.Keys.Count);
-            string randomRiddle = riddleDict.Keys.ElementAt(randomSelection);
-            askText.text = randomRiddle;
-            sciText.text = "Algunos accesos se bloquearon, para abrirlos resuelve el acertijo...";
+	    // ======== Selects between a riddle or problem
+	    questionType = (int) Random.Range(0, 2);
+	    if(questionType == 0) {
+		int randomSelection = (int) Random.Range(0, riddleDict.Keys.Count);
+		string randomRiddle = riddleDict.Keys.ElementAt(randomSelection);
+		askText.text = randomRiddle;
+	    } else {
+		
+	    }
+            sciText.text = "Algunos accesos se bloquearon, para abrirlos responde la pregunta...";
 	    normalMusic.Stop();
             askingMusic.Play();
         }
@@ -121,29 +127,27 @@ public class ScienceGameplay : MonoBehaviour
         if (timeCount >= 0)
         {
             timeText.text = "Tiempo: " + timeCount;
-            if (sidebarAns == riddleDict[askText.text])
-            {
-                askText.text = "";
-                sidebarAnswer.text = "";
-                sidebarAns = "";
-                mazeCover.SetActive(false);
-                mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
-                mazeGenesys.GetComponent<MazeGenerator>().GenerateMaze();
-                // Calculates the current round
-                roundType++;
-                string[] prevRound = roundText.text.Split(' ');
-                roundText.text = "Ronda: " + (roundType - int.Parse(prevRound[1]));
-                timeCount = 30;
-                isAskTime = false;
-                askingMusic.Stop();
-                normalMusic.Play();
-		holoFAIL.SetActive(false);
-		holoIDLE.SetActive(true);
-            }
-            else if (sidebarAns != "")
-            {
-                sciText.text = "INCORRECTO! Intenta de nuevo... Se nos acaba el tiempo!!";
-            }
+	    if(questionType == 0) {
+                if (sidebarAns == riddleDict[askText.text])
+                { 
+                    askText.text = "";
+                    sidebarAnswer.text = "";
+                    sidebarAns = "";
+                    mazeCover.SetActive(false);
+                    mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
+                    mazeGenesys.GetComponent<MazeGenerator>().GenerateMaze();
+                    // Calculates the current round
+                    roundType++;
+                    string[] prevRound = roundText.text.Split(' ');
+                    roundText.text = "Ronda: " + (roundType - int.Parse(prevRound[1]));
+                    timeCount = 30;
+                    isAskTime = false;
+                    askingMusic.Stop();
+                    normalMusic.Play();
+	            holoFAIL.SetActive(false);
+                    holoIDLE.SetActive(true);
+                } else if(sidebarAns != "") sciText.text = "INCORRECTO! Intenta de nuevo... Se nos acaba el tiempo!!";
+	    }
         }
         else
         {
@@ -168,7 +172,7 @@ public class ScienceGameplay : MonoBehaviour
     // Coroutine to display the short-circuit effects
     private IEnumerator shortCircuitEffect() {
 	while(true) {
-	    int randomEffect = (int) Random.Range(0f, 10f);
+	    int randomEffect = (int) Random.Range(0, 11);
 	    switch(randomEffect) {
 		case 2:
 		    short1.SetActive(true); 
