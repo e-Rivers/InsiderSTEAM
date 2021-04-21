@@ -8,12 +8,14 @@ public class ConstantCamShaker : MonoBehaviour
     private bool keepShaking;
     private float shakeTime;
     private int counter = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         keepShaking = true;
         shakeTime = 0.5f;
     }
+
     // Update is called once per frame
     void Update()
     {

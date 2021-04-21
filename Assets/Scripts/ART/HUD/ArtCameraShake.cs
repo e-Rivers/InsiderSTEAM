@@ -38,7 +38,7 @@ public class ArtCameraShake : MonoBehaviour
         {
             shakeLength -= 0.1f;
             tf.localPosition = tfPos + Random.insideUnitSphere * shakeMagntitude;
-            yield return new WaitForSeconds(0.1f);
+            yield return null;
         }
         shakeLength = 0f;
         tf.localPosition = tfPos;

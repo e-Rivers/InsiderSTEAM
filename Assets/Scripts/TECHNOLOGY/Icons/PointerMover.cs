@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PointerMover : MonoBehaviour
 {
+    // Private attributes
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip pointerClickClip;
     private Vector3 destination;
     private float growTimer;
     private float xSpeed;
@@ -46,7 +49,7 @@ public class PointerMover : MonoBehaviour
                 {
                     if (hit.transform.gameObject.name.Equals("Pointer"))
                     {
-                        Debug.Log("Hit pointer!");
+                        audioSource.PlayOneShot(pointerClickClip);
                         moveRandomly = false;
                         TechScoreSystem.score -= 1500;
                     }

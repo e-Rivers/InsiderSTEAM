@@ -10,6 +10,13 @@ public class TileManager : MonoBehaviour
     public int currentLevel = 0;
     public int[][] winnerMatrix;
     public int[][] matrix;
+
+    // Private attributes
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip patternClip;
+
+    [SerializeField] AudioClip mistakeClip;
+    [SerializeField] AudioClip winClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -171,6 +178,7 @@ public class TileManager : MonoBehaviour
                 {
                     if (TechScoreSystem.mistakes < 3)
                     {
+                        audioSource.PlayOneShot(mistakeClip);
                         TechScoreSystem.mistakes++;
                     }
                     ArtCameraShake.instance.ShakeCamera(0.3f, 0.3f);
@@ -178,6 +186,7 @@ public class TileManager : MonoBehaviour
                 }
             }
         }
+        audioSource.PlayOneShot(winClip);
         return true;
     }
 
@@ -195,6 +204,7 @@ public class TileManager : MonoBehaviour
                     return false;
                 }
             }
+            audioSource.PlayOneShot(patternClip);
             return true;
         }
         else

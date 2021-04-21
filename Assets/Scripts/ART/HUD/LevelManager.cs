@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
         {
             levelsPlayed++;
         }
+        addLevel = true;
     }
 
     public void getNextLevel(bool reload = true)
@@ -67,6 +68,7 @@ public class LevelManager : MonoBehaviour
                     }
                 }
             }
+
             if (reload)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);

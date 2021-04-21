@@ -8,6 +8,11 @@ public class PlayerTileManager : MonoBehaviour
     public GameObject currTile;
     public int x, y;
 
+    // Private attributes
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip activateClip;
+    [SerializeField] AudioClip deactivateClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,11 +38,13 @@ public class PlayerTileManager : MonoBehaviour
                 {
                     TileManager.instance.SetValueAt(x, y, 0);
                     currTile.GetComponent<TileModifier>().isActive = false;
+                    audioSource.PlayOneShot(deactivateClip);
                 }
                 else
                 {
                     TileManager.instance.SetValueAt(x, y, 1);
                     currTile.GetComponent<TileModifier>().isActive = true;
+                    audioSource.PlayOneShot(activateClip);
                 }
                 // Update row text if tiles are correct
                 if (TileManager.instance.CheckComplete(y, true))
