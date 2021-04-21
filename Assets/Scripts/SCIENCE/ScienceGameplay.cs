@@ -22,7 +22,7 @@ public class ScienceGameplay : MonoBehaviour
     private bool labyCrossed = false;
     private Coroutine subTime, alarmEffect, shortEffect;
     private int timeCount = 30;
-    private string sidebarAns = "", endingAns = "";
+    private string sidebarAns = "", endingAns = "", curSound, effect;
 
     // Loads all riddles and problems
     void Start()
@@ -71,7 +71,7 @@ public class ScienceGameplay : MonoBehaviour
             }
         }
 	// Detects if the user paused the game
-	if(Input.GetKeyDown(KeyCode.Escape)) pauseGame();
+	if(Input.GetKeyDown(KeyCode.Escape) && (roundType%2 != 0 || initBanner.activeSelf)) alterElements("pause");
         // Checks if the player has escaped the labyrinth
         verifyEscapeAndEnding();
     }
@@ -110,6 +110,7 @@ public class ScienceGameplay : MonoBehaviour
             string randomRiddle = riddleDict.Keys.ElementAt(randomSelection);
             askText.text = randomRiddle;
             sciText.text = "Algunos accesos se bloquearon, para abrirlos resuelve el acertijo...";
+	    normalMusic.Stop();
             askingMusic.Play();
         }
     }
@@ -146,7 +147,7 @@ public class ScienceGameplay : MonoBehaviour
         }
         else
         {
-	    removeElements(false);
+	    alterElements("");
             StopCoroutine(subTime);
             finishTitle.text = "DERROTA";
             finishText.text = "No lograste desactivar el reactor, pero no te rindas, entrena tu mente, piensa creativamente y verás como irás mejorando hasta que por fin la victoria sea tuya.";
@@ -212,7 +213,7 @@ public class ScienceGameplay : MonoBehaviour
         {
             if (!labyCrossed)
             {
-		removeElements(false);
+		alterElements("");
                 timeCount = 60;
                 labyCrossed = true;
                 sciText.text = ". . .";
@@ -273,39 +274,81 @@ public class ScienceGameplay : MonoBehaviour
 	SceneManager.LoadScene(MenuManager.nextScene);
     }
 
-    // Method to pause the game
-    private void pauseGame() {
-	if(!initBanner.activeSelf) MazeGenerator.mazeParent.SetActive(false);
-	pauseScreen.SetActive(true);
-	Time.timeScale = 0;
-    }
-
     // Method to resume game
-    public void resumeGame() {
-	if(!initBanner.activeSelf) MazeGenerator.mazeParent.SetActive(true);
-	pauseScreen.SetActive(false);
-	Time.timeScale = 1;
-    }
+    public void resumeGame() { alterElements("unpause"); }
 
-    // Method to destroy or hide game and UI objects
-    private void removeElements(bool pause) {
-	if(pause) {
-
+    // Method to display, destroy or hide game and UI objects
+    private void alterElements(string action) {
+	if(action == "pause") {
+	    if(!initBanner.activeSelf) MazeGenerator.mazeParent.SetActive(false);
+	    pauseScreen.SetActive(true);
+	    Time.timeScale = 0;
+	    // Pauses the currently active Music
+	    if(normalMusic.isPlaying) {
+		curSound = "normal";
+		normalMusic.Pause();
+	    } else if(startingAlarm.isPlaying) {
+		curSound = "alarm";
+		startingAlarm.Pause();
+	    }
+	    // Pauses the currently active effect
+	    if(short1.activeSelf) {
+		effect = "short1";
+		circuitAudio.Pause();
+		short1.GetComponent<SpriteRenderer>().sortingOrder = -100;
+	    } else if(short2.activeSelf) {
+		effect = "short2";
+		circuitAudio.Pause();
+		short2.GetComponent<SpriteRenderer>().sortingOrder = -100;
+	    } else if(short3.activeSelf) {
+		effect = "short3";
+		circuitAudio.Pause();
+		short3.GetComponent<SpriteRenderer>().sortingOrder = -100;
+	    } else {
+		effect = "collapse";
+		collapseAudio.Pause();
+	    }
+	    // Pauses the hologram animation
+	    holoIDLE.GetComponent<SpriteRenderer>().sortingOrder = -100;
+	} else if(action == "unpause") {
+	    if(!initBanner.activeSelf) MazeGenerator.mazeParent.SetActive(true);
+	    pauseScreen.SetActive(false);
+	    Time.timeScale = 1;
+	    // Reactivates the adecuate Music
+	    if(curSound == "normal") normalMusic.UnPause();
+	    else startingAlarm.UnPause();
+	    // Reactivates the hologram animation
+	    holoIDLE.GetComponent<SpriteRenderer>().sortingOrder = 0;
+	    player.SetActive(true);
+	    // Reactivates the last active effect
+	    if(effect == "short1") {
+		circuitAudio.UnPause();
+		short1.GetComponent<SpriteRenderer>().sortingOrder = -1;
+	    } else if(effect == "short2") {
+		circuitAudio.UnPause();
+		short2.GetComponent<SpriteRenderer>().sortingOrder = 0;
+	    } else if(effect == "short3") {
+		circuitAudio.UnPause();
+		short3.GetComponent<SpriteRenderer>().sortingOrder = 0;
+	    } else {
+		collapseAudio.UnPause();
+	    }
+	    return;
 	} else {
 	    StopCoroutine(shortEffect);
             mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
-            mazeCover.SetActive(false);
-            player.SetActive(false);
-	    holoIDLE.SetActive(false);
-	    holoFAIL.SetActive(false);
-	    short1.SetActive(false);
-	    short2.SetActive(false);
-	    short3.SetActive(false);
 	    normalMusic.Stop();
 	    askingMusic.Stop();
 	    collapseAudio.Stop();
 	    circuitAudio.Stop();
+	    short1.SetActive(false);
+	    short2.SetActive(false);
+	    short3.SetActive(false);
+	    holoIDLE.SetActive(false);
 	}
+	mazeCover.SetActive(false);
+	player.SetActive(false);
+	holoFAIL.SetActive(false);
     }
 
     // Method to reset all the control variables to their initial values

@@ -11,6 +11,7 @@ public class PlayerLight : MonoBehaviour {
     private bool isActive;
     private Coroutine lightsOn;
     private SpriteRenderer renderer;
+    private float alpha;
 
     // Start is called before the first frame update
     void Start() {
@@ -49,7 +50,19 @@ public class PlayerLight : MonoBehaviour {
     private IEnumerator lightsActive() {
 	renderer.sortingOrder = 4;
 	lights.SetActive(true);
-	yield return new WaitForSeconds(5);
+	for(int i = 0; i < 2; i++) {
+	    alpha = 0;
+	    while(alpha < 1) {
+		lights.GetComponent<SpriteRenderer>().color = new Color(1,1,1,alpha);
+		alpha += 0.1f;
+		yield return new WaitForSeconds(0.1f);
+	    }
+	    while(alpha > 0) {
+		lights.GetComponent<SpriteRenderer>().color = new Color(1,1,1,alpha);
+		alpha -= 0.1f;
+		yield return new WaitForSeconds(0.1f);
+	    }
+	}
 	isActive = false;
 	lights.SetActive(false);
 	renderer.sortingOrder = -4;
