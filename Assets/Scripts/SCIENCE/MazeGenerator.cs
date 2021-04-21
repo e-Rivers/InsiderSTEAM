@@ -27,7 +27,7 @@ public class MazeGenerator : MonoBehaviour {
     // Size of the cells, used to determine how far apart to place cells during generation.
     private float cellSize;
 
-    private GameObject mazeParent;
+    public static GameObject mazeParent;
 
     public void GenerateMaze() {
         if (mazeParent != null) DeleteMaze();

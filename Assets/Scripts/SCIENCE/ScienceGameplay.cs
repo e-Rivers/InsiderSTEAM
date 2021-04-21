@@ -275,12 +275,14 @@ public class ScienceGameplay : MonoBehaviour
 
     // Method to pause the game
     private void pauseGame() {
+	if(!initBanner.activeSelf) MazeGenerator.mazeParent.SetActive(false);
 	pauseScreen.SetActive(true);
 	Time.timeScale = 0;
     }
 
     // Method to resume game
     public void resumeGame() {
+	if(!initBanner.activeSelf) MazeGenerator.mazeParent.SetActive(true);
 	pauseScreen.SetActive(false);
 	Time.timeScale = 1;
     }
