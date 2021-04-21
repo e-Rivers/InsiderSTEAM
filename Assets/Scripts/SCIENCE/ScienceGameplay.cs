@@ -23,6 +23,8 @@ public class ScienceGameplay : MonoBehaviour
     private Coroutine subTime, alarmEffect, shortEffect, askSequence;
     private int timeCount = 30, questionType, correctSeqAns;
     private string sidebarAns = "", endingAns = "", curSound, effect;
+    private int[] sequence = new int[20];
+    private List<int> savedTimestamps = new List<int>(); // This list holds the times it took to the user to solve each riddle and problem
 
     // Loads all riddles and problems
     void Start()
@@ -113,7 +115,8 @@ public class ScienceGameplay : MonoBehaviour
 		string randomRiddle = riddleDict.Keys.ElementAt(randomSelection);
 		askText.text = randomRiddle;
 	    } else {
-		
+		StopCoroutine(subTime);
+		askSequence = StartCoroutine(sequenceMemory());
 	    }
             sciText.text = "Algunos accesos se bloquearon, para abrirlos responde la pregunta...";
 	    normalMusic.Stop();
@@ -124,29 +127,38 @@ public class ScienceGameplay : MonoBehaviour
     // Method that implements the logic to ask questions and validate the answer
     private void askRiddleOrProblem()
     {
+	void onCorrectAnswer() {
+	    askText.text = ""; 
+            sidebarAnswer.text = "";
+            sidebarAns = "";
+            mazeCover.SetActive(false);
+            mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
+            mazeGenesys.GetComponent<MazeGenerator>().GenerateMaze();
+	    // Saves the time
+	    savedTimestamps.Add(timeCount);
+            // Calculates the current round
+            roundType++;
+            string[] prevRound = roundText.text.Split(' ');
+            roundText.text = "Ronda: " + (roundType - int.Parse(prevRound[1]));
+            timeCount = 30;
+            isAskTime = false;
+            askingMusic.Stop();
+            normalMusic.Play();
+            holoFAIL.SetActive(false);
+            holoIDLE.SetActive(true);
+	}
         if (timeCount >= 0)
         {
             timeText.text = "Tiempo: " + timeCount;
 	    if(questionType == 0) {
                 if (sidebarAns == riddleDict[askText.text])
                 { 
-                    askText.text = "";
-                    sidebarAnswer.text = "";
-                    sidebarAns = "";
-                    mazeCover.SetActive(false);
-                    mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
-                    mazeGenesys.GetComponent<MazeGenerator>().GenerateMaze();
-                    // Calculates the current round
-                    roundType++;
-                    string[] prevRound = roundText.text.Split(' ');
-                    roundText.text = "Ronda: " + (roundType - int.Parse(prevRound[1]));
-                    timeCount = 30;
-                    isAskTime = false;
-                    askingMusic.Stop();
-                    normalMusic.Play();
-	            holoFAIL.SetActive(false);
-                    holoIDLE.SetActive(true);
+		    onCorrectAnswer();
                 } else if(sidebarAns != "") sciText.text = "INCORRECTO! Intenta de nuevo... Se nos acaba el tiempo!!";
+	    } else {
+		if(sidebarAns == correctSeqAns.ToString()) {
+		    onCorrectAnswer();
+		} else if(sidebarAns != "") sciText.text = "INCORRECTO! Rápido! Debemos apagar el reactor antes que sea tarde!";
 	    }
         }
         else
@@ -207,6 +219,24 @@ public class ScienceGameplay : MonoBehaviour
 	    alarmLight.CrossFadeAlpha(0,0.5f,false);
 	    yield return new WaitForSeconds(0.5f);
 	}
+    }
+
+    // Coroutine to generate the sequence problems
+    private IEnumerator sequenceMemory() {
+	askText.text = "Presta atención a la siguiente secuencia:";
+	for(int i = 0; i < 20; i++) {
+            int randyNum = (int) Random.Range(0,100);
+	    sequence[i] = randyNum;
+	}
+	int correctIndex = (int) Random.Range(0, 20);
+	correctSeqAns = sequence[correctIndex];
+	yield return new WaitForSeconds(2);
+	foreach(int a in sequence) {
+	    askText.text = a.ToString();
+	    yield return new WaitForSeconds(0.75f);
+	}
+	askText.text = "¿Cuál era el número en la " + (correctIndex+1).ToString() + "° posición?";
+	subTime = StartCoroutine(reduceTimer());
     } 
 
     // Method to verify if the player escaped and to ask for the last question
@@ -274,6 +304,9 @@ public class ScienceGameplay : MonoBehaviour
 
     // Method to play again
     public void playAgain() {
+
+	Debug.Log(savedTimestamps);
+
 	MenuManager.nextScene = "ScienceLevel";
 	SceneManager.LoadScene(MenuManager.nextScene);
     }
