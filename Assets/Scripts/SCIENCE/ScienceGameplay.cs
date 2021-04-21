@@ -10,7 +10,7 @@ public class ScienceGameplay : MonoBehaviour
 
     // Attibutes that aren't used in other classes but their values are obtained publicly
     public InputField regInput, endInput, endsBannerAnswer, sidebarAnswer;
-    public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover, finishPanel, short1, short2, short3, holoIDLE, holoFAIL;
+    public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover, finishPanel, short1, short2, short3, holoIDLE, holoFAIL, pauseScreen;
     public Text timeText, roundText, askText, sciText, finishTitle, finishText;
     public AudioSource normalMusic, askingMusic, startingAlarm, collapseAudio, circuitAudio;
     public Image alarmLight;
@@ -27,6 +27,7 @@ public class ScienceGameplay : MonoBehaviour
     // Loads all riddles and problems
     void Start()
     {
+	resetVars();
 	alarmEffect = StartCoroutine(alarmScreenEffect());	
         riddleDict.Add("Son 28 caballeros de espaldas negras y lisas; delante, todo agujeros, por dominar se dan prisa.", "DOMINO");
         riddleDict.Add("Soy de madera, tengo un arco y no flecha.", "VIOLIN");
@@ -69,6 +70,8 @@ public class ScienceGameplay : MonoBehaviour
                 if (!isAskTime) { roundTypeACT(); } else { askRiddleOrProblem(); }
             }
         }
+	// Detects if the user paused the game
+	if(Input.GetKeyDown(KeyCode.Escape)) pauseGame();
         // Checks if the player has escaped the labyrinth
         verifyEscapeAndEnding();
     }
@@ -143,7 +146,7 @@ public class ScienceGameplay : MonoBehaviour
         }
         else
         {
-            askingMusic.Stop();
+	    removeElements(false);
             StopCoroutine(subTime);
             finishTitle.text = "DERROTA";
             finishText.text = "No lograste desactivar el reactor, pero no te rindas, entrena tu mente, piensa creativamente y verás como irás mejorando hasta que por fin la victoria sea tuya.";
@@ -170,7 +173,7 @@ public class ScienceGameplay : MonoBehaviour
 		    short1.SetActive(true); 
 		    circuitAudio.Play();
 		    break;
-		case 4:
+		case 8:
 		    short2.SetActive(true); 
 		    circuitAudio.Play();
 		    break;
@@ -178,9 +181,9 @@ public class ScienceGameplay : MonoBehaviour
 		    short3.SetActive(true); 
 		    circuitAudio.Play();
 		    break;
-		case 8:
+		case 4:
 		    collapseAudio.Play(); 
-		    ArtCameraShake.instance.ShakeCamera();
+		    ArtCameraShake.instance.ShakeCamera(0.3f,0.5f);
 		    break;
 	    }
 	    yield return new WaitForSeconds(5);
@@ -209,18 +212,14 @@ public class ScienceGameplay : MonoBehaviour
         {
             if (!labyCrossed)
             {
-		StopCoroutine(shortEffect);
+		removeElements(false);
                 timeCount = 60;
                 labyCrossed = true;
                 sciText.text = ". . .";
-                normalMusic.Stop();
                 askingMusic.Play();
+		endsBanner.SetActive(true);
             }
             timeText.text = "Tiempo: " + timeCount;
-            mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
-            mazeCover.SetActive(false);
-            player.SetActive(false);
-            endsBanner.SetActive(true);
             if (timeCount > 0)
             {
                 if (endingAns == "1")
@@ -267,4 +266,71 @@ public class ScienceGameplay : MonoBehaviour
         MenuManager.nextScene = "MainMenu";
         SceneManager.LoadScene("LoadingScene");
     }
+
+    // Method to play again
+    public void playAgain() {
+	MenuManager.nextScene = "ScienceLevel";
+	SceneManager.LoadScene(MenuManager.nextScene);
+    }
+
+    // Method to pause the game
+    private void pauseGame() {
+	pauseScreen.SetActive(true);
+	Time.timeScale = 0;
+    }
+
+    // Method to resume game
+    public void resumeGame() {
+	pauseScreen.SetActive(false);
+	Time.timeScale = 1;
+    }
+
+    // Method to destroy or hide game and UI objects
+    private void removeElements(bool pause) {
+	if(pause) {
+
+	} else {
+	    StopCoroutine(shortEffect);
+            mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
+            mazeCover.SetActive(false);
+            player.SetActive(false);
+	    holoIDLE.SetActive(false);
+	    holoFAIL.SetActive(false);
+	    short1.SetActive(false);
+	    short2.SetActive(false);
+	    short3.SetActive(false);
+	    normalMusic.Stop();
+	    askingMusic.Stop();
+	    collapseAudio.Stop();
+	    circuitAudio.Stop();
+	}
+    }
+
+    // Method to reset all the control variables to their initial values
+    private void resetVars() {
+	isAskTime = false;
+	roundType = 0;
+	labyCrossed = false;
+	timeCount = 30;
+	sidebarAns = "";
+	endingAns = "";
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
