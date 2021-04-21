@@ -66,6 +66,10 @@ public class LoadingSceneManager : MonoBehaviour
         {
             if (canContinue)
             {
+                if (MenuManager.nextScene.Equals("MathLevel"))
+                {
+                    Time.timeScale = 0.0f;
+                }
                 SceneManager.LoadScene(MenuManager.nextScene);
             }
         }

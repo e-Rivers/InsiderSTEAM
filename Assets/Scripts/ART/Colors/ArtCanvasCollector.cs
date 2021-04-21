@@ -53,6 +53,7 @@ public class ArtCanvasCollector : MonoBehaviour
                     if (colors.Count == InstructionManager.instance.instructions.Length)
                     {
                         InstructionManager.instance.win = true;
+                        PaintingDisplayer.instance.EnableCanvas();
                     }
                 }
             }

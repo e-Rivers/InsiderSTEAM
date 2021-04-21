@@ -8,6 +8,11 @@ public class PlayerTileManager : MonoBehaviour
     public GameObject currTile;
     public int x, y;
 
+    // Private attributes
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip activateClip;
+    [SerializeField] AudioClip deactivateClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,21 +23,47 @@ public class PlayerTileManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Get player position
-        x = TechPlayerMovement.instance.x;
-        y = TechPlayerMovement.instance.y;
-        // Get current tile
-        currTile = TileGridCreator.instance.tileMatrix[x, y];
-        // Modify current tile if player presses space
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (TileGridCreator.instance.finishedGrid)
         {
-            if (currTile.GetComponent<TileModifier>().isActive) {
-                TileManager.instance.SetValueAt(x, y, 0);
-                currTile.GetComponent<TileModifier>().isActive = false;
-            } else
+            // Get player position
+            x = TechPlayerMovement.instance.x;
+            y = TechPlayerMovement.instance.y;
+            // Get current tile
+            currTile = TileGridCreator.instance.tileMatrix[x][y];
+            // Modify current tile if player presses space
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                TileManager.instance.SetValueAt(x, y, 1);
-                currTile.GetComponent<TileModifier>().isActive = true;
+                // Activate or deactivate tile according to its current state
+                if (currTile.GetComponent<TileModifier>().isActive)
+                {
+                    TileManager.instance.SetValueAt(x, y, 0);
+                    currTile.GetComponent<TileModifier>().isActive = false;
+                    audioSource.PlayOneShot(deactivateClip);
+                }
+                else
+                {
+                    TileManager.instance.SetValueAt(x, y, 1);
+                    currTile.GetComponent<TileModifier>().isActive = true;
+                    audioSource.PlayOneShot(activateClip);
+                }
+                // Update row text if tiles are correct
+                if (TileManager.instance.CheckComplete(y, true))
+                {
+                    RowChecker.instance.texts[y].color = Color.yellow;
+                }
+                else
+                {
+                    RowChecker.instance.texts[y].color = new Color(1, 1, 1);
+                }
+                // Update column text if tiles are correct
+                if (TileManager.instance.CheckComplete(x, false))
+                {
+                    ColumnChecker.instance.texts[x].color = Color.yellow;
+                }
+                else
+                {
+                    ColumnChecker.instance.texts[x].color = new Color(1, 1, 1);
+                }
             }
         }
     }

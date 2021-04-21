@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8613231204878498377}
   - component: {fileID: 8571473869329982281}
   - component: {fileID: 9111830822491608580}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Violeta
   m_TagString: Color
   m_Icon: {fileID: 0}

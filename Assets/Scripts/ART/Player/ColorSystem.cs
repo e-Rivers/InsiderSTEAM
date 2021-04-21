@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class ColorSystem : MonoBehaviour
 {
-        //Public attributes
-        public static ColorSystem instance;  
-        public GameObject[] colors;                                                                                 // List of all possible colors
-        public string currentSearch;
-        public Dictionary<string, GameObject> colorsDict;
-        public GameObject currentColor;
+    //Public attributes
+    public static ColorSystem instance;
+    public GameObject[] colors;                                                                                 // List of all possible colors
+    public string currentSearch;
+    public Dictionary<string, GameObject> colorsDict;
+    public GameObject currentColor;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            // Initial variables assignment
-            instance = this;
-            // Initialize color dictionary
-            colorsDict = new Dictionary<string, GameObject>() {
+    // Private attributes
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip existingColorClip;
+    [SerializeField] AudioClip nonExistingColorClip;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        // Initial variables assignment
+        instance = this;
+        // Initialize color dictionary
+        colorsDict = new Dictionary<string, GameObject>() {
                 {"", colors[0]},            //None
                 {"n", colors[1]},           //Black
                 {"b", colors[2]},           //Blue  
@@ -39,28 +44,43 @@ public class ColorSystem : MonoBehaviour
                 {"rby", colors[9]},       //Brown
                 {"ryb", colors[9]},       //Brown
                 {"w", colors[10]},        //White
-                {"nw", colors[11]},       
+                {"nw", colors[11]},
                 {"wn", colors[11]}
             };
-            // Set black as default color
-            currentSearch = "";
+        // Set black as default color
+        currentSearch = "";
+        currentColor = colorsDict[currentSearch];
+    }
+
+    // Update is called on every frame update
+    private void Update()
+    {
+        if (colorsDict.ContainsKey(currentSearch))
+        {
             currentColor = colorsDict[currentSearch];
         }
-
-        // Update is called on every frame update
-        private void Update()
+        else
         {
-            if (colorsDict.ContainsKey(currentSearch)) {
-                currentColor = colorsDict[currentSearch];
-            } else {
-                currentSearch = "";
-            }
-        }
-
-        // Function to change current color
-        public void AddColor(string identifier) {
-            if (identifier != currentSearch) {
-                currentSearch = currentSearch + identifier;
-            }
+            currentSearch = "";
         }
     }
+
+    // Function to change current color
+    public void AddColor(string identifier)
+    {
+        if (identifier != currentSearch)
+        {
+            currentSearch = currentSearch + identifier;
+        }
+
+        if (!currentSearch.Equals(""))
+        {
+            audioSource.PlayOneShot(existingColorClip);
+        }
+        else
+        {
+            audioSource.PlayOneShot(nonExistingColorClip);
+        }
+
+    }
+}

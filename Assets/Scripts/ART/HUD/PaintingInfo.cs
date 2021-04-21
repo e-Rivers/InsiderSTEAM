@@ -46,23 +46,15 @@ public class PaintingInfo : MonoBehaviour
     // Update is called on every frame update
     void Update()
     {
-        if (InstructionManager.instance.win)
-        {
-            // Enable Texts and update information
-            titleText.enabled = true;
-            descText.enabled = true;
-        }
-        else
-        {
-            // Disable Texts temporarily 
-            titleText.enabled = false;
-            descText.enabled = false;
-        }
+
     }
 
     // Set title and description text
     public void SetInfo(int currLevel)
     {
+        // Enable Texts and update information
+        titleText.enabled = true;
+        descText.enabled = true;
         titleText.text = paintingsTitles[currLevel].ToUpper();
         descText.text = paintingsInfo[currLevel];
     }

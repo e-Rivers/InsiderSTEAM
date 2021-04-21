@@ -18,11 +18,12 @@ public class HealthSystem : MonoBehaviour
             if (i + 1 <= currHearts)
             {
                 GameObject heart = Instantiate(fullHeartPrefab, transform.position, Quaternion.identity);
-                heart.transform.parent = transform;
-            } else
+                heart.transform.SetParent(transform);
+            }
+            else
             {
                 GameObject heart = Instantiate(emptyHeartPrefab, transform.position, Quaternion.identity);
-                heart.transform.parent = transform;
+                heart.transform.SetParent(transform);
             }
         }
     }

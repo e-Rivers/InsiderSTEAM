@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5218780678672418752}
   - component: {fileID: 5266805110240075456}
   - component: {fileID: 4726304189774818189}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Naranja
   m_TagString: Color
   m_Icon: {fileID: 0}

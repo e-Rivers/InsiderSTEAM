@@ -6,8 +6,9 @@ public class TileGridCreator : MonoBehaviour
 {
     // Public attributes
     public static TileGridCreator instance;
-    public GameObject[,] tileMatrix;
+    public GameObject[][] tileMatrix;
     public GameObject tile;
+    public bool finishedGrid;
 
     // Private attributes
     private Vector3 currPos;
@@ -24,10 +25,15 @@ public class TileGridCreator : MonoBehaviour
         // Set initial static reference
         instance = this;
         // Set matrix
-        tileMatrix = new GameObject[rows, columns];
+        tileMatrix = new GameObject[rows][];
+        for (int i = 0; i < rows; i++)
+        {
+            tileMatrix[i] = new GameObject[columns];
+        }
         // Set initial position for first prefab
         initX = 0.5f;
         initY = 1.5f;
+        finishedGrid = false;
     }
 
     private void Update()
@@ -46,12 +52,13 @@ public class TileGridCreator : MonoBehaviour
                     TileModifier tileModifier = tileInstance.GetComponent<TileModifier>();
                     tileModifier.x = initX + spacing * j;
                     tileModifier.y = initY - spacing * i;
-                    tileMatrix[j, i] = tileInstance;
+                    tileMatrix[j][i] = tileInstance;
                     tileInstance.transform.parent = transform;
                     // Fill TileManager jagged array
-                    TileManager.instance.matrix[i, j] = 0;
+                    TileManager.instance.matrix[i][j] = 0;
                 }
             }
+            finishedGrid = true;
             counter++;
         }
     }

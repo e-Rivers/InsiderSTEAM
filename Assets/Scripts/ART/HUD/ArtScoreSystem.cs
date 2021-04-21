@@ -11,6 +11,9 @@ public class ArtScoreSystem : MonoBehaviour
     // Private attributes
     [SerializeField] Text scoreDisplay;
     [SerializeField] Image multDisplay;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip correctColorClip;
+    [SerializeField] AudioClip incorrectColorClip;
     private float pointTimer;
     private float multiplier;
 
@@ -44,12 +47,21 @@ public class ArtScoreSystem : MonoBehaviour
         {
             multiplier = pointTimer / 10;
             score += 250 + (int)Mathf.Floor(multiplier * 250);
+            audioSource.PlayOneShot(correctColorClip);
+            multDisplay.fillAmount = 1.0f;
+            pointTimer = 20f;
         }
         else
         {
-            score -= 200;
+            if (score > 200)
+            {
+                score -= 200;
+            }
+            else
+            {
+                score -= score;
+            }
+            audioSource.PlayOneShot(incorrectColorClip);
         }
-        multDisplay.fillAmount = 1.0f;
-        pointTimer = 20f;
     }
 }

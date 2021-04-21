@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2550109812328468587}
   - component: {fileID: 2456829507964815723}
   - component: {fileID: 3069254423215963174}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Cafe
   m_TagString: Color
   m_Icon: {fileID: 0}
