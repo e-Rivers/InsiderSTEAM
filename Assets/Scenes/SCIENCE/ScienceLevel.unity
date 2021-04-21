@@ -4944,7 +4944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1169090649
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5864,7 +5864,7 @@ MonoBehaviour:
   short3: {fileID: 1153438765}
   holoIDLE: {fileID: 1773860981}
   holoFAIL: {fileID: 960839626}
-  pauseScreen: {fileID: 174621802}
+  pauseScreen: {fileID: 0}
   timeText: {fileID: 666278983}
   roundText: {fileID: 663428837}
   askText: {fileID: 575795658}
@@ -6924,12 +6924,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -5
-  m_Sprite: {fileID: 21300000, guid: 23ef369cd900acd18a561ad15d2cb76d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fcbd7ad4d1015e948a4bceb243166255, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 19.2, y: 10.8}
+  m_Size: {x: 19.2, y: 12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
