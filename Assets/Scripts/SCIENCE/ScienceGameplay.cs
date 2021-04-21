@@ -173,7 +173,7 @@ public class ScienceGameplay : MonoBehaviour
 		    short1.SetActive(true); 
 		    circuitAudio.Play();
 		    break;
-		case 4:
+		case 8:
 		    short2.SetActive(true); 
 		    circuitAudio.Play();
 		    break;
@@ -181,9 +181,9 @@ public class ScienceGameplay : MonoBehaviour
 		    short3.SetActive(true); 
 		    circuitAudio.Play();
 		    break;
-		case 8:
+		case 4:
 		    collapseAudio.Play(); 
-		    ArtCameraShake.instance.ShakeCamera(0.5f,0.5f);
+		    ArtCameraShake.instance.ShakeCamera(0.3f,0.5f);
 		    break;
 	    }
 	    yield return new WaitForSeconds(5);
