@@ -27,6 +27,7 @@ public class ScienceGameplay : MonoBehaviour
     // Loads all riddles and problems
     void Start()
     {
+	resetVars();
 	alarmEffect = StartCoroutine(alarmScreenEffect());	
         riddleDict.Add("Son 28 caballeros de espaldas negras y lisas; delante, todo agujeros, por dominar se dan prisa.", "DOMINO");
         riddleDict.Add("Soy de madera, tengo un arco y no flecha.", "VIOLIN");
@@ -145,7 +146,7 @@ public class ScienceGameplay : MonoBehaviour
         }
         else
         {
-            askingMusic.Stop();
+	    removeElements(false);
             StopCoroutine(subTime);
             finishTitle.text = "DERROTA";
             finishText.text = "No lograste desactivar el reactor, pero no te rindas, entrena tu mente, piensa creativamente y verás como irás mejorando hasta que por fin la victoria sea tuya.";
@@ -182,7 +183,7 @@ public class ScienceGameplay : MonoBehaviour
 		    break;
 		case 8:
 		    collapseAudio.Play(); 
-		    ArtCameraShake.instance.ShakeCamera();
+		    ArtCameraShake.instance.ShakeCamera(0.5f,0.5f);
 		    break;
 	    }
 	    yield return new WaitForSeconds(5);
@@ -211,18 +212,14 @@ public class ScienceGameplay : MonoBehaviour
         {
             if (!labyCrossed)
             {
-		StopCoroutine(shortEffect);
+		removeElements(false);
                 timeCount = 60;
                 labyCrossed = true;
                 sciText.text = ". . .";
-                normalMusic.Stop();
                 askingMusic.Play();
+		endsBanner.SetActive(true);
             }
             timeText.text = "Tiempo: " + timeCount;
-            mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
-            mazeCover.SetActive(false);
-            player.SetActive(false);
-            endsBanner.SetActive(true);
             if (timeCount > 0)
             {
                 if (endingAns == "1")
@@ -286,6 +283,37 @@ public class ScienceGameplay : MonoBehaviour
     public void resumeGame() {
 	pauseScreen.SetActive(false);
 	Time.timeScale = 1;
+    }
+
+    // Method to destroy or hide game and UI objects
+    private void removeElements(bool pause) {
+	if(pause) {
+
+	} else {
+	    StopCoroutine(shortEffect);
+            mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
+            mazeCover.SetActive(false);
+            player.SetActive(false);
+	    holoIDLE.SetActive(false);
+	    holoFAIL.SetActive(false);
+	    short1.SetActive(false);
+	    short2.SetActive(false);
+	    short3.SetActive(false);
+	    normalMusic.Stop();
+	    askingMusic.Stop();
+	    collapseAudio.Stop();
+	    circuitAudio.Stop();
+	}
+    }
+
+    // Method to reset all the control variables to their initial values
+    private void resetVars() {
+	isAskTime = false;
+	roundType = 0;
+	labyCrossed = false;
+	timeCount = 30;
+	sidebarAns = "";
+	endingAns = "";
     }
 
 }
