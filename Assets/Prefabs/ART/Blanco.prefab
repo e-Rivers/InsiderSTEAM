@@ -166,6 +166,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   identifier: w
+  audioSource: {fileID: 0}
+  fallClips:
+  - {fileID: 8300000, guid: 589f5d4693e0d4f46a9c77a42a8141d0, type: 3}
+  - {fileID: 8300000, guid: 781a53cec8e7ec34bb4514bf80832e18, type: 3}
+  - {fileID: 8300000, guid: e065cc16ba4d4f147b5eea192edd83c7, type: 3}
 --- !u!114 &5193769137561825377
 MonoBehaviour:
   m_ObjectHideFlags: 0

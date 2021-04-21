@@ -10,12 +10,18 @@ public class ArtPauseMenu : MonoBehaviour
     private float speed;
     [SerializeField] Image bg;
     [SerializeField] GameObject pauseFrame;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip pauseClip;
+    [SerializeField] AudioClip unpauseClip;
+    [SerializeField] AudioLowPassFilter audioLowPass;
+
     // Start is called before the first frame update
     void Start()
     {
         paused = false;
         speed = 10.3f / 7;
         Time.timeScale = 1.0f;
+        audioLowPass.enabled = false;
     }
 
     // Update is called once per frame
@@ -28,10 +34,14 @@ public class ArtPauseMenu : MonoBehaviour
                 if (!paused)
                 {
                     paused = true;
+                    audioSource.PlayOneShot(pauseClip);
+                    audioLowPass.enabled = true;
                 }
                 else
                 {
                     paused = false;
+                    audioSource.PlayOneShot(unpauseClip);
+                    audioLowPass.enabled = false;
                 }
                 StartCoroutine("BgEnable");
                 StartCoroutine("StopTimeScale");
