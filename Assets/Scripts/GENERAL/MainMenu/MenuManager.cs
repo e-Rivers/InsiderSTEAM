@@ -111,7 +111,7 @@ public class MenuManager : MonoBehaviour
     public void GotoMath() { nextScene = "MathLevel"; EnterScene(); }
     public void GotoTech() { nextScene = "TechLevelIntro"; EnterScene(); }
     public void GotoArt() { nextScene = "ArtLevel"; EnterScene(); }
-    public void GotoEngineering() { nextScene = "ArtLevel"; EnterScene(); }
+    public void GotoEngineering() { nextScene = "Level 3"; EnterScene(); }
 
     // Coroutine to change the current displayed character
     private IEnumerator changeCharacter()
