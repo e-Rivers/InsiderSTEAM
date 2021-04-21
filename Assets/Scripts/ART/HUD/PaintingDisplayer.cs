@@ -81,6 +81,8 @@ public class PaintingDisplayer : MonoBehaviour
         ArtCameraShake.instance.ShakeCamera(0.5f, 1.0f);
         // Stop player movement
         PlayerMovement.instance.disableInput = true;
+        // Stop drops from spawning
+        ColorSpawn.canSpawn = false;
         // Make first growing animation
         while (transform.localScale.x < xSizeLimit || transform.localScale.y < ySizeLimit)
         {
@@ -99,11 +101,11 @@ public class PaintingDisplayer : MonoBehaviour
         {
             if (rect.localPosition.x > -545)
             {
-                rect.localPosition -= new Vector3(1f, 0f, 0f);
+                rect.localPosition -= new Vector3(30f, 0f, 0f);
             }
             if (rect.localPosition.y < 0)
             {
-                rect.localPosition += new Vector3(0f, 1f, 0f);
+                rect.localPosition += new Vector3(0f, 30f, 0f);
             }
             yield return null;
         }
@@ -118,7 +120,7 @@ public class PaintingDisplayer : MonoBehaviour
         PaintingInfo.instance.SetInfo(LevelManager.level);
         btnState = true;
         // Wait for button to be active
-        while (buttonTimer < 4.0f)
+        while (buttonTimer < 12.0f)
         {
             buttonTimer += 0.1f;
             yield return null;
