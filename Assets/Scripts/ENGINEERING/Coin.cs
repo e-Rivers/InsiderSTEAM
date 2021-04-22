@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonedaItem : MonoBehaviour
+public class Coin : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {   
-            //Prende explosión
-            gameObject.transform.GetChild(0).gameObject.SetActive(true);
-
             //Esconde moneda
             GetComponent<SpriteRenderer>().enabled = false;
 
