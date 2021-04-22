@@ -10,22 +10,27 @@ public class ScienceGameplay : MonoBehaviour
 
     // Attibutes that aren't used in other classes but their values are obtained publicly
     public InputField regInput, endInput, endsBannerAnswer, sidebarAnswer;
-    public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover, finishPanel;
+    public GameObject player, mazeGenesys, initBanner, endsBanner, mazeCover, finishPanel, short1, short2, short3, holoIDLE, holoFAIL, pauseScreen;
     public Text timeText, roundText, askText, sciText, finishTitle, finishText;
-    public AudioSource normalMusic, askingMusic;
+    public AudioSource normalMusic, askingMusic, startingAlarm, collapseAudio, circuitAudio;
+    public Image alarmLight;
     // Attributes that are used in other classes (MoveCharacter.cs)
     public static bool isAskTime = false;
     public static int roundType = 0; //(odd is labyrinth crossing & even is answering)
     // Internal attributes
     private Dictionary<string, string> riddleDict = new Dictionary<string, string>();
     private bool labyCrossed = false;
-    private Coroutine subTime;
-    private int timeCount = 30;
-    private string sidebarAns = "", endingAns = "";
+    private Coroutine subTime, alarmEffect, shortEffect, askSequence;
+    private int timeCount = 30, questionType, correctSeqAns;
+    private string sidebarAns = "", endingAns = "", curSound, effect;
+    private int[] sequence = new int[20];
+    private List<int> savedTimestamps = new List<int>(); // This list holds the times it took to the user to solve each riddle and problem
 
     // Loads all riddles and problems
     void Start()
     {
+	resetVars();
+	alarmEffect = StartCoroutine(alarmScreenEffect());	
         riddleDict.Add("Son 28 caballeros de espaldas negras y lisas; delante, todo agujeros, por dominar se dan prisa.", "DOMINO");
         riddleDict.Add("Soy de madera, tengo un arco y no flecha.", "VIOLIN");
         riddleDict.Add("Un oso camina 5 km al sur, 5 km al oeste y 5 km al norte. ¿De qué color es el oso?", "BLANCO");
@@ -47,6 +52,11 @@ public class ScienceGameplay : MonoBehaviour
             // Checks if the user clicked to remove the banner to start the game
             if (!initBanner.activeSelf && roundType == 0)
             {
+		holoIDLE.SetActive(true);
+		shortEffect = StartCoroutine(shortCircuitEffect());
+		alarmLight.gameObject.SetActive(false);
+		StopCoroutine(alarmEffect);
+		startingAlarm.Stop();
                 subTime = StartCoroutine(reduceTimer());
                 mazeGenesys.GetComponent<MazeGenerator>().GenerateMaze();
                 player.SetActive(true);
@@ -62,6 +72,8 @@ public class ScienceGameplay : MonoBehaviour
                 if (!isAskTime) { roundTypeACT(); } else { askRiddleOrProblem(); }
             }
         }
+	// Detects if the user paused the game
+	if(Input.GetKeyDown(KeyCode.Escape) && (roundType%2 != 0 || initBanner.activeSelf)) alterElements("pause");
         // Checks if the player has escaped the labyrinth
         verifyEscapeAndEnding();
     }
@@ -78,6 +90,8 @@ public class ScienceGameplay : MonoBehaviour
         {
             timeCount = 20;
             roundType++;
+	    holoIDLE.SetActive(false);
+	    holoFAIL.SetActive(true);
         }
     }
 
@@ -94,10 +108,18 @@ public class ScienceGameplay : MonoBehaviour
         {
             isAskTime = true;
             timeCount = 60;
-            int randomSelection = Random.Range(0, riddleDict.Keys.Count);
-            string randomRiddle = riddleDict.Keys.ElementAt(randomSelection);
-            askText.text = randomRiddle;
-            sciText.text = "TIEMPO!! No escapas aún; para pasar de ronda, responde mi pregunta...";
+	    // ======== Selects between a riddle or problem
+	    questionType = (int) Random.Range(0, 2);
+	    if(questionType == 0) {
+		int randomSelection = (int) Random.Range(0, riddleDict.Keys.Count);
+		string randomRiddle = riddleDict.Keys.ElementAt(randomSelection);
+		askText.text = randomRiddle;
+	    } else {
+		StopCoroutine(subTime);
+		askSequence = StartCoroutine(sequenceMemory());
+	    }
+            sciText.text = "Algunos accesos se bloquearon, para abrirlos responde la pregunta...";
+	    normalMusic.Stop();
             askingMusic.Play();
         }
     }
@@ -105,43 +127,52 @@ public class ScienceGameplay : MonoBehaviour
     // Method that implements the logic to ask questions and validate the answer
     private void askRiddleOrProblem()
     {
+	void onCorrectAnswer() {
+	    askText.text = ""; 
+            sidebarAnswer.text = "";
+            sidebarAns = "";
+            mazeCover.SetActive(false);
+            mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
+            mazeGenesys.GetComponent<MazeGenerator>().GenerateMaze();
+	    // Saves the time
+	    savedTimestamps.Add(timeCount);
+            // Calculates the current round
+            roundType++;
+            string[] prevRound = roundText.text.Split(' ');
+            roundText.text = "Ronda: " + (roundType - int.Parse(prevRound[1]));
+            timeCount = 30;
+            isAskTime = false;
+            askingMusic.Stop();
+            normalMusic.Play();
+            holoFAIL.SetActive(false);
+            holoIDLE.SetActive(true);
+	}
         if (timeCount >= 0)
         {
             timeText.text = "Tiempo: " + timeCount;
-            if (sidebarAns == riddleDict[askText.text])
-            {
-                askText.text = "";
-                sidebarAnswer.text = "";
-                sidebarAns = "";
-                mazeCover.SetActive(false);
-                mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
-                mazeGenesys.GetComponent<MazeGenerator>().GenerateMaze();
-                // Calculates the current round
-                roundType++;
-                string[] prevRound = roundText.text.Split(' ');
-                roundText.text = "Ronda: " + (roundType - int.Parse(prevRound[1]));
-                timeCount = 30;
-                isAskTime = false;
-                askingMusic.Stop();
-                normalMusic.Play();
-            }
-            else if (sidebarAns != "")
-            {
-                sciText.text = "INCORRECTO! Intenta de nuevo... si es que te alcanza el tiempo...";
-            }
+	    if(questionType == 0) {
+                if (sidebarAns == riddleDict[askText.text])
+                { 
+		    onCorrectAnswer();
+                } else if(sidebarAns != "") sciText.text = "INCORRECTO! Intenta de nuevo... Se nos acaba el tiempo!!";
+	    } else {
+		if(sidebarAns == correctSeqAns.ToString()) {
+		    onCorrectAnswer();
+		} else if(sidebarAns != "") sciText.text = "INCORRECTO! Rápido! Debemos apagar el reactor antes que sea tarde!";
+	    }
         }
         else
         {
-            askingMusic.Stop();
+	    alterElements("");
             StopCoroutine(subTime);
             finishTitle.text = "DERROTA";
-            finishText.text = "No lograste escapar del laberinto, pero no te rindas, entrena tu mente, piensa creativamente y verás como irás mejorando hasta que por fin la victoria sea tuya.";
+            finishText.text = "No lograste desactivar el reactor, pero no te rindas, entrena tu mente, piensa creativamente y verás como irás mejorando hasta que por fin la victoria sea tuya.";
             finishPanel.SetActive(true);
         }
     }
 
     // Method to update substract one to the timer
-    IEnumerator reduceTimer()
+    private IEnumerator reduceTimer()
     {
         while (true)
         {
@@ -149,6 +180,64 @@ public class ScienceGameplay : MonoBehaviour
             timeCount--;
         }
     }
+
+    // Coroutine to display the short-circuit effects
+    private IEnumerator shortCircuitEffect() {
+	while(true) {
+	    int randomEffect = (int) Random.Range(0, 11);
+	    switch(randomEffect) {
+		case 2:
+		    short1.SetActive(true); 
+		    circuitAudio.Play();
+		    break;
+		case 8:
+		    short2.SetActive(true); 
+		    circuitAudio.Play();
+		    break;
+		case 6:
+		    short3.SetActive(true); 
+		    circuitAudio.Play();
+		    break;
+		case 4:
+		    collapseAudio.Play(); 
+		    ArtCameraShake.instance.ShakeCamera(0.3f,0.5f);
+		    break;
+	    }
+	    yield return new WaitForSeconds(5);
+	    short1.SetActive(false);
+	    short2.SetActive(false);
+	    short3.SetActive(false);
+	}
+    }
+
+    // Coroutine to display the alarm effect
+    private IEnumerator alarmScreenEffect() {
+	while(true) {
+	    alarmLight.canvasRenderer.SetAlpha(0);
+	    alarmLight.CrossFadeAlpha(0.7f,0.5f,false);
+	    yield return new WaitForSeconds(0.5f);
+	    alarmLight.CrossFadeAlpha(0,0.5f,false);
+	    yield return new WaitForSeconds(0.5f);
+	}
+    }
+
+    // Coroutine to generate the sequence problems
+    private IEnumerator sequenceMemory() {
+	askText.text = "Presta atención a la siguiente secuencia:";
+	for(int i = 0; i < 20; i++) {
+            int randyNum = (int) Random.Range(0,100);
+	    sequence[i] = randyNum;
+	}
+	int correctIndex = (int) Random.Range(0, 20);
+	correctSeqAns = sequence[correctIndex];
+	yield return new WaitForSeconds(2);
+	foreach(int a in sequence) {
+	    askText.text = a.ToString();
+	    yield return new WaitForSeconds(0.75f);
+	}
+	askText.text = "¿Cuál era el número en la " + (correctIndex+1).ToString() + "° posición?";
+	subTime = StartCoroutine(reduceTimer());
+    } 
 
     // Method to verify if the player escaped and to ask for the last question
     private void verifyEscapeAndEnding()
@@ -158,17 +247,14 @@ public class ScienceGameplay : MonoBehaviour
         {
             if (!labyCrossed)
             {
+		alterElements("");
                 timeCount = 60;
                 labyCrossed = true;
                 sciText.text = ". . .";
-                normalMusic.Stop();
                 askingMusic.Play();
+		endsBanner.SetActive(true);
             }
             timeText.text = "Tiempo: " + timeCount;
-            mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
-            mazeCover.SetActive(false);
-            player.SetActive(false);
-            endsBanner.SetActive(true);
             if (timeCount > 0)
             {
                 if (endingAns == "1")
@@ -176,7 +262,7 @@ public class ScienceGameplay : MonoBehaviour
                     askingMusic.Stop();
                     StopCoroutine(subTime);
                     finishTitle.text = "VICTORIA";
-                    finishText.text = "Tu memoria y habilidad mental son ADMIRABLES!! Haz conseguido vencer a los más grandes científicos y los has liberado! Siéntete orgulloso, no cualquiera logra superar esto.";
+                    finishText.text = "Tu memoria y habilidad mental son ADMIRABLES!! Haz conseguido salvar la nave y a sus científicos! Siéntete orgulloso, no cualquiera logra superar esto.";
                     finishPanel.SetActive(true);
                 }
             }
@@ -215,4 +301,118 @@ public class ScienceGameplay : MonoBehaviour
         MenuManager.nextScene = "MainMenu";
         SceneManager.LoadScene("LoadingScene");
     }
+
+    // Method to play again
+    public void playAgain() {
+
+	Debug.Log(savedTimestamps);
+
+	MenuManager.nextScene = "ScienceLevel";
+	SceneManager.LoadScene(MenuManager.nextScene);
+    }
+
+    // Method to resume game
+    public void resumeGame() { alterElements("unpause"); }
+
+    // Method to display, destroy or hide game and UI objects
+    private void alterElements(string action) {
+	if(action == "pause") {
+	    if(!initBanner.activeSelf) MazeGenerator.mazeParent.SetActive(false);
+	    pauseScreen.SetActive(true);
+	    Time.timeScale = 0;
+	    // Pauses the currently active Music
+	    if(normalMusic.isPlaying) {
+		curSound = "normal";
+		normalMusic.Pause();
+	    } else if(startingAlarm.isPlaying) {
+		curSound = "alarm";
+		startingAlarm.Pause();
+	    }
+	    // Pauses the currently active effect
+	    if(short1.activeSelf) {
+		effect = "short1";
+		circuitAudio.Pause();
+		short1.GetComponent<SpriteRenderer>().sortingOrder = -100;
+	    } else if(short2.activeSelf) {
+		effect = "short2";
+		circuitAudio.Pause();
+		short2.GetComponent<SpriteRenderer>().sortingOrder = -100;
+	    } else if(short3.activeSelf) {
+		effect = "short3";
+		circuitAudio.Pause();
+		short3.GetComponent<SpriteRenderer>().sortingOrder = -100;
+	    } else {
+		effect = "collapse";
+		collapseAudio.Pause();
+	    }
+	    // Pauses the hologram animation
+	    holoIDLE.GetComponent<SpriteRenderer>().sortingOrder = -100;
+	} else if(action == "unpause") {
+	    if(!initBanner.activeSelf) MazeGenerator.mazeParent.SetActive(true);
+	    pauseScreen.SetActive(false);
+	    Time.timeScale = 1;
+	    // Reactivates the adecuate Music
+	    if(curSound == "normal") normalMusic.UnPause();
+	    else startingAlarm.UnPause();
+	    // Reactivates the hologram animation
+	    holoIDLE.GetComponent<SpriteRenderer>().sortingOrder = 0;
+	    player.SetActive(true);
+	    // Reactivates the last active effect
+	    if(effect == "short1") {
+		circuitAudio.UnPause();
+		short1.GetComponent<SpriteRenderer>().sortingOrder = -1;
+	    } else if(effect == "short2") {
+		circuitAudio.UnPause();
+		short2.GetComponent<SpriteRenderer>().sortingOrder = 0;
+	    } else if(effect == "short3") {
+		circuitAudio.UnPause();
+		short3.GetComponent<SpriteRenderer>().sortingOrder = 0;
+	    } else {
+		collapseAudio.UnPause();
+	    }
+	    return;
+	} else {
+	    StopCoroutine(shortEffect);
+            mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();
+	    normalMusic.Stop();
+	    askingMusic.Stop();
+	    collapseAudio.Stop();
+	    circuitAudio.Stop();
+	    short1.SetActive(false);
+	    short2.SetActive(false);
+	    short3.SetActive(false);
+	    holoIDLE.SetActive(false);
+	}
+	mazeCover.SetActive(false);
+	player.SetActive(false);
+	holoFAIL.SetActive(false);
+    }
+
+    // Method to reset all the control variables to their initial values
+    private void resetVars() {
+	isAskTime = false;
+	roundType = 0;
+	labyCrossed = false;
+	timeCount = 30;
+	sidebarAns = "";
+	endingAns = "";
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

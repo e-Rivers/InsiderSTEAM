@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1875248027736423042}
   - component: {fileID: 1980913211781178242}
   - component: {fileID: 1440546991892190927}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Azul Violaceo
   m_TagString: Color
   m_Icon: {fileID: 0}

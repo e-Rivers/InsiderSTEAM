@@ -33,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
         {
             //User input
             float movHorizontal = Input.GetAxis("Horizontal");  //En X
-            Debug.Log(movHorizontal);
             animator.SetFloat("speed", movHorizontal);
             if (movHorizontal < 0)
             {

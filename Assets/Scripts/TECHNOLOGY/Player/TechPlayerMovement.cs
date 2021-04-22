@@ -10,8 +10,12 @@ public class TechPlayerMovement : MonoBehaviour
     public int x, y;
     public float speed;
     public float distancePerTap = 0.5f;
+    public bool enableMovement;
 
     // Private attributes
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip movementClip;
+    [SerializeField] AudioClip startSound;
     private int playerY;
     private int yLimit, xLimit;
     private float tapTime = 0.15f;
@@ -29,79 +33,90 @@ public class TechPlayerMovement : MonoBehaviour
         xLimit = 15;
         yLimit = 15;
         timer = 0;
+        enableMovement = true;
+        // Play initial sound
+        audioSource.PlayOneShot(startSound);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        if (enableMovement)
         {
-            if (x < xLimit - 1)
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
-                if (timer <= 0)
+                if (x < xLimit - 1)
                 {
-                    transform.position += new Vector3(distancePerTap, 0, 0);
-                    x++;
-                    timer = tapTime;
-                } else
-                {
-                    timer -= Time.deltaTime;
+                    if (timer <= 0)
+                    {
+                        transform.position += new Vector3(distancePerTap, 0, 0);
+                        x++;
+                        audioSource.PlayOneShot(movementClip);
+                        timer = tapTime;
+                    }
+                    else
+                    {
+                        timer -= Time.deltaTime;
+                    }
                 }
             }
-        }
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-        {
-            if (x > 0)
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
             {
-                if (timer <= 0)
+                if (x > 0)
                 {
-                    transform.position += new Vector3(-distancePerTap, 0, 0);
-                    x--;
-                    timer = tapTime;
-                }
-                else
-                {
-                    timer -= Time.deltaTime;
+                    if (timer <= 0)
+                    {
+                        transform.position += new Vector3(-distancePerTap, 0, 0);
+                        x--;
+                        audioSource.PlayOneShot(movementClip);
+                        timer = tapTime;
+                    }
+                    else
+                    {
+                        timer -= Time.deltaTime;
+                    }
                 }
             }
-        }
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-        {
-            if (playerY < yLimit - 1)
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
             {
-                if (timer <= 0)
+                if (playerY < yLimit - 1)
                 {
-                    transform.position += new Vector3(0, distancePerTap, 0);
-                    playerY++;
-                    y--;
-                    timer = tapTime;
-                }
-                else
-                {
-                    timer -= Time.deltaTime;
+                    if (timer <= 0)
+                    {
+                        transform.position += new Vector3(0, distancePerTap, 0);
+                        playerY++;
+                        y--;
+                        audioSource.PlayOneShot(movementClip);
+                        timer = tapTime;
+                    }
+                    else
+                    {
+                        timer -= Time.deltaTime;
+                    }
                 }
             }
-        }
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
-        {
-            if (playerY > 0)
+            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             {
-                if (timer <= 0)
+                if (playerY > 0)
                 {
-                    transform.position += new Vector3(0, -distancePerTap, 0);
-                    playerY--;
-                    y++;
-                    timer = tapTime;
-                }
-                else
-                {
-                    timer -= Time.deltaTime;
+                    if (timer <= 0)
+                    {
+                        transform.position += new Vector3(0, -distancePerTap, 0);
+                        playerY--;
+                        y++;
+                        audioSource.PlayOneShot(movementClip);
+                        timer = tapTime;
+                    }
+                    else
+                    {
+                        timer -= Time.deltaTime;
+                    }
                 }
             }
-        }
-        if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))
-        {
-            timer = 0f;
+            if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))
+            {
+                timer = 0f;
+            }
         }
     }
 }

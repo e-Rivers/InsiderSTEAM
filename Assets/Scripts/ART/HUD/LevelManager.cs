@@ -10,6 +10,9 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
     public static int level;
     public static int levelsPlayed;
+    public static bool addLevel = true;
+
+    public int maxLevels = 3;
 
     // Private attributes
     private static List<int> levels = new List<int>();
@@ -17,39 +20,55 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Set self reference
+        instance = this;
         // Set button listener
-        getNextLevel(false);
-        levelsPlayed++;
+        if (levelsPlayed == 0)
+        {
+            getNextLevel(false);
+        }
+        if (addLevel)
+        {
+            levelsPlayed++;
+        }
+        addLevel = true;
     }
 
     public void getNextLevel(bool reload = true)
     {
+        // Reset timescale
+        Time.timeScale = 1.0f;
         // Do only if number of played levels are less than 3
-        if (levelsPlayed < 3)
+        if (levelsPlayed < maxLevels)
         {
-            // Get a random new level number
-            int rndLevel = Random.Range(0, 7);
-            // If list of levels has less than 5 elements
-            if (levels.Count < 7)
+            if (addLevel)
             {
-                // Repeat
-                while (true)
+                Debug.Log("Choosing level randomly: " + addLevel + " in game: " + LevelManager.levelsPlayed);
+                // Get a random new level number
+                int rndLevel = Random.Range(0, 7);
+                // If list of levels has less than 5 elements
+                if (levels.Count < 7)
                 {
-                    // If picked level number has already been picked before
-                    if (levels.Contains(rndLevel))
+                    // Repeat
+                    while (true)
                     {
-                        // Set a new level number
-                        rndLevel = Random.Range(0, 7);
-                        // Otherwise, add to level numbers List and set level
-                    }
-                    else
-                    {
-                        level = rndLevel;
-                        levels.Add(rndLevel);
-                        break;
+                        // If picked level number has already been picked before
+                        if (levels.Contains(rndLevel))
+                        {
+                            // Set a new level number
+                            rndLevel = Random.Range(0, 7);
+                            // Otherwise, add to level numbers List and set level
+                        }
+                        else
+                        {
+                            level = rndLevel;
+                            levels.Add(rndLevel);
+                            break;
+                        }
                     }
                 }
             }
+
             if (reload)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -59,13 +78,21 @@ public class LevelManager : MonoBehaviour
         {
             levelsPlayed = 0;
             levels.Clear();
-            PaintingDisplayer.instance.DisableCanvas();
-            ArtEndingScreen.instance.SetEndingScreen();
+            if (SceneManager.GetActiveScene().name.Equals("ArtLevel"))
+            {
+                PaintingDisplayer.instance.DisableCanvas();
+                ArtEndingScreen.instance.SetEndingScreen();
+            }
         }
     }
 
     public void SendToMainMenu()
     {
+        levelsPlayed = 0;
+        level = 0;
+        levels.Clear();
+        addLevel = true;
+        Time.timeScale = 1.0f;
         MenuManager.nextScene = "MainMenu";
         MenuManager.instance.EnterScene();
     }

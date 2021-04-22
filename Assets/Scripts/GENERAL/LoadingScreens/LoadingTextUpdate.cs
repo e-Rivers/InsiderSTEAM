@@ -17,10 +17,11 @@ public class LoadingTextUpdate : MonoBehaviour
     void Start()
     {
         instance = this;
+        Time.timeScale = 1.0f;
         text = GetComponent<Text>();
         changeTime = 0.2f;
         timer = 0.0f;
-        letters = new string[] { "C", "A", "R", "G", "A", "N", "D", "O", ".", ".", ".", "."};
+        letters = new string[] { "C", "A", "R", "G", "A", "N", "D", "O", ".", ".", ".", "." };
         counter = 0;
         stop = false;
     }
@@ -28,7 +29,7 @@ public class LoadingTextUpdate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!stop) 
+        if (!stop)
         {
             if (timer >= changeTime)
             {
@@ -43,12 +44,17 @@ public class LoadingTextUpdate : MonoBehaviour
                     text.text = "";
                     counter = 0;
                 }
-            } else
+            }
+            else
             {
                 timer += Time.deltaTime;
             }
-        } else {
+        }
+        else
+        {
             text.text = "";
         }
     }
+
+    // 
 }

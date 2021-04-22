@@ -17,6 +17,8 @@ public class PlayerAppearAnimation : MonoBehaviour
     {
         // Set self reference
         instance = this;
+        // Stop time scale
+        Time.timeScale = 0.0f;
         // Set growing x limit
         limit = 0.6f;
         // Set growth rate

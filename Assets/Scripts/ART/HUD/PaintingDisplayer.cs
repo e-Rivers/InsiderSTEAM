@@ -9,9 +9,13 @@ public class PaintingDisplayer : MonoBehaviour
     public static PaintingDisplayer instance;
     public GameObject bg;
     public Button button;
+    public bool canPause;
     // Private attributes
     [SerializeField] Text scoreText;
     [SerializeField] Image multiplier;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip paintingAppearanceClip;
+    [SerializeField] AudioClip winClip;
     private Image bgImg;
     private Image image;
     private RectTransform rect;
@@ -19,7 +23,7 @@ public class PaintingDisplayer : MonoBehaviour
     private float ySizeLimit;
     private float buttonTimer;
     private bool btnState;
-    private bool shaker;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,8 +39,8 @@ public class PaintingDisplayer : MonoBehaviour
         xSizeLimit = transform.localScale.x;
         ySizeLimit = transform.localScale.y;
         buttonTimer = 0.0f;
-        shaker = true;
         btnState = false;
+        canPause = true;
         // Set painting size
         transform.localScale = new Vector3(0f, 0f, 1f);
         // Set button visibility
@@ -44,93 +48,14 @@ public class PaintingDisplayer : MonoBehaviour
         button.transform.GetChild(0).gameObject.GetComponent<Text>().enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Function to display painting and info
+    public void EnableCanvas()
     {
-        // If player has won
-        if (InstructionManager.instance.win)
-        {
-            // Disable player movement
-            PlayerMovement.instance.disableInput = true;
-            // Disable score display
-            scoreText.enabled = false;
-            multiplier.enabled = false;
-            // If it's the first time function has been called
-            if (shaker)
-            {
-                // Enable current level's painting
-                image.enabled = true;
-                image.sprite = InstructionManager.instance.currPainting;
-                // Shake camera
-                ArtCameraShake.instance.ShakeCamera(0.5f, 1.0f);
-                shaker = false;
-            }
-            // Make first growing animation
-            if (transform.localScale.x < xSizeLimit || transform.localScale.y < ySizeLimit)
-            {
-                if (transform.localScale.x < xSizeLimit)
-                {
-                    transform.localScale += new Vector3(1f, 0f, 0f) * Time.deltaTime * 2.0f;
-                }
-                if (transform.localScale.y < ySizeLimit)
-                {
-                    transform.localScale += new Vector3(0f, 1f, 0f) * Time.deltaTime * 2.0f;
-                }
-            }
-            else
-            {
-                if (rect.localPosition.x > -545 || rect.localPosition.y < 0)
-                {
-                    // Move image towards it's winning screen position
-                    if (rect.localPosition.x > -545)
-                    {
-                        rect.localPosition -= new Vector3(1f, 0f, 0f) * Time.deltaTime * 1000.0f;
-                    }
-                    if (rect.localPosition.y < 0)
-                    {
-                        rect.localPosition += new Vector3(0f, 1f, 0f) * Time.deltaTime * 100.0f;
-                    }
-                }
-                // Make last growing animation
-                else
-                {
-                    if (transform.localScale.x < xSizeLimit * 2.5)
-                    {
-                        transform.localScale += new Vector3(1f, 1f, 0f) * Time.deltaTime * 10.0f;
-                    }
-                    else
-                    {
-                        if (buttonTimer < 4.0f)
-                        {
-                            PaintingInfo.instance.SetInfo(LevelManager.level);
-                            btnState = true;
-                            buttonTimer += Time.deltaTime;
-                        }
-                        else
-                        {
-                            button.GetComponent<Image>().enabled = btnState;
-                            button.transform.GetChild(0).gameObject.GetComponent<Text>().enabled = btnState;
-                            if (LevelManager.levelsPlayed < 3)
-                            {
-                                button.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Siguiente";
-                            }
-                            else
-                            {
-                                button.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Completar";
-                            }
-                        }
-                    }
-                }
-            }
-            // While background's opacity is less than 180
-            if (bgImg.color.a < 0.75)
-            {
-                // Increase opacity
-                bgImg.color += new Color(0, 0, 0, Time.deltaTime);
-            }
-        }
+        StartCoroutine("PaintingDisplay");
+        StartCoroutine("ShowBackground");
     }
 
+    // Function to disable canvas
     public void DisableCanvas()
     {
         btnState = false;
@@ -141,4 +66,88 @@ public class PaintingDisplayer : MonoBehaviour
         button.transform.GetChild(0).gameObject.GetComponent<Text>().enabled = false;
     }
 
+    // Coroutine to display painting information
+    IEnumerator PaintingDisplay()
+    {
+        // Play winning sound
+        audioSource.PlayOneShot(winClip);
+        // Enable current level's painting
+        image.enabled = true;
+        image.sprite = InstructionManager.instance.currPainting;
+        // Disable multiplier and score
+        scoreText.enabled = false;
+        multiplier.enabled = false;
+        // Shake camera
+        ArtCameraShake.instance.ShakeCamera(0.5f, 1.0f);
+        // Stop player movement
+        PlayerMovement.instance.disableInput = true;
+        // Stop drops from spawning
+        ColorSpawn.canSpawn = false;
+        // Make first growing animation
+        while (transform.localScale.x < xSizeLimit || transform.localScale.y < ySizeLimit)
+        {
+            if (transform.localScale.x < xSizeLimit)
+            {
+                transform.localScale += new Vector3(0.1f, 0f, 0f);
+            }
+            if (transform.localScale.y < ySizeLimit)
+            {
+                transform.localScale += new Vector3(0f, 0.1f, 0f);
+            }
+            yield return null;
+        }
+        // Move painting towards it's winning screen position
+        while (rect.localPosition.x > -545 || rect.localPosition.y < 0)
+        {
+            if (rect.localPosition.x > -545)
+            {
+                rect.localPosition -= new Vector3(30f, 0f, 0f);
+            }
+            if (rect.localPosition.y < 0)
+            {
+                rect.localPosition += new Vector3(0f, 30f, 0f);
+            }
+            yield return null;
+        }
+        // Double painting scale
+        while (transform.localScale.x < xSizeLimit * 2.5)
+        {
+            transform.localScale += new Vector3(1f, 1f, 0f) * Time.deltaTime * 10.0f;
+            yield return null;
+        }
+        // Display painting info
+        audioSource.PlayOneShot(paintingAppearanceClip);
+        PaintingInfo.instance.SetInfo(LevelManager.level);
+        btnState = true;
+        // Wait for button to be active
+        while (buttonTimer < 12.0f)
+        {
+            buttonTimer += 0.1f;
+            yield return null;
+        }
+        // Activate button
+        button.GetComponent<Image>().enabled = btnState;
+        button.transform.GetChild(0).gameObject.GetComponent<Text>().enabled = btnState;
+        // Determine button text according to number of levels played
+        if (LevelManager.levelsPlayed < 3)
+        {
+            button.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Siguiente";
+        }
+        else
+        {
+            button.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Completar";
+        }
+    }
+
+    // Increase winning background's opacity
+    IEnumerator ShowBackground()
+    {
+        // While background's opacity is less than 180
+        while (bgImg.color.a < 0.75)
+        {
+            // Increase opacity
+            bgImg.color += new Color(0, 0, 0, 0.1f);
+            yield return null;
+        }
+    }
 }

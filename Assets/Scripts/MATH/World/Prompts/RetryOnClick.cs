@@ -24,12 +24,14 @@ public class RetryOnClick : MonoBehaviour
         if (canReload)
         {
             canReload = false;
+            Time.timeScale = 1.0f;
             MenuManager.instance.GotoMath();
         }
     }
     // Goes to main menu
     public void LoadMainMenu()
     {
+        Time.timeScale = 1.0f;
         MenuManager.nextScene = "MainMenu";
         MenuManager.instance.EnterScene();
     }

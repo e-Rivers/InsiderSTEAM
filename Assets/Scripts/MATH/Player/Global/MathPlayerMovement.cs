@@ -29,9 +29,10 @@ public class MathPlayerMovement : MonoBehaviour
     private float xMovement;                // Gets horizontal input values
     private bool isGrabbed = false;
     private bool reGrab = true;             // Lets player grab ceiling tiles again
-    
+
     // Start function
-    void Start() {
+    void Start()
+    {
         // Initialize self reference
         instance = this;
         // Initialize components
@@ -56,12 +57,15 @@ public class MathPlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         // Update horizontal input:
         if (!disableXInput)
         {
             xMovement = Input.GetAxis("Horizontal");
-        } else {
+        }
+        else
+        {
             xMovement = 0.0f;
         }
 
@@ -73,7 +77,8 @@ public class MathPlayerMovement : MonoBehaviour
         }
 
         // Animate left movement
-        if (xMovement < 0) {
+        if (xMovement < 0)
+        {
             anim.SetBool("IsRunning", true);
             GetComponent<SpriteRenderer>().flipX = true;
             playerFace.GetComponent<Animator>().SetBool("IsRunning", true);
@@ -81,7 +86,8 @@ public class MathPlayerMovement : MonoBehaviour
         }
 
         // Animate right movement
-        if (xMovement > 0) {
+        if (xMovement > 0)
+        {
             anim.SetBool("IsRunning", true);
             GetComponent<SpriteRenderer>().flipX = false;
             playerFace.GetComponent<Animator>().SetBool("IsRunning", true);
@@ -89,7 +95,8 @@ public class MathPlayerMovement : MonoBehaviour
         }
 
         // Animate if idle
-        if (xMovement == 0) {
+        if (xMovement == 0)
+        {
             playerFace.GetComponent<Animator>().SetBool("IsRunning", false);
             anim.SetBool("IsRunning", false);
         }
@@ -98,14 +105,16 @@ public class MathPlayerMovement : MonoBehaviour
         if (isGrabbed)
         {
             anim.SetBool("IsGrabbed", true);
-        } else
+        }
+        else
         {
             anim.SetBool("IsGrabbed", false);
         }
 
         // Avoid double impulse by adding a bouncing retrigger delay
         hitTimer += Time.deltaTime;
-        if (hitTimer >= 1.0) {
+        if (hitTimer >= 1.0)
+        {
             isGrounded = false;
             reGrab = true;
             hitTimer = 0f;
@@ -174,10 +183,10 @@ public class MathPlayerMovement : MonoBehaviour
             // Limit player movement
             disableXInput = true;
             rb2d.constraints = RigidbodyConstraints2D.FreezePositionY;
-            playerAim.canShoot = false;            
+            playerAim.canShoot = false;
         }
         // Let go of tile
-        if (Input.GetKeyUp(KeyCode.E) && canGrab && inputEnabled)
+        if (Input.GetKeyUp(KeyCode.E) && isGrabbed)
         {
             // Add force towards ceiling tiles' direction
             rb2d.AddForce(new Vector3(-2.5f, 0, 0), ForceMode2D.Impulse);
@@ -200,19 +209,23 @@ public class MathPlayerMovement : MonoBehaviour
             ceilingAnimator.SetTrigger("isNotTouched");
             // Reset player animation
             isGrabbed = false;
-        } else
+        }
+        else
         {
             grabbedTile = null;
         }
-        GetComponent<PlayerAim>().isGrabbing = false;   
+        GetComponent<PlayerAim>().isGrabbing = false;
     }
 
     // Player touches bouncepads or enemies
-    void OnCollisionEnter2D (Collision2D coll) {
+    void OnCollisionEnter2D(Collision2D coll)
+    {
         // Check if the collision is a bouncing tile
-        if (coll.gameObject.CompareTag("Bouncepad")) {
+        if (coll.gameObject.CompareTag("Bouncepad"))
+        {
             // Conditional to avoid double impulses
-            if (!isGrounded) {
+            if (!isGrounded)
+            {
                 // Assign current bouncing tile
                 bouncingTile = coll.gameObject;
                 var bouncingTileMover = bouncingTile.GetComponent<TileMover>();
@@ -222,7 +235,8 @@ public class MathPlayerMovement : MonoBehaviour
                 if (bouncingTileMover.identifier == 1)
                 {
                     canDoubleJump = false;
-                } else
+                }
+                else
                 {
                     canDoubleJump = true;
                 }
@@ -237,7 +251,7 @@ public class MathPlayerMovement : MonoBehaviour
                     anim.ResetTrigger("Glide");
                     anim.SetTrigger("Jump");
                     bouncingTile.GetComponent<TileMover>().jumpedOnce = true;
-                    
+
                 }
                 PlayerSounds.instance.PlatformSound(bouncingTileMover.identifier);
             }
@@ -266,6 +280,8 @@ public class MathPlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ceiling") && reGrab)
         {
             canGrab = true;
+            // Assign potential grabbing tile
+            grabbedTile = collision.gameObject;
         }
     }
 
