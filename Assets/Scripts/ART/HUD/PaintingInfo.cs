@@ -21,8 +21,8 @@ public class PaintingInfo : MonoBehaviour
     };
     public Dictionary<int, string> paintingsInfo = new Dictionary<int, string>()
     {
-        {0, ""},
-        {1, ""},
+        {0, "Esta obra fue creada en 1957 por Remedios Varo, es una pintura con estilo surrealista, actualmente está ubicada en el Museo de Arte Moderno en Chapultepec, Ciudad de México."},
+        {1, " “Soltar es lo que se debe hacer al salir del psicoanálisis”, es lo que nos dice Remedios en referencia de lo que la mujer de cabello blanco y manta verde sostiene con su mano izquierda, un rostro que está por soltar a un pozo"},
         {2, ""},
         {3, ""},
         {4, ""},
