@@ -8,7 +8,7 @@ public class MoveCamera : MonoBehaviour
 
     void Update()
     {
-        float x = Mathf.Clamp(personaje.transform.position.x, min:0, max:20);
+        float x = Mathf.Clamp(personaje.transform.position.x, min:0, max:10.5f);
         float y = Mathf.Clamp(personaje.transform.position.y, min: 0, max:4);
         float z = transform.position.z;
         transform.position = new Vector3(x, y, z);
