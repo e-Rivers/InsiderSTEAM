@@ -59,6 +59,8 @@ public class TechEndingScreen : MonoBehaviour
         title.enabled = true;
         description.enabled = true;
         score.enabled = true;
+        // Don't allow player to stop
+        TechPauseMenu.instance.canPause = false;
         // Display current score
         score.text += " " + TechScoreSystem.instance.GetLevelScore() + " pts.";
         // Make a darker background for the screen to be more clearly visible
