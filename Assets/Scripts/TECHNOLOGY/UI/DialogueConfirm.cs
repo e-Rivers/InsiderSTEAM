@@ -14,7 +14,7 @@ public class DialogueConfirm : MonoBehaviour
     [SerializeField] Image bg;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip beep;
-    private int maxClicks = 6;
+    private int maxClicks;
     private int clicks;
     private Dictionary<string, string[]> dialogues;
 
@@ -25,18 +25,27 @@ public class DialogueConfirm : MonoBehaviour
         clicks = 0;
         // Dialogues according to realm
         dialogues = new Dictionary<string, string[]>() {
-            {"Tech", new string[] { "En este momento estamos viajando al pasado, puesto que La Ignorancia intentó alterar la historia...",
+            {"Tech", new string[] {"En este momento estamos viajando al pasado, puesto que La Ignorancia intentó alterar la historia...",
                                    "...porque teme que La Tecnología se convierta en un peligro para la humanidad y termine por dominarnos.",
                                    "¡No lo podemos permitir! ¡La Tecnología es un aliado sumamente importante para conocer más sobre el universo!",
                                    "Para ayudarnos a combatir este mal, deberás desarrollar tu lógica resolviendo los acertijos que nos dejó nuestro enemigo.",
-                                   "Deberás encontrar las figuras ocultas, siguiendo el número de celdas activas por filas y columnas.",
-                                   "Si logramos encontrarlas, ¡nuestras habilidades serán mucho mayores para derrotar a La Ignorancia!"}
+                                   "¡Encuentra tres figuras ocultas! Para entonces tendrás una habilidad lógica mucho mayor...",
+                                   "¡Si logramos esta misión, estaremos aún más cerca de debilitar a La Ignorancia!"}
+            },
+            {"Math", new string[] {"Así que has encontrado tu camino al Futuro, al Reino Olvidado de las Matemáticas...",
+                                   "¡Ja! Todos creían que sin Matemáticas el mundo sería más sencillo, así que decidieron simplemente olvidarlas...",
+                                   "Lo creerás imposible, pero así es como resultó para tu especie... Creen que viven bien, cuando en realidad no viven así.",
+                                   "Creen que lo tienen todo resuelto, pero sólo permitieron que el dominio de La Ignorancia se expandiera a través del mundo.",
+                                   "Por eso me ves aquí, porque junto a mis compañeros, es mi deber que La Ingorancia continúe reinando sobre tu planeta...",
+                                   "Pero aún quedan rastros de las Matemáticas, pequeños problemas sin resolver que planeamos destruir pronto... ",
+                                   "Si alguien encontrara las respuestas, tu mundo tendría una chispa de esperanza, pero dudo que alguien lo haga.",
+                                   "¡Adelante, intenta! Nuestro ejército te espera..."}
             }
         };
         // Set number of maximum clicks according to the current realm
         maxClicks = dialogues[realm].Length;
         // Reset button and background visibility
-        button.enabled = false;
+        button.enabled = true;
         bg.enabled = true;
         // Display first dialogue
         StartCoroutine("DisplayDialogue");
@@ -45,14 +54,13 @@ public class DialogueConfirm : MonoBehaviour
     // Skip to next dialogue
     public void ConfirmDialogue()
     {
-        // Deactivate button once it's clicked
-        button.enabled = false;
         // Add number of clicks
         clicks++;
         // If max number of clicks hasn't been reached
         if (clicks < maxClicks)
         {
             // Display next dialogue
+            StopCoroutine("DisplayDialogue");
             StartCoroutine("DisplayDialogue");
         }
         else
@@ -80,8 +88,6 @@ public class DialogueConfirm : MonoBehaviour
         {
             bg.enabled = false;
         }
-        // Once the dialogue is complete, enable button to skip to next dialogue
-        button.enabled = true;
     }
 
     // Transition animation
@@ -95,7 +101,16 @@ public class DialogueConfirm : MonoBehaviour
             yield return null;
         }
         // After transition animated is complete, load next scene
-        MenuManager.nextScene = "TechLevel";
+        switch (realm)
+        {
+            case "Tech":
+                MenuManager.nextScene = "TechLevel";
+                break;
+            case "Math":
+                MenuManager.nextScene = "MathLevel";
+                Time.timeScale = 0f;
+                break;
+        }
         MenuManager.instance.EnterScene(false);
     }
 

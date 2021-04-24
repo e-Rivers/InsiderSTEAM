@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     public bool canPause;
     // Private attributes
     private Canvas canvas;
+    private bool paused;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class PauseMenu : MonoBehaviour
         // Set values
         canPause = false;
         canvas.enabled = false;
+        paused = false;
     }
 
     // Update is called once per frame
@@ -29,7 +31,16 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && canPause)
         {
-            PauseGame();
+            if (!paused)
+            {
+                PauseGame();
+                paused = true;
+            }
+            else
+            {
+                UnpauseGame();
+                paused = false;
+            }
         }
     }
 
@@ -60,4 +71,11 @@ public class PauseMenu : MonoBehaviour
         GameObject.Find("MediumEnemySoundSource").GetComponent<AudioLowPassFilter>().enabled = false;
         GameObject.Find("SmallEnemySoundSource").GetComponent<AudioLowPassFilter>().enabled = false;
     }
+
+    // Open tutorial
+    public void OpenTutorial()
+    {
+        Application.OpenURL("https://www.youtube.com/watch?v=dPea7fQ4ovo&list=RDdPea7fQ4ovo&start_radio=1");
+    }
+
 }

@@ -20,7 +20,7 @@ public class IntroFlash : MonoBehaviour
         // Get Image component
         flash = GetComponent<Image>();
         // Set image color to white
-        flash.color = new Color(1f, 1f, 1f, 1f);
+        flash.color = flash.color;
         // Start flash animation
         StartCoroutine("Flash");
     }
