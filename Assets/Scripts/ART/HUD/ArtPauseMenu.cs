@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class ArtPauseMenu : MonoBehaviour
 {
+    // Public attributes
+    public static ArtPauseMenu instance;
+    public bool canPause;
     // Private attributes
     private bool paused;
     private float speed;
@@ -18,10 +21,12 @@ public class ArtPauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         paused = false;
         speed = 10.3f / 7;
         Time.timeScale = 1.0f;
         audioLowPass.enabled = false;
+        canPause = true;
     }
 
     // Update is called once per frame
@@ -29,23 +34,26 @@ public class ArtPauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (PaintingDisplayer.instance.canPause)
+            if (canPause)
             {
-                if (!paused)
+                if (PaintingDisplayer.instance.canPause)
                 {
-                    paused = true;
-                    audioSource.PlayOneShot(pauseClip);
-                    audioLowPass.enabled = true;
+                    if (!paused)
+                    {
+                        paused = true;
+                        audioSource.PlayOneShot(pauseClip);
+                        audioLowPass.enabled = true;
+                    }
+                    else
+                    {
+                        paused = false;
+                        audioSource.PlayOneShot(unpauseClip);
+                        audioLowPass.enabled = false;
+                    }
+                    StartCoroutine("BgEnable");
+                    StartCoroutine("StopTimeScale");
+                    StartCoroutine("MovePauseFrame");
                 }
-                else
-                {
-                    paused = false;
-                    audioSource.PlayOneShot(unpauseClip);
-                    audioLowPass.enabled = false;
-                }
-                StartCoroutine("BgEnable");
-                StartCoroutine("StopTimeScale");
-                StartCoroutine("MovePauseFrame");
             }
         }
     }

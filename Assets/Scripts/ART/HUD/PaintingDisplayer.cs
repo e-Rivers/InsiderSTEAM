@@ -69,6 +69,8 @@ public class PaintingDisplayer : MonoBehaviour
     // Coroutine to display painting information
     IEnumerator PaintingDisplay()
     {
+        // Avoid player pausing during this screen
+        ArtPauseMenu.instance.canPause = false;
         // Play winning sound
         audioSource.PlayOneShot(winClip);
         // Enable current level's painting
