@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class MenuManager : MonoBehaviour
 {
@@ -13,13 +14,15 @@ public class MenuManager : MonoBehaviour
     public Image science, tech, engine, arts, maths;
     private int currentChar = 0;
     private bool transition = true;
-    private Coroutine changeMenuChar;
+    private Coroutine changeMenuChar, loadUserData;
 
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
         changeMenuChar = StartCoroutine(changeCharacter());
+        // Loads user data and stats
+        loadUserData = StartCoroutine(downloadData());
     }
 
     // Update is called once per frame
@@ -125,9 +128,32 @@ public class MenuManager : MonoBehaviour
         }
     }
     
+    // Coroutine to download user data and stats
+    private IEnumerator downloadData() {
+    	string URIresource = "http://18.116.123.111:8080/insider/datosJugadorUnity/" + PlayerPrefs.GetString("nickname");
+		UnityWebRequest request = UnityWebRequest.Get(URIresource);
+		// Executes the request
+		yield return request.SendWebRequest(); 
+		// After the request has completed, checks if it was successful
+		if(request.result == UnityWebRequest.Result.Success) {
+			string returnMsg = request.downloadHandler.text;
+			// 
+			Debug.Log(returnMsg);
+		} else {
+			//errorMessages.text = "ERROR DE CONEXIÓN: " + request.responseCode.ToString();
+		}
+    }
+    
     // Method to exit application
     public void exitGame() {
     	Application.Quit();
+    }
+    
+    // Method to logout
+    public void logOut() {
+    	PlayerPrefs.SetString("nickname", "");
+    	PlayerPrefs.Save();
+    	SceneManager.LoadScene("LoginScreen");
     }
 }
 
