@@ -110,7 +110,7 @@ public class MenuManager : MonoBehaviour
     public void GotoScience() { nextScene = "ScienceLevel"; EnterScene(); }
     public void GotoMath() { nextScene = "MathLevelIntro"; EnterScene(); }
     public void GotoTech() { nextScene = "TechLevelIntro"; EnterScene(); }
-    public void GotoArt() { nextScene = "ArtLevel"; EnterScene(); }
+    public void GotoArt() { nextScene = "ArtLevelIntro"; EnterScene(); }
     public void GotoEngineering() { nextScene = "Level 3"; EnterScene(); }
 
     // Coroutine to change the current displayed character

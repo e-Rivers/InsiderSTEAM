@@ -64,6 +64,11 @@ public class ArtPauseMenu : MonoBehaviour
         LevelManager.instance.GetNextLevel(false);
     }
 
+    public void GoToTutorial()
+    {
+        Application.OpenURL("https://www.youtube.com/watch?v=dPea7fQ4ovo&list=RDdPea7fQ4ovo&start_radio=1");
+    }
+
     // Enable/disable background
     IEnumerator BgEnable()
     {

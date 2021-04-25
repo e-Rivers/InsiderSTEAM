@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TECH/TechLevel.unity
     guid: 3e09af730d01e5d41b120308851c98b1
   - enabled: 1
+    path: Assets/Scenes/ART/ArtLevelIntro.unity
+    guid: 153daa3a17fda474e94f67c09680aa4b
+  - enabled: 1
     path: Assets/Scenes/ART/ArtLevel.unity
     guid: 56a6e6d51a181a34fb42ead53f7dba30
   - enabled: 1

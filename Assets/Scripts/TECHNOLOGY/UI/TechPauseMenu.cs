@@ -95,6 +95,12 @@ public class TechPauseMenu : MonoBehaviour
         audioSource.PlayOneShot(onHoverClip);
     }
 
+    // Open tutorial
+    public void OpenTutorial()
+    {
+        Application.OpenURL("https://www.youtube.com/watch?v=dPea7fQ4ovo&list=RDdPea7fQ4ovo&start_radio=1");
+    }
+
     // Activate pause menu
     void Pause()
     {

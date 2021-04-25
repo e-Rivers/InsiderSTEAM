@@ -40,6 +40,13 @@ public class DialogueConfirm : MonoBehaviour
                                    "Pero aún quedan rastros de las Matemáticas, pequeños problemas sin resolver que planeamos destruir pronto... ",
                                    "Si alguien encontrara las respuestas, tu mundo tendría una chispa de esperanza, pero dudo que alguien lo haga.",
                                    "¡Adelante, intenta! Nuestro ejército te espera..."}
+            },
+            {"Art", new string[] { "¡Necesito tu ayuda! ¡La Ignorancia planea erradicar las pinturas de todos los museos en el universo!",
+                                   "Por favor, entra y ayúdanos a que los colores vuelvan a sus pinturas originales, pues Remedios Varo está sufriendo los...",
+                                   "...primeros pasos de este malvado plan, pues están robando los colores de cada una de sus pinturas.",
+                                   "Sé que es mucho pedir, pero así como ahora tengo vida, pronto podré extinguirme junto con otras galerías del mundo...",
+                                   "...y eso sólo hará el trabajo de La Ignorancia más fácil."
+                                 }
             }
         };
         // Set number of maximum clicks according to the current realm
@@ -83,7 +90,6 @@ public class DialogueConfirm : MonoBehaviour
             audioSource.PlayOneShot(beep);
             yield return new WaitForSeconds(0.02f);
         }
-        // Disable background
         if (bg.enabled)
         {
             bg.enabled = false;
@@ -109,6 +115,9 @@ public class DialogueConfirm : MonoBehaviour
             case "Math":
                 MenuManager.nextScene = "MathLevel";
                 Time.timeScale = 0f;
+                break;
+            case "Art":
+                MenuManager.nextScene = "ArtLevel";
                 break;
         }
         MenuManager.instance.EnterScene(false);
