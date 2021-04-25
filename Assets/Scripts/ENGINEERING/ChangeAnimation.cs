@@ -17,7 +17,7 @@ public class ChangeAnimation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb2D = GetComponent<Rigidbody2D>();
+        rb2D = transform.parent.GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sprRenderer = GetComponent<SpriteRenderer>();
     }
@@ -37,18 +37,6 @@ public class ChangeAnimation : MonoBehaviour
         {
             sprRenderer.flipX = true;
         }
-
-        /*// Idle <-> Jump
-        if (!FloorTest.isInFloor)
-        {
-            anim.SetBool(name:"is_jumping", value:true);
-        }
-        else
-        {
-            anim.SetBool(name:"is_jumping", value:false);
-        }
-        */
-
 
     }
 }
