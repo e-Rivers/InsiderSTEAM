@@ -15,7 +15,7 @@ public class RetryOnClick : MonoBehaviour
         // Set public reference
         instance = this;
         // Set values
-        canReload = false;
+        canReload = true;
     }
 
     // Reloads scene
@@ -25,7 +25,8 @@ public class RetryOnClick : MonoBehaviour
         {
             canReload = false;
             Time.timeScale = 1.0f;
-            MenuManager.instance.GotoMath();
+            MenuManager.nextScene = "MathLevel";
+            MenuManager.instance.EnterScene(false);
         }
     }
     // Goes to main menu

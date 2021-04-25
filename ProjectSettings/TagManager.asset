@@ -29,6 +29,7 @@ TagManager:
   - LeftPortal
   - ArtCanvas
   - LowerPointerSwitch
+  - DialogueTrigger
   layers:
   - Default
   - TransparentFX

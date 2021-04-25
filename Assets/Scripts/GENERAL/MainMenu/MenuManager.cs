@@ -108,10 +108,10 @@ public class MenuManager : MonoBehaviour
 
     // Methods to change to the correspoding level (World)
     public void GotoScience() { nextScene = "ScienceLevel"; EnterScene(); }
-    public void GotoMath() { nextScene = "MathLevel"; EnterScene(); }
+    public void GotoMath() { nextScene = "MathLevelIntro"; EnterScene(); }
     public void GotoTech() { nextScene = "TechLevelIntro"; EnterScene(); }
     public void GotoArt() { nextScene = "ArtLevel"; EnterScene(); }
-    public void GotoEngineering() { nextScene = "ArtLevel"; EnterScene(); }
+    public void GotoEngineering() { nextScene = "Level 3"; EnterScene(); }
 
     // Coroutine to change the current displayed character
     private IEnumerator changeCharacter()

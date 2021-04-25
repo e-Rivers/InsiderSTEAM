@@ -30,8 +30,11 @@ public class FireballerBehaviour : MonoBehaviour
         switch (enemyType)
         {
             case "small":
-                audioSource = GameObject.Find("SmallEnemySoundSource").GetComponent<AudioSource>();
-                if (EnemyControl.instance.smallEnemies == 0)
+                if (GameObject.Find("SmallEnemySoundSource"))
+                {
+                    audioSource = GameObject.Find("SmallEnemySoundSource").GetComponent<AudioSource>();
+                }
+                if (EnemyControl.instance.smallEnemies == 0 && audioSource != null)
                 {
                     audioSource.clip = enemySounds[Random.Range(0, enemySounds.Length)];
                     audioSource.Play();
@@ -40,7 +43,7 @@ public class FireballerBehaviour : MonoBehaviour
                 break;
             case "big":
                 audioSource = GameObject.Find("BigEnemySoundSource").GetComponent<AudioSource>();
-                if (EnemyControl.instance.bigEnemies == 0)
+                if (EnemyControl.instance.bigEnemies == 0 && audioSource != null)
                 {
                     audioSource.clip = enemySounds[Random.Range(0, enemySounds.Length)];
                     audioSource.Play();
@@ -66,7 +69,7 @@ public class FireballerBehaviour : MonoBehaviour
         {
             var projectile = Instantiate(fireball, transform.position, fireball.transform.localRotation);
             projectile.transform.parent = transform.parent;
-            if (EnemyControl.instance.canTriggerSounds)
+            if (EnemyControl.instance.canTriggerSounds && audioSource != null)
             {
                 audioSource.PlayOneShot(shootSound);
             }
@@ -93,7 +96,10 @@ public class FireballerBehaviour : MonoBehaviour
                     EnemyControl.instance.bigEnemies--;
                     break;
             }
-            audioSource.Stop();
+            if (audioSource != null)
+            {
+                audioSource.Stop();
+            }
             Destroy(this.gameObject);
         }
     }

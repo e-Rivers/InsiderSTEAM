@@ -9,9 +9,9 @@ public class LevelManager : MonoBehaviour
     // Public attributes
     public static LevelManager instance;
     public static int level;
-    public static int levelsPlayed;
-    public static bool addLevel = true;
-
+    public static int sameLevelCount = 0;
+    public static int levelsPlayed = 1;
+    public static bool isNewLevel = false;
     public int maxLevels = 3;
 
     // Private attributes
@@ -20,33 +20,29 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Debug
+        Debug.Log("Game: " + levelsPlayed + " Level: " + level);
         // Set self reference
         instance = this;
-        // Set button listener
-        if (levelsPlayed == 0)
+        // If this is the first time the level is played
+        if (sameLevelCount == 0 && levelsPlayed == 1)
         {
-            getNextLevel(false);
+            // Set a random level
+            level = Random.Range(0, 7);
+            // Avoid level repetition
+            levels.Add(level);
         }
-        if (addLevel)
+        // Increment number of times this level has been played
+        sameLevelCount++;
+        // If this is a new level 
+        if (isNewLevel)
         {
-            levelsPlayed++;
-        }
-        addLevel = true;
-    }
-
-    public void getNextLevel(bool reload = true)
-    {
-        // Reset timescale
-        Time.timeScale = 1.0f;
-        // Do only if number of played levels are less than 3
-        if (levelsPlayed < maxLevels)
-        {
-            if (addLevel)
+            // If maximum number of levels hasn't been reached
+            if (levelsPlayed < maxLevels)
             {
-                Debug.Log("Choosing level randomly: " + addLevel + " in game: " + LevelManager.levelsPlayed);
-                // Get a random new level number
+                // Get a random level number
                 int rndLevel = Random.Range(0, 7);
-                // If list of levels has less than 5 elements
+                // If list of levels still has less than its maximum capacity
                 if (levels.Count < 7)
                 {
                     // Repeat
@@ -57,8 +53,8 @@ public class LevelManager : MonoBehaviour
                         {
                             // Set a new level number
                             rndLevel = Random.Range(0, 7);
-                            // Otherwise, add to level numbers List and set level
                         }
+                        // Otherwise, add to level numbers List and set level
                         else
                         {
                             level = rndLevel;
@@ -68,30 +64,48 @@ public class LevelManager : MonoBehaviour
                     }
                 }
             }
+        }
+    }
 
-            if (reload)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
+    // Go to next level
+    public void GetNextLevel(bool addLevel)
+    {
+        // Reset time scale
+        Time.timeScale = 1.0f;
+        // Check if levelsPlayed counter should be incremented
+        if (addLevel)
+        {
+            isNewLevel = true;
+            levelsPlayed++;
+            sameLevelCount = 0;
         }
         else
         {
-            levelsPlayed = 0;
-            levels.Clear();
+            isNewLevel = false;
+        }
+        if (levelsPlayed > maxLevels)
+        {
             if (SceneManager.GetActiveScene().name.Equals("ArtLevel"))
             {
                 PaintingDisplayer.instance.DisableCanvas();
                 ArtEndingScreen.instance.SetEndingScreen();
             }
+            else
+            {
+                SendToMainMenu();
+            }
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
     public void SendToMainMenu()
     {
-        levelsPlayed = 0;
-        level = 0;
+        levelsPlayed = 1;
         levels.Clear();
-        addLevel = true;
+        sameLevelCount = 0;
         Time.timeScale = 1.0f;
         MenuManager.nextScene = "MainMenu";
         MenuManager.instance.EnterScene();

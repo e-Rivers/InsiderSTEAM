@@ -16,6 +16,10 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class TechPauseMenu : MonoBehaviour
 {
+    // Public attributes
+    public static TechPauseMenu instance;
+    public bool canPause;
+
     // Pause menu elements
     [SerializeField] Image startMenu;
     [SerializeField] Button restartBtn;
@@ -31,6 +35,9 @@ public class TechPauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize public variables
+        instance = this;
+        canPause = true;
         // Initialize paused state as false
         paused = false;
         // Disable menu elements from start
@@ -50,37 +57,28 @@ public class TechPauseMenu : MonoBehaviour
         // Detect user input
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!paused)
+            // Check if player is able to pause the game
+            if (canPause)
             {
-                // Enable menu elements from start
-                audioLowPass.enabled = true;
-                startMenu.enabled = true;
-                restartBtn.GetComponent<Image>().enabled = true;
-                restartBtn.enabled = true;
-                tutorialBtn.GetComponent<Image>().enabled = true;
-                tutorialBtn.enabled = true;
-                exitBtn.GetComponent<Image>().enabled = true;
-                exitBtn.enabled = true;
-                paused = true;
-                audioSource.PlayOneShot(onEnterClip);
-                // Enable player movement
-                TechPlayerMovement.instance.enableMovement = false;
+                Pause();
             }
-            else
+        }
+        // Detect user click on 'Inicio' button at the bottom of the screen
+        if (Input.GetMouseButtonDown(0))
+        {
+            // Get mouse position
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+            if (hit.collider != null)
             {
-                // Disable menu elements from start
-                audioLowPass.enabled = false;
-                startMenu.enabled = false;
-                restartBtn.GetComponent<Image>().enabled = false;
-                restartBtn.enabled = false;
-                tutorialBtn.GetComponent<Image>().enabled = false;
-                tutorialBtn.enabled = false;
-                exitBtn.GetComponent<Image>().enabled = false;
-                exitBtn.enabled = false;
-                paused = false;
-                audioSource.PlayOneShot(onExitClip);
-                // Disable player movement
-                TechPlayerMovement.instance.enableMovement = true;
+                if (hit.transform.gameObject.name.Equals("StartButton"))
+                {
+                    if (canPause)
+                    {
+                        Pause();
+                    }
+                }
             }
         }
     }
@@ -88,14 +86,50 @@ public class TechPauseMenu : MonoBehaviour
     // Function to retry level
     public void Retry()
     {
-        LevelManager.addLevel = false;
-        LevelManager.instance.getNextLevel();
+        LevelManager.instance.GetNextLevel(false);
     }
 
     // Produce hover sounds
     public void OnHover()
     {
         audioSource.PlayOneShot(onHoverClip);
+    }
+
+    // Activate pause menu
+    void Pause()
+    {
+        if (!paused)
+        {
+            // Enable menu elements from start
+            audioLowPass.enabled = true;
+            startMenu.enabled = true;
+            restartBtn.GetComponent<Image>().enabled = true;
+            restartBtn.enabled = true;
+            tutorialBtn.GetComponent<Image>().enabled = true;
+            tutorialBtn.enabled = true;
+            exitBtn.GetComponent<Image>().enabled = true;
+            exitBtn.enabled = true;
+            paused = true;
+            audioSource.PlayOneShot(onEnterClip);
+            // Enable player movement
+            TechPlayerMovement.instance.enableMovement = false;
+        }
+        else
+        {
+            // Disable menu elements from start
+            audioLowPass.enabled = false;
+            startMenu.enabled = false;
+            restartBtn.GetComponent<Image>().enabled = false;
+            restartBtn.enabled = false;
+            tutorialBtn.GetComponent<Image>().enabled = false;
+            tutorialBtn.enabled = false;
+            exitBtn.GetComponent<Image>().enabled = false;
+            exitBtn.enabled = false;
+            paused = false;
+            audioSource.PlayOneShot(onExitClip);
+            // Disable player movement
+            TechPlayerMovement.instance.enableMovement = true;
+        }
     }
 
 }
