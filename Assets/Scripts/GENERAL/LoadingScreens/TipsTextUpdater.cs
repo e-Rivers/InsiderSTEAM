@@ -28,11 +28,27 @@ public class TipsTextUpdater : MonoBehaviour
                                          "¡Las plataformas azul-obscuro te protegen! Si te agarras de una, esta lanzará un gran proyectil que destruye a todo enemigo a su paso.",
                                          "Agarrarte de plataformas superiores puede darte diferentes ventajas según su color.",
                                          "Aunque saltar de una plataforma roja te da una gran altura, no podrás hacer un doble salto hasta saltar sobre otra plataforma."
-                                  }
-            },
-            {"TechLevel", new string[] {
-
                                        }
+            },
+            {"TechLevel", new string[] { "Las figuras normalmente son simétricas, por lo que si quieres comenzar una figura, deberías intentarlo desde el centro de las filas o las columnas.",
+                                         "¡No olvides revisar los números de las filas o las columnas! Si son amarillos, puede que hayas completado un patrón correctamente.",
+                                         "Si consigues dar clic sobre el cursor que se encuentra en el juego, este te dirá un recuadro que debe estar activado.",
+                                         "¿Sientes que es demasiado complicado modificar los recuadros? ¡Prueba reiniciando el nivel!",
+                                         "Aunque puede ser de gran ayuda recibir pistas del cursor, tu puntuación se verá afectada negativamente por cada pista que este proporcione."
+                                       }
+            },
+            {"ArtLevel", new string[] { "Si consigues un color que no es el que querías, trata de hacer una combinación de colores que no exista para deshacerte de él.",
+                                        "Aunque los colores blanco y negro no forman parte de los primarios, estos caerán del cielo en caso de requerir formar colores como el gris.",
+                                        "¡Entre más pronto completes la combinación de colores requerida, más puntos recibirás!",
+                                        "No es necesario seguir un orden específico para combinar los colores o completar las instrucciones. ¡Puedes hacerlo a tu manera!",
+                                        "Si recoges dos colores idénticos, el color actual se preservará, por lo que no debes esquivarlos."
+                                      }
+            },
+            {"ScienceLevel", new string[] { "Procura identificar primero la salida del laberinto para que encuentres el camino correcto más fácilmente.",
+                                            "¡Muchos de los acertijos te serán más fáciles de resolver si piensas fuera de la caja!",
+                                            "Ejercitar tu memoria es muy importante para encontrar tu camino hacia la salida. ¡Eventualmente lo conseguirás!",
+                                            "¡No te preocupes si no logras completar el laberinto a tiempo! Aún tendrás la oportunidad de resolver un acertijo."
+                                          }
             }
         };
         // Check if key exists within the dictionary
