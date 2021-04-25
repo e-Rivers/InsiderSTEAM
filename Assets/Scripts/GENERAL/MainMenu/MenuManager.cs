@@ -124,6 +124,11 @@ public class MenuManager : MonoBehaviour
             transition = true;
         }
     }
+    
+    // Method to exit application
+    public void exitGame() {
+    	Application.Quit();
+    }
 }
 
 

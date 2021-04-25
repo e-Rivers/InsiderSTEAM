@@ -11,8 +11,6 @@ public class LoginManagement : MonoBehaviour {
 
 	public InputField userInput, passInput;
 	public Text errorMessages;
-	public Image errorPanel;
-	public Button submit;
 
     // Function called when button is pressed
 	public void retrieveInput() {
@@ -49,4 +47,9 @@ public class LoginManagement : MonoBehaviour {
 			errorMessages.text = "ERROR DE CONEXIÓN: " + request.responseCode.ToString();
 		}
 	}
+	
+	    // Method to exit application
+    public void exitGame() {
+    	Application.Quit();
+    }
 }
