@@ -6,7 +6,8 @@ public class ColorSpawner : MonoBehaviour
 {
     // Private attributes
     [SerializeField] GameObject colorDrop;
-    private Color[] colors = new Color[] { new Color(1f, 0.9575586f, 1f), new Color(0.3425901f, 0.07784498f, 0.6037736f), new Color(1f, 1f, 1f), new Color(1f, 0f, 0f) };
+    private Color[] colors = new Color[] { new Color(1f, 0.9575586f, 1f), new Color(0.3425901f, 0.07784498f, 0.6037736f), new Color(1f, 1f, 1f), new Color(1f, 0f, 0f),
+                                           new Color(0f, 0.9802451f, 1f), new Color(1f, 0.5795525f, 0f), new Color(0.2595613f, 1f, 0f), new Color(0f, 0f, 0f)};
 
     // Start is called before the first frame update
     void Start()
