@@ -10,8 +10,9 @@ public class MenuManager : MonoBehaviour
     public static string nextScene;
     public static MenuManager instance;
     public GameObject menu, profile, credits, playgame;
-
-    public Image science, tech, engine, arts, maths;
+    public Text profileErrorMessage, profileData;
+    public Image science, tech, engine, arts, maths, success, fail;
+    
     private int currentChar = 0;
     private bool transition = true;
     private Coroutine changeMenuChar, loadUserData;
@@ -130,6 +131,8 @@ public class MenuManager : MonoBehaviour
     
     // Coroutine to download user data and stats
     private IEnumerator downloadData() {
+    	fail.gameObject.SetActive(false);
+    	success.gameObject.SetActive(false);
     	string URIresource = "http://18.116.123.111:8080/insider/datosJugadorUnity/" + PlayerPrefs.GetString("nickname");
 		UnityWebRequest request = UnityWebRequest.Get(URIresource);
 		// Executes the request
@@ -137,10 +140,17 @@ public class MenuManager : MonoBehaviour
 		// After the request has completed, checks if it was successful
 		if(request.result == UnityWebRequest.Result.Success) {
 			string returnMsg = request.downloadHandler.text;
-			// 
-			Debug.Log(returnMsg);
+			// Determines which action to perfom based on the response
+			if(returnMsg != "") {
+				success.gameObject.SetActive(true);
+				profileData.text = returnMsg;
+			} else {
+				fail.gameObject.SetActive(true);
+				profileErrorMessage.text = "ERROR AL DESCARGAR LOS DATOS";
+			}
 		} else {
-			//errorMessages.text = "ERROR DE CONEXIÓN: " + request.responseCode.ToString();
+			fail.gameObject.SetActive(true);
+			profileErrorMessage.text = "SE PRODUJO UN ERROR DE CONEXIÓN QUE IMPIDE LA DESCARGA DE TUS DATOS: " + request.responseCode.ToString();
 		}
     }
     
@@ -154,6 +164,11 @@ public class MenuManager : MonoBehaviour
     	PlayerPrefs.SetString("nickname", "");
     	PlayerPrefs.Save();
     	SceneManager.LoadScene("LoginScreen");
+    }
+    
+    // Method to reload user stats and data
+    public void reloadData() {
+    	loadUserData = StartCoroutine(downloadData());
     }
 }
 
