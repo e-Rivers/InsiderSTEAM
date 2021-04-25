@@ -545,6 +545,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc36f49b82cbec42bf3bf859a7e5c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tipSwitchTime: 7
+  title: {fileID: 589566304}
 --- !u!1 &947139363
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,7 +901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5c4797865d1d34cb14cc72b3631b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadTime: 5.5
+  loadTime: 3
   continueText: {fileID: 408675059}
 --- !u!4 &1482270752 stripped
 Transform:

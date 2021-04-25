@@ -95,13 +95,13 @@ public class TipsTextUpdater : MonoBehaviour
         if (tips.ContainsKey(MenuManager.nextScene))
         {
             // Check if player is going to a level, an intro screen or the main menu
-            if (MenuManager.nextScene.EndsWith("Level"))
+            if (MenuManager.nextScene.EndsWith("Intro"))
             {
                 title.text = "TIP:";
             }
             else
             {
-                title.text = "¿SABÍAS QUE...?";
+                title.text = "SABÍAS QUE...";
             }
             // Display the first tip and start the tip-switching coroutine
             StartCoroutine("SwitchTip");
