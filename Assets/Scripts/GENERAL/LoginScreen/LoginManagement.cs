@@ -6,19 +6,10 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 
 
-public class LoginManagement : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class LoginManagement : MonoBehaviour {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public InputField userInput, passInput;
+	public Text errorMessages;
 
     // Function called when button is pressed
 	public void retrieveInput() {
@@ -35,11 +26,9 @@ public class LoginManagement : MonoBehaviour
     
     // Coroutine funtion to validate the user given login credentials
 	private IEnumerator validateCredentials(string userText, string passText) {
-		// Creates the JSON POST form to validate given credentials
-		WWWForm loginForm = new WWWForm();
-		loginForm.AddField("nickname", userText);
-		loginForm.AddField("password", passText);
-		UnityWebRequest request = UnityWebRequest.Post("http://18.116.123.111:8080/insider/iniciarSesion", loginForm);
+		// Sets the URI to where the request is going to be sent
+		string URLresource = "http://18.116.123.111:8080/" + userText + "/" + passText;
+		UnityWebRequest request = UnityWebRequest.Get(URLresource);
 		// Executes the request
 		yield return request.SendWebRequest(); 
 		// After the request has completed, checks if it was successful
@@ -56,6 +45,7 @@ public class LoginManagement : MonoBehaviour
 				// If login was successful displays the main menu
 				SceneManager.LoadScene("EscenaMenu");
 			}*/
+
 		} else {
 			errorMessages.text = "ERROR DE CONEXIÓN: " + request.responseCode.ToString();
 		}
