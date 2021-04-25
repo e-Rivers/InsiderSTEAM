@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
-    public GameObject personaje;
+    public GameObject player;
 
     void Update()
     {
-        float x = Mathf.Clamp(personaje.transform.position.x, min:0, max:20);
-        float y = Mathf.Clamp(personaje.transform.position.y, min: 0, max:4);
+        float x = Mathf.Clamp(player.transform.position.x, min:0, max:20);
+        float y = Mathf.Clamp(player.transform.position.y, min: 0, max:10);
         float z = transform.position.z;
         transform.position = new Vector3(x, y, z);
     }
