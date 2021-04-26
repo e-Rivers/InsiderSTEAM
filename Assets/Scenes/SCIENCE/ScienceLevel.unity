@@ -662,8 +662,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 923120811}
   m_HandleRect: {fileID: 923120810}
   m_Direction: 2
-  m_Value: 0.988
-  m_Size: 0.24242425
+  m_Value: 1
+  m_Size: 0.17777778
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5587,8 +5587,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -610}
-  m_SizeDelta: {x: 850, y: 1650}
+  m_AnchoredPosition: {x: 0, y: -925}
+  m_SizeDelta: {x: 850, y: 2250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1287049465
 MonoBehaviour:
@@ -5623,20 +5623,25 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Comandante, un experimento fallido de los cient\xEDficos ha provocado
-    una reacci\xF3n de fisi\xF3n en el reactor que impulsa nuestra nave, el reactor
-    se desactiva respondiendo una paradoja de la f\xEDsica, sin embargo, para llegar
-    al reactor deber\xE1s cruzar un laberinto que fue dise\xF1ado por cuestiones
-    de seguridad para evitar accesos indebidos al reactor. Todo el sistema est\xE1
-    colapsando, hay m\xFAltiples derrumbes, cortos circuitos y apagones, los cuales
-    complicar\xE1n tu intento por cruzar el laberinto. Sigue las indicaciones de
-    nuestro holograma de emergencia para poder desactivar el reactor y evitar la
-    destrucci\xF3n de nuestra nave. Debo advertirte que el sistema para desactivar
-    el reactor ha sufrido da\xF1os por lo que no te indicar\xE1 si tu respuesta es
-    incorrecta, simplemente se desactivar\xE1 cuando des la correcta. Adem\xE1s,
-    durante los apagones es posible que el holograma tambi\xE9n falle, sin embargo,
-    a\xFAn te dar\xE1 indicaciones b\xE1sicas pero la mayor parte del tiempo tendr\xE1s
-    que usar tu ingenio, agilidad mental, pero sobretodo: tu memoria..."
+  m_Text: "Pronto!, es de vital importancia que leas esto: El experimento saboteado
+    de los cient\xEDficos ha provocado una reacci\xF3n de fisi\xF3n en el reactor
+    que impulsa nuestra nave, el reactor se desactiva respondiendo una paradoja de
+    la f\xEDsica, sin embargo, para llegar al reactor deber\xE1s cruzar un laberinto
+    que fue dise\xF1ado por cuestiones de seguridad para evitar accesos indebidos
+    al reactor. Todo el sistema est\xE1 colapsando, hay m\xFAltiples derrumbes, cortos
+    circuitos y apagones, los cuales complicar\xE1n tu intento por cruzar el laberinto.
+    Sigue las indicaciones que te ir\xE9 dando para poder desactivar el reactor y
+    evitar la destrucci\xF3n de nuestra nave. Debo advertirte que el sistema para
+    desactivar el reactor ha sufrido da\xF1os por lo que no te indicar\xE1 si tu
+    respuesta es incorrecta, simplemente se desactivar\xE1 cuando des la correcta.
+    Adem\xE1s, durante los apagones es posible que yo tambi\xE9n falle, sin embargo,
+    a\xFAn te dar\xE9 indicaciones b\xE1sicas pero la mayor parte del tiempo tendr\xE1s
+    que usar tu ingenio, pensamiento creativo, pero sobretodo: tu memoria. Adicionalmente,
+    cuentas con 5 cargas de luz que puedes usar durante los apagones mientras cruzas
+    el laberinto, se activan al presionar la barra espaciadora pero cuidado, son
+    de tiempo limitado as\xED que \xFAsalas sabiamente. Si deseas descansar, puedes
+    pausar el juego con ESC durante el tiempo de memorizaci\xF3n. Buena suerte! El
+    destino de la nave y de la ciencia depende de ti..."
 --- !u!222 &1287049466
 CanvasRenderer:
   m_ObjectHideFlags: 0
