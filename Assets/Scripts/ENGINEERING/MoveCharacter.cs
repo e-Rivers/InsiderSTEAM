@@ -4,37 +4,37 @@ using UnityEngine;
 
 /*
  * Controla el movimiento del personajes
- * Autor: Carlos David Toapanta Noroña
- * Matrícula: A01657439
+ * Autor: Carlos David Toapanta Noroï¿½a
+ * Matrï¿½cula: A01657439
  */
 public class MoveCharacter : MonoBehaviour
 {
     //Variables
     public float velocidadX = 10;
     public float velocidadY = 8;
-    
-    private Rigidbody2D rigidbody;
+
+    private Rigidbody2D rb2d;
 
     //Metodos
     // Start is called before the first frame update
     void Start()
     {
         //Inicializar variables
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         float movHorizontal = Input.GetAxis("Horizontal");
-        
 
-        rigidbody.velocity = new Vector2(movHorizontal*velocidadX,rigidbody.velocity.y);
+
+        rb2d.velocity = new Vector2(movHorizontal * velocidadX, rb2d.velocity.y);
         float movVertical = Input.GetAxis("Vertical");
 
         if (movVertical > 0 && FloorTest.isInFloor)
         {
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x,velocidadY);
+            rb2d.velocity = new Vector2(rb2d.velocity.x, velocidadY);
         }
     }
 }
