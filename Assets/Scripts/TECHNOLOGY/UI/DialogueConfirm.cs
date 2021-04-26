@@ -55,6 +55,14 @@ public class DialogueConfirm : MonoBehaviour
                                        "Con sus mentes nubladas, no puedo ayudarles a resolver este problema, pero ya que estás aquí, creo que puedes ayudarme...",
                                        "¡Ve hacia la nave de allá! Me estaré comunicando contigo..."
                                      }
+            },
+            {"Engineering", new string[] { "¡AUXILIO, POR FAVOR! ¡La Ignorancia está intentando deshacerse de todos los componentes de nuestro laboratorio y nos ha dejado encerrados!",
+                                           "Nos encontrábamos haciendo unos experimentos buscando la solución a uno de los problemas más importantes de la Tierra, ¡casi lográbamos hallar...",
+                                           "...una forma de obtener energía solar de la forma más eficiente que se ha visto! Pero justo antes de encontrarla, La Ignorancia consumió a un grupo de...",
+                                           "...personas, haciéndoles creer que las energías renovables son una farsa y un plan para obtener nuestro propio beneficio, haciendo que nos ataquen.",
+                                           "¡Ayúdanos a salir y únete a nuestra lucha! Seguro encontrarás palancas a lo largo de diferentes salas, debes activarlas para quitar los seguros.",
+                                           "¡Pero ten cuidado! Las cosas en el laboratorio están fuera de control..."
+                                         }
             }
         };
         // Set number of maximum clicks according to the current realm
@@ -129,6 +137,9 @@ public class DialogueConfirm : MonoBehaviour
                 break;
             case "Science":
                 MenuManager.nextScene = "ScienceLevel";
+                break;
+            case "Engineering":
+                MenuManager.nextScene = "Level3";
                 break;
         }
         MenuManager.instance.EnterScene(false);
