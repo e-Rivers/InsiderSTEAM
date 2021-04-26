@@ -11,7 +11,7 @@ public class MoveCharacter : MonoBehaviour
 {
     //Variables
     public float velocidadX = 10;
-    public float velocidadY = 8;
+    public float velocidadY = 7;
     
     private Rigidbody2D rigidbody;
 
