@@ -45,11 +45,11 @@ public class HealthWarning : MonoBehaviour
             }
         }
         warning.color = new Color(warning.color.a, warning.color.g, warning.color.b, 0f);
-        StartCoroutine("GoToMainMenu");
+        StartCoroutine("GoToLogin");
     }
 
-    // Coroutine to go to main menu
-    IEnumerator GoToMainMenu()
+    // Coroutine to go to login screen
+    IEnumerator GoToLogin()
     {
         int counter = 0;
         while (counter < 1)
@@ -57,7 +57,7 @@ public class HealthWarning : MonoBehaviour
             counter++;
             yield return new WaitForSeconds(2f);
         }
-        MenuManager.nextScene = "MainMenu";
+        MenuManager.nextScene = "LoginScreen";
         MenuManager.instance.EnterScene(false);
         yield return null;
     }
