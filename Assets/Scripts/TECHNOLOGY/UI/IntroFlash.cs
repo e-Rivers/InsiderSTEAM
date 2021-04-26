@@ -21,6 +21,8 @@ public class IntroFlash : MonoBehaviour
         flash = GetComponent<Image>();
         // Set image color to white
         flash.color = flash.color;
+        // Set framerate
+        Application.targetFrameRate = 60;
         // Start flash animation
         StartCoroutine("Flash");
     }
@@ -32,7 +34,7 @@ public class IntroFlash : MonoBehaviour
         while (flash.color.a > 0)
         {
             // Reduce Image's transparency by 0.1
-            flash.color -= new Color(0f, 0f, 0f, 0.005f);
+            flash.color -= new Color(0f, 0f, 0f, 0.02f);
             yield return null;
         }
         flash.enabled = false;

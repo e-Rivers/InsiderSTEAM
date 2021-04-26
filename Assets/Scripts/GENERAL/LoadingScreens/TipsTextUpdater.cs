@@ -85,10 +85,10 @@ public class TipsTextUpdater : MonoBehaviour
                                       }
             },
             {"ScienceLevelIntro", new string[] { "Procura identificar primero la salida del laberinto para que encuentres el camino correcto más fácilmente.",
-                                            "¡Muchos de los acertijos te serán más fáciles de resolver si piensas fuera de la caja!",
-                                            "Ejercitar tu memoria es muy importante para encontrar tu camino hacia la salida. ¡Eventualmente lo conseguirás!",
-                                            "¡No te preocupes si no logras completar el laberinto a tiempo! Aún tendrás la oportunidad de resolver un acertijo."
-                                          }
+                                                 "¡Muchos de los acertijos te serán más fáciles de resolver si piensas fuera de la caja!",
+                                                 "Ejercitar tu memoria es muy importante para encontrar tu camino hacia la salida. ¡Eventualmente lo conseguirás!",
+                                                 "¡No te preocupes si no logras completar el laberinto a tiempo! Aún tendrás la oportunidad de resolver un acertijo."
+                                               }
             }
         };
         // Check if key exists within the dictionary

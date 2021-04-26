@@ -13,6 +13,7 @@ public class HealthWarning : MonoBehaviour
     {
         // Remove opacity from current text
         warning.color = warning.color - new Color(0f, 0f, 0f, 1f);
+        Application.targetFrameRate = 60;
         StartCoroutine("DisplayText");
     }
 
@@ -21,7 +22,7 @@ public class HealthWarning : MonoBehaviour
     {
         while (warning.color.a < 1.0f)
         {
-            warning.color += new Color(0f, 0f, 0f, 0.001f);
+            warning.color += new Color(0f, 0f, 0f, 0.005f);
             yield return null;
         }
         StartCoroutine("DisappearText");
@@ -31,16 +32,16 @@ public class HealthWarning : MonoBehaviour
     IEnumerator DisappearText()
     {
         int counter = 0;
-        while (warning.color.a > 0.001f)
+        while (warning.color.a > 0.005f)
         {
             if (counter < 1)
             {
                 counter++;
-                yield return new WaitForSeconds(6f);
+                yield return new WaitForSeconds(4f);
             }
             else
             {
-                warning.color -= new Color(0f, 0f, 0f, 0.001f);
+                warning.color -= new Color(0f, 0f, 0f, 0.005f);
                 yield return null;
             }
         }

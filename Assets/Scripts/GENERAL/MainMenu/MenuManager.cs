@@ -12,7 +12,7 @@ public class MenuManager : MonoBehaviour
     public GameObject menu, profile, credits, playgame;
     public Text profileErrorMessage, profileData;
     public Image science, tech, engine, arts, maths, success, fail;
-    
+
     private int currentChar = 0;
     private bool transition = true;
     private Coroutine changeMenuChar, loadUserData;
@@ -111,7 +111,7 @@ public class MenuManager : MonoBehaviour
     }
 
     // Methods to change to the correspoding level (World)
-    public void GotoScience() { nextScene = "ScienceLevel"; EnterScene(); }
+    public void GotoScience() { nextScene = "ScienceLevelIntro"; EnterScene(); }
     public void GotoMath() { nextScene = "MathLevelIntro"; EnterScene(); }
     public void GotoTech() { nextScene = "TechLevelIntro"; EnterScene(); }
     public void GotoArt() { nextScene = "ArtLevelIntro"; EnterScene(); }
@@ -128,47 +128,57 @@ public class MenuManager : MonoBehaviour
             transition = true;
         }
     }
-    
+
     // Coroutine to download user data and stats
-    private IEnumerator downloadData() {
-    	fail.gameObject.SetActive(false);
-    	success.gameObject.SetActive(false);
-    	string URIresource = "http://18.116.123.111:8080/insider/datosJugadorUnity/" + PlayerPrefs.GetString("nickname");
-		UnityWebRequest request = UnityWebRequest.Get(URIresource);
-		// Executes the request
-		yield return request.SendWebRequest(); 
-		// After the request has completed, checks if it was successful
-		if(request.result == UnityWebRequest.Result.Success) {
-			string returnMsg = request.downloadHandler.text;
-			// Determines which action to perfom based on the response
-			if(returnMsg != "") {
-				success.gameObject.SetActive(true);
-				profileData.text = returnMsg;
-			} else {
-				fail.gameObject.SetActive(true);
-				profileErrorMessage.text = "ERROR AL DESCARGAR LOS DATOS";
-			}
-		} else {
-			fail.gameObject.SetActive(true);
-			profileErrorMessage.text = "SE PRODUJO UN ERROR DE CONEXIÓN QUE IMPIDE LA DESCARGA DE TUS DATOS: " + request.responseCode.ToString();
-		}
+    private IEnumerator downloadData()
+    {
+        fail.gameObject.SetActive(false);
+        success.gameObject.SetActive(false);
+        string URIresource = "http://18.116.123.111:8080/insider/datosJugadorUnity/" + PlayerPrefs.GetString("nickname");
+        UnityWebRequest request = UnityWebRequest.Get(URIresource);
+        // Executes the request
+        yield return request.SendWebRequest();
+        // After the request has completed, checks if it was successful
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            string returnMsg = request.downloadHandler.text;
+            // Determines which action to perfom based on the response
+            if (returnMsg != "")
+            {
+                success.gameObject.SetActive(true);
+                profileData.text = returnMsg;
+            }
+            else
+            {
+                fail.gameObject.SetActive(true);
+                profileErrorMessage.text = "ERROR AL DESCARGAR LOS DATOS";
+            }
+        }
+        else
+        {
+            fail.gameObject.SetActive(true);
+            profileErrorMessage.text = "SE PRODUJO UN ERROR DE CONEXIÓN QUE IMPIDE LA DESCARGA DE TUS DATOS: " + request.responseCode.ToString();
+        }
     }
-    
+
     // Method to exit application
-    public void exitGame() {
-    	Application.Quit();
+    public void exitGame()
+    {
+        Application.Quit();
     }
-    
+
     // Method to logout
-    public void logOut() {
-    	PlayerPrefs.SetString("nickname", "");
-    	PlayerPrefs.Save();
-    	SceneManager.LoadScene("LoginScreen");
+    public void logOut()
+    {
+        PlayerPrefs.SetString("nickname", "");
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("LoginScreen");
     }
-    
+
     // Method to reload user stats and data
-    public void reloadData() {
-    	loadUserData = StartCoroutine(downloadData());
+    public void reloadData()
+    {
+        loadUserData = StartCoroutine(downloadData());
     }
 }
 
