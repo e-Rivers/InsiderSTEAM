@@ -32,7 +32,7 @@ public class DialogueConfirm : MonoBehaviour
                                    "¡Encuentra tres figuras ocultas! Para entonces tendrás una habilidad lógica mucho mayor...",
                                    "¡Si logramos esta misión, estaremos aún más cerca de debilitar a La Ignorancia!"}
             },
-            {"Math", new string[] {"Así que has encontrado tu camino al Futuro, al Reino Olvidado de las Matemáticas...",
+            {"Math", new string[] {"Así que has encontrado tu camino al futuro, al Reino Olvidado de las Matemáticas...",
                                    "¡Ja! Todos creían que sin Matemáticas el mundo sería más sencillo, así que decidieron simplemente olvidarlas...",
                                    "Lo creerás imposible, pero así es como resultó para tu especie... Creen que viven bien, cuando en realidad no viven así.",
                                    "Creen que lo tienen todo resuelto, pero sólo permitieron que el dominio de La Ignorancia se expandiera a través del mundo.",
@@ -45,8 +45,16 @@ public class DialogueConfirm : MonoBehaviour
                                    "Por favor, entra y ayúdanos a que los colores vuelvan a sus pinturas originales, pues Remedios Varo está sufriendo los...",
                                    "...primeros pasos de este malvado plan, pues están robando los colores de cada una de sus pinturas.",
                                    "Sé que es mucho pedir, pero así como ahora tengo vida, pronto podré extinguirme junto con otras galerías del mundo...",
-                                   "...y eso sólo hará el trabajo de La Ignorancia más fácil."
+                                   "...y eso sólo hará el trabajo de La Ignorancia más fácil, ¡ayúdame a evitar que consiga arrebatarnos estas piezas tan maravillosas de arte!"
                                  }
+            },
+            {"Science", new string[] { "¡Hey! ¿Me escuchas? ¡Necesito tu ayuda de manera urgente! Una entidad extraña ha comenzado a cobrar fuerza en el universo y ha consumido a la tripulación.",
+                                       "Nos encontrábamos en un viaje hacia el planeta Tierra, puesto que sabemos que es uno de los planetas que se encuentra en mayor peligro, pero...",
+                                       "...de un segundo a otro un ataque llegó hacia la nave y nubló las mentes de los científicos que se encontraban realizando importantes experimentos.",
+                                       "Esto hizo que arruinaran sus pruebas y que nuestra trayectoria se detuviera por completo, pero además, ¡está poniendo a los científicos en peligro y no saben qué hacer!",
+                                       "Con sus mentes nubladas, no puedo ayudarles a resolver este problema, pero ya que estás aquí, creo que puedes ayudarme...",
+                                       "¡Ve hacia la nave de allá! Me estaré comunicando contigo..."
+                                     }
             }
         };
         // Set number of maximum clicks according to the current realm
@@ -118,6 +126,9 @@ public class DialogueConfirm : MonoBehaviour
                 break;
             case "Art":
                 MenuManager.nextScene = "ArtLevel";
+                break;
+            case "Science":
+                MenuManager.nextScene = "ScienceLevel";
                 break;
         }
         MenuManager.instance.EnterScene(false);

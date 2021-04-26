@@ -32,7 +32,7 @@ public class IntroFlash : MonoBehaviour
         while (flash.color.a > 0)
         {
             // Reduce Image's transparency by 0.1
-            flash.color -= new Color(0f, 0f, 0f, 0.05f);
+            flash.color -= new Color(0f, 0f, 0f, 0.005f);
             yield return null;
         }
         flash.enabled = false;
