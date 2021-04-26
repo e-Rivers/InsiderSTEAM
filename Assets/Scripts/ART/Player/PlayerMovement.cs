@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
             //User input
             float movHorizontal = Input.GetAxis("Horizontal");  //En X
             animator.SetFloat("speed", movHorizontal);
+            Debug.Log(animator.GetFloat("speed"));
             if (movHorizontal < 0)
             {
                 sprite.flipX = true;
