@@ -26,7 +26,8 @@ public class ProblemManager : MonoBehaviour
         {
             Debug.Log("Time left: " + remainingTime);
             remainingTime -= Time.deltaTime;
-        } else
+        }
+        else
         {
             remainingTime = timePerProblem;
         }
@@ -63,7 +64,7 @@ public class ProblemManager : MonoBehaviour
         // Make tiles go up
         MathTileManager.instance.Remove();
         // Add to score
-        ScoreText.scoreValue += 300;
+        ScoreText.scoreValue += 1000;
         // Stop timer
         hasToAnswer = false;
         // Let player score again
@@ -82,7 +83,10 @@ public class ProblemManager : MonoBehaviour
         // Make tiles go up
         MathTileManager.instance.Remove();
         // Add to score
-        ScoreText.scoreValue -= 300;
+        if (ScoreText.scoreValue >= 300)
+        {
+            ScoreText.scoreValue -= 300;
+        }
         // Stop timer
         hasToAnswer = false;
         // Don't let player score
@@ -98,7 +102,8 @@ public class ProblemManager : MonoBehaviour
         if (identifier == problems[currProblem].correctTile)
         {
             Correct();
-        } else
+        }
+        else
         {
             Incorrect();
         }

@@ -292,7 +292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.88, y: -50.69}
+  m_AnchoredPosition: {x: -3.88, y: -53.539997}
   m_SizeDelta: {x: 60.0741, y: 53.709}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &823797987
@@ -367,7 +367,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.04, y: -53.22}
+  m_AnchoredPosition: {x: 0.04, y: -56.07}
   m_SizeDelta: {x: 1592.9109, y: 1277.2404}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &843899042
@@ -483,15 +483,153 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Carlos Toapanta\nEmilio R\xEDos\nYouthan Irigoyen\nfernanda ram\xEDrez\ndiego
-    ulibarri\n\n\n\nemilio r\xEDos\n\nyouthan irigoyen\n\ncarlos toapanta\n\nfernanda
-    ram\xEDrez\n\nyouthan irigoyen\n\n\n\n\n\nemilio r\xEDos\nthe brackeys team\nTHAT
-    WITCH DESIGN\nNYKKNCK\nJakub varga\n\nfernanda ram\xEDrez\nDIEGO ULIBARRI\ncharles
-    o'rear\n\n-\n\nFERNANDA RAM\xCDREZ\n\nYOUTHAN IRIGOYEN\nANSIMUZ\nJUST A COOKIE\nMOOSE
-    STACHE\n\n\nDIEGO ULIBARRI\nEMILIO RIOS\n\n\nDIEGO ULIBARRI\nFERNANDA RAM\xCDREZ\nEMILIO
-    R\xCDOS\n\n\n\n\n\n-\n\nYEAUXTHVN\n\n-\n\nYEAUXTHVN\n\nYEAUXTHVN\n\n\n\n\nVILKAS
-    SOUND\n\nYEAUXTHVN\nCYMATICS\n\n-\n\nYEAUXTHVN\nVILKAS SOUND\n\nYEAUXTHVN\n\n\nMIKEL
-    CAMARILLO\nRAUL PEREZ\nPALOMA VICTORIA\nANDREA GONZALEZ\nRICARDO MORALES"
+  m_Text: 'Carlos Toapanta
+
+    Emilio Rios
+
+    Youthan Irigoyen
+
+    fernanda ramirez
+
+    diego
+    ulibarri
+
+
+
+
+    emilio rios
+
+
+    youthan irigoyen
+
+
+    carlos toapanta
+
+
+    fernanda
+    ramirez
+
+
+    youthan irigoyen
+
+
+
+
+
+
+    emilio rios
+
+    the brackeys team
+
+    THAT
+    WITCH DESIGN
+
+    NYKKNCK
+
+    Jakub varga
+
+
+    fernanda ramirez
+
+    DIEGO
+    ULIBARRI
+
+    charles o''rear
+
+
+    -
+
+
+
+    FERNANDA RAMiREZ
+
+    THE BRACKEYS
+    TEAM
+
+
+
+    YOUTHAN IRIGOYEN
+
+    ANSIMUZ
+
+    JUST A COOKIE
+
+    MOOSE STACHE
+
+
+
+    DIEGO
+    ULIBARRI
+
+    EMILIO RIOS
+
+
+
+    DIEGO ULIBARRI
+
+    FERNANDA RAMiREZ
+
+    EMILIO
+    RiOS
+
+
+
+
+
+
+    freepd
+
+
+    YEAUXTHVN
+
+
+    -
+
+
+    YEAUXTHVN
+
+
+    YEAUXTHVN
+
+
+
+
+
+    VILKAS
+    SOUND
+
+
+    YEAUXTHVN
+
+    CYMATICS
+
+
+    -
+
+
+    YEAUXTHVN
+
+    VILKAS SOUND
+
+
+    YEAUXTHVN
+
+
+
+    MIKEL
+    CAMARILLO
+
+    PALOMA VICTORIA
+
+    ANDREA GONZALEZ
+
+    RICARDO MORALES
+
+    COOKIE
+
+    MANCHIS
+
+'
 --- !u!222 &1304660095
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -718,7 +856,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.8, y: -50.63}
+  m_AnchoredPosition: {x: 3.8, y: -53.48}
   m_SizeDelta: {x: 58.5862, y: 54.5358}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1614164833
@@ -830,9 +968,9 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "PRODUCCION\n\n\n\n\n\nDISE\xD1O DE NIVEL\n\n\tCIENCIA\n\t\n\tTECNOLOGIA\n\n\tINGENIERIA\n\n\tARTE\n\n\tMATEMATICAS\n\n\n\nDISE\xD1O
-    GRAFICO\n\n\tCIENCIA\n\n\n\n\n\n\tTECNOLOGIA\n\n\n\n\tINGENIERIA\n\n\tARTE\n\n\tMATEMATICAS\n\n\n\n\n\nNETWORKING\n\n\n\nDISE\xD1O
-    WEB\n\n\n\nDISE\xD1O DE SONIDO\n\nM\xDASICA\n\n\tCIENCIA\n\n\tTECNOLOGIA\n\n\tINGENIERIA\n\n\tARTE\n\n\tMATEMATICAS\n\n\nEFECTOS
-    ESPECIALES\n\n\tCIENCIA\n\n\tTECNOLOG\xCDA\n\n\n\tINGENIER\xCDA\n\n\tARTE\n\n\n\tMATEM\xC1TICAS\n\n\nBETA
+    GRAFICO\n\n\tCIENCIA\n\n\n\n\n\n\tTECNOLOGIA\n\n\n\n\tINGENIERIA\n\n\n\tARTE\n\n\n\n\tMATEMATICAS\n\n\n\n\n\nNETWORKING\n\n\n\nDISE\xD1O
+    WEB\n\n\n\nDISE\xD1O DE SONIDO\n\nMUSICA\n\n\tCIENCIA\n\n\tTECNOLOGIA\n\n\tINGENIERIA\n\n\tARTE\n\n\tMATEMATICAS\n\n\nEFECTOS
+    ESPECIALES\n\n\tCIENCIA\n\n\tTECNOLOGIA\n\n\n\tINGENIERIA\n\n\tARTE\n\n\n\tMATEMATICAS\n\n\nBETA
     TESTERS\n\n\n\n\n"
 --- !u!222 &1808351182
 CanvasRenderer:
@@ -942,7 +1080,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f7f4d8d9518aac44d83e2421c888538a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.304
+  m_Volume: 0.806
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1090,6 +1228,7 @@ MonoBehaviour:
   maths: {fileID: 0}
   success: {fileID: 0}
   fail: {fileID: 0}
+  title: {fileID: 0}
 --- !u!114 &1882488728
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -79,6 +79,7 @@ public class DialogueConfirm : MonoBehaviour
     {
         // Add number of clicks
         clicks++;
+        Debug.Log(clicks);
         // If max number of clicks hasn't been reached
         if (clicks < maxClicks)
         {
@@ -99,16 +100,20 @@ public class DialogueConfirm : MonoBehaviour
     {
         // Empty dialogue box
         dialogue.text = "";
-        // Add character to dialogue box
-        for (int i = 0; i < dialogues[realm][clicks].Length; i++)
+        // Add characters to dialogue box
+        if (clicks < maxClicks)
         {
-            dialogue.text += dialogues[realm][clicks][i];
-            audioSource.PlayOneShot(beep);
-            yield return new WaitForSeconds(0.02f);
-        }
-        if (bg.enabled)
-        {
-            bg.enabled = false;
+            Debug.Log(dialogues[realm][clicks]);
+            for (int i = 0; i < dialogues[realm][clicks].Length; i++)
+            {
+                dialogue.text += dialogues[realm][clicks][i];
+                audioSource.PlayOneShot(beep);
+                yield return new WaitForSeconds(0.02f);
+            }
+            if (bg.enabled)
+            {
+                bg.enabled = false;
+            }
         }
     }
 
@@ -118,7 +123,6 @@ public class DialogueConfirm : MonoBehaviour
         // Add transparency to image
         while (bg.color.a < 1)
         {
-            Debug.Log(bg.color.a);
             bg.color += new Color(0f, 0f, 0f, 0.05f);
             yield return null;
         }

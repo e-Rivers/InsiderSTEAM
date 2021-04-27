@@ -416,7 +416,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.15
+  m_Volume: 0.204
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -532,7 +532,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.754
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5620,7 +5620,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.76
+  m_Volume: 0.53
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -6884,11 +6884,16 @@ MonoBehaviour:
   profile: {fileID: 0}
   credits: {fileID: 0}
   playgame: {fileID: 0}
+  profileErrorMessage: {fileID: 0}
+  profileData: {fileID: 0}
   science: {fileID: 0}
   tech: {fileID: 0}
   engine: {fileID: 0}
   arts: {fileID: 0}
   maths: {fileID: 0}
+  success: {fileID: 0}
+  fail: {fileID: 0}
+  title: {fileID: 0}
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8700,7 +8705,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.15
+  m_Volume: 0.204
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -22336,7 +22341,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.15
+  m_Volume: 0.204
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -23465,7 +23470,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.233
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0

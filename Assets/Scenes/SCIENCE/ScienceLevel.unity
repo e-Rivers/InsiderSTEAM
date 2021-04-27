@@ -1484,19 +1484,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 778854a3efcb90d0db3399d4d5d92504, type: 3}
-    m_FontSize: 25
+    m_Font: {fileID: 12800000, guid: 88f52043cae367a4c84b5f5a045fd791, type: 3}
+    m_FontSize: 43
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 43
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ADELANTE!
+  m_Text: "\xA1ADELANTE!"
 --- !u!222 &308596721
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1796,7 +1796,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 778854a3efcb90d0db3399d4d5d92504, type: 3}
+    m_Font: {fileID: 12800000, guid: 88f52043cae367a4c84b5f5a045fd791, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -1947,7 +1947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1955,13 +1955,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 778854a3efcb90d0db3399d4d5d92504, type: 3}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 88f52043cae367a4c84b5f5a045fd791, type: 3}
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 1
@@ -2213,7 +2213,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 84b3df7e5cbb4615f9fecb56601e9ecd, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.366
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2669,13 +2669,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 778854a3efcb90d0db3399d4d5d92504, type: 3}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 88f52043cae367a4c84b5f5a045fd791, type: 3}
+    m_FontSize: 43
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 1
+    m_MaxSize: 54
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -3251,8 +3251,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 778854a3efcb90d0db3399d4d5d92504, type: 3}
-    m_FontSize: 18
+    m_Font: {fileID: 12800000, guid: 88f52043cae367a4c84b5f5a045fd791, type: 3}
+    m_FontSize: 34
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -3330,13 +3330,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 778854a3efcb90d0db3399d4d5d92504, type: 3}
-    m_FontSize: 18
+    m_Font: {fileID: 12800000, guid: 88f52043cae367a4c84b5f5a045fd791, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 175
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -4160,7 +4160,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 778854a3efcb90d0db3399d4d5d92504, type: 3}
+    m_Font: {fileID: 12800000, guid: 88f52043cae367a4c84b5f5a045fd791, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -4426,7 +4426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9800461, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4667,8 +4667,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 778854a3efcb90d0db3399d4d5d92504, type: 3}
-    m_FontSize: 18
+    m_Font: {fileID: 12800000, guid: 88f52043cae367a4c84b5f5a045fd791, type: 3}
+    m_FontSize: 34
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -4679,7 +4679,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: . . .
+  m_Text: ...
 --- !u!222 &928476537
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4819,7 +4819,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2dc7ca78ff39097839b1f1db438dcebc, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.107
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5611,8 +5611,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 778854a3efcb90d0db3399d4d5d92504, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: 88f52043cae367a4c84b5f5a045fd791, type: 3}
+    m_FontSize: 43
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -5623,25 +5623,25 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Pronto!, es de vital importancia que leas esto: El experimento saboteado
-    de los cient\xEDficos ha provocado una reacci\xF3n de fisi\xF3n en el reactor
-    que impulsa nuestra nave, el reactor se desactiva respondiendo una paradoja de
-    la f\xEDsica, sin embargo, para llegar al reactor deber\xE1s cruzar un laberinto
-    que fue dise\xF1ado por cuestiones de seguridad para evitar accesos indebidos
-    al reactor. Todo el sistema est\xE1 colapsando, hay m\xFAltiples derrumbes, cortos
-    circuitos y apagones, los cuales complicar\xE1n tu intento por cruzar el laberinto.
-    Sigue las indicaciones que te ir\xE9 dando para poder desactivar el reactor y
-    evitar la destrucci\xF3n de nuestra nave. Debo advertirte que el sistema para
-    desactivar el reactor ha sufrido da\xF1os por lo que no te indicar\xE1 si tu
-    respuesta es incorrecta, simplemente se desactivar\xE1 cuando des la correcta.
+  m_Text: "\xA1Pronto! Es de vital importancia que leas esto: \n\nEl experimento
+    saboteado de los cient\xEDficos ha provocado una reacci\xF3n de fisi\xF3n en
+    el reactor que impulsa nuestra nave, el reactor se desactiva respondiendo una
+    paradoja de la f\xEDsica, sin embargo, para llegar al reactor deber\xE1s cruzar
+    un laberinto que fue dise\xF1ado por cuestiones de seguridad para evitar accesos
+    indebidos al reactor. Todo el sistema est\xE1 colapsando, hay m\xFAltiples derrumbes,
+    cortos circuitos y apagones, los cuales complicar\xE1n tu intento por cruzar
+    el laberinto. Sigue las indicaciones que te ir\xE9 dando para poder desactivar
+    el reactor y evitar la destrucci\xF3n de nuestra nave. Debo advertirte que el
+    sistema para desactivar el reactor ha sufrido da\xF1os por lo que no te indicar\xE1
+    si tu respuesta es incorrecta, simplemente se desactivar\xE1 cuando des la correcta.
     Adem\xE1s, durante los apagones es posible que yo tambi\xE9n falle, sin embargo,
     a\xFAn te dar\xE9 indicaciones b\xE1sicas pero la mayor parte del tiempo tendr\xE1s
-    que usar tu ingenio, pensamiento creativo, pero sobretodo: tu memoria. Adicionalmente,
+    que usar tu ingenio, pensamiento creativo, pero sobre todo: tu memoria. Adicionalmente,
     cuentas con 5 cargas de luz que puedes usar durante los apagones mientras cruzas
-    el laberinto, se activan al presionar la barra espaciadora pero cuidado, son
-    de tiempo limitado as\xED que \xFAsalas sabiamente. Si deseas descansar, puedes
-    pausar el juego con ESC durante el tiempo de memorizaci\xF3n. Buena suerte! El
-    destino de la nave y de la ciencia depende de ti..."
+    el laberinto, se activan al presionar la barra espaciadora, \xA1pero cuidado!
+    Son de tiempo limitado, as\xED que \xFAsalas sabiamente. Si deseas descansar,
+    puedes pausar el juego con ESC durante el tiempo de memorizaci\xF3n. \xA1Buena
+    suerte! El destino de la nave y de la ciencia depende de ti..."
 --- !u!222 &1287049466
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6187,7 +6187,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 244acc9d686e5955abedb62fc009d022, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.803
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6496,8 +6496,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 778854a3efcb90d0db3399d4d5d92504, type: 3}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 88f52043cae367a4c84b5f5a045fd791, type: 3}
+    m_FontSize: 42
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -6510,7 +6510,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Has escapado del laberinto y llegado al panel de control, para desactivar
     el reactor, responde la siguiente paradoja: Si un objeto imparable choca con
-    un objeto inamovible... cu\xE1ntos objetos hay?"
+    un objeto inamovible... \xBFcu\xE1ntos objetos hay?"
 --- !u!222 &1541023788
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6987,12 +6987,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 013a2465a6b0ce61196dc6294b900064, type: 3}
-    m_FontSize: 100
+    m_Font: {fileID: 12800000, guid: 88f52043cae367a4c84b5f5a045fd791, type: 3}
+    m_FontSize: 114
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 100
+    m_MaxSize: 125
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -7037,7 +7037,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 78f7e4e211be31a67800061b69cd3e3b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.506
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -7384,7 +7384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7392,13 +7392,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 778854a3efcb90d0db3399d4d5d92504, type: 3}
+    m_Font: {fileID: 12800000, guid: 88f52043cae367a4c84b5f5a045fd791, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 0
@@ -8246,13 +8246,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 778854a3efcb90d0db3399d4d5d92504, type: 3}
-    m_FontSize: 15
+    m_Font: {fileID: 12800000, guid: 88f52043cae367a4c84b5f5a045fd791, type: 3}
+    m_FontSize: 29
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -8297,7 +8297,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2950d01417406fc35a344458d5e04c0f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.781
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -8714,12 +8714,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 778854a3efcb90d0db3399d4d5d92504, type: 3}
-    m_FontSize: 30
+    m_Font: {fileID: 12800000, guid: 88f52043cae367a4c84b5f5a045fd791, type: 3}
+    m_FontSize: 59
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 50
+    m_MaxSize: 63
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
