@@ -15,10 +15,10 @@ public class RandomProblem : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X) && i==1)
+        if (Input.GetKeyDown(KeyCode.X) && i==1 && GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC == 9)
         {
             Change();
-            i = i + 1;
+            i++;
         }
     }
 
