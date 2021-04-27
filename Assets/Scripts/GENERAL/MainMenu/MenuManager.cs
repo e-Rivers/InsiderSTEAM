@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using Newtonsoft.Json;
 
 public class MenuManager : MonoBehaviour
 {
@@ -142,21 +143,22 @@ public class MenuManager : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             string returnMsg = request.downloadHandler.text;
+            Dictionary<string, string> returnJSON = JsonConvert.DeserializeObject<Dictionary<string, string>>(returnMsg);
             // Determines which action to perfom based on the response
             if (returnMsg != "")
             {
                 success.gameObject.SetActive(true);
-                //profileData.text = returnMsg;
+                profileData.text = returnJSON["name"] + " " + returnJSON["last_name"] + "\n(" + returnJSON["nickname"] + ")";
             }
             else
             {
-                success.gameObject.SetActive(true);
+                fail.gameObject.SetActive(true);
                 profileErrorMessage.text = "ERROR AL DESCARGAR LOS DATOS";
             }
         }
         else
         {
-            success.gameObject.SetActive(true);
+            fail.gameObject.SetActive(true);
             profileErrorMessage.text = "SE PRODUJO UN ERROR DE CONEXIÓN QUE IMPIDE LA DESCARGA DE TUS DATOS: " + request.responseCode.ToString();
         }
     }
