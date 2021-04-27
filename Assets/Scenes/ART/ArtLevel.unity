@@ -4000,11 +4000,15 @@ MonoBehaviour:
   profile: {fileID: 0}
   credits: {fileID: 0}
   playgame: {fileID: 0}
+  profileErrorMessage: {fileID: 0}
+  profileData: {fileID: 0}
   science: {fileID: 0}
   tech: {fileID: 0}
   engine: {fileID: 0}
   arts: {fileID: 0}
   maths: {fileID: 0}
+  success: {fileID: 0}
+  fail: {fileID: 0}
 --- !u!114 &895378360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7596,7 +7600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 756, y: -374}
+  m_AnchoredPosition: {x: 756, y: -540}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1540476082
@@ -7612,7 +7616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -7621,9 +7625,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -7727,7 +7731,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 328.5, y: -133.02}
+  m_AnchoredPosition: {x: 384, y: -133.02}
   m_SizeDelta: {x: 1213.002, y: 366.0318}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1557720714
@@ -7752,7 +7756,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 88f52043cae367a4c84b5f5a045fd791, type: 3}
-    m_FontSize: 60
+    m_FontSize: 55
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -7763,7 +7767,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: agassssssssssssssssssssssssssssagassssssssssssssssssssssssssssagassssssssssssssssssssssssssssagassssssssssssssssssssssssssssagassssssssssssssssssssssssssssagassssssssssssssssssssssssssssagassssssssssssssssssssssssssssagassssssssssssssssssssssssssssagassssssssssssssssssssssssssss
 --- !u!222 &1557720715
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7995,7 +7999,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 274.98145, y: 173}
+  m_AnchoredPosition: {x: 336, y: 173}
   m_SizeDelta: {x: 1105.9629, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1608735072
@@ -8031,7 +8035,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: asfagashfahf
 --- !u!222 &1608735073
 CanvasRenderer:
   m_ObjectHideFlags: 0

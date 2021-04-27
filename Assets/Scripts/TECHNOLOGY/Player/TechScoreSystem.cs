@@ -30,7 +30,7 @@ public class TechScoreSystem : MonoBehaviour
         seconds = 0f;
         minutes = 0;
         hours = 0;
-        multiplier = 10000;
+        multiplier = 1000;
     }
 
     // Update is called once per frame
@@ -85,8 +85,8 @@ public class TechScoreSystem : MonoBehaviour
     // Get score
     public int GetLevelScore()
     {
-        bonus = 3000 * (LevelManager.instance.maxLevels - mistakes);
-        return 5000 + (int)Mathf.Floor(multiplier * timer / 600.0f) + bonus;
+        bonus = 500 * (LevelManager.instance.maxLevels - mistakes);
+        return 350 + (int)Mathf.Floor(multiplier * timer / 600.0f) + bonus;
     }
 
     // Reset if player exits
