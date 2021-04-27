@@ -98,7 +98,7 @@ public class TechPauseMenu : MonoBehaviour
     // Open tutorial
     public void OpenTutorial()
     {
-        Application.OpenURL("https://www.youtube.com/watch?v=dPea7fQ4ovo&list=RDdPea7fQ4ovo&start_radio=1");
+        Application.OpenURL("https://www.youtube.com/watch?v=ZFVzFcECQYY");
     }
 
     // Activate pause menu
