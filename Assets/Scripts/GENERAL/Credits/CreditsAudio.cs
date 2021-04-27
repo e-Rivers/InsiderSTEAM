@@ -7,12 +7,15 @@ public class CreditsAudio : MonoBehaviour
     // Private attributes
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioLowPassFilter lowPassFilter;
-    private float lowPassRate = 22000 / 5000;
-    private float volumeRate = 0.3f / 5000;
+    private float lowPassRate = 22000 / 1000;
+    private float volumeRate = 0.3f / 1000;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Set framerate
+        Application.targetFrameRate = 60;
+        // Set private variables
         audioSource.volume = 0.0f;
         lowPassFilter.enabled = true;
         lowPassFilter.cutoffFrequency = 10;
@@ -32,7 +35,7 @@ public class CreditsAudio : MonoBehaviour
         while (counter == 0)
         {
             counter++;
-            yield return new WaitForSeconds(65f);
+            yield return new WaitForSeconds(55f);
         }
         while (lowPassFilter.cutoffFrequency > 20)
         {

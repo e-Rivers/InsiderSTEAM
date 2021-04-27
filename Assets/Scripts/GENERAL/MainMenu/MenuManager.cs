@@ -8,23 +8,35 @@ using Newtonsoft.Json;
 
 public class MenuManager : MonoBehaviour
 {
+    // Public attributes
     public static string nextScene;
     public static MenuManager instance;
     public GameObject menu, profile, credits, playgame;
     public Text profileErrorMessage, profileData;
     public Image science, tech, engine, arts, maths, success, fail;
 
+    // Private attributes
     private int currentChar = 0;
     private bool transition = true;
+    private bool isOnSubmenu;
     private Coroutine changeMenuChar, loadUserData;
+    [SerializeField] Text title;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Set self reference
         instance = this;
-        changeMenuChar = StartCoroutine(changeCharacter());
-        // Loads user data and stats
-        loadUserData = StartCoroutine(downloadData());
+        // Set private attributes
+        isOnSubmenu = false;
+        if (title != null)
+        {
+            anim = title.GetComponent<Animator>();
+            changeMenuChar = StartCoroutine(changeCharacter());
+            // Loads user data and stats
+            loadUserData = StartCoroutine(downloadData());
+        }
     }
 
     // Update is called once per frame
@@ -76,6 +88,10 @@ public class MenuManager : MonoBehaviour
     // Open Menu
     public void displayMenu()
     {
+        // Change title position
+        isOnSubmenu = false;
+        anim.SetBool("isOnSubmenu", isOnSubmenu);
+        // Enable visual elements
         playgame.SetActive(false);
         credits.SetActive(false);
         profile.SetActive(false);
@@ -85,6 +101,10 @@ public class MenuManager : MonoBehaviour
     // Open Profile
     public void displayProfile()
     {
+        // Change title position
+        isOnSubmenu = true;
+        anim.SetBool("isOnSubmenu", isOnSubmenu);
+        // Enable visual elements
         menu.SetActive(false);
         profile.SetActive(true);
     }
@@ -92,6 +112,10 @@ public class MenuManager : MonoBehaviour
     // Open Play
     public void displayPlayGame()
     {
+        // Change title position
+        isOnSubmenu = true;
+        anim.SetBool("isOnSubmenu", isOnSubmenu);
+        // Enable visual elements
         menu.SetActive(false);
         playgame.SetActive(true);
     }
@@ -99,7 +123,10 @@ public class MenuManager : MonoBehaviour
     // Method to go to the loading screen
     public void EnterScene(bool load = true)
     {
-        StopCoroutine(changeMenuChar);
+        if (title != null)
+        {
+            StopCoroutine(changeMenuChar);
+        }
         if (load)
         {
             SceneManager.LoadScene("LoadingScene");

@@ -20,8 +20,6 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Debug
-        Debug.Log("Game: " + levelsPlayed + " Level: " + level);
         // Set self reference
         instance = this;
         // If this is the first time the level is played
@@ -63,8 +61,20 @@ public class LevelManager : MonoBehaviour
                         }
                     }
                 }
+                // In case there are more than 7 levels in list
+                else
+                {
+                    // Empty levels list
+                    levels.Clear();
+                    // Set a random level
+                    level = Random.Range(0, 7);
+                    // Avoid level repetition
+                    levels.Add(level);
+                }
             }
         }
+        // Debug
+        Debug.Log("Game: " + levelsPlayed + " Level: " + level);
     }
 
     // Go to next level
