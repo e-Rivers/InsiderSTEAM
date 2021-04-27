@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GENERAL/HealthWarning.unity
     guid: 22bfad53535cdb94bb6c0f2e875e03f2
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GENERAL/LoginScreen.unity
     guid: adaedb25e329c4789b7625d87bb795a5
   - enabled: 1
