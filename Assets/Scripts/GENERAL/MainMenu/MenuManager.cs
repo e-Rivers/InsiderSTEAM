@@ -146,17 +146,17 @@ public class MenuManager : MonoBehaviour
             if (returnMsg != "")
             {
                 success.gameObject.SetActive(true);
-                profileData.text = returnMsg;
+                //profileData.text = returnMsg;
             }
             else
             {
-                fail.gameObject.SetActive(true);
+                success.gameObject.SetActive(true);
                 profileErrorMessage.text = "ERROR AL DESCARGAR LOS DATOS";
             }
         }
         else
         {
-            fail.gameObject.SetActive(true);
+            success.gameObject.SetActive(true);
             profileErrorMessage.text = "SE PRODUJO UN ERROR DE CONEXIÓN QUE IMPIDE LA DESCARGA DE TUS DATOS: " + request.responseCode.ToString();
         }
     }
