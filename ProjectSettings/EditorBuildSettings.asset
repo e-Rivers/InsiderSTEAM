@@ -48,6 +48,6 @@ EditorBuildSettings:
     path: Assets/Scenes/GENERAL/LoadingScene.unity
     guid: 3af5338e33418f449842a1c1cf8d65ad
   - enabled: 1
-    path: Assets/Scenes/GENERAL/Credits.unity
-    guid: 9b4615778feb68a40a7eec22f9b0faec
+    path: Assets/Scenes/ENGINEERING/Level 2.unity
+    guid: 1454e4ad6590c8846b93ecffefd2fa6c
   m_configObjects: {}

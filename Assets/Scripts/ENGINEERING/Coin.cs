@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    public GameObject DestroyedC;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -12,7 +13,13 @@ public class Coin : MonoBehaviour
             GetComponent<SpriteRenderer>().enabled = false;
 
             //Destruye moneda y animación
-            Destroy(gameObject, t: 1f);
+            Suma();
+            Destroy(gameObject);
         }
+    }
+
+    void Suma()
+    {
+        DestroyedC.GetComponent<DestroyedCoins>().DestroyedC += 1;
     }
 }

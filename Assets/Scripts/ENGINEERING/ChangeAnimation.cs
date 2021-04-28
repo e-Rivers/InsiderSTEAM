@@ -22,9 +22,11 @@ public class ChangeAnimation : MonoBehaviour
         sprRenderer = GetComponent<SpriteRenderer>();
     }
 
+
     // Update is called once per frame
     void Update()
     {
+
         float velocidad = Mathf.Abs(rb2D.velocity.x);
         anim.SetFloat(name:"velocity", value: velocidad);
 
