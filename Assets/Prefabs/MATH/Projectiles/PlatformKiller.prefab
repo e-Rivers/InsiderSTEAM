@@ -115,7 +115,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 4283545085213035511}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c344d3dfd4d13194baf75f6a2afc1ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 3296694637504926144, guid: 3ef5dbad325af2e42b195841163d4077, type: 3}
+  explosion: {fileID: 8908726528938862075, guid: 9a38f4671c2b0f847b82315ca1247535, type: 3}
   creationSounds:
   - {fileID: 8300000, guid: 2096b97589050394abd9901d8d6d534f, type: 3}
   - {fileID: 8300000, guid: fbfecee1af2af47449bfc7b03bd205da, type: 3}

@@ -77,25 +77,23 @@ public class MathPlayerMovement : MonoBehaviour
         }
 
         // Animate left movement
-        if (xMovement < 0)
+        if (xMovement < -0.2)
         {
             anim.SetBool("IsRunning", true);
             GetComponent<SpriteRenderer>().flipX = true;
             playerFace.GetComponent<Animator>().SetBool("IsRunning", true);
             playerFace.GetComponent<SpriteRenderer>().flipX = true;
         }
-
         // Animate right movement
-        if (xMovement > 0)
+        if (xMovement > 0.2)
         {
             anim.SetBool("IsRunning", true);
             GetComponent<SpriteRenderer>().flipX = false;
             playerFace.GetComponent<Animator>().SetBool("IsRunning", true);
             playerFace.GetComponent<SpriteRenderer>().flipX = false;
         }
-
         // Animate if idle
-        if (xMovement == 0)
+        if (xMovement < 0.2 && xMovement > -0.2)
         {
             playerFace.GetComponent<Animator>().SetBool("IsRunning", false);
             anim.SetBool("IsRunning", false);

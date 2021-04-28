@@ -29,9 +29,10 @@ public class ScoreSystem : MonoBehaviour
         if (currTime < scoreTimer)
         {
             currTime += Time.deltaTime;
-        } else
+        }
+        else
         {
-            if (PlayerHP.instance.lives > 0)
+            if (PlayerHP.instance.lives > 0 && ScoreText.scoreValue > 100)
             {
                 ScoreText.scoreValue -= 100;
                 currTime = 0.0f;

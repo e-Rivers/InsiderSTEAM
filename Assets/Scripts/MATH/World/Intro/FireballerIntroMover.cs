@@ -19,8 +19,11 @@ public class FireballerIntroMover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Set framerate
+        Application.targetFrameRate = 60;
+        // Set initial variables
         tfm = GetComponent<Transform>();
-        speed = 0.008f;
+        speed = 0.01f;
         isFirstTime = true;
         dialogueBg.enabled = false;
         dialogueScript.enabled = false;
@@ -54,11 +57,11 @@ public class FireballerIntroMover : MonoBehaviour
         {
             if (tfm.position.y < 2.5f)
             {
-                speed = 0.008f;
+                speed = 0.01f;
             }
             if (tfm.position.y > 3.5f)
             {
-                speed = -0.008f;
+                speed = -0.01f;
             }
             tfm.position += new Vector3(0f, speed, 0f);
             yield return null;

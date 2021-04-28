@@ -260,11 +260,16 @@ MonoBehaviour:
   profile: {fileID: 0}
   credits: {fileID: 0}
   playgame: {fileID: 0}
+  profileErrorMessage: {fileID: 0}
+  profileData: {fileID: 0}
   science: {fileID: 0}
   tech: {fileID: 0}
   engine: {fileID: 0}
   arts: {fileID: 0}
   maths: {fileID: 0}
+  success: {fileID: 0}
+  fail: {fileID: 0}
+  title: {fileID: 0}
 --- !u!114 &40507273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,7 +356,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -755,9 +760,9 @@ RectTransform:
   m_Children:
   - {fileID: 940395208}
   - {fileID: 280754307}
+  - {fileID: 1549149545}
   - {fileID: 2091570589}
   - {fileID: 318013536}
-  - {fileID: 1549149545}
   - {fileID: 1904041867}
   - {fileID: 1954414129}
   m_Father: {fileID: 0}
@@ -1150,6 +1155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 255839047}
   - component: {fileID: 255839046}
+  - component: {fileID: 255839050}
   - component: {fileID: 255839048}
   - component: {fileID: 255839049}
   m_Layer: 0
@@ -1199,7 +1205,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: b2784be49e79d3c48873d200312d70c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63ce2629941a42340b781989ef53e699, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1262,6 +1268,25 @@ MonoBehaviour:
   audioSource: {fileID: 762092259}
   activateClip: {fileID: 8300000, guid: 067e0e867d10469489b439e25cc52e4e, type: 3}
   deactivateClip: {fileID: 8300000, guid: 799d0b8d5dd7a944b9a52a59bfe7970e, type: 3}
+--- !u!95 &255839050
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255839045}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2c82494c19d0e7c4a8b74ae3d53d72d7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &276920872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1613,7 +1638,7 @@ RectTransform:
   - {fileID: 1433869863}
   - {fileID: 180717008}
   m_Father: {fileID: 108955950}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4727,7 +4752,7 @@ RectTransform:
   m_Children:
   - {fileID: 916542400}
   m_Father: {fileID: 108955950}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12250,6 +12275,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1904041868}
+          m_TargetAssemblyTypeName: TechPauseMenu, Assembly-CSharp
+          m_MethodName: OpenTutorial
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2021336339
 GameObject:
   m_ObjectHideFlags: 0
@@ -15575,7 +15616,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 108955950}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

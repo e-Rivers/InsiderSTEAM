@@ -4,8 +4,8 @@ using UnityEngine;
 
 /*
  * Controla el movimiento del personajes
- * Autor: Carlos David Toapanta Noroña
- * Matrícula: A01657439
+ * Autor: Carlos David Toapanta Noroï¿½a
+ * Matrï¿½cula: A01657439
  */
 public class MoveCharacter : MonoBehaviour
 {
@@ -29,13 +29,13 @@ public class MoveCharacter : MonoBehaviour
     void Update()
     {
         inputHorizontal = Input.GetAxis("Horizontal");
-        
-        rigidbody.velocity = new Vector2(inputHorizontal * vX,rigidbody.velocity.y);
+
+        rigidbody.velocity = new Vector2(inputHorizontal * vX, rigidbody.velocity.y);
         inputVertical = Input.GetAxis("Vertical");
 
         if (inputVertical > 0 && FloorTest.isInFloor)
         {
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x,vY);
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, vY);
         }
     }
 }

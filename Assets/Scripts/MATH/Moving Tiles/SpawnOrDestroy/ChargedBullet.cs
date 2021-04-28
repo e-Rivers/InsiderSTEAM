@@ -30,16 +30,7 @@ public class ChargedBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb2d.position += Vector2.down * speed * Time.deltaTime;   
-    }
-
-    // Check if collides with bouncepads
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Bouncepad"))
-        {
-            Destruction();
-        }
+        rb2d.position += Vector2.down * speed * Time.deltaTime;
     }
 
     // Check if collides with ground
@@ -57,6 +48,7 @@ public class ChargedBullet : MonoBehaviour
         GameObject expInst = Instantiate(explosion, transform.localPosition + expOffset, Quaternion.identity);
         expInst.transform.parent = transform.parent;
         audioSource.PlayOneShot(destructionSound);
+        Destroy(expInst, 0.5f);
         Destroy(gameObject);
     }
 }

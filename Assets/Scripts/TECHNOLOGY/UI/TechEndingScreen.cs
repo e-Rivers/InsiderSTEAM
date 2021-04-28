@@ -40,6 +40,7 @@ public class TechEndingScreen : MonoBehaviour
         score.enabled = false;
         inGameScoreDisplay.enabled = true;
         timeRemainingText.enabled = true;
+        bg.enabled = false;
         // Get buttons' components
         continueBtn.GetComponent<Image>().enabled = false;
         continueBtn.GetComponent<Button>().enabled = false;
@@ -64,6 +65,7 @@ public class TechEndingScreen : MonoBehaviour
         // Display current score
         score.text += " " + TechScoreSystem.instance.GetLevelScore() + " pts.";
         // Make a darker background for the screen to be more clearly visible
+        bg.enabled = true;
         bg.color = new Color(0, 0, 0, 0.7f);
 
         // If the player has completed three puzzles

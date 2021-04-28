@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
     // Private attributes
     private Canvas canvas;
     private bool paused;
+    [SerializeField] string realm;
 
     // Start is called before the first frame update
     void Start()
@@ -75,7 +76,24 @@ public class PauseMenu : MonoBehaviour
     // Open tutorial
     public void OpenTutorial()
     {
-        Application.OpenURL("https://www.youtube.com/watch?v=dPea7fQ4ovo&list=RDdPea7fQ4ovo&start_radio=1");
+        switch (realm)
+        {
+            case "Science":
+                Application.OpenURL("https://www.youtube.com/watch?v=HhaD9DYsawE");
+                break;
+            case "Tech":
+                Application.OpenURL("https://www.youtube.com/watch?v=ZFVzFcECQYY");
+                break;
+            case "Engineering":
+                Application.OpenURL("https://www.youtube.com/watch?v=HhaD9DYsawE");
+                break;
+            case "Art":
+                Application.OpenURL("https://www.youtube.com/watch?v=TF5zCoBGPjM");
+                break;
+            case "Math":
+                Application.OpenURL("https://www.youtube.com/watch?v=e5HyBlS62H0");
+                break;
+        }
     }
 
 }
