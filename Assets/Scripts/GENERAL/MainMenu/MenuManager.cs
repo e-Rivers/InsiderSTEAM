@@ -11,15 +11,13 @@ public class MenuManager : MonoBehaviour
     // Public attributes
     public static string nextScene;
     public static MenuManager instance;
-    public GameObject menu, profile, credits, playgame;
-    public Text profileErrorMessage, profileData;
-    public Image science, tech, engine, arts, maths, success, fail;
+    public GameObject menu, story, playgame;
 
     // Private attributes
     private int currentChar = 0;
     private bool transition = true;
     private bool isOnSubmenu;
-    private Coroutine changeMenuChar, loadUserData;
+    private Coroutine changeMenuChar;
     [SerializeField] Image title;
     private Animator anim;
 
@@ -35,8 +33,6 @@ public class MenuManager : MonoBehaviour
         {
             // Enables title animation
             anim = title.GetComponent<Animator>();
-            // Loads user data and stats
-            loadUserData = StartCoroutine(downloadData());
         }
         // If current scene is Login Screen
         if (SceneManager.GetActiveScene().name.Equals("LoginScreen"))
@@ -44,53 +40,7 @@ public class MenuManager : MonoBehaviour
             changeMenuChar = StartCoroutine(changeCharacter());
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        switch (currentChar)
-        {
-            case 0:
-                makeTransition(maths, science);
-                break;
-            case 1:
-                makeTransition(science, tech);
-                break;
-            case 2:
-                makeTransition(tech, engine);
-                break;
-            case 3:
-                makeTransition(engine, arts);
-                break;
-            case 4:
-                makeTransition(arts, maths);
-                break;
-        }       
-    }
-
-    // Method to make the transition of the characters
-    private void makeTransition(Image toQuit, Image toShow)
-    {
-        if (SceneManager.GetActiveScene().name.Equals("LoginScreen"))
-        {
-            toQuit.gameObject.SetActive(false);
-            toShow.gameObject.SetActive(true);
-            if (transition)
-            {
-                toShow.canvasRenderer.SetAlpha(0);
-                toShow.CrossFadeAlpha(1, 1, false);
-                transition = false;
-            }
-        }
-    }
-
-    // Open Credits
-    public void displayCredits()
-    {
-        menu.SetActive(false);
-        credits.SetActive(true);
-    }
-
+    
     // Open Menu
     public void displayMenu()
     {
@@ -99,20 +49,19 @@ public class MenuManager : MonoBehaviour
         anim.SetBool("isOnSubmenu", isOnSubmenu);
         // Enable visual elements
         playgame.SetActive(false);
-        credits.SetActive(false);
-        profile.SetActive(false);
+        story.SetActive(false);
         menu.SetActive(true);
     }
 
-    // Open Profile
-    public void displayProfile()
+    // Open Story
+    public void displayStory()
     {
         // Change title position
         isOnSubmenu = true;
         anim.SetBool("isOnSubmenu", isOnSubmenu);
         // Enable visual elements
         menu.SetActive(false);
-        profile.SetActive(true);
+        story.SetActive(true);
     }
 
     // Open Play
@@ -163,54 +112,6 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    // Coroutine to download user data and stats
-    private IEnumerator downloadData()
-    {
-    	bool goodDownload;
-        string URIresource = "http://18.116.123.111:8080/insider/datosJugadorUnity/" + PlayerPrefs.GetString("nickname");
-        UnityWebRequest request = UnityWebRequest.Get(URIresource);
-        // Executes the request
-        yield return request.SendWebRequest();
-        // After the request has completed, checks if it was successful
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            string returnMsg = request.downloadHandler.text;
-            Dictionary<string, string> returnJSON = JsonConvert.DeserializeObject<Dictionary<string, string>>(returnMsg);
-            // Determines which action to perfom based on the response
-            if (returnMsg != "")
-            {
-				goodDownload = true;
-                profileData.text = returnJSON["name"] + " " + returnJSON["last_name"] + "\n(" + returnJSON["nickname"] + ")";
-            }
-            else
-            {
-				goodDownload = false;
-                profileErrorMessage.text = "ERROR AL DESCARGAR LOS DATOS";
-            }
-        }
-        else
-        {
-			goodDownload = false;
-            profileErrorMessage.text = "SE PRODUJO UN ERROR DE CONEXIÓN QUE IMPIDE LA DESCARGA DE TUS DATOS: " + request.responseCode.ToString();
-        }
-        showStatsDownload(goodDownload);
-    }
-    
-    // Method to reload the right panel depending on the player stats download result
-    private void showStatsDownload(bool goodDownload)
-    {
-    	if(goodDownload)
-    	{
-        	fail.gameObject.SetActive(false);
-        	success.gameObject.SetActive(true);
-        }
-        else
-        {
-        	fail.gameObject.SetActive(true);
-      		success.gameObject.SetActive(false);
-        }
-    }
-
     // Method to exit application
     public void exitGame()
     {
@@ -223,12 +124,6 @@ public class MenuManager : MonoBehaviour
         PlayerPrefs.SetString("nickname", "");
         PlayerPrefs.Save();
         SceneManager.LoadScene("LoginScreen");
-    }
-
-    // Method to reload user stats and data
-    public void reloadData()
-    {
-        loadUserData = StartCoroutine(downloadData());
     }
 }
 
