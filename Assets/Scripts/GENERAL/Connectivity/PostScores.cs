@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json;
+using UnityEngine.Networking;
 
-public class PostScore : MonoBehaviour
+
+public class PostScores : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
