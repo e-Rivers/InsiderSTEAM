@@ -28,7 +28,7 @@ public class MathTileManager : MonoBehaviour
     private void Update()
     {
         // If player reaches 10 kills and it's the first time this condition is true
-        if (KillsText.kills % 10 == 0 && KillsText.kills != 0 && canSpawn)
+        if (KillsText.kills % 10 == 0 && KillsText.kills != 0 && canSpawn || Input.GetKeyDown(KeyCode.L))
         {
             // Make manager set a new problem
             ProblemManager.instance.SetProblem((int)Random.Range(0, ProblemManager.instance.problems.Length));
@@ -51,29 +51,26 @@ public class MathTileManager : MonoBehaviour
     {
         // Counts how many iteration foreach has made
         int index = 0;
-        // Lets tiles send answers again
-        canReceive = true;
         // Stop monsters from spawning
         EnemySpawner.instance.canSpawn = false;
         ForcefulKiller.instance.Enable();
         // Makes every tile child appear on screen
         foreach (GameObject tile in tiles)
         {
-            // Set velocity
-            tile.GetComponent<Rigidbody2D>().velocity = Vector3.down * tile.GetComponent<MathTileMovement>().speed;
             // Set answer
             tile.GetComponent<MathTileOnShoot>().number = numbers[index];
             // Reset animations
             tile.GetComponent<Animator>().ResetTrigger("Idle");
             tile.GetComponent<Animator>().SetTrigger("Idle");
+            // Move tiles downwards
+            tile.GetComponent<MathTileMovement>().Move(false);
+            // Reset tiles' states
+            tile.GetComponent<MathTileOnShoot>().isShot = false;
             // Increment counter
             index++;
         }
-<<<<<<< Updated upstream
-        // Enable problem displayer movement
-        ProblemDisplayerMovement.instance.EnableMovement();
-=======
->>>>>>> Stashed changes
+        // Display problem
+        ProblemDisplayerMovement.instance.GoDown();
     }
 
     // Make tiles go up
@@ -88,10 +85,12 @@ public class MathTileManager : MonoBehaviour
         foreach (GameObject tile in tiles)
         {
             // Set velocity
-            tile.GetComponent<MathTileMovement>().GoUp();
+            tile.GetComponent<MathTileMovement>().Move(true);
             // Increment counter
             index++;
         }
+        // Display problem
+        ProblemDisplayerMovement.instance.GoUp();
     }
 
     // Send answer to problemManager

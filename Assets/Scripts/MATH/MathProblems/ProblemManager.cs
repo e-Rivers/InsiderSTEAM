@@ -107,8 +107,6 @@ public class ProblemManager : MonoBehaviour
         {
             Incorrect();
         }
-        // Enable movement
-        ProblemDisplayerMovement.instance.EnableMovement();
         // Reset timer
         remainingTime = timePerProblem;
     }

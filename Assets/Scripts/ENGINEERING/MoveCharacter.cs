@@ -15,14 +15,14 @@ public class MoveCharacter : MonoBehaviour
     public float climbSpeed = 0.05f;
     private float inputHorizontal;
     private float inputVertical;
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rb2d;
 
     //Metodos
     // Start is called before the first frame update
     void Start()
     {
         //Inicializar variables
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -30,12 +30,12 @@ public class MoveCharacter : MonoBehaviour
     {
         inputHorizontal = Input.GetAxis("Horizontal");
 
-        rigidbody.velocity = new Vector2(inputHorizontal * vX, rigidbody.velocity.y);
+        rb2d.velocity = new Vector2(inputHorizontal * vX, rb2d.velocity.y);
         inputVertical = Input.GetAxis("Vertical");
 
         if (inputVertical > 0 && FloorTest.isInFloor)
         {
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x, vY);
+            rb2d.velocity = new Vector2(rb2d.velocity.x, vY);
         }
     }
 }

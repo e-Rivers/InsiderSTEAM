@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ public class MathTileMovement : MonoBehaviour
     // Public attributes
     public float speed = 15.0f;
     // Private attributes
+    private Transform tf;
     private Rigidbody2D rb2d;
     private BoxCollider2D boxColl;
 
@@ -13,41 +15,36 @@ public class MathTileMovement : MonoBehaviour
     void Awake()
     {
         // Get components
+        tf = GetComponent<Transform>();
         rb2d = GetComponent<Rigidbody2D>();
         boxColl = GetComponent<BoxCollider2D>();
     }
 
-    // Check for triggers
-    private void OnTriggerEnter2D(Collider2D collision)
+    // Function to move tiles when called
+    public void Move(bool up)
     {
-        // If trigger is a tile stopper
-        if (collision.CompareTag("UpperTileStopper") || collision.CompareTag("LowerTileStopper"))
+        if (up)
         {
-            // Stop any kind of movement
-            rb2d.velocity = Vector3.zero;
-            // Activate collisions
-            boxColl.enabled = true;
-            // Set hasToAnswer boolean to true
-            if (collision.name == "TileLowerStopper")
-            {
-                ProblemManager.instance.hasToAnswer = true;
-            }
+            StopCoroutine("GoDown");
+            StartCoroutine("GoUp");
+        }
+        else
+        {
+            StopCoroutine("GoUp");
+            StartCoroutine("GoDown");
         }
     }
 
     // If function is called, go up
-    public void GoUp()
+    IEnumerator GoDown()
     {
-<<<<<<< Updated upstream
-        rb2d.velocity = Vector3.up * speed;
-    }
-
-=======
         while (tf.localPosition.y > -20)
         {
             tf.localPosition += new Vector3(0f, -0.3f, 0f);
             yield return null;
         }
+        // Lets tiles send answers again
+        MathTileManager.instance.canReceive = true;
         // Let player answer
         ProblemManager.instance.hasToAnswer = true;
         MathTileManager.instance.SetCanBeShot(true);
@@ -61,6 +58,10 @@ public class MathTileMovement : MonoBehaviour
             tf.localPosition += new Vector3(0f, 0.3f, 0f);
             yield return null;
         }
+        // Lets tiles send answers again
+        MathTileManager.instance.canReceive = false;
+        // Let player answer
+        ProblemManager.instance.hasToAnswer = false;
+        MathTileManager.instance.SetCanBeShot(false);
     }
->>>>>>> Stashed changes
 }
