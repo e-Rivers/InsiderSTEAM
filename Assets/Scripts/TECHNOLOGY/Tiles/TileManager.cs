@@ -149,10 +149,10 @@ public class TileManager : MonoBehaviour
                 winnerMatrix[5] = new int[] { 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0 };
                 winnerMatrix[6] = new int[] { 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0 };
                 winnerMatrix[7] = new int[] { 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0 };
-                winnerMatrix[8] = new int[] { 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0 };
+                winnerMatrix[8] = new int[] { 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0 };
                 winnerMatrix[9] = new int[] { 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0 };
                 winnerMatrix[10] = new int[] { 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 };
-                winnerMatrix[11] = new int[] { 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
+                winnerMatrix[11] = new int[] { 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0 };
                 winnerMatrix[12] = new int[] { 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0 };
                 winnerMatrix[13] = new int[] { 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0 };
                 winnerMatrix[14] = new int[] { 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 };

@@ -30,12 +30,18 @@ public class MenuManager : MonoBehaviour
         instance = this;
         // Set private attributes
         isOnSubmenu = false;
+        // If current scene is Main Menu
         if (title != null)
         {
+            // Enables title animation
             anim = title.GetComponent<Animator>();
-            changeMenuChar = StartCoroutine(changeCharacter());
             // Loads user data and stats
             loadUserData = StartCoroutine(downloadData());
+        }
+        // If current scene is Login Screen
+        if (SceneManager.GetActiveScene().name.Equals("LoginScreen"))
+        {
+            changeMenuChar = StartCoroutine(changeCharacter());
         }
     }
 
@@ -65,7 +71,7 @@ public class MenuManager : MonoBehaviour
     // Method to make the transition of the characters
     private void makeTransition(Image toQuit, Image toShow)
     {
-        if (SceneManager.GetActiveScene().name.Equals("MainMenu"))
+        if (SceneManager.GetActiveScene().name.Equals("LoginScreen"))
         {
             toQuit.gameObject.SetActive(false);
             toShow.gameObject.SetActive(true);
