@@ -24,7 +24,6 @@ public class PostScores : MonoBehaviour
 			Debug.Log(returnMsg);
 		} else {
 			Debug.Log(request.responseCode.ToString());
-			//errorMessages.text = "ERROR DE CONEXIÓN: " + request.responseCode.ToString();
 		}
     }
 }

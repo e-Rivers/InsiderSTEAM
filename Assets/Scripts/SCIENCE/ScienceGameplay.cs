@@ -316,7 +316,6 @@ public class ScienceGameplay : MonoBehaviour
     // Method to return to main world
     public void returnToWorld()
     {
-    	PostScores.postRequest(1024, 1);
         MenuManager.nextScene = "MainMenu";
         SceneManager.LoadScene("LoadingScene");
     }
