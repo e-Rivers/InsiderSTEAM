@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ProblemDisplayerMovement : MonoBehaviour
@@ -5,8 +6,7 @@ public class ProblemDisplayerMovement : MonoBehaviour
     // Public self reference
     public static ProblemDisplayerMovement instance;
     // Private attributes
-    private RectTransform tf;
-    private bool stop = true;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -14,54 +14,19 @@ public class ProblemDisplayerMovement : MonoBehaviour
         // Set self reference
         instance = this;
         // Get components
-        tf = GetComponent<RectTransform>();
-        // Set initial values
-        stop = true;
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    // Enable displayer movement
+    public void Move(bool appear)
     {
-        // Check if enemy spawner is inactive
-        if (!EnemySpawner.instance.canSpawn)
+        if (appear)
         {
-            GoDown();
-        } else
-        {
-            GoUp();
+            animator.SetBool("canAnswer", true);
         }
-    }
-
-    // Check for triggers
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("LowerDisplayStopper") || collision.CompareTag("UpperDisplayStopper"))
+        else
         {
-            stop = true;
+            animator.SetBool("canAnswer", false);
         }
-    }
-
-    // Move down function
-    void GoDown()
-    {
-        if (!stop)
-        {
-            tf.position += Vector3.down * 10.0f * Time.deltaTime;
-        }
-    }
-
-    // Move up function
-    void GoUp()
-    {
-        if (!stop)
-        {
-            tf.position += Vector3.up * 10.0f * Time.deltaTime;
-        }
-    }
-
-    // Enable movement
-    public void EnableMovement()
-    {
-        stop = false;
     }
 }

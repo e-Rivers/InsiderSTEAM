@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/Scenes/ENGINEERING/EngineeringLevelIntro.unity
     guid: 938c40fbbe91e974cbf895d75e5ea264
   - enabled: 1
-    path: Assets/Scenes/ENGINEERING/Level3.unity
+    path: Assets/Scenes/ENGINEERING/Level 3.unity
     guid: d7f79bbb8dd624f40b492c95fab1afe0
   - enabled: 1
     path: Assets/Scenes/ART/ArtLevelIntro.unity
