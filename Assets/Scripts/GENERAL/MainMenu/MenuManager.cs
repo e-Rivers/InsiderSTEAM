@@ -65,7 +65,7 @@ public class MenuManager : MonoBehaviour
             case 4:
                 makeTransition(arts, maths);
                 break;
-        }
+        }       
     }
 
     // Method to make the transition of the characters
@@ -166,8 +166,7 @@ public class MenuManager : MonoBehaviour
     // Coroutine to download user data and stats
     private IEnumerator downloadData()
     {
-        fail.gameObject.SetActive(false);
-        success.gameObject.SetActive(false);
+    	bool goodDownload;
         string URIresource = "http://18.116.123.111:8080/insider/datosJugadorUnity/" + PlayerPrefs.GetString("nickname");
         UnityWebRequest request = UnityWebRequest.Get(URIresource);
         // Executes the request
@@ -180,19 +179,35 @@ public class MenuManager : MonoBehaviour
             // Determines which action to perfom based on the response
             if (returnMsg != "")
             {
-                success.gameObject.SetActive(true);
+				goodDownload = true;
                 profileData.text = returnJSON["name"] + " " + returnJSON["last_name"] + "\n(" + returnJSON["nickname"] + ")";
             }
             else
             {
-                fail.gameObject.SetActive(true);
+				goodDownload = false;
                 profileErrorMessage.text = "ERROR AL DESCARGAR LOS DATOS";
             }
         }
         else
         {
-            fail.gameObject.SetActive(true);
+			goodDownload = false;
             profileErrorMessage.text = "SE PRODUJO UN ERROR DE CONEXIÓN QUE IMPIDE LA DESCARGA DE TUS DATOS: " + request.responseCode.ToString();
+        }
+        showStatsDownload(goodDownload);
+    }
+    
+    // Method to reload the right panel depending on the player stats download result
+    private void showStatsDownload(bool goodDownload)
+    {
+    	if(goodDownload)
+    	{
+        	fail.gameObject.SetActive(false);
+        	success.gameObject.SetActive(true);
+        }
+        else
+        {
+        	fail.gameObject.SetActive(true);
+      		success.gameObject.SetActive(false);
         }
     }
 
