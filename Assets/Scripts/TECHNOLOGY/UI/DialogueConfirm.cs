@@ -36,7 +36,7 @@ public class DialogueConfirm : MonoBehaviour
                                    "¡Ja! Todos creían que sin Matemáticas el mundo sería más sencillo, así que decidieron simplemente olvidarlas...",
                                    "Lo creerás imposible, pero así es como resultó para tu especie... Creen que viven bien, cuando en realidad no viven así.",
                                    "Creen que lo tienen todo resuelto, pero sólo permitieron que el dominio de La Ignorancia se expandiera a través del mundo.",
-                                   "Por eso me ves aquí, porque junto a mis compañeros, es mi deber que La Ingorancia continúe reinando sobre tu planeta...",
+                                   "Por eso me ves aquí, porque junto a mis compañeros, es mi deber que La Ignorancia continúe reinando sobre tu planeta...",
                                    "Pero aún quedan rastros de las Matemáticas, pequeños problemas sin resolver que planeamos destruir pronto... ",
                                    "Si alguien encontrara las respuestas, tu mundo tendría una chispa de esperanza, pero dudo que alguien lo haga.",
                                    "¡Adelante, intenta! Nuestro ejército te espera..."}
