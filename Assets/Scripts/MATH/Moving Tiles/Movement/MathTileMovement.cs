@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +6,6 @@ public class MathTileMovement : MonoBehaviour
     // Public attributes
     public float speed = 15.0f;
     // Private attributes
-    private Transform tf;
     private Rigidbody2D rb2d;
     private BoxCollider2D boxColl;
 
@@ -15,45 +13,32 @@ public class MathTileMovement : MonoBehaviour
     void Awake()
     {
         // Get components
-        tf = GetComponent<Transform>();
         rb2d = GetComponent<Rigidbody2D>();
         boxColl = GetComponent<BoxCollider2D>();
     }
 
-    // Enable tile movement
-    public void Move(bool up)
+    // Check for triggers
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (up)
+        // If trigger is a tile stopper
+        if (collision.CompareTag("UpperTileStopper") || collision.CompareTag("LowerTileStopper"))
         {
-            StopCoroutine("GoDown");
-            StartCoroutine("GoUp");
-        }
-        else
-        {
-            StopCoroutine("GoUp");
-            StartCoroutine("GoDown");
+            // Stop any kind of movement
+            rb2d.velocity = Vector3.zero;
+            // Activate collisions
+            boxColl.enabled = true;
+            // Set hasToAnswer boolean to true
+            if (collision.name == "TileLowerStopper")
+            {
+                ProblemManager.instance.hasToAnswer = true;
+            }
         }
     }
 
-    // Move down function
-    IEnumerator GoDown()
+    // If function is called, go up
+    public void GoUp()
     {
-        while (tf.localPosition.y > -20)
-        {
-            tf.localPosition += new Vector3(0f, -0.3f, 0f);
-            yield return null;
-        }
-        MathTileManager.instance.SetCanBeShot(true);
+        rb2d.velocity = Vector3.up * speed;
     }
 
-    // Move up function
-    IEnumerator GoUp()
-    {
-        while (tf.localPosition.y < -4)
-        {
-            tf.localPosition += new Vector3(0f, 0.3f, 0f);
-            yield return null;
-        }
-    }
-    //
 }
