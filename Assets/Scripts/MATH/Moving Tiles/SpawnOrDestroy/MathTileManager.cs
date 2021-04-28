@@ -51,8 +51,6 @@ public class MathTileManager : MonoBehaviour
     {
         // Counts how many iteration foreach has made
         int index = 0;
-        // Call displayer
-        ProblemDisplayerMovement.instance.Move(true);
         // Lets tiles send answers again
         canReceive = true;
         // Stop monsters from spawning
@@ -61,37 +59,35 @@ public class MathTileManager : MonoBehaviour
         // Makes every tile child appear on screen
         foreach (GameObject tile in tiles)
         {
+            // Set velocity
+            tile.GetComponent<Rigidbody2D>().velocity = Vector3.down * tile.GetComponent<MathTileMovement>().speed;
             // Set answer
             tile.GetComponent<MathTileOnShoot>().number = numbers[index];
-            // Let tiles be shot
-            tile.GetComponent<MathTileOnShoot>().isShot = false;
             // Reset animations
             tile.GetComponent<Animator>().ResetTrigger("Idle");
             tile.GetComponent<Animator>().SetTrigger("Idle");
-            // Move tile down
-            tile.GetComponent<MathTileMovement>().Move(false);
             // Increment counter
             index++;
         }
-        // Let player answer
-        ProblemManager.instance.hasToAnswer = true;
+        // Enable problem displayer movement
+        ProblemDisplayerMovement.instance.EnableMovement();
     }
 
     // Make tiles go up
     public void Remove()
     {
+        // Counts how many iteration foreach has made
+        int index = 0;
         // Enable enemy spawning
         EnemySpawner.instance.canSpawn = true;
         ForcefulKiller.instance.Disable();
-        // Avoid multiple shooting
-        SetCanBeShot(false);
-        // Call displayer off the screen
-        ProblemDisplayerMovement.instance.Move(false);
         // Makes every tile disappear from screen 
         foreach (GameObject tile in tiles)
         {
             // Set velocity
-            tile.GetComponent<MathTileMovement>().Move(true);
+            tile.GetComponent<MathTileMovement>().GoUp();
+            // Increment counter
+            index++;
         }
     }
 
