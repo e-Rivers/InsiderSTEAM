@@ -1047,6 +1047,226 @@ MonoBehaviour:
     - 12
     - 56
     correctTile: 3
+  - firstNumber: 60
+    secondNumber: 2
+    thirdNumber: 2
+    firstOperation: 0
+    secondOperation: 3
+    answers:
+    - 61
+    - 31
+    - 64
+    - 36
+    correctTile: 0
+  - firstNumber: 5
+    secondNumber: 4
+    thirdNumber: 56
+    firstOperation: 2
+    secondOperation: 0
+    answers:
+    - 300
+    - 76
+    - 125
+    - 68
+    correctTile: 1
+  - firstNumber: 140
+    secondNumber: 6
+    thirdNumber: 3
+    firstOperation: 1
+    secondOperation: 2
+    answers:
+    - 198
+    - 342
+    - 122
+    - 216
+    correctTile: 2
+  - firstNumber: 15
+    secondNumber: 9
+    thirdNumber: 0
+    firstOperation: 0
+    secondOperation: 2
+    answers:
+    - 1
+    - 18
+    - 24
+    - 0
+    correctTile: 3
+  - firstNumber: 66
+    secondNumber: 6
+    thirdNumber: 11
+    firstOperation: 3
+    secondOperation: 3
+    answers:
+    - 1
+    - 11
+    - 6
+    - 16
+    correctTile: 0
+  - firstNumber: 180
+    secondNumber: 2
+    thirdNumber: 4
+    firstOperation: 2
+    secondOperation: 1
+    answers:
+    - -360
+    - 356
+    - 342
+    - -350
+    correctTile: 1
+  - firstNumber: 81
+    secondNumber: 9
+    thirdNumber: 3
+    firstOperation: 2
+    secondOperation: 3
+    answers:
+    - 24
+    - 26
+    - 27
+    - 21
+    correctTile: 2
+  - firstNumber: 16
+    secondNumber: 54
+    thirdNumber: 90
+    firstOperation: 0
+    secondOperation: 1
+    answers:
+    - -10
+    - 25
+    - 50
+    - -20
+    correctTile: 3
+  - firstNumber: 8
+    secondNumber: 7
+    thirdNumber: 6
+    firstOperation: 2
+    secondOperation: 1
+    answers:
+    - 50
+    - 8
+    - 46
+    - 64
+    correctTile: 0
+  - firstNumber: 600
+    secondNumber: 40
+    thirdNumber: 4
+    firstOperation: 0
+    secondOperation: 2
+    answers:
+    - 680
+    - 760
+    - 660
+    - 790
+    correctTile: 1
+  - firstNumber: 78
+    secondNumber: 2
+    thirdNumber: 1
+    firstOperation: 3
+    secondOperation: 0
+    answers:
+    - 46
+    - 38
+    - 40
+    - 32
+    correctTile: 2
+  - firstNumber: 124
+    secondNumber: 4
+    thirdNumber: 6
+    firstOperation: 1
+    secondOperation: 2
+    answers:
+    - 720
+    - 120
+    - 460
+    - 100
+    correctTile: 3
+  - firstNumber: 14
+    secondNumber: 7
+    thirdNumber: 5
+    firstOperation: 3
+    secondOperation: 1
+    answers:
+    - 2
+    - 5
+    - 3
+    - 4
+    correctTile: 0
+  - firstNumber: 85
+    secondNumber: 20
+    thirdNumber: 5
+    firstOperation: 0
+    secondOperation: 3
+    answers:
+    - 21
+    - 89
+    - 63
+    - 25
+    correctTile: 1
+  - firstNumber: 734
+    secondNumber: 16
+    thirdNumber: 50
+    firstOperation: 0
+    secondOperation: 0
+    answers:
+    - 820
+    - 811
+    - 800
+    - 810
+    correctTile: 2
+  - firstNumber: 125
+    secondNumber: 8
+    thirdNumber: 13
+    firstOperation: 1
+    secondOperation: 1
+    answers:
+    - 103
+    - 106
+    - 101
+    - 104
+    correctTile: 3
+  - firstNumber: 81
+    secondNumber: 4
+    thirdNumber: 2
+    firstOperation: 2
+    secondOperation: 3
+    answers:
+    - 162
+    - 164
+    - 160
+    - 158
+    correctTile: 0
+  - firstNumber: 65
+    secondNumber: 5
+    thirdNumber: 13
+    firstOperation: 0
+    secondOperation: 1
+    answers:
+    - 48
+    - 57
+    - 53
+    - 47
+    correctTile: 1
+  - firstNumber: 16
+    secondNumber: 4
+    thirdNumber: 16
+    firstOperation: 3
+    secondOperation: 0
+    answers:
+    - 26
+    - 23
+    - 20
+    - 24
+    correctTile: 2
+  - firstNumber: 16
+    secondNumber: 7
+    thirdNumber: 5
+    firstOperation: 0
+    secondOperation: 2
+    answers:
+    - 38
+    - 52
+    - 49
+    - 51
+    correctTile: 3
   currProblem: 0
   timePerProblem: 8
   remainingTime: 0
