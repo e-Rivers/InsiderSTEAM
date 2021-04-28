@@ -28,7 +28,7 @@ public class MathTileManager : MonoBehaviour
     private void Update()
     {
         // If player reaches 10 kills and it's the first time this condition is true
-        if (KillsText.kills % 10 == 0 && KillsText.kills != 0 && canSpawn || Input.GetKeyDown(KeyCode.L))
+        if (KillsText.kills % 10 == 0 && KillsText.kills != 0 && canSpawn)
         {
             // Make manager set a new problem
             ProblemManager.instance.SetProblem((int)Random.Range(0, ProblemManager.instance.problems.Length));
@@ -69,8 +69,11 @@ public class MathTileManager : MonoBehaviour
             // Increment counter
             index++;
         }
+<<<<<<< Updated upstream
         // Enable problem displayer movement
         ProblemDisplayerMovement.instance.EnableMovement();
+=======
+>>>>>>> Stashed changes
     }
 
     // Make tiles go up

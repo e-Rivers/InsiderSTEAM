@@ -38,7 +38,29 @@ public class MathTileMovement : MonoBehaviour
     // If function is called, go up
     public void GoUp()
     {
+<<<<<<< Updated upstream
         rb2d.velocity = Vector3.up * speed;
     }
 
+=======
+        while (tf.localPosition.y > -20)
+        {
+            tf.localPosition += new Vector3(0f, -0.3f, 0f);
+            yield return null;
+        }
+        // Let player answer
+        ProblemManager.instance.hasToAnswer = true;
+        MathTileManager.instance.SetCanBeShot(true);
+    }
+
+    // Move up function
+    IEnumerator GoUp()
+    {
+        while (tf.localPosition.y < -4)
+        {
+            tf.localPosition += new Vector3(0f, 0.3f, 0f);
+            yield return null;
+        }
+    }
+>>>>>>> Stashed changes
 }
