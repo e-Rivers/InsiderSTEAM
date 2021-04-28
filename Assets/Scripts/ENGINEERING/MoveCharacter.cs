@@ -10,9 +10,11 @@ using UnityEngine;
 public class MoveCharacter : MonoBehaviour
 {
     //Variables
-    public float velocidadX = 10;
-    public float velocidadY = 7;
-    
+    public float vX = 10;
+    public float vY = 7;
+    public float climbSpeed = 0.05f;
+    private float inputHorizontal;
+    private float inputVertical;
     private Rigidbody2D rigidbody;
 
     //Metodos
@@ -26,15 +28,14 @@ public class MoveCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float movHorizontal = Input.GetAxis("Horizontal");
+        inputHorizontal = Input.GetAxis("Horizontal");
         
+        rigidbody.velocity = new Vector2(inputHorizontal * vX,rigidbody.velocity.y);
+        inputVertical = Input.GetAxis("Vertical");
 
-        rigidbody.velocity = new Vector2(movHorizontal*velocidadX,rigidbody.velocity.y);
-        float movVertical = Input.GetAxis("Vertical");
-
-        if (movVertical > 0 && FloorTest.isInFloor)
+        if (inputVertical > 0 && FloorTest.isInFloor)
         {
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x,velocidadY);
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x,vY);
         }
     }
 }
