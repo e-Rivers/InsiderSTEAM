@@ -1086,10 +1086,10 @@ MonoBehaviour:
     firstOperation: 0
     secondOperation: 2
     answers:
-    - 1
+    - 0
     - 18
     - 24
-    - 0
+    - 15
     correctTile: 3
   - firstNumber: 66
     secondNumber: 6
@@ -4869,7 +4869,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bg: {fileID: 2140103434}
   canPause: 0
-  realm: Math
 --- !u!1 &360047901
 GameObject:
   m_ObjectHideFlags: 0
