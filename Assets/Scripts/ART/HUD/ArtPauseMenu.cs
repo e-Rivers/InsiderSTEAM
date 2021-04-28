@@ -66,7 +66,7 @@ public class ArtPauseMenu : MonoBehaviour
 
     public void GoToTutorial()
     {
-        Application.OpenURL("https://www.youtube.com/watch?v=TF5zCoBGPjM");
+        Application.OpenURL("http://18.116.123.111:8080/insider/Tutoriales");
     }
 
     // Enable/disable background
