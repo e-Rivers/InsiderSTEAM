@@ -8,7 +8,7 @@ public class ProblemManager : MonoBehaviour
     // Public attributes
     public Problem[] problems;              // Array of all problems
     public int currProblem;                 // Current problem the player needs to solve
-    public float timePerProblem = 5.0f;     // Time allowed to answer each 
+    public float timePerProblem = 6.0f;     // Time allowed to answer each 
     public float remainingTime;             // Time remaining for the current problem
     public bool hasToAnswer = false;        // Lets player answer a question
 
@@ -108,7 +108,7 @@ public class ProblemManager : MonoBehaviour
             Incorrect();
         }
         // Enable movement
-        ProblemDisplayerMovement.instance.EnableMovement();
+        ProblemDisplayerMovement.instance.Move(false);
         // Reset timer
         remainingTime = timePerProblem;
     }
