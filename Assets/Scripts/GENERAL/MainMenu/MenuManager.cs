@@ -20,7 +20,7 @@ public class MenuManager : MonoBehaviour
     private bool transition = true;
     private bool isOnSubmenu;
     private Coroutine changeMenuChar, loadUserData;
-    [SerializeField] Text title;
+    [SerializeField] Image title;
     private Animator anim;
 
     // Start is called before the first frame update
@@ -129,7 +129,7 @@ public class MenuManager : MonoBehaviour
     // Method to go to the loading screen
     public void EnterScene(bool load = true)
     {
-        if (title != null)
+        if (SceneManager.GetActiveScene().name.Equals("LoginScreen"))
         {
             StopCoroutine(changeMenuChar);
         }

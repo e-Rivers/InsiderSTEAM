@@ -16229,6 +16229,10 @@ PrefabInstance:
       propertyPath: shootingSounds.Array.data[3]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8163507561023569701, guid: 7144d10ba9d8d7648a1f50cdc966bc12, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7144d10ba9d8d7648a1f50cdc966bc12, type: 3}
 --- !u!1 &1267418153
