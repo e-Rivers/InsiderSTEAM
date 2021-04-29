@@ -61,7 +61,11 @@ public class SendingDataPrompt : MonoBehaviour
         canvas.enabled = false;
         // Makes the transtition to the corresponding scene
 		MenuManager.nextScene = nextScene;
-		MenuManager.instance.EnterScene(false);
+		if(MenuManager.nextScene == "MainMenu") {
+			MenuManager.instance.EnterScene();
+		} else {
+			MenuManager.instance.EnterScene(false);
+		}
     }
 
 }
