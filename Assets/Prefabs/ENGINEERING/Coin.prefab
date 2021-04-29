@@ -117,6 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyedC: {fileID: 7630639256710663105, guid: 58871a43a6743f04aa280acde98a6d03, type: 3}
+  audioSource: {fileID: 0}
+  pickClip: {fileID: 8300000, guid: 379933a3b34e1d54aad94bc42c3b2c45, type: 3}
 --- !u!61 &5038900243854410320
 BoxCollider2D:
   m_ObjectHideFlags: 0

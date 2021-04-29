@@ -44,7 +44,7 @@ public class RandomProblem : MonoBehaviour
             Change();
             i++;
         }
-        else if (scene.name == "Level 3" && i == 1  && begin && GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC == 9)
+        else if (scene.name == "Level 3" && i == 1 && begin && GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC == 9)
         {
             Change();
             i++;
@@ -57,6 +57,11 @@ public class RandomProblem : MonoBehaviour
         else if (scene.name == "Level 2" && nextLevel)
         {
             SceneManager.LoadScene("Level 3");
+        }
+        else if (scene.name == "Level 3" && nextLevel || Input.GetKeyDown(KeyCode.L))
+        {
+            MenuManager.nextScene = "MainMenu";
+            MenuManager.instance.EnterScene();
         }
     }
 

@@ -123,6 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79675c808d32e914e8f1b6527ba17941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  leverClip: {fileID: 8300000, guid: d7e31daf4f3343b4f9c38101afefa8e6, type: 3}
 --- !u!95 &6178853663868174891
 Animator:
   serializedVersion: 3

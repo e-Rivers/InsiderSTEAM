@@ -5,17 +5,52 @@ using UnityEngine.SceneManagement;
 
 public class MoveLever : MonoBehaviour
 {
-    // Update is called once per frame
 
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip leverClip;
     private bool move = false;
+
+    // 
+    void Start()
+    {
+        audioSource = GameObject.Find("SoundSource").GetComponent<AudioSource>();
+    }
+
+    // Update is called once per frame
     void Update()
-    {    
-        
+    {
+
         if (Input.GetKeyDown(KeyCode.X))
         {
-            move = true;
+            switch (SceneManager.GetActiveScene().name)
+            {
+                case "Level 1":
+                    if (GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC == 7)
+                    {
+                        Debug.Log("Can move");
+                        move = true;
+                    }
+                    break;
+                case "Level 2":
+                    if (GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC == 9)
+                    {
+                        Debug.Log("Can move");
+                        move = true;
+                    }
+                    break;
+                case "Level 3":
+                    if (GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC == 9)
+                    {
+                        Debug.Log("Can move");
+                        move = true;
+                    }
+                    break;
+
+            }
         }
     }
+
+
 
     private void OnGUI()
     {
@@ -24,14 +59,17 @@ public class MoveLever : MonoBehaviour
         if (scene.name == "Level 1" && move && GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC == 7)
         {
             GetComponent<Animator>().Play("Lever");
+            audioSource.PlayOneShot(leverClip);
         }
         else if (scene.name == "Level 2" && move && GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC == 9)
         {
             GetComponent<Animator>().Play("Lever");
+            audioSource.PlayOneShot(leverClip);
         }
         else if (scene.name == "Level 3" && move && GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC == 9)
         {
             GetComponent<Animator>().Play("Lever");
+            audioSource.PlayOneShot(leverClip);
         }
     }
 }

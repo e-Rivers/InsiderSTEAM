@@ -7,38 +7,43 @@ public class Collision : MonoBehaviour
 {
     public GameObject DestroyedC;
     private Animator anim;
+    private SpriteRenderer spriteRenderer;
     private bool crash = false;
+    [SerializeField] GameObject explosion;
+    [SerializeField] GameObject player;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip crashClip;
     void Start()
     {
+        audioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnGUI()
     {
         Scene scene = SceneManager.GetActiveScene();
-
-        if (scene.name == "Level 1" && crash)
+        if (crash)
         {
             DestroyedC.GetComponent<DestroyedCoins>().DestroyedC = 0;
-            SceneManager.LoadScene("Level 1");
-        }
-        else if (scene.name == "Level 2" && crash)
-        {
-            DestroyedC.GetComponent<DestroyedCoins>().DestroyedC = 0;
-            SceneManager.LoadScene("Level 2");
-        }
-        else if (scene.name == "Level 3" && crash)
-        {
-            DestroyedC.GetComponent<DestroyedCoins>().DestroyedC = 0;
-            SceneManager.LoadScene("Level 3");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("KillerPlatform"))
         {
-            anim.SetBool("crash", true);
-            crash = true;
+            StartCoroutine("WaitForLoad");
         }
+    }
+
+    IEnumerator WaitForLoad()
+    {
+        audioSource.PlayOneShot(crashClip);
+        MoveCharacter.instance.disableInput = true;
+        Instantiate(explosion, transform.position, Quaternion.identity);
+        spriteRenderer.enabled = false;
+        yield return new WaitForSeconds(1f);
+        crash = true;
     }
 }

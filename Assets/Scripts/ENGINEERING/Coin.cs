@@ -5,21 +5,30 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public GameObject DestroyedC;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip pickClip;
+
+    void Awake()
+    {
+        audioSource = GameObject.Find("SoundSource").GetComponent<AudioSource>();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {   
+        {
             //Esconde moneda
             GetComponent<SpriteRenderer>().enabled = false;
-
-            //Destruye moneda y animación
-            Suma();
-            Destroy(gameObject);
+            //Destruye moneda y animaciï¿½n
+            StartCoroutine("Suma");
         }
     }
 
-    void Suma()
+    IEnumerator Suma()
     {
+        audioSource.PlayOneShot(pickClip);
         DestroyedC.GetComponent<DestroyedCoins>().DestroyedC += 1;
+        yield return new WaitForSeconds(0.3f);
+        Destroy(gameObject);
     }
 }

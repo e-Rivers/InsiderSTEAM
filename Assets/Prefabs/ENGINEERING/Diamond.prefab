@@ -142,3 +142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be91aca319debd249b2a6f63c91b231b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyedC: {fileID: 0}
+  audioSource: {fileID: 0}
+  pickClip: {fileID: 8300000, guid: af9da3477ee9e874092288b49ba24cc6, type: 3}
