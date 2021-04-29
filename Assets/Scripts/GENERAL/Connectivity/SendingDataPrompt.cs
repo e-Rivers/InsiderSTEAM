@@ -22,11 +22,11 @@ public class SendingDataPrompt : MonoBehaviour
     }
 
     // Function to set prompt on screen
-    public void SetPrompt(int s, int wI, string nS)
+    public void SetPrompt(int scoreArg, int worldIdArg, string nextSceneArg)
     {
-    	score = s;
-    	worldId = wI;
-    	nextScene = nS;
+    	score = scoreArg;
+    	worldId = worldIdArg;
+    	nextScene = nextSceneArg;
         StopCoroutine("RemoveContainer");
         StartCoroutine("SetContainer");
     }

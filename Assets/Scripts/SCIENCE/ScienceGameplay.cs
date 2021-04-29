@@ -348,10 +348,7 @@ public class ScienceGameplay : MonoBehaviour
     // Method to return to main world
     public void returnToWorld()
     {
-    	/*score = calculateScore();
-    	Debug.Log(score);*/
     	SendingDataPrompt.instance.SetPrompt(1024, 1, "MainMenu");
-    	//PostScores.postRequest(1024, 1, "MainMenu");
     }
 
     // Method to play again

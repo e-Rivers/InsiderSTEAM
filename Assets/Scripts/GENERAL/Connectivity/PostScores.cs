@@ -20,19 +20,8 @@ public class PostScores : MonoBehaviour
 		// Sends the request
 		request.SendWebRequest();
 		
-		SendingDataPrompt.instance.RemovePrompt();		
-		
-		/*SendingDataPrompt.RemoveContainer();
-		
-		// Makes the transtition to the corresponding scene
-		MenuManager.nextScene = nextScene;
-		MenuManager.instance.EnterScene(false);*/
-		
-		/*if(passLoadingScene) {
-			SceneManager.LoadScene("LoadingScene");
-		} else {
-			SceneManager.LoadScene(MenuManager.nextScene);
-		}*/
+		// Quits the banner and returns to the corresponding scene
+		SendingDataPrompt.instance.RemovePrompt();
     }
 }
 
