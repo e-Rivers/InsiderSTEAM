@@ -141,7 +141,8 @@ public class ScienceGameplay : MonoBehaviour
             isAskTime = true;
             timeCount = 60;
 			// ======== Selects between a riddle or problem
-			questionType = (int) Random.Range(0, 3);
+			// ##################################################################################################################
+			questionType = 0; //(int) Random.Range(0, 3);
 			if(questionType == 0) {
 				int randomSelection = (int) Random.Range(0, riddleDict.Keys.Count);
 				string randomRiddle = riddleDict.Keys.ElementAt(randomSelection);
@@ -348,14 +349,14 @@ public class ScienceGameplay : MonoBehaviour
     // Method to return to main world
     public void returnToWorld()
     {
-    	SendingDataPrompt.instance.SetPrompt(1024, 1, "MainMenu");
+    	
+    	score = calculateScore();
+    	Debug.Log("Final: " + score);
+    	//SendingDataPrompt.instance.SetPrompt(1024, 1, "MainMenu");
     }
 
     // Method to play again
     public void playAgain() {
-
-		Debug.Log(savedTimestamps);
-
 		MenuManager.nextScene = "ScienceLevel";
 		SceneManager.LoadScene(MenuManager.nextScene);
     }
@@ -453,12 +454,12 @@ public class ScienceGameplay : MonoBehaviour
     	float finalScore = 0, answerTimeRateSum = 0;
     	string[] prevRound = roundText.text.Split(' ');
 	    finalScore += (-10 * (roundType - int.Parse(prevRound[1])));
-       	Debug.Log(finalScore);
-       	    	Debug.Log(savedTimestamps.Count);
+       	Debug.Log("Round part: " + finalScore);
 	    foreach(int i in savedTimestamps) {
 	    	answerTimeRateSum += (float) (1/(60-i))*500;
 	    }
 	    if(savedTimestamps.Count != 0) {
+	    	Debug.Log("Timestamps: " + (answerTimeRateSum/savedTimestamps.Count));
 	    	finalScore += (float) (answerTimeRateSum/savedTimestamps.Count);
 	    }
 	    return finalScore;
