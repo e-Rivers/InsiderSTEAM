@@ -25,7 +25,7 @@ public class ScienceGameplay : MonoBehaviour
     private string sidebarAns = "", endingAns = "", curSound, effect;
     private int[] sequence = new int[10];
     private List<int> savedTimestamps = new List<int>(); // This list holds the times it took to the user to solve each riddle and problem
-    private float score;
+    private int score;
 
     // Loads all riddles and problems
     void Start()
@@ -141,8 +141,7 @@ public class ScienceGameplay : MonoBehaviour
             isAskTime = true;
             timeCount = 60;
 			// ======== Selects between a riddle or problem
-			// ##################################################################################################################
-			questionType = 0; //(int) Random.Range(0, 3);
+			questionType = (int) Random.Range(0, 3);
 			if(questionType == 0) {
 				int randomSelection = (int) Random.Range(0, riddleDict.Keys.Count);
 				string randomRiddle = riddleDict.Keys.ElementAt(randomSelection);
@@ -167,8 +166,6 @@ public class ScienceGameplay : MonoBehaviour
 	        sidebarAnswer.text = "";
 	        sidebarAns = "";
 	        mazeCover.SetActive(false);
-	        //mazeGenesys.GetComponent<MazeGenerator>().DeleteMaze();     // Probably removed in further versions
-	        //mazeGenesys.GetComponent<MazeGenerator>().GenerateMaze();   // due to difficulty
 			// Saves the time
 			savedTimestamps.Add(timeCount);
 	        // Calculates the current round
@@ -284,7 +281,7 @@ public class ScienceGameplay : MonoBehaviour
 		yield return new WaitForSeconds(5);
 		foreach(int a in sequence) {
 			askText.text = a.ToString();
-			yield return new WaitForSeconds(0.75f);
+			yield return new WaitForSeconds(1);
 		}
 		askText.text = "¿Cuál era el número en la " + (correctIndex+1).ToString() + "° posición?";
 		subTime = StartCoroutine(reduceTimer());
@@ -310,6 +307,7 @@ public class ScienceGameplay : MonoBehaviour
             {
                 if (endingAns == "1")
                 {
+                	score += 500;
                     askingMusic.Stop();
                     StopCoroutine(subTime);
                     finishTitle.text = "VICTORIA";
@@ -349,16 +347,14 @@ public class ScienceGameplay : MonoBehaviour
     // Method to return to main world
     public void returnToWorld()
     {
-    	
-    	score = calculateScore();
-    	Debug.Log("Final: " + score);
-    	//SendingDataPrompt.instance.SetPrompt(1024, 1, "MainMenu");
+    	score += calculateScore();
+    	SendingDataPrompt.instance.SetPrompt(score, 1, "MainMenu");
     }
 
     // Method to play again
     public void playAgain() {
-		MenuManager.nextScene = "ScienceLevel";
-		SceneManager.LoadScene(MenuManager.nextScene);
+    	score += calculateScore();    
+    	SendingDataPrompt.instance.SetPrompt(score, 1, "ScienceLevel");		
     }
 
     // Method to resume game
@@ -448,19 +444,21 @@ public class ScienceGameplay : MonoBehaviour
 		timeCount = 30;
 		sidebarAns = "";
 		endingAns = "";
+		score = 0;
     }
     
-    private float calculateScore() {
-    	float finalScore = 0, answerTimeRateSum = 0;
-    	string[] prevRound = roundText.text.Split(' ');
-	    finalScore += (-10 * (roundType - int.Parse(prevRound[1])));
-       	Debug.Log("Round part: " + finalScore);
+    private int calculateScore() {
+    	int finalScore = 0, answerTimeRateSum = 0;
+    	string[] currentRound = roundText.text.Split(' ');
+    	float inverseFactor;
+    	if(!initBanner.activeSelf) finalScore += (-10 * int.Parse(currentRound[1]));
 	    foreach(int i in savedTimestamps) {
-	    	answerTimeRateSum += (float) (1/(60-i))*500;
+	    	if(i == 60) inverseFactor = (1.0f/(60-59))*500;
+	    	else inverseFactor = (1.0f/(60-i))*500;
+	    	answerTimeRateSum += (int) inverseFactor;
 	    }
 	    if(savedTimestamps.Count != 0) {
-	    	Debug.Log("Timestamps: " + (answerTimeRateSum/savedTimestamps.Count));
-	    	finalScore += (float) (answerTimeRateSum/savedTimestamps.Count);
+	    	finalScore += (int) (answerTimeRateSum/savedTimestamps.Count);
 	    }
 	    return finalScore;
     }
