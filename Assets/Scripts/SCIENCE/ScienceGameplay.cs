@@ -25,6 +25,7 @@ public class ScienceGameplay : MonoBehaviour
     private string sidebarAns = "", endingAns = "", curSound, effect;
     private int[] sequence = new int[10];
     private List<int> savedTimestamps = new List<int>(); // This list holds the times it took to the user to solve each riddle and problem
+    private float score;
 
     // Loads all riddles and problems
     void Start()
@@ -347,7 +348,9 @@ public class ScienceGameplay : MonoBehaviour
     // Method to return to main world
     public void returnToWorld()
     {
-    	PostScores.postRequest(1024, 1, "MainMenu");
+    	score = calculateScore();
+    	Debug.Log(score);
+    	//PostScores.postRequest(1024, 1, "MainMenu");
     }
 
     // Method to play again
@@ -446,6 +449,21 @@ public class ScienceGameplay : MonoBehaviour
 		timeCount = 30;
 		sidebarAns = "";
 		endingAns = "";
+    }
+    
+    private float calculateScore() {
+    	float finalScore = 0, answerTimeRateSum = 0;
+    	string[] prevRound = roundText.text.Split(' ');
+	    finalScore += (-10 * (roundType - int.Parse(prevRound[1])));
+       	Debug.Log(finalScore);
+       	    	Debug.Log(savedTimestamps.Count);
+	    foreach(int i in savedTimestamps) {
+	    	answerTimeRateSum += (float) (1/(60-i))*500;
+	    }
+	    if(savedTimestamps.Count != 0) {
+	    	finalScore += (float) (answerTimeRateSum/savedTimestamps.Count);
+	    }
+	    return finalScore;
     }
 
 }
