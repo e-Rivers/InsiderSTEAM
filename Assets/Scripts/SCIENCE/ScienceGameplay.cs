@@ -25,7 +25,6 @@ public class ScienceGameplay : MonoBehaviour
     private string sidebarAns = "", endingAns = "", curSound, effect;
     private int[] sequence = new int[10];
     private List<int> savedTimestamps = new List<int>(); // This list holds the times it took to the user to solve each riddle and problem
-    private int score;
 
     // Loads all riddles and problems
     void Start()
@@ -307,7 +306,6 @@ public class ScienceGameplay : MonoBehaviour
             {
                 if (endingAns == "1")
                 {
-                	score += 500;
                     askingMusic.Stop();
                     StopCoroutine(subTime);
                     finishTitle.text = "VICTORIA";
@@ -347,14 +345,12 @@ public class ScienceGameplay : MonoBehaviour
     // Method to return to main world
     public void returnToWorld()
     {
-    	score += calculateScore();
-    	SendingDataPrompt.instance.SetPrompt(score, 1, "MainMenu");
+    	SendingDataPrompt.instance.SetPrompt(calculateScore(), 1, "MainMenu");
     }
 
     // Method to play again
     public void playAgain() {
-    	score += calculateScore();    
-    	SendingDataPrompt.instance.SetPrompt(score, 1, "ScienceLevel");		
+    	SendingDataPrompt.instance.SetPrompt(calculateScore(), 1, "ScienceLevel");		
     }
 
     // Method to resume game
@@ -444,7 +440,6 @@ public class ScienceGameplay : MonoBehaviour
 		timeCount = 30;
 		sidebarAns = "";
 		endingAns = "";
-		score = 0;
     }
     
     private int calculateScore() {
@@ -460,6 +455,7 @@ public class ScienceGameplay : MonoBehaviour
 	    if(savedTimestamps.Count != 0) {
 	    	finalScore += (int) (answerTimeRateSum/savedTimestamps.Count);
 	    }
+	    if(finishPanel.activeSelf && finishTitle.text == "VICTORIA") finalScore += 500;
 	    return finalScore;
     }
 
