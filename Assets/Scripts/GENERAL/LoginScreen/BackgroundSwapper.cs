@@ -8,13 +8,10 @@ public class BackgroundSwapper : MonoBehaviour
     // Private attributes
     [SerializeField] Image bg_001;
     [SerializeField] Image bg_002;
-    private int counter;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Set counter
-        counter = 0;
         // Set initial colors
         bg_001.color = new Color(bg_001.color.r, bg_001.color.g, bg_001.color.b, 1f);
         bg_002.color = new Color(bg_002.color.r, bg_002.color.g, bg_002.color.b, 0f);

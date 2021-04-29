@@ -30,8 +30,8 @@ EditorBuildSettings:
     path: Assets/Scenes/ENGINEERING/EngineeringLevelIntro.unity
     guid: 938c40fbbe91e974cbf895d75e5ea264
   - enabled: 1
-    path: Assets/Scenes/ENGINEERING/Level3.unity
-    guid: d7f79bbb8dd624f40b492c95fab1afe0
+    path: Assets/Scenes/ENGINEERING/Level 2.unity
+    guid: 1454e4ad6590c8846b93ecffefd2fa6c
   - enabled: 1
     path: Assets/Scenes/ART/ArtLevelIntro.unity
     guid: 153daa3a17fda474e94f67c09680aa4b
@@ -48,6 +48,6 @@ EditorBuildSettings:
     path: Assets/Scenes/GENERAL/LoadingScene.unity
     guid: 3af5338e33418f449842a1c1cf8d65ad
   - enabled: 1
-    path: Assets/Scenes/ENGINEERING/Level 2.unity
-    guid: 1454e4ad6590c8846b93ecffefd2fa6c
+    path: Assets/Scenes/GENERAL/Credits.unity
+    guid: 9b4615778feb68a40a7eec22f9b0faec
   m_configObjects: {}

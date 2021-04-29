@@ -246,8 +246,6 @@ public class MathPlayerMovement : MonoBehaviour
                 else
                 {
                     rb2d.AddForce(new Vector2(2.5f, bouncingForce), ForceMode2D.Impulse);
-                    anim.ResetTrigger("Glide");
-                    anim.SetTrigger("Jump");
                     bouncingTile.GetComponent<TileMover>().jumpedOnce = true;
 
                 }

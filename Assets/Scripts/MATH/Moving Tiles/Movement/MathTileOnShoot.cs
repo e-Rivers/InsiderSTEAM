@@ -7,13 +7,13 @@ public class MathTileOnShoot : MonoBehaviour
     public int identifier = 0;
     public float number = 0;
     public bool canBeShot = false;
+    public bool isShot = false;
 
     // Private attributes
     private Animator anim;
     private Transform child;
     private BoxCollider2D boxColl;
     private Text text;
-    private bool isShot = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -60,17 +60,6 @@ public class MathTileOnShoot : MonoBehaviour
                     isShot = true;
                 }
             }
-        }
-        // If trigger is a stopper
-        if (collision.CompareTag("LowerTileStopper"))
-        {
-            MathTileManager.instance.SetCanBeShot(true);
-            isShot = false;
-        }
-        if (collision.CompareTag("UpperTileStopper"))
-        {
-            MathTileManager.instance.SetCanBeShot(false);
-            isShot = false;
         }
     }
 }

@@ -1047,6 +1047,226 @@ MonoBehaviour:
     - 12
     - 56
     correctTile: 3
+  - firstNumber: 60
+    secondNumber: 2
+    thirdNumber: 2
+    firstOperation: 0
+    secondOperation: 3
+    answers:
+    - 61
+    - 31
+    - 64
+    - 36
+    correctTile: 0
+  - firstNumber: 5
+    secondNumber: 4
+    thirdNumber: 56
+    firstOperation: 2
+    secondOperation: 0
+    answers:
+    - 300
+    - 76
+    - 125
+    - 68
+    correctTile: 1
+  - firstNumber: 140
+    secondNumber: 6
+    thirdNumber: 3
+    firstOperation: 1
+    secondOperation: 2
+    answers:
+    - 198
+    - 342
+    - 122
+    - 216
+    correctTile: 2
+  - firstNumber: 15
+    secondNumber: 9
+    thirdNumber: 0
+    firstOperation: 0
+    secondOperation: 2
+    answers:
+    - 0
+    - 18
+    - 24
+    - 15
+    correctTile: 3
+  - firstNumber: 66
+    secondNumber: 6
+    thirdNumber: 11
+    firstOperation: 3
+    secondOperation: 3
+    answers:
+    - 1
+    - 11
+    - 6
+    - 16
+    correctTile: 0
+  - firstNumber: 180
+    secondNumber: 2
+    thirdNumber: 4
+    firstOperation: 2
+    secondOperation: 1
+    answers:
+    - -360
+    - 356
+    - 342
+    - -350
+    correctTile: 1
+  - firstNumber: 81
+    secondNumber: 9
+    thirdNumber: 3
+    firstOperation: 2
+    secondOperation: 3
+    answers:
+    - 24
+    - 26
+    - 27
+    - 21
+    correctTile: 2
+  - firstNumber: 16
+    secondNumber: 54
+    thirdNumber: 90
+    firstOperation: 0
+    secondOperation: 1
+    answers:
+    - -10
+    - 25
+    - 50
+    - -20
+    correctTile: 3
+  - firstNumber: 8
+    secondNumber: 7
+    thirdNumber: 6
+    firstOperation: 2
+    secondOperation: 1
+    answers:
+    - 50
+    - 8
+    - 46
+    - 64
+    correctTile: 0
+  - firstNumber: 600
+    secondNumber: 40
+    thirdNumber: 4
+    firstOperation: 0
+    secondOperation: 2
+    answers:
+    - 680
+    - 760
+    - 660
+    - 790
+    correctTile: 1
+  - firstNumber: 78
+    secondNumber: 2
+    thirdNumber: 1
+    firstOperation: 3
+    secondOperation: 0
+    answers:
+    - 46
+    - 38
+    - 40
+    - 32
+    correctTile: 2
+  - firstNumber: 124
+    secondNumber: 4
+    thirdNumber: 6
+    firstOperation: 1
+    secondOperation: 2
+    answers:
+    - 720
+    - 120
+    - 460
+    - 100
+    correctTile: 3
+  - firstNumber: 14
+    secondNumber: 7
+    thirdNumber: 5
+    firstOperation: 3
+    secondOperation: 1
+    answers:
+    - 2
+    - 5
+    - 3
+    - 4
+    correctTile: 0
+  - firstNumber: 85
+    secondNumber: 20
+    thirdNumber: 5
+    firstOperation: 0
+    secondOperation: 3
+    answers:
+    - 21
+    - 89
+    - 63
+    - 25
+    correctTile: 1
+  - firstNumber: 734
+    secondNumber: 16
+    thirdNumber: 50
+    firstOperation: 0
+    secondOperation: 0
+    answers:
+    - 820
+    - 811
+    - 800
+    - 810
+    correctTile: 2
+  - firstNumber: 125
+    secondNumber: 8
+    thirdNumber: 13
+    firstOperation: 1
+    secondOperation: 1
+    answers:
+    - 103
+    - 106
+    - 101
+    - 104
+    correctTile: 3
+  - firstNumber: 81
+    secondNumber: 4
+    thirdNumber: 2
+    firstOperation: 2
+    secondOperation: 3
+    answers:
+    - 162
+    - 164
+    - 160
+    - 158
+    correctTile: 0
+  - firstNumber: 65
+    secondNumber: 5
+    thirdNumber: 13
+    firstOperation: 0
+    secondOperation: 1
+    answers:
+    - 48
+    - 57
+    - 53
+    - 47
+    correctTile: 1
+  - firstNumber: 16
+    secondNumber: 4
+    thirdNumber: 16
+    firstOperation: 3
+    secondOperation: 0
+    answers:
+    - 26
+    - 23
+    - 20
+    - 24
+    correctTile: 2
+  - firstNumber: 16
+    secondNumber: 7
+    thirdNumber: 5
+    firstOperation: 0
+    secondOperation: 2
+    answers:
+    - 38
+    - 52
+    - 49
+    - 51
+    correctTile: 3
   currProblem: 0
   timePerProblem: 8
   remainingTime: 0
@@ -4649,7 +4869,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bg: {fileID: 2140103434}
   canPause: 0
-  realm: Math
 --- !u!1 &360047901
 GameObject:
   m_ObjectHideFlags: 0
@@ -6943,18 +7162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 0}
-  profile: {fileID: 0}
-  credits: {fileID: 0}
+  story: {fileID: 0}
   playgame: {fileID: 0}
-  profileErrorMessage: {fileID: 0}
-  profileData: {fileID: 0}
-  science: {fileID: 0}
-  tech: {fileID: 0}
-  engine: {fileID: 0}
-  arts: {fileID: 0}
-  maths: {fileID: 0}
-  success: {fileID: 0}
-  fail: {fileID: 0}
   title: {fileID: 0}
 --- !u!114 &519420035
 MonoBehaviour:
@@ -22041,6 +22250,7 @@ GameObject:
   - component: {fileID: 1825939455}
   - component: {fileID: 1825939454}
   - component: {fileID: 1825939453}
+  - component: {fileID: 1825939456}
   m_Layer: 0
   m_Name: ProblemContainer
   m_TagString: Untagged
@@ -22129,6 +22339,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
+--- !u!95 &1825939456
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825939451}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 754817883c3fc9542ab2bb6f2f52f765, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1829378319
 GameObject:
   m_ObjectHideFlags: 0

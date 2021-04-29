@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreditsAudio : MonoBehaviour
 {
@@ -22,6 +23,16 @@ public class CreditsAudio : MonoBehaviour
         StartCoroutine("IncreaseVolume");
     }
 
+    // Update is called on every frame update
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            MenuManager.nextScene = "MainMenu";
+            MenuManager.instance.EnterScene(false);
+        }
+    }
+
     // Coroutine to start enabling sound
     IEnumerator IncreaseVolume()
     {
@@ -35,7 +46,7 @@ public class CreditsAudio : MonoBehaviour
         while (counter == 0)
         {
             counter++;
-            yield return new WaitForSeconds(55f);
+            yield return new WaitForSeconds(80f);
         }
         while (lowPassFilter.cutoffFrequency > 20)
         {
