@@ -86,7 +86,7 @@ public class EnterAnswer : MonoBehaviour
 
             if (i == 4)
             {
-                score.GetComponent<ScoreE>().FinalScore(scoreRN);
+                score.GetComponent<ScoreE>().FinalScore(scoreRA1);
             }
         }
         else if (RA2Scene)
@@ -103,7 +103,7 @@ public class EnterAnswer : MonoBehaviour
 
             if (i == 4)
             {
-                score.GetComponent<ScoreE>().FinalScore(scoreRN);
+                score.GetComponent<ScoreE>().FinalScore(scoreRA2);
             }
         }
         i++;
