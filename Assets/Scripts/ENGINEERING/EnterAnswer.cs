@@ -21,8 +21,8 @@ public class EnterAnswer : MonoBehaviour
     private bool RA2Scene = false;
     private int answerN;
     private int scoreRN = 0;
-    private int scoreRA = 0; 
-
+    private int scoreRA1 = 0;
+    private int scoreRA2 = 0;
     private void OnGUI()
     {
         Scene scene = SceneManager.GetActiveScene();
@@ -70,7 +70,7 @@ public class EnterAnswer : MonoBehaviour
             if (answersRA1[randomNP[i]] == answerN)
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Correcta";
-                scoreRA++;
+                scoreRA1++;
             }
             else
             {
@@ -82,15 +82,13 @@ public class EnterAnswer : MonoBehaviour
             if (answersRA2[randomNP[i]] == answerN)
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Correcta";
-                scoreRA++;
+                scoreRA2++;
             }
             else
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Incorrecta";
             }
         }
-
-
         i++;
     }
 }
