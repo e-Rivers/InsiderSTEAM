@@ -15,11 +15,12 @@ public class RandomProblem : MonoBehaviour
     private int j = 0;
     private int x;
     private bool nextLevel = false;
+    public GameObject a;
     void Start()
     {
         System.Random rnd = new System.Random();
         randomNProblems = System.Linq.Enumerable.Range(0, 13).OrderBy(r => rnd.Next()).ToArray();
-        Array.ForEach(randomNProblems, Console.WriteLine);
+        a.GetComponent<EnterAnswer>().ReceiveRandomNProblems(randomNProblems);
     }
     void Update()
     {

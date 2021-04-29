@@ -388,6 +388,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1984953818561137818, guid: 7591d382fe74da741a68e4c0f55e94b1, type: 3}
+      propertyPath: a
+      value: 
+      objectReference: {fileID: 1527471653}
+    - target: {fileID: 1984953818561137818, guid: 7591d382fe74da741a68e4c0f55e94b1, type: 3}
       propertyPath: Sprite_Pic.Array.size
       value: 14
       objectReference: {fileID: 0}
