@@ -28,7 +28,7 @@ public class Coin : MonoBehaviour
     {
         audioSource.PlayOneShot(pickClip);
         DestroyedC.GetComponent<DestroyedCoins>().DestroyedC += 1;
-        yield return new WaitForSeconds(0.3f);
+        yield return null;
         Destroy(gameObject);
     }
 }

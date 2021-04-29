@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -96,8 +96,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sprite_Pic:
-  - {fileID: 21300000, guid: 24299679fee85464fb336d25177cfbee, type: 3}
-  - {fileID: 21300000, guid: 9f0a9d7b67e397b489cb4d43601542bd, type: 3}
-  - {fileID: 21300000, guid: ee018ecd20284dc418690ffcdbd41c8c, type: 3}
-  - {fileID: 21300000, guid: 74d96d7e9e235c84a9758e9bdeab129c, type: 3}
-  - {fileID: 21300000, guid: de316be533548ef4e9878cbd6125739e, type: 3}
+  - {fileID: 21300000, guid: 259d57bc02b4c814d907b073385f5229, type: 3}
+  - {fileID: 21300000, guid: 15b43f42049e8a442b5afba3c0cfe501, type: 3}
+  - {fileID: 21300000, guid: 55d8631df8322e748b8833db8b27a3f6, type: 3}
+  - {fileID: 21300000, guid: e816e66961938b247b75793f695928f5, type: 3}
+  - {fileID: 21300000, guid: 48a9b34b2efb5b64aa5d70c64c277ab6, type: 3}
+  - {fileID: 21300000, guid: 936501c7adf9ed54f9eb8dabde59bc68, type: 3}
+  - {fileID: 21300000, guid: 71def5daaa6ad6e479911327b9f01619, type: 3}
+  - {fileID: 21300000, guid: c572e1ea608aee241a12851cf777a1a3, type: 3}
+  - {fileID: 21300000, guid: 79e1ed6013f5d7142884c7ac6c093366, type: 3}
+  - {fileID: 21300000, guid: 7a2d1f2c3c2020342ac7bb0497c7434f, type: 3}
+  - {fileID: 21300000, guid: 172fca932dace9544962710d31a3de56, type: 3}
+  - {fileID: 21300000, guid: 977094e402b33994cb5f341987cf04f2, type: 3}
+  - {fileID: 21300000, guid: beb01ea73b17c6b469eec1db81191c6d, type: 3}
+  - {fileID: 21300000, guid: f260b666344634c42bf632dd805d99c6, type: 3}
+  canvas: {fileID: 0}
+  audioSource: {fileID: 0}
+  victorySound: {fileID: 8300000, guid: 8d7fadddaf6298a4e9b85d2405c44dac, type: 3}
+  backToMenuButton: {fileID: 0}
+  a: {fileID: 0}
