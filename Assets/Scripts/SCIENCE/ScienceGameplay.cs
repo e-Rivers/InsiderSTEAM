@@ -31,17 +31,28 @@ public class ScienceGameplay : MonoBehaviour
     {
 		resetVars();
 		alarmEffect = StartCoroutine(alarmScreenEffect());	
-        riddleDict.Add("Son 28 caballeros de espaldas negras y lisas; delante, todo agujeros, por dominar se dan prisa.", "DOMINO");
-        riddleDict.Add("Soy de madera, tengo un arco y no flecha.", "VIOLIN");
+        riddleDict.Add("Son 28 caballeros de espaldas negras y lisas; delante, todo agujeros, por dominar se dan prisa.", "DOMINÓ");
+        riddleDict.Add("Soy de madera, tengo un arco y no flecha.", "VIOLÍN");
         riddleDict.Add("Un oso camina 5 km al sur, 5 km al oeste y 5 km al norte. ¿De qué color es el oso?", "BLANCO");
         riddleDict.Add("¿Cuántos animales tengo en casa sabiendo que todos son perros menos dos, todos son gatos menos dos, y que todos son loros menos dos?", "3");
-        riddleDict.Add("Dos abanicos que danzan todo el día sin parar; y cuando por fin te duermas quietecitos quedarán. Al caer tus deseos cumplirán.", "PESTAÑAS");
+        riddleDict.Add("Está en dos abanicos que danzan todo el día; y cuando por fin te duermes quietecitos quedarán. Al caer una, tus deseos cumplirá.", "PESTAÑA");
         riddleDict.Add("Si 5 máquinas hacen 5 artículos en 5 minutos, ¿cuántos minutos dedicarán 100 máquinas en hacer 100 artículos?", "5");
         riddleDict.Add("Un león muerto de hambre, ¿de qué se alimenta?", "NADA");
         riddleDict.Add("Este banco está ocupado por un padre y por un hijo: El padre se llama Juan y el hijo ya te lo he dicho.", "ESTEBAN");
         riddleDict.Add("Si me tienes, quieres compartirme; si me compartes, no me tienes. ¿Qué soy?", "SECRETO");
         riddleDict.Add("Ponme de lado y todo soy, córtame por la mitad y no soy nada. ¿Qué soy?", "8");
         riddleDict.Add("¿Qué animal tiene los pies en la cabeza?", "PIOJO");
+        riddleDict.Add("No muerde ni ladra, pero la casa guarda, ¿Qué es?", "LLAVE");
+        riddleDict.Add("¿Cuál es el ave que tiene la panza llana?", "AVELLANA");
+        riddleDict.Add("No es más grande que una nuez, sube al monte y no tiene pies, ¿Qué es?", "CARACOL");
+        riddleDict.Add("Es tan largo como un camino, y gruñe como un cochino.", "RÍO");   
+        riddleDict.Add("Es blanco como la sal, sumamente sencillo de abrir pero imposible de cerrar. ¿Qué es?", "HUEVO");           
+        riddleDict.Add("Grande, muy grande, mayor que la Tierra. Arde y no se quema, quema y no es candela.", "SOL");     
+        riddleDict.Add("20 patos caminaban, los 20 con una pata y no más. ¿Cuántas patas tocaban el suelo?", "42");     
+        riddleDict.Add("Es tuyo pero todos lo usan más, ¿Qué es?", "NOMBRE");
+        riddleDict.Add("Se repite una vez en el minuto, dos en el momento pero nunca en el año. ¿Qué es?", "M");  
+        riddleDict.Add("No muerde ni ladra, pero la casa guarda, ¿Qué es?", "LLAVE");                              
+                
     }
 
     // Update is called once per frame
