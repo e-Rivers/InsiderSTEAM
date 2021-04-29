@@ -1116,13 +1116,13 @@ MonoBehaviour:
   - firstNumber: 81
     secondNumber: 9
     thirdNumber: 3
-    firstOperation: 2
+    firstOperation: 0
     secondOperation: 3
     answers:
     - 24
     - 26
-    - 27
-    - 21
+    - 30
+    - 32
     correctTile: 2
   - firstNumber: 16
     secondNumber: 54
@@ -1185,10 +1185,10 @@ MonoBehaviour:
     firstOperation: 3
     secondOperation: 1
     answers:
-    - 2
-    - 5
+    - -3
     - 3
-    - 4
+    - -5
+    - 2
     correctTile: 0
   - firstNumber: 85
     secondNumber: 20

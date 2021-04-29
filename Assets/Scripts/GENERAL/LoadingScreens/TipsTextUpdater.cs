@@ -23,14 +23,6 @@ public class TipsTextUpdater : MonoBehaviour
         // Initialize dictionary
         tips = new Dictionary<string, string[]>()
         {
-            {"MathLevelIntro", new string[] { "¡Los colores de cada plataforma indican propiedades diferentes! Por ejemplo: Las plataformas naranjas sólo te permitirán saltar sobre ellas una vez.",
-                                         "Cada vez que te cuelgues de 3 plataformas verdes, tu personaje obtendrá 2 vidas más.",
-                                         "¡Ten cuidado con disparar demasiado! Si estás cerca de derrotar a 10 enemigos, correrás el riesgo de disparar a una respuesta equivocada.",
-                                         "¡Las plataformas azul-obscuro te protegen! Si te agarras de una, esta lanzará un gran proyectil que destruye a todo enemigo a su paso.",
-                                         "Agarrarte de plataformas superiores puede darte diferentes ventajas según su color.",
-                                         "Aunque saltar de una plataforma roja te da una gran altura, no podrás hacer un doble salto hasta saltar sobre otra plataforma."
-                                       }
-            },
             {"MainMenu", new string[] { "...las multiplicaciones dan el mismo el resultado sin importar el orden en el que las hagas?",
                                         "...el arte llegó a ser un evento Olímpico entre 1912 y 1948?",
                                         "...no podrías saborear tu comida si no fuera por la saliva?",
@@ -70,6 +62,14 @@ public class TipsTextUpdater : MonoBehaviour
                                         "...PI representado como fracción es 22 sobre 7?"
                                       }
             },
+            {"MathLevelIntro", new string[] { "¡Los colores de cada plataforma indican propiedades diferentes! Por ejemplo: Las plataformas naranjas sólo te permitirán saltar sobre ellas una vez.",
+                                         "Cada vez que te cuelgues de 3 plataformas verdes, tu personaje obtendrá 2 vidas más.",
+                                         "¡Ten cuidado con disparar demasiado! Si estás cerca de derrotar a 10 enemigos, correrás el riesgo de disparar a una respuesta equivocada.",
+                                         "¡Las plataformas azul-obscuro te protegen! Si te agarras de una, esta lanzará un gran proyectil que destruye a todo enemigo a su paso.",
+                                         "Agarrarte de plataformas superiores puede darte diferentes ventajas según su color.",
+                                         "Aunque saltar de una plataforma roja te da una gran altura, no podrás hacer un doble salto hasta saltar sobre otra plataforma."
+                                       }
+            },
             {"TechLevelIntro", new string[] { "Las figuras normalmente son simétricas, por lo que si quieres comenzar una figura, deberías intentarlo desde el centro de las filas o las columnas.",
                                          "¡No olvides revisar los números de las filas o las columnas! Si son amarillos, puede que hayas completado un patrón correctamente.",
                                          "Si consigues dar clic sobre el cursor que se encuentra en el juego, este te dirá un recuadro que debe estar activado.",
@@ -87,8 +87,16 @@ public class TipsTextUpdater : MonoBehaviour
             {"ScienceLevelIntro", new string[] { "Procura identificar primero la salida del laberinto para que encuentres el camino correcto más fácilmente.",
                                                  "¡Muchos de los acertijos te serán más fáciles de resolver si piensas fuera de la caja!",
                                                  "Ejercitar tu memoria es muy importante para encontrar tu camino hacia la salida. ¡Eventualmente lo conseguirás!",
-                                                 "¡No te preocupes si no logras completar el laberinto a tiempo! Aún tendrás la oportunidad de resolver un acertijo."
+                                                 "¡No te preocupes si no logras completar el laberinto a tiempo! Aún tendrás la oportunidad de resolver un acertijo.",
+                                                 "¡Evita desperdiciar las cargas de tu linterna! Únicamente tienes cinco, úsalas sabiamente."
                                                }
+            },
+            {"EngineeringLevelIntro", new string[] { "Si mantienes presionado espacio, continuarás saltando cada vez que toques el pise.",
+                                                     "¡Recoge todas las monedas en el menor tiempo posible! Si tardas mucho, es probable que no consigas una puntuación muy alta.",
+                                                     "Presiona X hasta que hayas obtenido todas las monedas y diamantes, de lo contrario, tardarás más en encontrar los acertijos y resolverlos.",
+                                                     "El juego se trata de practicar una y otra vez hasta que encuentres la forma más rápida de completarlo. ¡No te rindas!",
+                                                     "¡Las monedas cuentan como parte del piso! Si agarras una, puedes saltar inmediatamente después."
+                                                   }
             }
         };
         // Check if key exists within the dictionary
