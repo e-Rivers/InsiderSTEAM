@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 using UnityEngine.Networking;
-
+using UnityEngine.UI;
 
 public class PostScores : MonoBehaviour
 {
+
+	public static GameObject uploadBanner;
+
     public static void postRequest(int score, int worldId) 
     {
+    	uploadBanner.SetActive(true);
     	// Creates the JSON POST form to register user score
 		WWWForm scoreForm = new WWWForm();
 		scoreForm.AddField("end_date", System.DateTime.Now.ToString("yyyy-MM-dd"));
@@ -21,7 +25,11 @@ public class PostScores : MonoBehaviour
 		// After the request has completed, checks if it was successful
 		if(request.result == UnityWebRequest.Result.Success) {
 			string returnMsg = request.downloadHandler.text;
-			Debug.Log(returnMsg);
+			if(returnMsg == "SUCCESS") {
+//				uploadBanner;
+			} else {
+			
+			}
 		} else {
 			Debug.Log(request.responseCode.ToString());
 		}
