@@ -1119,10 +1119,10 @@ MonoBehaviour:
     firstOperation: 0
     secondOperation: 3
     answers:
-    - 24
-    - 26
     - 30
-    - 32
+    - 26
+    - 84
+    - 82
     correctTile: 2
   - firstNumber: 16
     secondNumber: 54

@@ -46,7 +46,7 @@ public class CreditsAudio : MonoBehaviour
         while (counter == 0)
         {
             counter++;
-            yield return new WaitForSeconds(80f);
+            yield return new WaitForSeconds(70f);
         }
         while (lowPassFilter.cutoffFrequency > 20)
         {

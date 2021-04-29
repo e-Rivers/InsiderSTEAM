@@ -109,5 +109,7 @@ public class ProblemManager : MonoBehaviour
         }
         // Reset timer
         remainingTime = timePerProblem;
+        // Don't let player shoot any other tile    
+        MathTileManager.instance.SetCanBeShot(false);
     }
 }

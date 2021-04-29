@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour
         if (isNewLevel)
         {
             // If maximum number of levels hasn't been reached
-            if (levelsPlayed < maxLevels)
+            if (levelsPlayed <= maxLevels)
             {
                 // Get a random level number
                 int rndLevel = Random.Range(0, 7);
@@ -44,22 +44,14 @@ public class LevelManager : MonoBehaviour
                 if (levels.Count < 7)
                 {
                     // Repeat
-                    while (true)
+                    while (levels.Contains(rndLevel))
                     {
-                        // If picked level number has already been picked before
-                        if (levels.Contains(rndLevel))
-                        {
-                            // Set a new level number
-                            rndLevel = Random.Range(0, 7);
-                        }
-                        // Otherwise, add to level numbers List and set level
-                        else
-                        {
-                            level = rndLevel;
-                            levels.Add(rndLevel);
-                            break;
-                        }
+                        // Set a new level number
+                        rndLevel = Random.Range(0, 7);
                     }
+                    // Set level and add to level numbers List
+                    level = rndLevel;
+                    levels.Add(rndLevel);
                 }
                 // In case there are more than 7 levels in list
                 else
@@ -74,7 +66,12 @@ public class LevelManager : MonoBehaviour
             }
         }
         // Debug
+        Debug.Log("New level: " + isNewLevel);
         Debug.Log("Game: " + levelsPlayed + " Level: " + level);
+        foreach (int lev in levels)
+        {
+            Debug.Log(lev);
+        }
     }
 
     // Go to next level

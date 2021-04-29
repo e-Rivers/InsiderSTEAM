@@ -91,7 +91,7 @@ public class TipsTextUpdater : MonoBehaviour
                                                  "¡Evita desperdiciar las cargas de tu linterna! Únicamente tienes cinco, úsalas sabiamente."
                                                }
             },
-            {"EngineeringLevelIntro", new string[] { "Si mantienes presionado espacio, continuarás saltando cada vez que toques el pise.",
+            {"EngineeringLevelIntro", new string[] { "Si mantienes presionado espacio, continuarás saltando cada vez que toques el piso.",
                                                      "¡Recoge todas las monedas en el menor tiempo posible! Si tardas mucho, es probable que no consigas una puntuación muy alta.",
                                                      "Presiona X hasta que hayas obtenido todas las monedas y diamantes, de lo contrario, tardarás más en encontrar los acertijos y resolverlos.",
                                                      "El juego se trata de practicar una y otra vez hasta que encuentres la forma más rápida de completarlo. ¡No te rindas!",

@@ -28,6 +28,7 @@ public class EngPauseMenu : MonoBehaviour
         canPause = true;
         isPaused = false;
         // Set background default opacity and fading rate
+        background.enabled = false;
         background.color = new Color(background.color.r, background.color.g, background.color.b, 0f);
         rate = 0.7372549f / 140;
         // Get game objects' transforms
@@ -76,6 +77,7 @@ public class EngPauseMenu : MonoBehaviour
     // Show pause menu
     IEnumerator DisplayMenu()
     {
+        background.enabled = true;
         while (titleTf.localPosition.x < 0)
         {
             titleTf.localPosition += new Vector3(10f, 0f, 0f);
@@ -97,5 +99,6 @@ public class EngPauseMenu : MonoBehaviour
             yield return null;
         }
         background.color = new Color(background.color.r, background.color.g, background.color.b, 0f);
+        background.enabled = false;
     }
 }
