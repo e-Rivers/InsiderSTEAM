@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class PostScores : MonoBehaviour
 {
-    public static void postRequest(int score, int worldId, string nextScene, bool passLoadingScene = true) 
+    public static void postRequest(int score, int worldId, string nextScene) 
     {
     	// Creates the JSON POST form to register user score
 		WWWForm scoreForm = new WWWForm();
@@ -20,13 +20,19 @@ public class PostScores : MonoBehaviour
 		// Sends the request
 		request.SendWebRequest();
 		
+		SendingDataPrompt.instance.RemovePrompt();		
+		
+		/*SendingDataPrompt.RemoveContainer();
+		
 		// Makes the transtition to the corresponding scene
 		MenuManager.nextScene = nextScene;
-		if(passLoadingScene) {
+		MenuManager.instance.EnterScene(false);*/
+		
+		/*if(passLoadingScene) {
 			SceneManager.LoadScene("LoadingScene");
 		} else {
 			SceneManager.LoadScene(MenuManager.nextScene);
-		}
+		}*/
     }
 }
 
