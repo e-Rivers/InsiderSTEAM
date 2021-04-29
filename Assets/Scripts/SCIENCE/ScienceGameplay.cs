@@ -31,17 +31,48 @@ public class ScienceGameplay : MonoBehaviour
     {
 		resetVars();
 		alarmEffect = StartCoroutine(alarmScreenEffect());	
-        riddleDict.Add("Son 28 caballeros de espaldas negras y lisas; delante, todo agujeros, por dominar se dan prisa.", "DOMINO");
-        riddleDict.Add("Soy de madera, tengo un arco y no flecha.", "VIOLIN");
+        riddleDict.Add("Son 28 caballeros de espaldas negras y lisas; delante, todo agujeros, por dominar se dan prisa.", "DOMINÓ");
+        riddleDict.Add("Soy de madera, tengo un arco y no flecha.", "VIOLÍN");
         riddleDict.Add("Un oso camina 5 km al sur, 5 km al oeste y 5 km al norte. ¿De qué color es el oso?", "BLANCO");
         riddleDict.Add("¿Cuántos animales tengo en casa sabiendo que todos son perros menos dos, todos son gatos menos dos, y que todos son loros menos dos?", "3");
-        riddleDict.Add("Dos abanicos que danzan todo el día sin parar; y cuando por fin te duermas quietecitos quedarán. Al caer tus deseos cumplirán.", "PESTAÑAS");
+        riddleDict.Add("Está en dos abanicos que danzan todo el día; y cuando por fin te duermes quietecitos quedarán. Al caer una, tus deseos cumplirá.", "PESTAÑA");
         riddleDict.Add("Si 5 máquinas hacen 5 artículos en 5 minutos, ¿cuántos minutos dedicarán 100 máquinas en hacer 100 artículos?", "5");
         riddleDict.Add("Un león muerto de hambre, ¿de qué se alimenta?", "NADA");
         riddleDict.Add("Este banco está ocupado por un padre y por un hijo: El padre se llama Juan y el hijo ya te lo he dicho.", "ESTEBAN");
         riddleDict.Add("Si me tienes, quieres compartirme; si me compartes, no me tienes. ¿Qué soy?", "SECRETO");
         riddleDict.Add("Ponme de lado y todo soy, córtame por la mitad y no soy nada. ¿Qué soy?", "8");
         riddleDict.Add("¿Qué animal tiene los pies en la cabeza?", "PIOJO");
+        riddleDict.Add("No muerde ni ladra, pero la casa guarda, ¿Qué es?", "LLAVE");
+        riddleDict.Add("¿Cuál es el ave que tiene la panza llana?", "AVELLANA");
+        riddleDict.Add("No es más grande que una nuez, sube al monte y no tiene pies, ¿Qué es?", "CARACOL");
+        riddleDict.Add("Es tan largo como un camino, y gruñe como un cochino.", "RÍO");   
+        riddleDict.Add("Es blanco como la sal, sumamente sencillo de abrir pero imposible de cerrar. ¿Qué es?", "HUEVO");           
+        riddleDict.Add("Grande, muy grande, mayor que la Tierra. Arde y no se quema, quema y no es candela.", "SOL");     
+        riddleDict.Add("20 patos caminaban, los 20 con una pata y no más. ¿Cuántas patas tocaban el suelo?", "42");     
+        riddleDict.Add("Es tuyo pero todos lo usan más, ¿Qué es?", "NOMBRE");
+        riddleDict.Add("Se repite una vez en el minuto, dos en el momento pero nunca en el año. ¿Qué es?", "M");  
+        riddleDict.Add("¿Dónde es posible encontrar el jueves antes que el miércoles?", "DICCIONARIO");
+        riddleDict.Add("Es tan delicado, que si lo mencionas se rompe y deja de existir. ¿Qué es?", "SILENCIO");
+        riddleDict.Add("Entre cielo y tierra estoy, ¿Qué soy?", "Y");
+        riddleDict.Add("Posee un hambre insaciable y al comer crece, pero al beber desaparece. ¿Qué es?", "FUEGO");
+        riddleDict.Add("Tengo calor y frío, pero no frio sin calor, y aún sin ser mar ni río, peces he tenido, ¿Qué soy?", "SARTÉN");
+        riddleDict.Add("Un hombre tiene cinco hijos, cada uno tiene una hermana, ¿cuántos hijos tiene el hombre?", "6");
+        riddleDict.Add("¿Qué tiene la capacidad de retener agua aún teniendo múltiples agujeros?", "ESPONJA");
+        riddleDict.Add("¿Qué palabra acortas si le agregas dos letras?", "CORTA");
+        riddleDict.Add("Tiene cuello pero no cabeza. ¿Qué es?", "BOTELLA");
+        riddleDict.Add("Tiene patas, carga cosas, pero no camina. ¿Qué es?", "MESA");   
+		riddleDict.Add("¿Qué es que tiene dientes pero no muerde?", "PEINE");
+		riddleDict.Add("¿Qué tiene bosques sin tener árboles, mares sin tener agua y desiertos sin arena?", "MAPA");
+		riddleDict.Add("Sólo puede existir en presencia de luz, pero si la luz le ilumina, pierde su vida. ¿Qué es?", "SOMBRA");
+		riddleDict.Add("Repito lo que dices, pero entre más lo repito, más quedito lo digo. ¿Qué soy?", "ECO");
+		riddleDict.Add("Si le arrancas la piel, no sufrirá ni le dolerá, mas tú llorarás.", "CEBOLLA");
+		riddleDict.Add("¿Qué letras siguen la secuencia: UTTFCS?", "SEN");
+		riddleDict.Add("Una niña tiene 30 años menos que su padre y siendo que la suma de sus edades es 36, ¿qué edad tiene ella?", "3");
+		riddleDict.Add("No soy de carne y huevo, no estoy vivo pero tengo 5 dedos ¿Qué soy?", "GUANTE");
+		riddleDict.Add("El que lo hace lo vende, el que lo compra no lo usa y el que lo usa, jamás lo ve. ¿Qué es?", "ATAÚD");
+		riddleDict.Add("¿Pesa más un kilo de hierro o uno de paja?", "IGUAL");
+		riddleDict.Add("Si sube, nos vamos, si baja, nos quedamos.", "ANCLA");
+		riddleDict.Add("Tengo llaves pero no cerradura, el negro y el blanco pasan por mi cintura.", "KARATE");
     }
 
     // Update is called once per frame
@@ -109,7 +140,7 @@ public class ScienceGameplay : MonoBehaviour
             isAskTime = true;
             timeCount = 60;
 			// ======== Selects between a riddle or problem
-			questionType = (int) Random.Range(0, 2);
+			questionType = (int) Random.Range(0, 3);
 			if(questionType == 0) {
 				int randomSelection = (int) Random.Range(0, riddleDict.Keys.Count);
 				string randomRiddle = riddleDict.Keys.ElementAt(randomSelection);
