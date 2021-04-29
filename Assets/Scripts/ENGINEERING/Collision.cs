@@ -39,6 +39,7 @@ public class Collision : MonoBehaviour
 
     IEnumerator WaitForLoad()
     {
+        EngPauseMenu.instance.canPause = false;
         audioSource.PlayOneShot(crashClip);
         MoveCharacter.instance.disableInput = true;
         Instantiate(explosion, transform.position, Quaternion.identity);

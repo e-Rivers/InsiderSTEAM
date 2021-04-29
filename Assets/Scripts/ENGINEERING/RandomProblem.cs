@@ -74,6 +74,7 @@ public class RandomProblem : MonoBehaviour
         else
         {
             MoveCharacter.instance.disableInput = true;
+            EngPauseMenu.instance.canPause = false;
             canvas.enabled = true;
             nextLevel = true;
             audioSource.PlayOneShot(victorySound);
