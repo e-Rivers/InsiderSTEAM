@@ -4,15 +4,14 @@ using UnityEngine;
 using Newtonsoft.Json;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PostScores : MonoBehaviour
 {
-
-	public static GameObject uploadBanner;
-
-    public static void postRequest(int score, int worldId) 
+	static bool waitTime;
+	
+    public static void postRequest(int score, int worldId, string nextScene, bool passLoadingScene = true) 
     {
-    	uploadBanner.SetActive(true);
     	// Creates the JSON POST form to register user score
 		WWWForm scoreForm = new WWWForm();
 		scoreForm.AddField("end_date", System.DateTime.Now.ToString("yyyy-MM-dd"));
@@ -33,5 +32,17 @@ public class PostScores : MonoBehaviour
 		} else {
 			Debug.Log(request.responseCode.ToString());
 		}
+		//StartCoroutine(WaitSomeTime());
+		MenuManager.nextScene = nextScene;
+		if(passLoadingScene) {
+			SceneManager.LoadScene("LoadingScene");
+		} else {
+			SceneManager.LoadScene(MenuManager.nextScene);
+		}
+    }
+    
+    
+    static IEnumerator WaitSomeTime() {
+    	yield return new WaitForSeconds(2);
     }
 }
