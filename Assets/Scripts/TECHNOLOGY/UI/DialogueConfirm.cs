@@ -143,7 +143,7 @@ public class DialogueConfirm : MonoBehaviour
                 MenuManager.nextScene = "ScienceLevel";
                 break;
             case "Engineering":
-                MenuManager.nextScene = "Level3";
+                MenuManager.nextScene = "Level 1";
                 break;
         }
         MenuManager.instance.EnterScene(false);
