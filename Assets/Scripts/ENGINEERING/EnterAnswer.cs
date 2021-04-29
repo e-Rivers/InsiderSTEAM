@@ -11,6 +11,7 @@ public class EnterAnswer : MonoBehaviour
     public string Answer;
     public GameObject inputField;
     public GameObject textDisplay;
+    public GameObject score;
     private int[] randomNP;
     private int[] answersRN = { 14, 7, 17, 15, 6, 11, 31, 65, 20, 3, 38, 24, 5, 18 };
     private int[] answersRA1 = { 3, 3, 1, 4, 4, 4, 6, 2, 1, 6, 3, 3, 6, 1 };
@@ -23,6 +24,7 @@ public class EnterAnswer : MonoBehaviour
     private int scoreRN = 0;
     private int scoreRA1 = 0;
     private int scoreRA2 = 0;
+    private int finalScore = 0;
     private void OnGUI()
     {
         Scene scene = SceneManager.GetActiveScene();
@@ -63,7 +65,12 @@ public class EnterAnswer : MonoBehaviour
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Incorrecta";
             }
-            
+
+            if (i == 4)
+            {
+                score.GetComponent<ScoreE>().FinalScore(scoreRN);
+            }
+
         }
         else if (RA1Scene)
         {
@@ -75,6 +82,11 @@ public class EnterAnswer : MonoBehaviour
             else
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Incorrecta";
+            }
+
+            if (i == 4)
+            {
+                score.GetComponent<ScoreE>().FinalScore(scoreRN);
             }
         }
         else if (RA2Scene)
@@ -88,7 +100,14 @@ public class EnterAnswer : MonoBehaviour
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Incorrecta";
             }
+
+            if (i == 4)
+            {
+                score.GetComponent<ScoreE>().FinalScore(scoreRN);
+            }
         }
         i++;
+
     }
+
 }
