@@ -243,7 +243,7 @@ public class ScienceGameplay : MonoBehaviour
     private IEnumerator sequenceMemory() {
 		askText.text = "Presta atención a la siguiente secuencia:";
 		for(int i = 0; i < 10; i++) {
-		        int randyNum = (int) Random.Range(0,100);
+		    int randyNum = (int) Random.Range(0,100);
 			sequence[i] = randyNum;
 		}
 		int correctIndex = (int) Random.Range(0, 10);
@@ -316,8 +316,7 @@ public class ScienceGameplay : MonoBehaviour
     // Method to return to main world
     public void returnToWorld()
     {
-        MenuManager.nextScene = "MainMenu";
-        SceneManager.LoadScene("LoadingScene");
+    	PostScores.postRequest(1024, 1, "MainMenu");
     }
 
     // Method to play again
