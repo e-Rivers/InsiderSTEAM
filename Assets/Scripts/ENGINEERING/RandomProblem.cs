@@ -9,12 +9,13 @@ using System.Linq;
 public class RandomProblem : MonoBehaviour
 {
     private int i = 1;
-    private bool begin = false;
+    private bool begin;
     public Sprite[] Sprite_Pic;
     private int[] randomNProblems;
     private int j = 0;
     private int x;
     private bool nextLevel = false;
+    private Scene scene;
     [SerializeField] Canvas canvas;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip victorySound;
@@ -26,37 +27,47 @@ public class RandomProblem : MonoBehaviour
         randomNProblems = System.Linq.Enumerable.Range(0, 13).OrderBy(r => rnd.Next()).ToArray();
         a.GetComponent<EnterAnswer>().ReceiveRandomNProblems(randomNProblems);
         canvas.enabled = false;
+        begin = false;
         audioSource = GameObject.Find("SoundSource").GetComponent<AudioSource>();
+        scene = SceneManager.GetActiveScene();
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.X))
         {
-            begin = true;
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            MoveCharacter.instance.disableInput = true;
-            canvas.enabled = true;
-            nextLevel = true;
-            audioSource.PlayOneShot(victorySound);
+            if (!begin)
+            {
+                EngAnswerTimer.instance.ResetAnswerTimer();
+                begin = true;
+            }
+            if (scene.name == "Level 1" && i == 1 && begin && GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC >= 7)
+            {
+                begin = true;
+            }
+            else if (scene.name == "Level 2" && i == 1 && begin && GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC >= 9)
+            {
+                begin = true;
+            }
+            else if (scene.name == "Level 3" && i == 1 && begin && GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC >= 9)
+            {
+                begin = true;
+            }
         }
     }
 
     private void OnGUI()
     {
-        Scene scene = SceneManager.GetActiveScene();
-        if (scene.name == "Level 1" && i == 1 && begin && GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC == 7)
+        if (scene.name == "Level 1" && i == 1 && begin && GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC >= 7)
         {
             Change();
             i++;
         }
-        else if (scene.name == "Level 2" && i == 1 && begin && GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC == 9)
+        else if (scene.name == "Level 2" && i == 1 && begin && GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC >= 9)
         {
             Change();
             i++;
         }
-        else if (scene.name == "Level 3" && i == 1 && begin && GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC == 9)
+        else if (scene.name == "Level 3" && i == 1 && begin && GameObject.Find("DestroyedCoins").GetComponent<DestroyedCoins>().DestroyedC >= 9)
         {
             Change();
             i++;
@@ -100,15 +111,7 @@ public class RandomProblem : MonoBehaviour
         }
         else if (scene.name == "Level 3" && nextLevel || Input.GetKeyDown(KeyCode.L))
         {
-            MenuManager.nextScene = "MainMenu";
-            MenuManager.instance.EnterScene();
+            EngPauseMenu.instance.GoToMenu();
         }
     }
-
-    public void GoToMenu()
-    {
-        MenuManager.nextScene = "MainMenu";
-        MenuManager.instance.EnterScene();
-    }
-
 }

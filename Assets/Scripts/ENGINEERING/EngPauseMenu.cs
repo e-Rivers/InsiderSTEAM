@@ -23,6 +23,7 @@ public class EngPauseMenu : MonoBehaviour
     void Start()
     {
         // Set self reference
+        Application.targetFrameRate = 60;
         instance = this;
         // Let player pause as default
         canPause = true;
@@ -30,7 +31,7 @@ public class EngPauseMenu : MonoBehaviour
         // Set background default opacity and fading rate
         background.enabled = false;
         background.color = new Color(background.color.r, background.color.g, background.color.b, 0f);
-        rate = 0.7372549f / 140;
+        rate = 0.7372549f / 70;
         // Get game objects' transforms
         titleTf = titleContainer.GetComponent<RectTransform>();
         buttonTf = buttonContainer.GetComponent<RectTransform>();
@@ -74,14 +75,21 @@ public class EngPauseMenu : MonoBehaviour
         MenuManager.instance.EnterScene(false);
     }
 
+    // Go to main menu
+    public void GoToMenu()
+    {
+        canPause = false;
+        SendingDataPrompt.instance.SetPrompt(ScoreE.instance.finalScore, 3, "MainMenu");
+    }
+
     // Show pause menu
     IEnumerator DisplayMenu()
     {
         background.enabled = true;
         while (titleTf.localPosition.x < 0)
         {
-            titleTf.localPosition += new Vector3(10f, 0f, 0f);
-            buttonTf.localPosition += new Vector3(0f, 10f, 0f);
+            titleTf.localPosition += new Vector3(20f, 0f, 0f);
+            buttonTf.localPosition += new Vector3(0f, 20f, 0f);
             background.color += new Color(0f, 0f, 0f, rate);
             yield return null;
         }
@@ -93,8 +101,8 @@ public class EngPauseMenu : MonoBehaviour
     {
         while (titleTf.localPosition.x > -1400)
         {
-            titleTf.localPosition -= new Vector3(10f, 0f, 0f);
-            buttonTf.localPosition -= new Vector3(0f, 10f, 0f);
+            titleTf.localPosition -= new Vector3(20f, 0f, 0f);
+            buttonTf.localPosition -= new Vector3(0f, 20f, 0f);
             background.color -= new Color(0f, 0f, 0f, rate);
             yield return null;
         }

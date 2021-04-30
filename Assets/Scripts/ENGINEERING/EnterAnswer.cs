@@ -21,10 +21,9 @@ public class EnterAnswer : MonoBehaviour
     private bool RA1Scene = false;
     private bool RA2Scene = false;
     private int answerN;
-    private int scoreRN = 0;
-    private int scoreRA1 = 0;
-    private int scoreRA2 = 0;
     private int finalScore = 0;
+
+
     private void OnGUI()
     {
         Scene scene = SceneManager.GetActiveScene();
@@ -32,7 +31,7 @@ public class EnterAnswer : MonoBehaviour
         if (scene.name == "Level 1")
         {
             RNScene = true;
-        } 
+        }
         else if (scene.name == "Level 2")
         {
             RA1Scene = true;
@@ -43,11 +42,12 @@ public class EnterAnswer : MonoBehaviour
         }
 
     }
-    
+
     public void ReceiveRandomNProblems(int[] randomNProblems)
     {
         randomNP = randomNProblems;
     }
+
     public void StoreAnswer()
     {
         Answer = inputField.GetComponent<Text>().text;
@@ -59,16 +59,18 @@ public class EnterAnswer : MonoBehaviour
             if (answersRN[randomNP[i]] == answerN)
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Correcta";
-                scoreRN++;
-                
-            } else
+                ScoreE.instance.AddScore(1000, EngAnswerTimer.instance.answerTimer);
+                EngAnswerTimer.instance.ResetAnswerTimer();
+            }
+            else
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Incorrecta";
+                EngAnswerTimer.instance.ResetAnswerTimer();
             }
 
             if (i == 4)
             {
-                score.GetComponent<ScoreE>().FinalScore(scoreRN);
+                score.GetComponent<ScoreE>().DisplayFinalScore();
             }
 
         }
@@ -77,33 +79,38 @@ public class EnterAnswer : MonoBehaviour
             if (answersRA1[randomNP[i]] == answerN)
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Correcta";
-                scoreRA1++;
+                ScoreE.instance.AddScore(1000, EngAnswerTimer.instance.answerTimer);
+                EngAnswerTimer.instance.ResetAnswerTimer();
             }
             else
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Incorrecta";
+                EngAnswerTimer.instance.ResetAnswerTimer();
             }
 
             if (i == 4)
             {
-                score.GetComponent<ScoreE>().FinalScore(scoreRA1);
+                score.GetComponent<ScoreE>().DisplayFinalScore();
             }
         }
+
         else if (RA2Scene)
         {
             if (answersRA2[randomNP[i]] == answerN)
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Correcta";
-                scoreRA2++;
+                ScoreE.instance.AddScore(1000, EngAnswerTimer.instance.answerTimer);
+                EngAnswerTimer.instance.ResetAnswerTimer();
             }
             else
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Incorrecta";
+                EngAnswerTimer.instance.ResetAnswerTimer();
             }
 
             if (i == 4)
             {
-                score.GetComponent<ScoreE>().FinalScore(scoreRA2);
+                score.GetComponent<ScoreE>().DisplayFinalScore();
             }
         }
         i++;

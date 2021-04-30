@@ -1067,8 +1067,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RandomProblem, Assembly-CSharp
+      - m_Target: {fileID: 1133257040456300093}
+        m_TargetAssemblyTypeName: EngPauseMenu, Assembly-CSharp
         m_MethodName: GoToMenu
         m_Mode: 1
         m_Arguments:

@@ -10,6 +10,7 @@ public class Coin : MonoBehaviour
 
     void Awake()
     {
+        // Find audio source
         audioSource = GameObject.Find("SoundSource").GetComponent<AudioSource>();
     }
 
@@ -17,18 +18,16 @@ public class Coin : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //Esconde moneda
-            GetComponent<SpriteRenderer>().enabled = false;
-            //Destruye moneda y animaci�n
-            StartCoroutine("Suma");
+            // Play pickup sound
+            audioSource.PlayOneShot(pickClip);
+            // Increment destroyed coins counter
+            DestroyedC.GetComponent<DestroyedCoins>().DestroyedC += 1;
+            // Add coin value to score
+            ScoreE.instance.AddScore(100, EngAnswerTimer.instance.coinTimer);
+            // Reset coin-grabbing multiplier timer
+            EngAnswerTimer.instance.ResetCoinTimer();
+            // Destroy gameObject
+            Destroy(gameObject);
         }
-    }
-
-    IEnumerator Suma()
-    {
-        audioSource.PlayOneShot(pickClip);
-        DestroyedC.GetComponent<DestroyedCoins>().DestroyedC += 1;
-        yield return null;
-        Destroy(gameObject);
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -19,21 +20,38 @@ public class RetryOnClick : MonoBehaviour
     }
 
     // Reloads scene
-    public void ReloadScene()
+    public void ReloadScene(bool sendData)
     {
         if (canReload)
         {
             canReload = false;
-            Time.timeScale = 1.0f;
-            MenuManager.nextScene = "MathLevel";
-            MenuManager.instance.EnterScene(false);
+            if (sendData)
+            {
+                StartCoroutine("SendData");
+            }
+            else
+            {
+                MenuManager.nextScene = "MathLevel";
+                MenuManager.instance.EnterScene(false);
+                Time.timeScale = 1.0f;
+            }
         }
     }
     // Goes to main menu
     public void LoadMainMenu()
     {
-        Time.timeScale = 1.0f;
-        MenuManager.nextScene = "MainMenu";
-        MenuManager.instance.EnterScene();
+        PauseMenu.instance.canPause = false;
+        SendingDataPrompt.instance.SetPrompt(ScoreText.scoreValue, 5, "MainMenu");
     }
+
+    // Coroutine to send information before restarting level
+    IEnumerator SendData()
+    {
+        SendingDataPrompt.instance.SetPrompt(ScoreText.scoreValue, 5, "MathLevel");
+        yield return new WaitForSeconds(2f);
+        MenuManager.nextScene = "MathLevel";
+        MenuManager.instance.EnterScene(false);
+        Time.timeScale = 1.0f;
+    }
+
 }

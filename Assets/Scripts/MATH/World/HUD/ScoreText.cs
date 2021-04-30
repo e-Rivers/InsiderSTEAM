@@ -6,12 +6,15 @@ using UnityEngine.UI;
 public class ScoreText : MonoBehaviour
 {
     // Global attributes
+    public static ScoreText instance;
     public static int scoreValue;
     public static Text scoreText;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Set self reference
+        instance = this;
         // Get component
         scoreText = GetComponent<Text>();
         // Set to 0 every time
@@ -21,6 +24,6 @@ public class ScoreText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            scoreText.text = scoreValue + " pts";
+        scoreText.text = scoreValue + " pts";
     }
 }

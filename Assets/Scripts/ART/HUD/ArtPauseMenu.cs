@@ -58,9 +58,14 @@ public class ArtPauseMenu : MonoBehaviour
         }
     }
 
+    public void GoToMainMenu()
+    {
+        canPause = false;
+        SendingDataPrompt.instance.SetPrompt(ArtScoreSystem.score, 3, "MainMenu");
+    }
+
     public void Retry()
     {
-        paused = false;
         LevelManager.instance.GetNextLevel(false);
     }
 

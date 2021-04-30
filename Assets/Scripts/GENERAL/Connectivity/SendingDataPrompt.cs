@@ -10,23 +10,23 @@ public class SendingDataPrompt : MonoBehaviour
     [SerializeField] Canvas canvas;
     [SerializeField] RectTransform rect;
     public static SendingDataPrompt instance;
-    
+
     private int score, worldId;
     private string nextScene;
 
     // Start is called before the first frame update
     void Start()
     {
-    	instance = this;
+        instance = this;
         canvas.enabled = false;
     }
 
     // Function to set prompt on screen
     public void SetPrompt(int scoreArg, int worldIdArg, string nextSceneArg)
     {
-    	score = scoreArg;
-    	worldId = worldIdArg;
-    	nextScene = nextSceneArg;
+        score = scoreArg;
+        worldId = worldIdArg;
+        nextScene = nextSceneArg;
         StopCoroutine("RemoveContainer");
         StartCoroutine("SetContainer");
     }
@@ -44,7 +44,7 @@ public class SendingDataPrompt : MonoBehaviour
         canvas.enabled = true;
         while (rect.localPosition.x < -490)
         {
-            rect.localPosition += new Vector3(10f, 0f, 0f);
+            rect.localPosition += new Vector3(50f, 0f, 0f);
             yield return null;
         }
         PostScores.postRequest(score, worldId, nextScene);
@@ -53,19 +53,27 @@ public class SendingDataPrompt : MonoBehaviour
     // Coroutine to remove container from the screen
     IEnumerator RemoveContainer()
     {
+        yield return new WaitForSecondsRealtime(1f);
         while (rect.localPosition.x > -1875)
         {
-            rect.localPosition -= new Vector3(10f, 0f, 0f);
+            rect.localPosition -= new Vector3(50f, 0f, 0f);
             yield return null;
         }
         canvas.enabled = false;
-        // Makes the transtition to the corresponding scene
-		MenuManager.nextScene = nextScene;
-		if(MenuManager.nextScene == "MainMenu") {
-			MenuManager.instance.EnterScene();
-		} else {
-			MenuManager.instance.EnterScene(false);
-		}
+        // Makes the transition to the corresponding scene
+        MenuManager.nextScene = nextScene;
+        if (nextScene == "MainMenu")
+        {
+            MenuManager.instance.EnterScene();
+        }
+        else if (!nextScene.Equals("ArtLevel") || !nextScene.Equals("TechLevel"))
+        {
+            MenuManager.instance.EnterScene(false);
+        }
+        else
+        {
+            LevelManager.instance.GetNextLevel(false);
+        }
     }
 
 }

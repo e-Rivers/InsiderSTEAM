@@ -109,7 +109,7 @@ public class PointerMover : MonoBehaviour
     private void GoToTile(Vector3 destPos)
     {
         // If pointer has reached tile's position
-        if (transform.position.x < destPos.x + 0.1 && transform.position.x > destPos.x - 0.1 && transform.position.y < destPos.y + 0.1 && transform.position.y > destPos.y - 0.1)
+        if (transform.position.x < destPos.x + 0.2f && transform.position.x > destPos.x - 0.2f && transform.position.y < destPos.y + 0.2f && transform.position.y > destPos.y - 0.2f)
         {
             // Do a click animation
             GrowAnimation();

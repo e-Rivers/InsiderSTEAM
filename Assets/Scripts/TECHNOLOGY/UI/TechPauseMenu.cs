@@ -101,6 +101,13 @@ public class TechPauseMenu : MonoBehaviour
         Application.OpenURL("http://18.116.123.111:8080/insider/Tutoriales");
     }
 
+    // Go to main menu
+    public void GoToMenu()
+    {
+        canPause = false;
+        SendingDataPrompt.instance.SetPrompt(TechScoreSystem.score, 2, "MainMenu");
+    }
+
     // Activate pause menu
     void Pause()
     {

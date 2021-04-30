@@ -5,11 +5,23 @@ using UnityEngine.UI;
 
 public class ScoreE : MonoBehaviour
 {
-    private int finalScore;
+    public static ScoreE instance;
+    public int finalScore;
     public GameObject display;
-    public void FinalScore(int score)
+
+    void Start()
     {
-        finalScore = score * (100 / 5);
-        display.GetComponent<Text>().text = finalScore + "pts";
+        instance = this;
+        finalScore = 0;
+    }
+
+    public void DisplayFinalScore()
+    {
+        display.GetComponent<Text>().text = finalScore + " pts.";
+    }
+
+    public void AddScore(int score, float time)
+    {
+        finalScore += score + (int)(score * 1 / time);
     }
 }

@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -101,3 +101,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9313f2fd45397e2438764d084ab9fc4c, type: 3}
   - {fileID: 21300000, guid: 7bc94f7e99401884a950222221feec2a, type: 3}
   - {fileID: 21300000, guid: 6d9ad3b16bbd22c4f8472b5b18260557, type: 3}
+  - {fileID: 21300000, guid: d38b40fe5dee7784c83ed8f0b4784cb4, type: 3}
+  - {fileID: 21300000, guid: be21f3a95fad12842bedae322231dd9e, type: 3}
+  - {fileID: 21300000, guid: 7ef88459e0935f9439c943bcdc1a71d8, type: 3}
+  - {fileID: 21300000, guid: 95c6502894fcf7145a1355347223b16a, type: 3}
+  - {fileID: 21300000, guid: 8e00f09af5cef23458a98eb4386ce528, type: 3}
+  - {fileID: 21300000, guid: 29b7e6088859b7c4186acee515825793, type: 3}
+  - {fileID: 21300000, guid: decbec48f0329214b8a644b16bbef1cf, type: 3}
+  - {fileID: 21300000, guid: 7e6639567ccae8c40a544cd370759d2b, type: 3}
+  - {fileID: 21300000, guid: e594c37f46444b94fa93ab6a47babcbe, type: 3}
+  canvas: {fileID: 0}
+  audioSource: {fileID: 0}
+  victorySound: {fileID: 8300000, guid: 8d7fadddaf6298a4e9b85d2405c44dac, type: 3}
+  backToMenuButton: {fileID: 0}
+  a: {fileID: 0}
