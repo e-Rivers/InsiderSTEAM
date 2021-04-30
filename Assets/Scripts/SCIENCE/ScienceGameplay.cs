@@ -448,14 +448,14 @@ public class ScienceGameplay : MonoBehaviour
     	float inverseFactor;
     	if(!initBanner.activeSelf) finalScore += (-10 * int.Parse(currentRound[1]));
 	    foreach(int i in savedTimestamps) {
-	    	if(i == 60) inverseFactor = (1.0f/(60-59))*500;
-	    	else inverseFactor = (1.0f/(60-i))*500;
+	    	if(i == 60) inverseFactor = (1.0f/(60-59))*1000;
+	    	else inverseFactor = (1.0f/(60-i))*1000;
 	    	answerTimeRateSum += (int) inverseFactor;
 	    }
 	    if(savedTimestamps.Count != 0) {
 	    	finalScore += (int) (answerTimeRateSum/savedTimestamps.Count);
 	    }
-	    if(finishPanel.activeSelf && finishTitle.text == "VICTORIA") finalScore += 500;
+	    if(finishPanel.activeSelf && finishTitle.text == "VICTORIA") finalScore += 2500;
 	    return finalScore;
     }
 
