@@ -68,6 +68,12 @@ public class SendingDataPrompt : MonoBehaviour
         }
         else if (!nextScene.Equals("ArtLevel") || !nextScene.Equals("TechLevel"))
         {
+            LevelManager.levelsPlayed = 1;
+            LevelManager.levels.Clear();
+            LevelManager.sameLevelCount = 0;
+            Time.timeScale = 1.0f;
+            ArtScoreSystem.score = 0;
+            TechScoreSystem.totalScore = 0;
             MenuManager.instance.EnterScene(false);
         }
         else

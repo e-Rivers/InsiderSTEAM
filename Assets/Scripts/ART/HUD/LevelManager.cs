@@ -13,9 +13,8 @@ public class LevelManager : MonoBehaviour
     public static int levelsPlayed = 1;
     public static bool isNewLevel = false;
     public int maxLevels = 3;
+    public static List<int> levels = new List<int>();
 
-    // Private attributes
-    private static List<int> levels = new List<int>();
 
     // Start is called before the first frame update
     void Start()

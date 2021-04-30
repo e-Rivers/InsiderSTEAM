@@ -35,6 +35,5 @@ public class ArtEndingScreen : MonoBehaviour
         score.text = "Puntuacion total: " + ArtScoreSystem.score;
         finishBtn.transform.gameObject.GetComponent<Image>().enabled = true;
         finishBtn.enabled = true;
-        ArtScoreSystem.score = 0;
     }
 }
