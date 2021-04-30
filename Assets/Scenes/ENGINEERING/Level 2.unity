@@ -3357,6 +3357,9 @@ MonoBehaviour:
   inputField: {fileID: 1178622870}
   textDisplay: {fileID: 1178622869}
   score: {fileID: 903691482}
+  audioSource: {fileID: 0}
+  correctClip: {fileID: 8300000, guid: af9da3477ee9e874092288b49ba24cc6, type: 3}
+  incorrectClip: {fileID: 8300000, guid: c18a868692454c449b7a12f390c27c9f, type: 3}
 --- !u!1 &1540673070
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,7 +22,15 @@ public class EnterAnswer : MonoBehaviour
     private bool RA2Scene = false;
     private int answerN;
     private int finalScore = 0;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip correctClip;
+    [SerializeField] AudioClip incorrectClip;
 
+
+    void Start()
+    {
+        audioSource = GameObject.Find("SoundSource").GetComponent<AudioSource>();
+    }
 
     private void OnGUI()
     {
@@ -59,12 +67,14 @@ public class EnterAnswer : MonoBehaviour
             if (answersRN[randomNP[i]] == answerN)
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Correcta";
+                audioSource.PlayOneShot(correctClip);
                 ScoreE.instance.AddScore(300, EngAnswerTimer.instance.answerTimer);
                 EngAnswerTimer.instance.ResetAnswerTimer();
             }
             else
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Incorrecta";
+                audioSource.PlayOneShot(incorrectClip);
                 EngAnswerTimer.instance.ResetAnswerTimer();
             }
 
@@ -79,12 +89,14 @@ public class EnterAnswer : MonoBehaviour
             if (answersRA1[randomNP[i]] == answerN)
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Correcta";
+                audioSource.PlayOneShot(correctClip);
                 ScoreE.instance.AddScore(300, EngAnswerTimer.instance.answerTimer);
                 EngAnswerTimer.instance.ResetAnswerTimer();
             }
             else
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Incorrecta";
+                audioSource.PlayOneShot(incorrectClip);
                 EngAnswerTimer.instance.ResetAnswerTimer();
             }
 
@@ -99,12 +111,14 @@ public class EnterAnswer : MonoBehaviour
             if (answersRA2[randomNP[i]] == answerN)
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Correcta";
+                audioSource.PlayOneShot(correctClip);
                 ScoreE.instance.AddScore(300, EngAnswerTimer.instance.answerTimer);
                 EngAnswerTimer.instance.ResetAnswerTimer();
             }
             else
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Incorrecta";
+                audioSource.PlayOneShot(incorrectClip);
                 EngAnswerTimer.instance.ResetAnswerTimer();
             }
 
