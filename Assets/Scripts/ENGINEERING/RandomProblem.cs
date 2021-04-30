@@ -112,7 +112,6 @@ public class RandomProblem : MonoBehaviour
         else if (scene.name == "Level 3" && nextLevel || Input.GetKeyDown(KeyCode.L))
         {
             EngPauseMenu.instance.GoToMenu();
-            GeneralScore.totalScore = 0;
         }
     }
 }

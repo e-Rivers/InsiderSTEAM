@@ -79,7 +79,8 @@ public class EngPauseMenu : MonoBehaviour
     public void GoToMenu()
     {
         canPause = false;
-        SendingDataPrompt.instance.SetPrompt(ScoreE.instance.finalScore, 3, "MainMenu");
+        SendingDataPrompt.instance.SetPrompt(GeneralScore.totalScore, 3, "MainMenu");
+        GeneralScore.totalScore = 0;
     }
 
     // Show pause menu
