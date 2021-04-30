@@ -448,8 +448,8 @@ public class ScienceGameplay : MonoBehaviour
     	float inverseFactor;
     	if(!initBanner.activeSelf) finalScore += (-10 * int.Parse(currentRound[1]));
 	    foreach(int i in savedTimestamps) {
-	    	if(i == 60) inverseFactor = (1.0f/(60-59))*750;
-	    	else inverseFactor = (1.0f/(60-i))*750;
+	    	if(i == 60) inverseFactor = (1.0f/(60-59))*1000;
+	    	else inverseFactor = (1.0f/(60-i))*1000;
 	    	answerTimeRateSum += (int) inverseFactor;
 	    }
 	    if(savedTimestamps.Count != 0) {
