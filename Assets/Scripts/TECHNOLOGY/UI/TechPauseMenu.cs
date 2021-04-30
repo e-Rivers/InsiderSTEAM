@@ -105,7 +105,9 @@ public class TechPauseMenu : MonoBehaviour
     public void GoToMenu()
     {
         canPause = false;
-        SendingDataPrompt.instance.SetPrompt(TechScoreSystem.score, 2, "MainMenu");
+        Debug.Log(TechScoreSystem.totalScore);
+        SendingDataPrompt.instance.SetPrompt(TechScoreSystem.totalScore, 2, "MainMenu");
+        TechScoreSystem.totalScore = 0;
     }
 
     // Activate pause menu

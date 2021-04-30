@@ -7,6 +7,7 @@ public class TechScoreSystem : MonoBehaviour
 {
     // Public attributes
     public static TechScoreSystem instance;
+    public static int totalScore = 0;
     public static int score = 0;
     public static int mistakes = 0;
 
@@ -88,17 +89,21 @@ public class TechScoreSystem : MonoBehaviour
         bonus = 250 * (3 - mistakes);
         if (bonus > 0)
         {
+            totalScore += 350 + (int)Mathf.Floor(multiplier * timer / 600.0f) + bonus;
             return 350 + (int)Mathf.Floor(multiplier * timer / 600.0f) + bonus;
         }
         else
         {
+            totalScore += 350 + (int)Mathf.Floor(multiplier * timer / 600.0f);
             return 350 + (int)Mathf.Floor(multiplier * timer / 600.0f);
         }
+
     }
 
     // Reset if player exits
     public void OnPlayerExit()
     {
+        totalScore = 0;
         score = 0;
         mistakes = 0;
     }
