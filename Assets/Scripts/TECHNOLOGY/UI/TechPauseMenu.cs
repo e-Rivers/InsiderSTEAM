@@ -107,6 +107,7 @@ public class TechPauseMenu : MonoBehaviour
         canPause = false;
         Debug.Log(TechScoreSystem.totalScore);
         SendingDataPrompt.instance.SetPrompt(TechScoreSystem.totalScore, 2, "MainMenu");
+        LevelManager.levelsPlayed = 1;
         TechScoreSystem.totalScore = 0;
     }
 

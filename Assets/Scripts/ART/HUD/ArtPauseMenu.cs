@@ -61,6 +61,7 @@ public class ArtPauseMenu : MonoBehaviour
     public void GoToMainMenu()
     {
         canPause = false;
+        LevelManager.levelsPlayed = 1;
         SendingDataPrompt.instance.SetPrompt(ArtScoreSystem.score, 4, "MainMenu");
     }
 
