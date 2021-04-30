@@ -23,7 +23,7 @@ public class Coin : MonoBehaviour
             // Increment destroyed coins counter
             DestroyedC.GetComponent<DestroyedCoins>().DestroyedC += 1;
             // Add coin value to score
-            ScoreE.instance.AddScore(100, EngAnswerTimer.instance.coinTimer);
+            ScoreE.instance.AddScore(30, EngAnswerTimer.instance.coinTimer);
             // Reset coin-grabbing multiplier timer
             EngAnswerTimer.instance.ResetCoinTimer();
             // Destroy gameObject

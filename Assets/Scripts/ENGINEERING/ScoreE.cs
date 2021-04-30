@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +16,7 @@ public class ScoreE : MonoBehaviour
     public void DisplayFinalScore()
     {
         display.GetComponent<Text>().text = finalScore + " pts.";
+        GeneralScore.totalScore += finalScore;
     }
 
     public void AddScore(int score, float time)

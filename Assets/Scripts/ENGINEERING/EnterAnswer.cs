@@ -59,7 +59,7 @@ public class EnterAnswer : MonoBehaviour
             if (answersRN[randomNP[i]] == answerN)
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Correcta";
-                ScoreE.instance.AddScore(1000, EngAnswerTimer.instance.answerTimer);
+                ScoreE.instance.AddScore(300, EngAnswerTimer.instance.answerTimer);
                 EngAnswerTimer.instance.ResetAnswerTimer();
             }
             else
@@ -79,7 +79,7 @@ public class EnterAnswer : MonoBehaviour
             if (answersRA1[randomNP[i]] == answerN)
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Correcta";
-                ScoreE.instance.AddScore(1000, EngAnswerTimer.instance.answerTimer);
+                ScoreE.instance.AddScore(300, EngAnswerTimer.instance.answerTimer);
                 EngAnswerTimer.instance.ResetAnswerTimer();
             }
             else
@@ -99,7 +99,7 @@ public class EnterAnswer : MonoBehaviour
             if (answersRA2[randomNP[i]] == answerN)
             {
                 textDisplay.GetComponent<Text>().text = "Respuesta Correcta";
-                ScoreE.instance.AddScore(1000, EngAnswerTimer.instance.answerTimer);
+                ScoreE.instance.AddScore(300, EngAnswerTimer.instance.answerTimer);
                 EngAnswerTimer.instance.ResetAnswerTimer();
             }
             else
